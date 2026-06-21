@@ -101,7 +101,7 @@ export default function SobreMi() {
 
       {/* Rótulo de fondo */}
       <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+        className="absolute inset-0 flex items-start justify-center pointer-events-none select-none overflow-hidden"
         aria-hidden="true"
       >
         <span
