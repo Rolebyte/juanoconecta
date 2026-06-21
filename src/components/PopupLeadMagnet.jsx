@@ -89,7 +89,7 @@ export default function PopupLeadMagnet() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      placeholder="Ingresá tu email profesional"
+                      placeholder="Ingresá tu correo"
                       className="w-full bg-card-bg border border-card-border text-crema placeholder-crema/20 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-acento/50 transition-colors"
                     />
                     <motion.button
