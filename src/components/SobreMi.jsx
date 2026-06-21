@@ -118,31 +118,18 @@ export default function SobreMi() {
           {/* ── Mosaico de fotos ── */}
           <div className="relative">
             {/* Foto principal grande */}
-            <Foto
-              src={heroImg}
-              alt="Juan Gallino - JuanoConecta"
-              label="Foto principal"
-              className="w-full h-[420px]"
-              delay={0}
-            />
-
-            {/* Foto secundaria superpuesta abajo derecha */}
-            <Foto
-              src={foto1}
-              alt="Juan trabajando"
-              label="foto1.png"
-              className="absolute -bottom-8 -right-6 w-44 h-44 md:w-52 md:h-52 shadow-2xl"
-              delay={0.15}
-            />
-
-            {/* Foto terciaria superpuesta arriba derecha */}
-            <Foto
-              src={foto2}
-              alt="Juan en acción"
-              label="foto2.png"
-              className="absolute -top-6 -right-4 w-32 h-32 md:w-40 md:h-40 shadow-xl"
-              delay={0.3}
-            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="relative rounded-2xl overflow-hidden w-full h-[580px]"
+              style={{ border: '1px solid rgba(196,132,106,0.15)' }}
+            >
+              <img src={heroImg} alt="Juan Gallino - JuanoConecta" className="w-full h-full object-cover object-top" />
+              {/* Cubre el watermark del fondo */}
+              <div className="absolute bottom-0 left-0 right-0 h-16" style={{ background: 'linear-gradient(to top, #0A0A0A 0%, transparent 100%)' }} />
+            </motion.div>
 
           </div>
 
