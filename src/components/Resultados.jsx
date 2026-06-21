@@ -143,12 +143,23 @@ export default function Resultados() {
   return (
     <section id="resultados" className="py-28 px-6 relative overflow-hidden">
       <div className="absolute inset-0 bg-[#0E0E0E]" />
+      {/* Grilla de puntos */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.035]"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #C4846A 1px, transparent 1px)',
+          backgroundSize: '36px 36px',
+        }}
+      />
+      {/* Gradiente acento centro-abajo */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(196,132,106,0.07) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse 80% 60% at 50% 110%, rgba(196,132,106,0.12) 0%, transparent 60%)',
         }}
       />
+      {/* Fade superior para fusionar con sección anterior */}
+      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #0A0A0A, transparent)' }} />
 
       <div className="relative max-w-7xl mx-auto">
 
