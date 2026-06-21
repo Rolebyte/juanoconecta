@@ -99,6 +99,19 @@ export default function SobreMi() {
       {/* Orbe de fondo */}
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-acento/4 blur-[150px] pointer-events-none" />
 
+      {/* Rótulo de fondo */}
+      <div
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <span
+          className="text-[18vw] font-black uppercase tracking-tighter leading-none"
+          style={{ color: 'rgba(196,132,106,0.04)' }}
+        >
+          SOBRE MÍ
+        </span>
+      </div>
+
       <div className="max-w-7xl mx-auto relative">
 
         {/* Header */}
@@ -109,8 +122,7 @@ export default function SobreMi() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <span className="text-acento text-sm font-semibold tracking-widest uppercase">El equipo</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-crema mt-3">Sobre mí</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-crema">Sobre mí</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
