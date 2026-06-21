@@ -18,7 +18,9 @@ export default function Clientes() {
   const inView = useInView(ref, { once: true })
 
   return (
-    <section className="py-16 px-6 overflow-hidden border-y border-white/5">
+    <section className="py-16 px-6 overflow-hidden relative">
+      <div className="absolute top-0 left-0 right-0 h-16 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #0A0A0A, transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none" style={{ background: 'linear-gradient(to top, #0A0A0A, transparent)' }} />
       <motion.div
         ref={ref}
         initial={{ opacity: 0 }}

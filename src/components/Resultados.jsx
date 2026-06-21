@@ -142,7 +142,7 @@ export default function Resultados() {
 
   return (
     <section id="resultados" className="py-28 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#0E0E0E]" />
+      <div className="absolute inset-0 bg-[#0A0A0A]" />
       {/* Grilla de puntos */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.035]"

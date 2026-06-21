@@ -142,11 +142,12 @@ export default function Servicios() {
 
   return (
     <section id="servicios" className="py-28 px-6 relative overflow-hidden">
-      {/* Fondo diferenciado */}
-      <div className="absolute inset-0 bg-[#0D0D0D]" />
+      <div className="absolute inset-0 bg-[#0A0A0A]" />
       <div className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(196,132,106,0.06) 0%, transparent 60%)',
       }} />
+      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #0A0A0A, transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, #0A0A0A, transparent)' }} />
 
       <div className="relative max-w-7xl mx-auto">
         <motion.div
