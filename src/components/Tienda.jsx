@@ -4,6 +4,21 @@ import { useTilt } from '../hooks/useTilt'
 
 const WA_AUDITORIA = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20la%20Auditoría%20IA%20de%20mi%20perfil'
 
+const TEAL = '#00C9A7'
+
+const productoGratis = {
+  nombre: '5 Prompts para Arrancar con IA',
+  descripcion: 'No sabés por dónde empezar con la IA. Estos 5 prompts te dan el punto de partida exacto para generar contenido real en menos de 10 minutos — sin experiencia previa.',
+  badge: 'GRATIS',
+  badgeStyle: { background: 'rgba(0,201,167,0.15)', color: '#00C9A7', border: '1px solid rgba(0,201,167,0.4)' },
+  precioARS: null,
+  precioUSD: null,
+  tipo: 'gratis',
+  emoji: '🎁',
+  includes: ['5 prompts listos para usar hoy', 'Funciona en ChatGPT, Claude y Gemini', 'Resultados desde el primer uso', 'Sin tarjeta. Sin registro. 100% gratis'],
+  color: TEAL,
+}
+
 const productos = [
   {
     nombre: 'Kit Contenido IA',
@@ -232,7 +247,82 @@ function ProductoCard({ producto, index }) {
   )
 }
 
-export default function Tienda() {
+function ProductoGratisCard({ onOpenPopup }) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const tilt = useTilt(8)
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, delay: 0, ease: [0.16, 1, 0.3, 1] }}
+      className="md:col-span-3"
+    >
+      <div
+        ref={tilt.ref}
+        onMouseMove={tilt.onMouseMove}
+        onMouseLeave={tilt.onMouseLeave}
+        className="relative rounded-3xl p-8 group overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, rgba(0,201,167,0.08) 0%, rgba(0,201,167,0.02) 100%)',
+          border: '1px solid rgba(0,201,167,0.25)',
+        }}
+      >
+        <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity duration-500" style={{ background: TEAL }} />
+
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
+          {/* Izquierda */}
+          <div className="flex-1">
+            <span className="inline-flex self-start px-3 py-1 rounded-full text-xs font-bold tracking-wider mb-4" style={productoGratis.badgeStyle}>
+              {productoGratis.badge}
+            </span>
+            <div className="flex items-center gap-3 mb-3">
+              <motion.span
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                className="text-4xl"
+              >
+                {productoGratis.emoji}
+              </motion.span>
+              <h3 className="text-xl font-bold text-crema">{productoGratis.nombre}</h3>
+            </div>
+            <p className="text-crema/45 text-sm leading-relaxed">{productoGratis.descripcion}</p>
+          </div>
+
+          {/* Centro — qué incluye */}
+          <ul className="flex-1 space-y-2">
+            {productoGratis.includes.map((item) => (
+              <li key={item} className="flex items-center gap-2.5 text-sm text-crema/50">
+                <svg className="w-4 h-4 flex-shrink-0" style={{ color: TEAL }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          {/* Derecha — CTA */}
+          <div className="flex-shrink-0">
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={onOpenPopup}
+              className="px-10 py-4 rounded-2xl font-bold text-sm text-white transition-all duration-200"
+              style={{ background: `linear-gradient(135deg, ${TEAL}, #00a88e)`, boxShadow: `0 0 30px rgba(0,201,167,0.25)` }}
+            >
+              Descargar gratis →
+            </motion.button>
+            <p className="text-crema/25 text-[11px] text-center mt-2">Sin tarjeta. Sin compromiso.</p>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+export default function Tienda({ onOpenPopup }) {
   const titleRef = useRef(null)
   const titleInView = useInView(titleRef, { once: true })
 
@@ -255,6 +345,7 @@ export default function Tienda() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <ProductoGratisCard onOpenPopup={onOpenPopup} />
           {productos.map((p, i) => (
             <ProductoCard key={p.nombre} producto={p} index={i} />
           ))}

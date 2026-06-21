@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SobreMi from './components/SobreMi'
@@ -13,6 +14,8 @@ import WhatsAppButton from './components/WhatsAppButton'
 import CursorCustom from './components/CursorCustom'
 
 export default function App() {
+  const [popupOpen, setPopupOpen] = useState(false)
+
   return (
     <div className="bg-fondo text-crema min-h-screen">
       <CursorCustom />
@@ -22,13 +25,13 @@ export default function App() {
         <SobreMi />
         <ComoTrabajo />
         <Servicios />
-        <Tienda />
+        <Tienda onOpenPopup={() => setPopupOpen(true)} />
         <Resultados />
         <Clientes />
         <Contacto />
       </main>
       <Footer />
-      <PopupLeadMagnet />
+      <PopupLeadMagnet forceOpen={popupOpen} onClose={() => setPopupOpen(false)} />
       <WhatsAppButton />
     </div>
   )
