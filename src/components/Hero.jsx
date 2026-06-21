@@ -166,15 +166,12 @@ export default function Hero() {
               <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
               <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
 
-              {/* NexBot Robot 3D — interactivo, fondo oscuro nativo */}
-              <iframe
-                src="https://my.spline.design/nexbotrobotcharacterconcept-DHapPUH5AKyDrItNEV6EyNLJ/"
-                frameBorder="0"
-                width="100%"
-                height="100%"
-                title="Robot IA 3D JuanoConecta"
-                loading="lazy"
-                style={{ display: 'block' }}
+              {/* Foto de Juan */}
+              <img
+                src="/hero.png"
+                alt="Juan Gallino — Estrategia digital con IA"
+                className="w-full h-full object-cover object-top"
+                loading="eager"
               />
             </div>
 
