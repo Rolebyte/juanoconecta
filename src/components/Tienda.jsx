@@ -8,7 +8,7 @@ const TEAL = '#00C9A7'
 
 const productoGratis = {
   nombre: '5 Prompts para Arrancar con IA',
-  descripcion: 'No sabés por dónde empezar con la IA. Estos 5 prompts te dan el punto de partida exacto para generar contenido real en menos de 10 minutos — sin experiencia previa.',
+  descripcion: '¿No sabés por dónde empezar con la IA? Estos 5 prompts te dan el punto de partida exacto para generar contenido real en menos de 10 minutos — sin experiencia previa.',
   badge: 'GRATIS',
   badgeStyle: { background: 'rgba(0,201,167,0.15)', color: '#00C9A7', border: '1px solid rgba(0,201,167,0.4)' },
   precioARS: null,
@@ -22,7 +22,7 @@ const productoGratis = {
 const productos = [
   {
     nombre: 'Kit Contenido IA',
-    descripcion: 'Publicás, pero el algoritmo no te acompaña. El problema no es tu producto — es cómo lo comunicás. Estos 30 prompts te dan el lenguaje exacto para conectar con tu audiencia y generar contenido que vende.',
+    descripcion: '¿Publicás pero el algoritmo no te acompaña? El problema no es tu producto — es cómo lo comunicás. Estos 30 prompts te dan el lenguaje exacto para conectar con tu audiencia y generar contenido que vende.',
     badge: 'MÁS VENDIDO',
     badgeStyle: { background: 'rgba(196,132,106,0.2)', color: '#C4846A', border: '1px solid rgba(196,132,106,0.4)' },
     precioARS: '$8.000 ARS',
@@ -37,7 +37,7 @@ const productos = [
   },
   {
     nombre: 'Prompt Power Pack',
-    descripcion: 'Manejar múltiples cuentas sin un sistema claro consume tiempo, energía y resultados. Este pack te da la estructura para producir más en menos tiempo — con calidad constante y sin depender de la inspiración.',
+    descripcion: '¿Manejás múltiples cuentas sin un sistema claro? Consume tiempo, energía y resultados. Este pack te da la estructura para producir más en menos tiempo — con calidad constante y sin depender de la inspiración.',
     badge: null,
     precioARS: '$25.000 ARS',
     precioUSD: '$22 USD',
@@ -51,7 +51,7 @@ const productos = [
   },
   {
     nombre: 'Auditoría IA de tu perfil',
-    descripcion: 'Invertís tiempo en redes, pero los números no reflejan ese esfuerzo. Con esta auditoría identificamos con precisión los puntos de fuga en tu estrategia y te entregamos un plan concreto para revertirlo.',
+    descripcion: '¿Invertís tiempo en redes pero los números no reflejan ese esfuerzo? Con esta auditoría identificamos con precisión los puntos de fuga en tu estrategia y te entregamos un plan concreto para revertirlo.',
     badge: 'PREMIUM',
     badgeStyle: { background: 'rgba(234,179,8,0.15)', color: '#EAB308', border: '1px solid rgba(234,179,8,0.3)' },
     precioARS: '$45.000 ARS',
