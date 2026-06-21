@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion'
 
 // Importar fotos (placeholder si no existen)
 // Si colocás tus imágenes en /src/assets/ se usarán automáticamente
-const heroImg = '/hero.png'
+const heroImg = '/hero.jpg'
 const foto1 = null
 const foto2 = null
 const foto3 = null
