@@ -250,7 +250,7 @@ export default function Tienda() {
           <span className="text-acento text-sm font-semibold tracking-widest uppercase">Recursos digitales</span>
           <h2 className="text-3xl md:text-5xl font-bold text-crema mt-4 mb-5">Lo que uso cada día<br />para hacer crecer marcas</h2>
           <p className="text-crema/35 max-w-lg mx-auto">
-            Metodología probada en más de 20 marcas argentinas, condensada en recursos que implementás desde el primer día — con o sin experiencia previa en IA.
+            Metodología probada en marcas argentinas y de latinoamérica, aplicando recursos que traccionan desde el primer día — con o sin experiencia previa en IA.
           </p>
         </motion.div>
 
