@@ -3,11 +3,10 @@ import { motion, useInView } from 'framer-motion'
 
 // Importar fotos (placeholder si no existen)
 // Si colocás tus imágenes en /src/assets/ se usarán automáticamente
-let heroImg, foto1, foto2, foto3
-try { heroImg = new URL('../assets/hero.png', import.meta.url).href } catch { heroImg = null }
-try { foto1 = new URL('../assets/foto1.png', import.meta.url).href } catch { foto1 = null }
-try { foto2 = new URL('../assets/foto2.png', import.meta.url).href } catch { foto2 = null }
-try { foto3 = new URL('../assets/foto3.png', import.meta.url).href } catch { foto3 = null }
+const heroImg = '/hero.png'
+const foto1 = null
+const foto2 = null
+const foto3 = null
 
 const logros = [
   { num: '+20', label: 'Clientes atendidos', icon: '🏆' },
