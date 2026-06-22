@@ -63,7 +63,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-crema/25 text-xs">
           <p>© 2026 JuanoConecta. Todos los derechos reservados.</p>
-          <p>Hecho con IA en Rafaela, Argentina 🇦🇷</p>
+          <p>Rafaela, Santa Fe, Argentina · Estrategia digital con IA aplicada</p>
         </div>
       </div>
     </footer>
