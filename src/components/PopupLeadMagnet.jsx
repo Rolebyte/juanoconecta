@@ -107,9 +107,22 @@ export default function PopupLeadMagnet({ forceOpen = false, onClose }) {
                 <div className="text-center py-2">
                   <div className="text-4xl mb-3">🎉</div>
                   <h3 className="text-crema text-lg font-bold mb-2">¡Los prompts están en camino!</h3>
-                  <p className="text-crema/45 text-sm mb-6">
-                    Revisá tu email en los próximos minutos.<br />
-                    <span className="text-crema/30">Mientras tanto —</span>
+
+                  {/* Descarga directa */}
+                  <a
+                    href="/5-prompts-gratis.pdf"
+                    download
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm text-white mb-4 transition-all hover:opacity-90"
+                    style={{ background: 'linear-gradient(135deg, #C4846A, #E8A882)' }}
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Descargar los 5 prompts ahora
+                  </a>
+
+                  <p className="text-crema/45 text-sm mb-4">
+                    <span className="text-crema/30">¿Querés seguir aprendiendo? —</span>
                   </p>
 
                   {/* Instagram CTA */}
