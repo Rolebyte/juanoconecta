@@ -6,6 +6,7 @@ const WA_LINK = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20saber
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -13,12 +14,29 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    const sectionIds = ['sobre-mi', 'servicios', 'tienda', 'resultados', 'contacto']
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        })
+      },
+      { rootMargin: '-40% 0px -55% 0px' }
+    )
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [])
+
   const links = [
-    { label: 'Sobre mí', href: '#sobre-mi' },
-    { label: 'Servicios', href: '#servicios' },
-    { label: 'Tienda', href: '#tienda' },
-    { label: 'Resultados', href: '#resultados' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Sobre mí', href: '#sobre-mi', id: 'sobre-mi' },
+    { label: 'Servicios', href: '#servicios', id: 'servicios' },
+    { label: 'Tienda', href: '#tienda', id: 'tienda' },
+    { label: 'Resultados', href: '#resultados', id: 'resultados' },
+    { label: 'Contacto', href: '#contacto', id: 'contacto' },
   ]
 
   return (
@@ -40,17 +58,20 @@ export default function Navbar() {
 
         {/* Links desktop */}
         <ul className="hidden md:flex items-center gap-8">
-          {links.map((link) => (
-            <li key={link.label}>
-              <a
-                href={link.href}
-                className="text-crema/70 hover:text-crema text-sm font-medium transition-colors duration-200 relative group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-acento transition-all duration-300 group-hover:w-full" />
-              </a>
-            </li>
-          ))}
+          {links.map((link) => {
+            const isActive = activeSection === link.id
+            return (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors duration-200 relative group ${isActive ? 'text-crema' : 'text-crema/70 hover:text-crema'}`}
+                >
+                  {link.label}
+                  <span className={`absolute -bottom-1 left-0 h-px bg-acento transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                </a>
+              </li>
+            )
+          })}
         </ul>
 
         {/* CTA desktop */}
