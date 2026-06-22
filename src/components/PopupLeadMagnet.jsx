@@ -30,7 +30,6 @@ export default function PopupLeadMagnet({ forceOpen = false, onClose }) {
       body: JSON.stringify({ email, _subject: 'Lead Magnet - 5 prompts IA' }),
     })
     setEnviado(true)
-    setTimeout(cerrar, 2500)
   }
 
   return (
