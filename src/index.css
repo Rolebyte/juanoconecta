@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* ── Fuente global ── */
 * {
   font-family: 'Inter', sans-serif;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 const WA_LINK = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20saber%20más%20sobre%20tus%20servicios'
 
@@ -79,11 +79,13 @@ export default function Navbar() {
       </div>
 
       {/* Menú mobile desplegable */}
+      <AnimatePresence>
       {menuOpen && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
           className="md:hidden bg-fondo/95 backdrop-blur-md border-t border-white/5 px-6 pb-6"
         >
           <ul className="flex flex-col gap-4 pt-4">
@@ -111,6 +113,7 @@ export default function Navbar() {
           </ul>
         </motion.div>
       )}
+      </AnimatePresence>
     </motion.nav>
   )
 }

@@ -19,10 +19,12 @@ export default function Contacto() {
   const titleInView = useInView(titleRef, { once: true })
   const [enviado, setEnviado] = useState(false)
   const [cargando, setCargando] = useState(false)
+  const [error, setError] = useState(false)
 
   async function handleSubmit(e) {
     e.preventDefault()
     setCargando(true)
+    setError(false)
     const form = e.target
     const data = new FormData(form)
 
@@ -35,9 +37,11 @@ export default function Contacto() {
       if (res.ok) {
         setEnviado(true)
         form.reset()
+      } else {
+        setError(true)
       }
     } catch {
-      // silencioso
+      setError(true)
     } finally {
       setCargando(false)
     }
@@ -132,6 +136,12 @@ export default function Contacto() {
                   />
                 </div>
 
+                {error && (
+                  <p className="text-red-400 text-sm text-center py-2 px-4 rounded-xl bg-red-400/10 border border-red-400/20">
+                    Hubo un error al enviar. Intentá de nuevo o escribime por WhatsApp.
+                  </p>
+                )}
+
                 <motion.button
                   type="submit"
                   disabled={cargando}
@@ -218,7 +228,7 @@ export default function Contacto() {
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
                 <span className="text-green-400 text-xs font-semibold">Disponible ahora</span>
               </div>
-              <p className="text-crema/60 text-sm">Respondemos en menos de 24 horas en días hábiles.</p>
+              <p className="text-crema/60 text-sm">Te respondo en menos de 24 horas en días hábiles.</p>
             </div>
           </motion.div>
 
