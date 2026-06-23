@@ -9,7 +9,7 @@ export default function PopupLeadMagnet({ forceOpen = false, onClose }) {
   const [enviado, setEnviado] = useState(false)
 
   useEffect(() => {
-    if (forceOpen) { setVisible(true); return }
+    if (forceOpen) { setVisible(true); setEnviado(false); return }
     if (localStorage.getItem(STORAGE_KEY)) return
     const timer = setTimeout(() => setVisible(true), 10000)
     return () => clearTimeout(timer)
