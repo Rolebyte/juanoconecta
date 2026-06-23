@@ -105,8 +105,9 @@ export default function PopupLeadMagnet({ forceOpen = false, onClose }) {
                 </>
               ) : (
                 <div className="text-center py-2">
-                  <div className="text-4xl mb-3">🎉</div>
-                  <h3 className="text-crema text-lg font-bold mb-2">¡Los prompts están en camino!</h3>
+                  <div className="text-4xl mb-2">⬇️</div>
+                  <h3 className="text-crema text-lg font-bold mb-1">¡Listo! Tu descarga está acá abajo</h3>
+                  <p className="text-crema/40 text-xs mb-4">Hacé click en el botón para descargar el PDF ahora mismo.</p>
 
                   {/* Descarga directa */}
                   <a
@@ -118,7 +119,7 @@ export default function PopupLeadMagnet({ forceOpen = false, onClose }) {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
-                    Descargar los 5 prompts ahora
+                    Descargar los 5 prompts gratis
                   </a>
 
                   <p className="text-crema/45 text-sm mb-4">
