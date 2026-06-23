@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useTilt } from '../hooks/useTilt'
 
 const WA_AUDITORIA = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20la%20Auditoría%20IA%20de%20mi%20perfil'
@@ -350,7 +350,77 @@ export default function Tienda({ onOpenPopup }) {
             <ProductoCard key={p.nombre} producto={p} index={i} />
           ))}
         </div>
+
+        {/* FAQ */}
+        <div className="mt-20 max-w-2xl mx-auto">
+          <h3 className="text-crema text-2xl font-bold text-center mb-10">Preguntas frecuentes</h3>
+          <FaqList />
+        </div>
+
       </div>
     </section>
+  )
+}
+
+const faqs = [
+  {
+    q: '¿Necesito experiencia previa en IA?',
+    a: 'No. Los recursos están diseñados para que puedas usarlos desde cero. Si sabés usar WhatsApp, podés usar estos prompts.',
+  },
+  {
+    q: '¿En qué plataformas funcionan los prompts?',
+    a: 'En ChatGPT, Claude y Gemini. Todos gratuitos, sin necesidad de pagar ninguna suscripción.',
+  },
+  {
+    q: '¿Los prompts están en español?',
+    a: 'Sí, 100% en español y adaptados al contexto argentino y latinoamericano.',
+  },
+  {
+    q: '¿Cómo recibo el kit después de comprarlo?',
+    a: 'Al instante. Gumroad y Mercado Pago te dan acceso inmediato al material apenas se acredita el pago.',
+  },
+  {
+    q: '¿Puedo pagar en cuotas?',
+    a: 'Sí, con tarjeta de crédito a través de Mercado Pago podés elegir la cantidad de cuotas disponibles.',
+  },
+  {
+    q: '¿Cómo funciona la Auditoría IA de tu perfil?',
+    a: 'Es una sesión de 30 a 40 minutos por videollamada o llamada de WhatsApp. Una vez que comprás, coordinamos día y horario juntos.',
+  },
+  {
+    q: '¿Hay garantía de devolución?',
+    a: 'No ofrecemos reembolsos. Si tenés dudas antes de comprar, escribime por WhatsApp y te ayudo a elegir el recurso que más te sirve.',
+  },
+]
+
+function FaqList() {
+  const [open, setOpen] = useState(null)
+  return (
+    <div className="flex flex-col gap-3">
+      {faqs.map((faq, i) => (
+        <div key={i} className="border border-white/10 rounded-2xl overflow-hidden">
+          <button
+            onClick={() => setOpen(open === i ? null : i)}
+            className="w-full flex items-center justify-between px-6 py-4 text-left text-crema/80 hover:text-crema transition-colors duration-200"
+          >
+            <span className="font-medium pr-4">{faq.q}</span>
+            <span className="text-acento text-xl flex-shrink-0">{open === i ? '−' : '+'}</span>
+          </button>
+          <AnimatePresence initial={false}>
+            {open === i && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="overflow-hidden"
+              >
+                <p className="px-6 pb-5 text-crema/50 text-sm leading-relaxed">{faq.a}</p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      ))}
+    </div>
   )
 }
