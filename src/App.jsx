@@ -14,7 +14,7 @@ import WhatsAppButton from './components/WhatsAppButton'
 import CursorCustom from './components/CursorCustom'
 
 export default function App() {
-  const [popupOpen, setPopupOpen] = useState(false)
+  const [popupTrigger, setPopupTrigger] = useState(0)
 
   return (
     <div className="bg-fondo text-crema min-h-screen">
@@ -25,13 +25,13 @@ export default function App() {
         <SobreMi />
         <ComoTrabajo />
         <Servicios />
-        <Tienda onOpenPopup={() => setPopupOpen(true)} />
+        <Tienda onOpenPopup={() => setPopupTrigger(n => n + 1)} />
         <Resultados />
         <Clientes />
         <Contacto />
       </main>
       <Footer />
-      <PopupLeadMagnet forceOpen={popupOpen} onClose={() => setPopupOpen(false)} />
+      <PopupLeadMagnet forceOpen={popupTrigger} />
       <WhatsAppButton />
     </div>
   )

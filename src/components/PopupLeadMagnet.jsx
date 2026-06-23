@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 
 const STORAGE_KEY = 'jc_popup_cerrado'
 
-export default function PopupLeadMagnet({ forceOpen = false, onClose }) {
+export default function PopupLeadMagnet({ forceOpen = 0 }) {
   const [visible, setVisible] = useState(false)
   const [email, setEmail] = useState('')
   const [enviado, setEnviado] = useState(false)
 
   useEffect(() => {
-    if (forceOpen) { setVisible(true); setEnviado(false); return }
+    if (forceOpen > 0) { setVisible(true); setEnviado(false); setEmail(''); return }
     if (localStorage.getItem(STORAGE_KEY)) return
     const timer = setTimeout(() => setVisible(true), 10000)
     return () => clearTimeout(timer)
@@ -17,8 +17,7 @@ export default function PopupLeadMagnet({ forceOpen = false, onClose }) {
 
   function cerrar() {
     setVisible(false)
-    if (!forceOpen) localStorage.setItem(STORAGE_KEY, '1')
-    onClose?.()
+    if (forceOpen === 0) localStorage.setItem(STORAGE_KEY, '1')
   }
 
   async function handleSubmit(e) {
