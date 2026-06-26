@@ -20,47 +20,55 @@ header{background:#111;border-bottom:1px solid #1e1e1e;padding:14px 28px;display
 .metric{background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:14px 16px}
 .metric-label{font-size:11px;color:#555;margin-bottom:5px}
 .metric-val{font-size:22px;font-weight:500}
-.metric-val.green{color:#1D9E75}
-.metric-val.coral{color:#C4846A}
-.metric-val.amber{color:#BA7517}
-.chart-wrap{margin:20px 28px 0;background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:16px}
-.chart-title{font-size:12px;color:#555;margin-bottom:12px}
-.chart-bars{display:flex;align-items:flex-end;gap:6px;height:60px}
-.bar-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+.metric-val.green{color:#1D9E75}.metric-val.coral{color:#C4846A}.metric-val.amber{color:#BA7517}.metric-val.purple{color:#7C6FCD}
+.chart-wrap{margin:16px 28px 0;background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:16px}
+.chart-title{font-size:11px;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.chart-bars{display:flex;align-items:flex-end;gap:5px;height:56px}
+.bar-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
 .bar{background:#C4846A;border-radius:3px 3px 0 0;width:100%;min-height:2px;transition:height .3s}
-.bar-label{font-size:9px;color:#444;white-space:nowrap}
-.bar-val{font-size:9px;color:#666}
-.toolbar{padding:16px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.toolbar-left{display:flex;gap:8px}
-input.search{padding:7px 12px;background:#111;border:1px solid #222;border-radius:8px;color:#F5F0EB;font-size:13px;width:200px}
+.bar-label{font-size:9px;color:#444}
+.bar-val{font-size:9px;color:#666;min-height:12px}
+.toolbar{padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.toolbar-left{display:flex;gap:7px;flex-wrap:wrap}
+input.search{padding:7px 12px;background:#111;border:1px solid #222;border-radius:8px;color:#F5F0EB;font-size:13px;width:190px}
 input.search:focus{outline:none;border-color:#C4846A}
-select.filter{padding:7px 12px;background:#111;border:1px solid #222;border-radius:8px;color:#F5F0EB;font-size:13px;cursor:pointer}
-.btn{padding:7px 14px;border-radius:8px;border:1px solid #333;background:transparent;color:#F5F0EB;font-size:12px;cursor:pointer}
+select.filter{padding:7px 10px;background:#111;border:1px solid #222;border-radius:8px;color:#F5F0EB;font-size:12px;cursor:pointer}
+.btn{padding:7px 14px;border-radius:8px;border:1px solid #333;background:transparent;color:#F5F0EB;font-size:12px;cursor:pointer;transition:background .15s}
 .btn:hover{background:#1a1a1a}
 .btn-coral{background:#C4846A;border-color:#C4846A;color:#fff}
 .btn-coral:hover{background:#b07660}
 .btn-sm{padding:5px 10px;font-size:11px}
 .table-wrap{margin:0 28px 28px;background:#111;border:1px solid #1e1e1e;border-radius:12px;overflow:hidden}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;padding:10px 14px;font-size:11px;color:#555;border-bottom:1px solid #1e1e1e;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
-td{padding:11px 14px;border-bottom:1px solid #141414;color:#ccc}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;padding:9px 12px;font-size:10px;color:#444;border-bottom:1px solid #1e1e1e;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+td{padding:10px 12px;border-bottom:1px solid #141414;color:#ccc;vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#0f0f0f}
-.badge{padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500;display:inline-block}
+.badge{padding:2px 7px;border-radius:20px;font-size:10px;font-weight:500;display:inline-block}
 .badge-pendiente{background:#2a1f0a;color:#BA7517;border:1px solid #3a2a0e}
 .badge-enviado{background:#0a1f12;color:#1D9E75;border:1px solid #0e2e1a}
 .badge-error{background:#1f0a0a;color:#A32D2D;border:1px solid #2e0e0e}
-.badge-rebotado{background:#1a1a1a;color:#666;border:1px solid #222}
-.source-tag{padding:2px 7px;border-radius:20px;font-size:10px;background:#1a1a1a;border:1px solid #2a2a2a;color:#666}
+.badge-rebotado{background:#1a1a1a;color:#555;border:1px solid #222}
+.label-tag{padding:2px 8px;border-radius:20px;font-size:10px;font-weight:500;display:inline-block;cursor:pointer}
+.label-sin-etiquetar{background:#1a1a1a;color:#444;border:1px solid #222}
+.label-interesado{background:#0f1e36;color:#4A9EDB;border:1px solid #1a3455}
+.label-en-negociacion{background:#1a1f0a;color:#8DB843;border:1px solid #2a3510}
+.label-cerrado{background:#0a1f12;color:#1D9E75;border:1px solid #0e2e1a}
+.label-descartado{background:#1f0a0a;color:#664444;border:1px solid #2e0e0e}
+.source-tag{padding:2px 6px;border-radius:20px;font-size:10px;background:#1a1a1a;border:1px solid #2a2a2a;color:#555}
 .source-tag.popup{color:#534AB7;background:#13103A;border-color:#1e1956}
 .source-tag.boton{color:#1D9E75;background:#0a1f12;border-color:#0e2e1a}
-.source-tag.manual{color:#BA7517;background:#2a1f0a;border-color:#3a2a0e}
-.actions{display:flex;gap:5px}
+.seq-pip{display:inline-flex;gap:3px;align-items:center}
+.pip{width:8px;height:8px;border-radius:50%;border:1px solid #333;background:#1a1a1a}
+.pip.done{background:#1D9E75;border-color:#1D9E75}
+.actions{display:flex;gap:4px;align-items:center}
 .empty{text-align:center;padding:50px;color:#444;font-size:13px}
 .toast{position:fixed;bottom:20px;right:20px;background:#1D9E75;color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;display:none;z-index:999}
 .toast.error{background:#A32D2D}
 #app{display:none}
 .new-dot{display:inline-block;width:6px;height:6px;background:#C4846A;border-radius:50%;margin-left:4px;vertical-align:middle}
+.label-select{padding:3px 7px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;color:#888;font-size:11px;cursor:pointer}
+.label-select:focus{outline:none;border-color:#C4846A}
 </style>
 </head>
 <body>
@@ -71,7 +79,7 @@ tr:hover td{background:#0f0f0f}
     <h1>Panel de leads</h1>
     <p>Ingresá tu contraseña de admin</p>
     <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="btn btn-coral" style="width:100%;justify-content:center;display:block;text-align:center;padding:10px" onclick="doLogin()">Ingresar</button>
+    <button class="btn btn-coral" style="width:100%;text-align:center;display:block;padding:10px" onclick="doLogin()">Ingresar</button>
     <p id="login-error" style="color:#A32D2D;font-size:13px;margin-top:10px;display:none">Contraseña incorrecta</p>
   </div>
 </div>
@@ -81,31 +89,29 @@ tr:hover td{background:#0f0f0f}
     <div style="display:flex;align-items:center;gap:12px">
       <div class="logo" style="margin:0">Juano<span>Conecta</span></div>
       <span style="color:#333">|</span>
-      <span style="font-size:13px;color:#555">Leads</span>
+      <span style="font-size:13px;color:#555">Leads CRM</span>
     </div>
-    <div style="display:flex;gap:8px">
-      <button class="btn btn-sm" onclick="loadLeads()">↻ Actualizar</button>
+    <div style="display:flex;gap:7px">
+      <button class="btn btn-sm" onclick="loadLeads()">↻</button>
       <button class="btn btn-sm" onclick="exportCSV()">↓ CSV</button>
+      <button class="btn btn-sm btn-coral" onclick="triggerSequence()" title="Ejecutar secuencia manualmente">▶ Secuencia</button>
       <button class="btn btn-sm" onclick="doLogout()" style="color:#444">Salir</button>
     </div>
   </header>
 
-  <!-- Métricas -->
   <div class="metrics" id="metrics">
     <div class="metric"><div class="metric-label">Total leads</div><div class="metric-val" id="m-total">—</div></div>
     <div class="metric"><div class="metric-label">Enviados</div><div class="metric-val green" id="m-enviados">—</div></div>
-    <div class="metric"><div class="metric-label">Pendientes</div><div class="metric-val coral" id="m-pendientes">—</div></div>
-    <div class="metric"><div class="metric-label">Errores</div><div class="metric-val" style="color:#A32D2D" id="m-errores">—</div></div>
-    <div class="metric"><div class="metric-label">Hoy</div><div class="metric-val amber" id="m-hoy">—</div></div>
+    <div class="metric"><div class="metric-label">Interesados</div><div class="metric-val purple" id="m-interesados">—</div></div>
+    <div class="metric"><div class="metric-label">En negociación</div><div class="metric-val amber" id="m-negociacion">—</div></div>
+    <div class="metric"><div class="metric-label">Cerrados</div><div class="metric-val coral" id="m-cerrados">—</div></div>
   </div>
 
-  <!-- Gráfico últimos 7 días -->
   <div class="chart-wrap">
-    <div class="chart-title">Leads por día — últimos 7 días</div>
+    <div class="chart-title">Leads últimos 7 días</div>
     <div class="chart-bars" id="chart-bars"></div>
   </div>
 
-  <!-- Toolbar -->
   <div class="toolbar">
     <div class="toolbar-left">
       <input class="search" type="text" placeholder="Buscar email..." id="search-input" oninput="renderTable()">
@@ -114,33 +120,39 @@ tr:hover td{background:#0f0f0f}
         <option value="pendiente">Pendiente</option>
         <option value="enviado">Enviado</option>
         <option value="error">Error</option>
-        <option value="rebotado">Rebotado</option>
+      </select>
+      <select class="filter" id="filter-label" onchange="renderTable()">
+        <option value="">Todas las etiquetas</option>
+        <option value="sin-etiquetar">Sin etiquetar</option>
+        <option value="interesado">Interesado</option>
+        <option value="en-negociacion">En negociación</option>
+        <option value="cerrado">Cerrado</option>
+        <option value="descartado">Descartado</option>
       </select>
       <select class="filter" id="filter-source" onchange="renderTable()">
         <option value="">Todos los orígenes</option>
         <option value="popup">Popup</option>
         <option value="boton">Botón</option>
-        <option value="manual">Manual</option>
       </select>
     </div>
     <span id="count-label" style="font-size:12px;color:#555"></span>
   </div>
 
-  <!-- Tabla -->
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
           <th>Email</th>
+          <th>Etiqueta</th>
           <th>Origen</th>
           <th>Estado</th>
+          <th>Secuencia</th>
           <th>Registrado</th>
-          <th>Enviado</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody id="leads-body">
-        <tr><td colspan="6" class="empty">Cargando...</td></tr>
+        <tr><td colspan="7" class="empty">Cargando...</td></tr>
       </tbody>
     </table>
   </div>
@@ -154,7 +166,6 @@ const SUPABASE_KEY = 'sb_publishable_nGMj9NDmgcmGtQ3PTtgm5g_U3EO9kFm';
 let allLeads = [];
 let adminSecret = localStorage.getItem('admin_secret') || '';
 
-// Auto-login
 if (adminSecret) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
@@ -170,11 +181,7 @@ function doLogin() {
   document.getElementById('app').style.display = 'block';
   loadLeads();
 }
-
-function doLogout() {
-  localStorage.removeItem('admin_secret');
-  location.reload();
-}
+function doLogout() { localStorage.removeItem('admin_secret'); location.reload(); }
 
 async function loadLeads() {
   try {
@@ -182,81 +189,77 @@ async function loadLeads() {
       headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` }
     });
     allLeads = await res.json();
-    updateMetrics();
-    renderChart();
-    renderTable();
-  } catch(e) {
-    showToast('Error al cargar leads', true);
-  }
+    updateMetrics(); renderChart(); renderTable();
+  } catch(e) { showToast('Error al cargar', true); }
 }
 
 function updateMetrics() {
-  const hoy = new Date().toISOString().slice(0,10);
   document.getElementById('m-total').textContent = allLeads.length;
   document.getElementById('m-enviados').textContent = allLeads.filter(l=>l.status==='enviado').length;
-  document.getElementById('m-pendientes').textContent = allLeads.filter(l=>l.status==='pendiente').length;
-  document.getElementById('m-errores').textContent = allLeads.filter(l=>l.status==='error').length;
-  document.getElementById('m-hoy').textContent = allLeads.filter(l=>l.created_at?.slice(0,10)===hoy).length;
+  document.getElementById('m-interesados').textContent = allLeads.filter(l=>l.label==='interesado').length;
+  document.getElementById('m-negociacion').textContent = allLeads.filter(l=>l.label==='en-negociacion').length;
+  document.getElementById('m-cerrados').textContent = allLeads.filter(l=>l.label==='cerrado').length;
 }
 
 function renderChart() {
   const container = document.getElementById('chart-bars');
   const days = [];
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(d.getDate() - i);
-    days.push(d.toISOString().slice(0,10));
-  }
-  const counts = days.map(d => allLeads.filter(l => l.created_at?.slice(0,10) === d).length);
+  for (let i=6; i>=0; i--) { const d=new Date(); d.setDate(d.getDate()-i); days.push(d.toISOString().slice(0,10)); }
+  const counts = days.map(d => allLeads.filter(l=>l.created_at?.slice(0,10)===d).length);
   const max = Math.max(...counts, 1);
-  const labels = ['L','M','X','J','V','S','D'];
-  const todayIdx = new Date().getDay();
-  // reordenar labels para que coincidan con los días
-  const dayLabels = days.map(d => {
-    const day = new Date(d+'T12:00:00').toLocaleDateString('es-AR',{weekday:'short'}).slice(0,1).toUpperCase();
-    return day;
-  });
-  container.innerHTML = counts.map((count, i) => `
+  const dayLabels = days.map(d => new Date(d+'T12:00:00').toLocaleDateString('es-AR',{weekday:'short'}).slice(0,1).toUpperCase());
+  container.innerHTML = counts.map((count,i) => `
     <div class="bar-col">
-      <div class="bar-val">${count > 0 ? count : ''}</div>
-      <div class="bar" style="height:${Math.max((count/max)*50, count>0?4:1)}px;opacity:${i===6?'1':'0.6'}"></div>
+      <div class="bar-val">${count>0?count:''}</div>
+      <div class="bar" style="height:${Math.max((count/max)*46,count>0?3:1)}px;opacity:${i===6?1:0.55}"></div>
       <div class="bar-label">${dayLabels[i]}</div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
+
+const LABELS = ['sin-etiquetar','interesado','en-negociacion','cerrado','descartado'];
+const LABEL_NAMES = {'sin-etiquetar':'Sin etiquetar','interesado':'Interesado','en-negociacion':'En negociación','cerrado':'Cerrado ✓','descartado':'Descartado'};
 
 function renderTable() {
   const q = document.getElementById('search-input').value.toLowerCase();
   const st = document.getElementById('filter-status').value;
+  const lbl = document.getElementById('filter-label').value;
   const src = document.getElementById('filter-source').value;
   const hoy = new Date().toISOString().slice(0,10);
 
   const filtered = allLeads.filter(l => {
-    const matchQ = !q || l.email.toLowerCase().includes(q);
-    const matchSt = !st || l.status === st;
-    const matchSrc = !src || l.source === src;
-    return matchQ && matchSt && matchSrc;
+    return (!q || l.email.toLowerCase().includes(q)) &&
+           (!st || l.status===st) &&
+           (!lbl || l.label===lbl) &&
+           (!src || l.source===src);
   });
 
   document.getElementById('count-label').textContent = `${filtered.length} lead${filtered.length!==1?'s':''}`;
 
   if (!filtered.length) {
-    document.getElementById('leads-body').innerHTML = '<tr><td colspan="6" class="empty">Sin resultados</td></tr>';
+    document.getElementById('leads-body').innerHTML = '<tr><td colspan="7" class="empty">Sin resultados</td></tr>';
     return;
   }
 
   document.getElementById('leads-body').innerHTML = filtered.map(l => {
-    const isNew = l.created_at?.slice(0,10) === hoy;
-    const src = l.source || 'popup';
+    const isNew = l.created_at?.slice(0,10)===hoy;
+    const src = l.source||'popup';
+    const seq = l.sequence_day||0;
+    const label = l.label||'sin-etiquetar';
+    const seqPips = [0,3,7].map(d => `<div class="pip${seq>=d&&d>0?' done':''}" title="Día ${d}"></div>`).join('');
     return `<tr>
-      <td style="color:#F5F0EB;font-weight:500">${l.email}${isNew ? '<span class="new-dot" title="Hoy"></span>' : ''}</td>
+      <td style="color:#F5F0EB;font-weight:500">${l.email}${isNew?'<span class="new-dot"></span>':''}</td>
+      <td>
+        <select class="label-select label-${label}" onchange="changeLabel('${l.id}',this.value)">
+          ${LABELS.map(lb=>`<option value="${lb}"${lb===label?' selected':''}>${LABEL_NAMES[lb]}</option>`).join('')}
+        </select>
+      </td>
       <td><span class="source-tag ${src}">${src}</span></td>
       <td><span class="badge badge-${l.status}">${l.status}</span></td>
+      <td><div class="seq-pip">${seqPips}</div></td>
       <td style="color:#555">${fmtDate(l.created_at)}</td>
-      <td style="color:#555">${l.sent_at ? fmtDate(l.sent_at) : '—'}</td>
       <td>
         <div class="actions">
-          <button class="btn btn-sm btn-coral" onclick="resendEmail('${l.id}','${l.email}')">↑ Reenviar</button>
+          <button class="btn btn-sm btn-coral" onclick="resendEmail('${l.id}','${l.email}')">↑</button>
           <select class="btn btn-sm" onchange="changeStatus('${l.id}',this.value);this.value=''">
             <option value="" disabled selected>Estado</option>
             <option value="pendiente">Pendiente</option>
@@ -270,18 +273,18 @@ function renderTable() {
   }).join('');
 }
 
-async function resendEmail(leadId, email) {
-  showToast('Enviando...');
+async function changeLabel(leadId, label) {
   try {
-    const res = await fetch('/api/resend-lead', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${adminSecret}` },
-      body: JSON.stringify({ leadId, email }),
+    await fetch(`${SUPABASE_URL}/rest/v1/leads?id=eq.${leadId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` },
+      body: JSON.stringify({ label }),
     });
-    const data = await res.json();
-    if (data.ok) { showToast('Email reenviado'); await loadLeads(); }
-    else showToast('Error al reenviar', true);
-  } catch { showToast('Error de conexión', true); }
+    showToast(`Etiqueta → "${LABEL_NAMES[label]}"`);
+    const lead = allLeads.find(l=>l.id===leadId);
+    if (lead) lead.label = label;
+    updateMetrics();
+  } catch { showToast('Error', true); }
 }
 
 async function changeStatus(leadId, status) {
@@ -296,14 +299,42 @@ async function changeStatus(leadId, status) {
   } catch { showToast('Error', true); }
 }
 
+async function resendEmail(leadId, email) {
+  showToast('Enviando...');
+  try {
+    const res = await fetch('/api/resend-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${adminSecret}` },
+      body: JSON.stringify({ leadId, email }),
+    });
+    const data = await res.json();
+    if (data.ok) { showToast('Reenviado'); await loadLeads(); }
+    else showToast('Error al reenviar', true);
+  } catch { showToast('Error', true); }
+}
+
+async function triggerSequence() {
+  showToast('Ejecutando secuencia...');
+  try {
+    const res = await fetch('/api/sequence-emails', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${adminSecret}` },
+      body: '{}',
+    });
+    const data = await res.json();
+    showToast(`Secuencia: día3=${data.results?.day3||0} día7=${data.results?.day7||0}`);
+    await loadLeads();
+  } catch { showToast('Error en secuencia', true); }
+}
+
 function exportCSV() {
-  const rows = [['Email','Origen','Estado','Registrado','Enviado'],
-    ...allLeads.map(l=>[l.email, l.source||'popup', l.status, fmtDate(l.created_at), l.sent_at?fmtDate(l.sent_at):''])
+  const rows = [['Email','Etiqueta','Origen','Estado','Secuencia','Registrado'],
+    ...allLeads.map(l=>[l.email,l.label||'',l.source||'',l.status,l.sequence_day||0,fmtDate(l.created_at)])
   ];
   const csv = rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
   const a = document.createElement('a');
   a.href = 'data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
-  a.download = `juanoconecta-leads-${new Date().toISOString().slice(0,10)}.csv`;
+  a.download = `leads-${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
 }
 
@@ -312,12 +343,10 @@ function fmtDate(iso) {
   return new Date(iso).toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
 }
 
-function showToast(msg, isError=false) {
+function showToast(msg,isError=false) {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast'+(isError?' error':'');
-  t.style.display = 'block';
-  setTimeout(()=>t.style.display='none', 2500);
+  t.textContent=msg; t.className='toast'+(isError?' error':'');
+  t.style.display='block'; setTimeout(()=>t.style.display='none',2500);
 }
 </script>
 </body>
