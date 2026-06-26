@@ -30,7 +30,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
       const res = await fetch('/api/submit-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, source: forceOpen > 0 ? 'boton' : 'popup' }),
       })
       const data = await res.json()
       if (data.ok) {
