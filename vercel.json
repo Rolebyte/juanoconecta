@@ -1,5 +1,11 @@
 {
   "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
-  ]
+  ],
+  "functions": {
+    "api/submit-lead.js": { "memory": 256, "maxDuration": 10 },
+    "api/resend-lead.js": { "memory": 256, "maxDuration": 10 },
+    "api/sequence-emails.js": { "memory": 256, "maxDuration": 30 }
+  }
 }
