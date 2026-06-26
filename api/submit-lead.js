@@ -12,26 +12,20 @@ export default async function handler(req, res) {
   const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
   const PDF_URL = process.env.PDF_URL;
+  const CALLMEBOT_API_KEY = process.env.CALLMEBOT_API_KEY; // se agrega despues
 
   try {
-    // 1. Verificar si el email ya existe (evitar duplicados)
+    // 1. Verificar duplicados
     const checkRes = await fetch(
       `${SUPABASE_URL}/rest/v1/leads?email=eq.${encodeURIComponent(email)}&select=id,status`,
-      {
-        headers: {
-          'apikey': SUPABASE_SERVICE_KEY,
-          'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
-        },
-      }
+      { headers: { 'apikey': SUPABASE_SERVICE_KEY, 'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}` } }
     );
     const existing = await checkRes.json();
-
     if (existing.length > 0) {
-      // Ya existe — devolver ok sin crear duplicado ni reenviar
       return res.status(200).json({ ok: true, status: existing[0].status, duplicate: true });
     }
 
-    // 2. Guardar nuevo lead en Supabase
+    // 2. Guardar en Supabase
     const dbRes = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
       method: 'POST',
       headers: {
@@ -45,13 +39,10 @@ export default async function handler(req, res) {
     const leads = await dbRes.json();
     const lead = leads[0];
 
-    // 3. Enviar email con PDF via Resend
+    // 3. Enviar PDF al usuario
     const emailRes = await fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-      },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${RESEND_API_KEY}` },
       body: JSON.stringify({
         from: 'Juan Gallino <onboarding@resend.dev>',
         to: [email],
@@ -65,42 +56,39 @@ export default async function handler(req, res) {
       }),
     });
 
-    // 4. Actualizar estado en Supabase
+    // 4. Actualizar estado
     const newStatus = emailRes.ok ? 'enviado' : 'error';
     if (lead?.id) {
       await fetch(`${SUPABASE_URL}/rest/v1/leads?id=eq.${lead.id}`, {
         method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_SERVICE_KEY,
-          'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
-        },
-        body: JSON.stringify({
-          status: newStatus,
-          sent_at: newStatus === 'enviado' ? new Date().toISOString() : null,
-        }),
+        headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_SERVICE_KEY, 'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}` },
+        body: JSON.stringify({ status: newStatus, sent_at: newStatus === 'enviado' ? new Date().toISOString() : null }),
       });
     }
 
-    // 5. Notificacion a vos por WhatsApp via Resend (email a tu casilla)
-    await fetch('https://api.resend.com/emails', {
+    // 5. Notificacion WhatsApp a Juan via Callmebot (no bloquea si falla)
+    if (CALLMEBOT_API_KEY) {
+      const waMsg = encodeURIComponent(`🎯 Nuevo lead JuanoConecta!\nEmail: ${email}\nOrigen: ${source}\nEstado: ${newStatus}`);
+      fetch(`https://api.callmebot.com/whatsapp.php?phone=5493492627811&text=${waMsg}&apikey=${CALLMEBOT_API_KEY}`)
+        .catch(() => {}); // fire and forget
+    }
+
+    // 6. Notificacion email a Juan
+    fetch('https://api.resend.com/emails', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-      },
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${RESEND_API_KEY}` },
       body: JSON.stringify({
         from: 'JuanoConecta Leads <onboarding@resend.dev>',
         to: ['jgallino1@gmail.com'],
         subject: `Nuevo lead: ${email}`,
-        html: `<p>Nuevo lead registrado:<br><strong>${email}</strong><br>Origen: ${source}<br>Estado: ${newStatus}</p>`,
+        html: `<p>Nuevo lead:<br><strong>${email}</strong><br>Origen: ${source}<br>Estado: ${newStatus}</p>`,
       }),
-    });
+    }).catch(() => {});
 
     return res.status(200).json({ ok: true, status: newStatus, duplicate: false });
 
   } catch (err) {
-    console.error('Error en submit-lead:', err);
+    console.error('Error:', err);
     return res.status(500).json({ error: 'Error interno' });
   }
 }
