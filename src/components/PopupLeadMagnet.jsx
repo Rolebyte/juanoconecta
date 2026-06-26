@@ -7,9 +7,11 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
   const [visible, setVisible] = useState(false)
   const [email, setEmail] = useState('')
   const [enviado, setEnviado] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    if (forceOpen > 0) { setVisible(true); setEnviado(false); setEmail(''); return }
+    if (forceOpen > 0) { setVisible(true); setEnviado(false); setEmail(''); setError(''); return }
     if (localStorage.getItem(STORAGE_KEY)) return
     const timer = setTimeout(() => setVisible(true), 10000)
     return () => clearTimeout(timer)
@@ -22,16 +24,27 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    // Enviar email a Formspree
-    await fetch('https://formspree.io/f/mvznoewy', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ email, _subject: 'Lead Magnet - 5 prompts IA' }),
-    })
-    setEnviado(true)
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const data = await res.json()
+      if (data.ok) {
+        setEnviado(true)
+      } else {
+        setError('Hubo un problema. Intentá de nuevo.')
+      }
+    } catch {
+      setError('Hubo un problema. Intentá de nuevo.')
+    } finally {
+      setLoading(false)
+    }
   }
 
-  return (
     <AnimatePresence>
       {visible && (
         <>
