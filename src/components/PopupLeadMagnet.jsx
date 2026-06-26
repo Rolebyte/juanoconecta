@@ -45,6 +45,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
     }
   }
 
+  return (
     <AnimatePresence>
       {visible && (
         <>
