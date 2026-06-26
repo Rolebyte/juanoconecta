@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — JuanoConecta Leads</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; background: #0A0A0A; color: #F5F0EB; min-height: 100vh; }
+  
+  .login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .login-card { background: #111; border: 1px solid #222; border-radius: 12px; padding: 40px; width: 340px; }
+  .login-card h1 { font-size: 20px; font-weight: 500; margin-bottom: 6px; }
+  .login-card p { color: #666; font-size: 14px; margin-bottom: 24px; }
+  .login-card input { width: 100%; padding: 10px 14px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; color: #F5F0EB; font-size: 14px; margin-bottom: 12px; }
+  .login-card input:focus { outline: none; border-color: #C4846A; }
+  
+  .logo { font-size: 14px; font-weight: 500; margin-bottom: 20px; }
+  .logo span { color: #C4846A; }
+
+  header { background: #111; border-bottom: 1px solid #1e1e1e; padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; }
+  header h1 { font-size: 15px; font-weight: 500; }
+  
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 24px 32px 0; }
+  .metric { background: #111; border: 1px solid #1e1e1e; border-radius: 10px; padding: 16px 18px; }
+  .metric-label { font-size: 12px; color: #555; margin-bottom: 6px; }
+  .metric-val { font-size: 26px; font-weight: 500; }
+  .metric-val.coral { color: #C4846A; }
+  .metric-val.green { color: #1D9E75; }
+
+  .toolbar { padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .toolbar-left { display: flex; gap: 8px; align-items: center; }
+  input.search { padding: 8px 12px; background: #111; border: 1px solid #222; border-radius: 8px; color: #F5F0EB; font-size: 13px; width: 220px; }
+  input.search:focus { outline: none; border-color: #C4846A; }
+  select.filter { padding: 8px 12px; background: #111; border: 1px solid #222; border-radius: 8px; color: #F5F0EB; font-size: 13px; cursor: pointer; }
+  select.filter:focus { outline: none; border-color: #C4846A; }
+  
+  .btn { padding: 8px 16px; border-radius: 8px; border: 1px solid #333; background: transparent; color: #F5F0EB; font-size: 13px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background .15s; }
+  .btn:hover { background: #1a1a1a; }
+  .btn-coral { background: #C4846A; border-color: #C4846A; color: #fff; }
+  .btn-coral:hover { background: #b07660; }
+  .btn-sm { padding: 5px 10px; font-size: 12px; }
+
+  .table-wrap { margin: 0 32px; background: #111; border: 1px solid #1e1e1e; border-radius: 12px; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 11px 16px; font-size: 11px; color: #555; border-bottom: 1px solid #1e1e1e; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
+  td { padding: 13px 16px; border-bottom: 1px solid #141414; color: #ccc; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #0f0f0f; }
+
+  .badge { padding: 3px 9px; border-radius: 20px; font-size: 11px; font-weight: 500; display: inline-block; }
+  .badge-pendiente { background: #2a1f0a; color: #BA7517; border: 1px solid #3a2a0e; }
+  .badge-enviado { background: #0a1f12; color: #1D9E75; border: 1px solid #0e2e1a; }
+  .badge-error { background: #1f0a0a; color: #A32D2D; border: 1px solid #2e0e0e; }
+  .badge-rebotado { background: #1a1a1a; color: #666; border: 1px solid #222; }
+
+  .actions { display: flex; gap: 6px; }
+  
+  .empty { text-align: center; padding: 60px; color: #444; font-size: 13px; }
+
+  .toast { position: fixed; bottom: 24px; right: 24px; background: #1D9E75; color: #fff; padding: 12px 18px; border-radius: 8px; font-size: 13px; display: none; align-items: center; gap: 8px; z-index: 999; }
+  .toast.error { background: #A32D2D; }
+
+  .loading { text-align: center; padding: 60px; color: #444; font-size: 13px; }
+  
+  select.status-select { background: transparent; border: none; color: inherit; font-size: 12px; cursor: pointer; }
+
+  #app { display: none; }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-card">
+    <div class="logo">Juano<span>Conecta</span></div>
+    <h1>Panel de leads</h1>
+    <p>Ingresá tu contraseña de admin</p>
+    <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn btn-coral" style="width:100%;justify-content:center" onclick="doLogin()">Ingresar</button>
+    <p id="login-error" style="color:#A32D2D;font-size:13px;margin-top:10px;display:none">Contraseña incorrecta</p>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <header>
+    <div style="display:flex;align-items:center;gap:16px">
+      <div class="logo" style="margin:0">Juano<span>Conecta</span></div>
+      <span style="color:#333">|</span>
+      <span style="font-size:14px;color:#666">Gestión de leads</span>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="btn btn-sm" onclick="loadLeads()">↻ Actualizar</button>
+      <button class="btn btn-sm" onclick="exportCSV()">↓ Exportar CSV</button>
+      <button class="btn btn-sm" onclick="doLogout()" style="color:#555">Salir</button>
+    </div>
+  </header>
+
+  <div class="metrics" id="metrics">
+    <div class="metric"><div class="metric-label">Total leads</div><div class="metric-val" id="m-total">—</div></div>
+    <div class="metric"><div class="metric-label">Enviados</div><div class="metric-val green" id="m-enviados">—</div></div>
+    <div class="metric"><div class="metric-label">Pendientes</div><div class="metric-val coral" id="m-pendientes">—</div></div>
+    <div class="metric"><div class="metric-label">Errores</div><div class="metric-val" style="color:#A32D2D" id="m-errores">—</div></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="toolbar-left">
+      <input class="search" type="text" placeholder="Buscar email..." id="search-input" oninput="renderTable()">
+      <select class="filter" id="filter-status" onchange="renderTable()">
+        <option value="">Todos los estados</option>
+        <option value="pendiente">Pendiente</option>
+        <option value="enviado">Enviado</option>
+        <option value="error">Error</option>
+        <option value="rebotado">Rebotado</option>
+      </select>
+    </div>
+    <span id="count-label" style="font-size:13px;color:#555"></span>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Estado</th>
+          <th>Registrado</th>
+          <th>Enviado</th>
+          <th>Notas</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="leads-body">
+        <tr><td colspan="6" class="loading">Cargando leads...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL = 'https://tmxhjledtweppyacyyxr.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_nGMj9NDmgcmGtQ3PTtgm5g_U3EO9kFm'; // publishable key
+// ADMIN_SECRET se valida contra variable de entorno en la API
+const ADMIN_SECRET_LOCAL = localStorage.getItem('admin_secret') || '';
+
+let allLeads = [];
+let adminSecret = '';
+
+// LOGIN
+function doLogin() {
+  const pwd = document.getElementById('pwd-input').value;
+  if (!pwd) return;
+  adminSecret = pwd;
+  localStorage.setItem('admin_secret', pwd);
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadLeads();
+}
+
+function doLogout() {
+  localStorage.removeItem('admin_secret');
+  location.reload();
+}
+
+// Autologin si ya tiene secret guardado
+if (ADMIN_SECRET_LOCAL) {
+  adminSecret = ADMIN_SECRET_LOCAL;
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+}
+
+async function loadLeads() {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/leads?select=*&order=created_at.desc`, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+      }
+    });
+    allLeads = await res.json();
+    updateMetrics();
+    renderTable();
+  } catch(e) {
+    showToast('Error al cargar leads', true);
+  }
+}
+
+function updateMetrics() {
+  document.getElementById('m-total').textContent = allLeads.length;
+  document.getElementById('m-enviados').textContent = allLeads.filter(l => l.status === 'enviado').length;
+  document.getElementById('m-pendientes').textContent = allLeads.filter(l => l.status === 'pendiente').length;
+  document.getElementById('m-errores').textContent = allLeads.filter(l => l.status === 'error').length;
+}
+
+function renderTable() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const st = document.getElementById('filter-status').value;
+  const filtered = allLeads.filter(l => {
+    const matchQ = !q || l.email.toLowerCase().includes(q);
+    const matchSt = !st || l.status === st;
+    return matchQ && matchSt;
+  });
+  document.getElementById('count-label').textContent = `${filtered.length} lead${filtered.length !== 1 ? 's' : ''}`;
+  const tbody = document.getElementById('leads-body');
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="6" class="empty">Sin resultados</td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtered.map(l => `
+    <tr>
+      <td style="color:#F5F0EB;font-weight:500">${l.email}</td>
+      <td><span class="badge badge-${l.status}">${l.status}</span></td>
+      <td>${fmtDate(l.created_at)}</td>
+      <td>${l.sent_at ? fmtDate(l.sent_at) : '—'}</td>
+      <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#555">${l.notes || '—'}</td>
+      <td>
+        <div class="actions">
+          <button class="btn btn-sm btn-coral" onclick="resendEmail('${l.id}','${l.email}')">↑ Reenviar</button>
+          <select class="btn btn-sm" onchange="changeStatus('${l.id}', this.value)" style="cursor:pointer">
+            <option value="" disabled selected>Estado</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="enviado">Enviado</option>
+            <option value="error">Error</option>
+            <option value="rebotado">Rebotado</option>
+          </select>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+async function resendEmail(leadId, email) {
+  showToast('Enviando...');
+  try {
+    const res = await fetch('/api/resend-lead', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${adminSecret}`,
+      },
+      body: JSON.stringify({ leadId, email }),
+    });
+    const data = await res.json();
+    if (data.ok) {
+      showToast('Email reenviado correctamente');
+      await loadLeads();
+    } else {
+      showToast('Error al reenviar', true);
+    }
+  } catch(e) {
+    showToast('Error de conexión', true);
+  }
+}
+
+async function changeStatus(leadId, status) {
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/leads?id=eq.${leadId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+      },
+      body: JSON.stringify({ status }),
+    });
+    showToast(`Estado cambiado a "${status}"`);
+    await loadLeads();
+  } catch(e) {
+    showToast('Error al cambiar estado', true);
+  }
+}
+
+function exportCSV() {
+  const rows = [['Email','Estado','Registrado','Enviado','Notas'],
+    ...allLeads.map(l => [l.email, l.status, fmtDate(l.created_at), l.sent_at ? fmtDate(l.sent_at) : '', l.notes || ''])
+  ];
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,\uFEFF' + encodeURIComponent(csv);
+  a.download = 'juanoconecta-leads.csv';
+  a.click();
+}
+
+function fmtDate(iso) {
+  if (!iso) return '—';
+  const d = new Date(iso);
+  return d.toLocaleDateString('es-AR', { day:'2-digit', month:'2-digit', year:'2-digit', hour:'2-digit', minute:'2-digit' });
+}
+
+function showToast(msg, isError = false) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (isError ? ' error' : '');
+  t.style.display = 'flex';
+  setTimeout(() => t.style.display = 'none', 3000);
+}
+
+// Cargar si ya hay sesión
+if (ADMIN_SECRET_LOCAL) loadLeads();
+</script>
+</body>
+</html>
