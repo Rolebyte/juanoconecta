@@ -13,6 +13,7 @@ import Footer from './components/Footer'
 import PopupLeadMagnet from './components/PopupLeadMagnet'
 import WhatsAppButton from './components/WhatsAppButton'
 import CursorCustom from './components/CursorCustom'
+import Portfolio from './components/Portfolio'
 import CommunityManagerRafaela from './pages/CommunityManagerRafaela'
 import RedesSocialesNegociosRafaela from './pages/RedesSocialesNegociosRafaela'
 import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
@@ -31,6 +32,7 @@ function Home() {
         <ComoTrabajo />
         <Servicios />
         <Tienda onOpenPopup={() => setPopupTrigger(n => n + 1)} />
+        <Portfolio />
         <Resultados />
         <Clientes />
         <Contacto />
