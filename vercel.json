@@ -6,6 +6,7 @@
   "functions": {
     "api/submit-lead.js": { "memory": 256, "maxDuration": 10 },
     "api/resend-lead.js": { "memory": 256, "maxDuration": 10 },
-    "api/sequence-emails.js": { "memory": 256, "maxDuration": 30 }
+    "api/sequence-emails.js": { "memory": 256, "maxDuration": 30 },
+    "api/get-leads.js": { "memory": 256, "maxDuration": 10 }
   }
 }
