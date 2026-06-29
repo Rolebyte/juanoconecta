@@ -20,14 +20,20 @@ header{background:#111;border-bottom:1px solid #1e1e1e;padding:14px 28px;display
 .metric{background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:14px 16px}
 .metric-label{font-size:11px;color:#555;margin-bottom:5px}
 .metric-val{font-size:22px;font-weight:500}
-.metric-val.green{color:#1D9E75}.metric-val.coral{color:#C4846A}.metric-val.amber{color:#BA7517}.metric-val.purple{color:#7C6FCD}
-.chart-wrap{margin:16px 28px 0;background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:16px}
+.metric-sub{font-size:10px;color:#444;margin-top:3px}
+.metric-val.green{color:#1D9E75}.metric-val.coral{color:#C4846A}.metric-val.amber{color:#BA7517}.metric-val.purple{color:#7C6FCD}.metric-val.blue{color:#4A9EDB}
+.chart-wrap{margin:16px 28px 0;background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:16px;display:flex;gap:24px}
+.chart-main{flex:1}
 .chart-title{font-size:11px;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
 .chart-bars{display:flex;align-items:flex-end;gap:5px;height:56px}
 .bar-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
 .bar{background:#C4846A;border-radius:3px 3px 0 0;width:100%;min-height:2px;transition:height .3s}
 .bar-label{font-size:9px;color:#444}
 .bar-val{font-size:9px;color:#666;min-height:12px}
+.source-split{display:flex;flex-direction:column;gap:8px;min-width:110px;justify-content:center}
+.source-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px}
+.source-bar-bg{flex:1;height:4px;background:#1a1a1a;border-radius:2px;overflow:hidden}
+.source-bar-fill{height:100%;border-radius:2px;transition:width .4s}
 .toolbar{padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .toolbar-left{display:flex;gap:7px;flex-wrap:wrap}
 input.search{padding:7px 12px;background:#111;border:1px solid #222;border-radius:8px;color:#F5F0EB;font-size:13px;width:190px}
@@ -37,19 +43,21 @@ select.filter{padding:7px 10px;background:#111;border:1px solid #222;border-radi
 .btn:hover{background:#1a1a1a}
 .btn-coral{background:#C4846A;border-color:#C4846A;color:#fff}
 .btn-coral:hover{background:#b07660}
+.btn-green{background:#0e2e1a;border-color:#1D9E75;color:#1D9E75}
+.btn-green:hover{background:#0a2414}
 .btn-sm{padding:5px 10px;font-size:11px}
 .table-wrap{margin:0 28px 28px;background:#111;border:1px solid #1e1e1e;border-radius:12px;overflow:hidden}
 table{width:100%;border-collapse:collapse;font-size:12px}
 th{text-align:left;padding:9px 12px;font-size:10px;color:#444;border-bottom:1px solid #1e1e1e;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
-td{padding:10px 12px;border-bottom:1px solid #141414;color:#ccc;vertical-align:middle}
+td{padding:8px 12px;border-bottom:1px solid #141414;color:#ccc;vertical-align:middle}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#0f0f0f}
 .badge{padding:2px 7px;border-radius:20px;font-size:10px;font-weight:500;display:inline-block}
 .badge-pendiente{background:#2a1f0a;color:#BA7517;border:1px solid #3a2a0e}
 .badge-enviado{background:#0a1f12;color:#1D9E75;border:1px solid #0e2e1a}
+.badge-captado{background:#0f1e36;color:#4A9EDB;border:1px solid #1a3455}
 .badge-error{background:#1f0a0a;color:#A32D2D;border:1px solid #2e0e0e}
 .badge-rebotado{background:#1a1a1a;color:#555;border:1px solid #222}
-.label-tag{padding:2px 8px;border-radius:20px;font-size:10px;font-weight:500;display:inline-block;cursor:pointer}
 .label-sin-etiquetar{background:#1a1a1a;color:#444;border:1px solid #222}
 .label-interesado{background:#0f1e36;color:#4A9EDB;border:1px solid #1a3455}
 .label-en-negociacion{background:#1a1f0a;color:#8DB843;border:1px solid #2a3510}
@@ -61,7 +69,7 @@ tr:hover td{background:#0f0f0f}
 .seq-pip{display:inline-flex;gap:3px;align-items:center}
 .pip{width:8px;height:8px;border-radius:50%;border:1px solid #333;background:#1a1a1a}
 .pip.done{background:#1D9E75;border-color:#1D9E75}
-.actions{display:flex;gap:4px;align-items:center}
+.actions{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
 .empty{text-align:center;padding:50px;color:#444;font-size:13px}
 .toast{position:fixed;bottom:20px;right:20px;background:#1D9E75;color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;display:none;z-index:999}
 .toast.error{background:#A32D2D}
@@ -69,6 +77,12 @@ tr:hover td{background:#0f0f0f}
 .new-dot{display:inline-block;width:6px;height:6px;background:#C4846A;border-radius:50%;margin-left:4px;vertical-align:middle}
 .label-select{padding:3px 7px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;color:#888;font-size:11px;cursor:pointer}
 .label-select:focus{outline:none;border-color:#C4846A}
+.age-tag{font-size:10px;color:#444}
+.age-tag.hot{color:#C4846A}
+.notes-input{background:#0f0f0f;border:1px solid #1e1e1e;border-radius:6px;color:#888;font-size:11px;padding:3px 7px;width:120px}
+.notes-input:focus{outline:none;border-color:#C4846A;color:#F5F0EB}
+.wa-btn{padding:4px 8px;border-radius:6px;border:1px solid #1a3020;background:#0a1f14;color:#25D366;font-size:11px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.wa-btn:hover{background:#0e2a1a}
 </style>
 </head>
 <body>
@@ -92,24 +106,28 @@ tr:hover td{background:#0f0f0f}
       <span style="font-size:13px;color:#555">Leads CRM</span>
     </div>
     <div style="display:flex;gap:7px">
-      <button class="btn btn-sm" onclick="loadLeads()">↻</button>
+      <button class="btn btn-sm" onclick="loadLeads()">↻ Actualizar</button>
+      <button class="btn btn-sm btn-green" onclick="copyEmails()" title="Copiar todos los emails visibles">⎘ Copiar emails</button>
       <button class="btn btn-sm" onclick="exportCSV()">↓ CSV</button>
       <button class="btn btn-sm btn-coral" onclick="triggerSequence()" title="Ejecutar secuencia manualmente">▶ Secuencia</button>
       <button class="btn btn-sm" onclick="doLogout()" style="color:#444">Salir</button>
     </div>
   </header>
 
-  <div class="metrics" id="metrics">
-    <div class="metric"><div class="metric-label">Total leads</div><div class="metric-val" id="m-total">—</div></div>
-    <div class="metric"><div class="metric-label">Enviados</div><div class="metric-val green" id="m-enviados">—</div></div>
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">Total leads</div><div class="metric-val" id="m-total">—</div><div class="metric-sub" id="m-semana-sub"></div></div>
+    <div class="metric"><div class="metric-label">Esta semana</div><div class="metric-val green" id="m-semana">—</div><div class="metric-sub" id="m-ayer-sub"></div></div>
     <div class="metric"><div class="metric-label">Interesados</div><div class="metric-val purple" id="m-interesados">—</div></div>
     <div class="metric"><div class="metric-label">En negociación</div><div class="metric-val amber" id="m-negociacion">—</div></div>
     <div class="metric"><div class="metric-label">Cerrados</div><div class="metric-val coral" id="m-cerrados">—</div></div>
   </div>
 
   <div class="chart-wrap">
-    <div class="chart-title">Leads últimos 7 días</div>
-    <div class="chart-bars" id="chart-bars"></div>
+    <div class="chart-main">
+      <div class="chart-title">Leads últimos 7 días</div>
+      <div class="chart-bars" id="chart-bars"></div>
+    </div>
+    <div class="source-split" id="source-split"></div>
   </div>
 
   <div class="toolbar">
@@ -119,7 +137,7 @@ tr:hover td{background:#0f0f0f}
         <option value="">Todos los estados</option>
         <option value="pendiente">Pendiente</option>
         <option value="enviado">Enviado</option>
-        <option value="error">Error</option>
+        <option value="error">Captado</option>
       </select>
       <select class="filter" id="filter-label" onchange="renderTable()">
         <option value="">Todas las etiquetas</option>
@@ -147,12 +165,13 @@ tr:hover td{background:#0f0f0f}
           <th>Origen</th>
           <th>Estado</th>
           <th>Secuencia</th>
-          <th>Registrado</th>
+          <th>Antigüedad</th>
+          <th>Notas</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody id="leads-body">
-        <tr><td colspan="7" class="empty">Cargando...</td></tr>
+        <tr><td colspan="8" class="empty">Cargando...</td></tr>
       </tbody>
     </table>
   </div>
@@ -161,8 +180,6 @@ tr:hover td{background:#0f0f0f}
 <div class="toast" id="toast"></div>
 
 <script>
-const SUPABASE_URL = 'https://tmxhjledtweppyacyyxr.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_nGMj9NDmgcmGtQ3PTtgm5g_U3EO9kFm';
 let allLeads = [];
 let adminSecret = localStorage.getItem('admin_secret') || '';
 
@@ -195,8 +212,16 @@ async function loadLeads() {
 }
 
 function updateMetrics() {
+  const now = new Date();
+  const startOfWeek = new Date(now); startOfWeek.setDate(now.getDate() - now.getDay()); startOfWeek.setHours(0,0,0,0);
+  const yesterday = new Date(now); yesterday.setDate(now.getDate()-1); yesterday.setHours(0,0,0,0);
+  const thisWeek = allLeads.filter(l => new Date(l.created_at) >= startOfWeek).length;
+  const ayer = allLeads.filter(l => { const d = new Date(l.created_at); return d >= yesterday && d < new Date(now.setHours(0,0,0,0)+86400000); }).length;
+
   document.getElementById('m-total').textContent = allLeads.length;
-  document.getElementById('m-enviados').textContent = allLeads.filter(l=>l.status==='enviado').length;
+  document.getElementById('m-semana-sub').textContent = `${ayer} ayer`;
+  document.getElementById('m-semana').textContent = thisWeek;
+  document.getElementById('m-ayer-sub').textContent = thisWeek > 0 ? `+${thisWeek} esta semana` : 'sin leads esta semana';
   document.getElementById('m-interesados').textContent = allLeads.filter(l=>l.label==='interesado').length;
   document.getElementById('m-negociacion').textContent = allLeads.filter(l=>l.label==='en-negociacion').length;
   document.getElementById('m-cerrados').textContent = allLeads.filter(l=>l.label==='cerrado').length;
@@ -215,57 +240,99 @@ function renderChart() {
       <div class="bar" style="height:${Math.max((count/max)*46,count>0?3:1)}px;opacity:${i===6?1:0.55}"></div>
       <div class="bar-label">${dayLabels[i]}</div>
     </div>`).join('');
+
+  // Source split
+  const total = allLeads.length || 1;
+  const popupCount = allLeads.filter(l=>l.source==='popup').length;
+  const botonCount = allLeads.filter(l=>l.source==='boton').length;
+  document.getElementById('source-split').innerHTML = `
+    <div class="chart-title">Por origen</div>
+    <div class="source-row">
+      <span style="color:#534AB7;font-size:10px">Popup</span>
+      <div class="source-bar-bg"><div class="source-bar-fill" style="width:${Math.round(popupCount/total*100)}%;background:#534AB7"></div></div>
+      <span style="color:#555;font-size:10px">${popupCount}</span>
+    </div>
+    <div class="source-row">
+      <span style="color:#1D9E75;font-size:10px">Botón</span>
+      <div class="source-bar-bg"><div class="source-bar-fill" style="width:${Math.round(botonCount/total*100)}%;background:#1D9E75"></div></div>
+      <span style="color:#555;font-size:10px">${botonCount}</span>
+    </div>`;
 }
 
 const LABELS = ['sin-etiquetar','interesado','en-negociacion','cerrado','descartado'];
 const LABEL_NAMES = {'sin-etiquetar':'Sin etiquetar','interesado':'Interesado','en-negociacion':'En negociación','cerrado':'Cerrado ✓','descartado':'Descartado'};
+
+function timeAgo(iso) {
+  if (!iso) return '—';
+  const diff = Date.now() - new Date(iso).getTime();
+  const mins = Math.floor(diff/60000);
+  const hrs = Math.floor(mins/60);
+  const days = Math.floor(hrs/24);
+  if (mins < 60) return { text: `hace ${mins}m`, hot: true };
+  if (hrs < 24) return { text: `hace ${hrs}h`, hot: true };
+  if (days === 1) return { text: 'ayer', hot: false };
+  if (days < 7) return { text: `hace ${days} días`, hot: false };
+  return { text: `hace ${days}d`, hot: false };
+}
+
+function getStatusDisplay(status) {
+  if (status === 'error') return { cls: 'badge-captado', label: 'Captado' };
+  if (status === 'enviado') return { cls: 'badge-enviado', label: 'PDF enviado' };
+  if (status === 'pendiente') return { cls: 'badge-pendiente', label: 'Pendiente' };
+  if (status === 'rebotado') return { cls: 'badge-rebotado', label: 'Rebotado' };
+  return { cls: 'badge-pendiente', label: status };
+}
 
 function renderTable() {
   const q = document.getElementById('search-input').value.toLowerCase();
   const st = document.getElementById('filter-status').value;
   const lbl = document.getElementById('filter-label').value;
   const src = document.getElementById('filter-source').value;
-  const hoy = new Date().toISOString().slice(0,10);
 
   const filtered = allLeads.filter(l => {
     return (!q || l.email.toLowerCase().includes(q)) &&
            (!st || l.status===st) &&
-           (!lbl || l.label===lbl) &&
+           (!lbl || (l.label||'sin-etiquetar')===lbl) &&
            (!src || l.source===src);
   });
 
   document.getElementById('count-label').textContent = `${filtered.length} lead${filtered.length!==1?'s':''}`;
 
   if (!filtered.length) {
-    document.getElementById('leads-body').innerHTML = '<tr><td colspan="7" class="empty">Sin resultados</td></tr>';
+    document.getElementById('leads-body').innerHTML = '<tr><td colspan="8" class="empty">Sin resultados</td></tr>';
     return;
   }
 
   document.getElementById('leads-body').innerHTML = filtered.map(l => {
-    const isNew = l.created_at?.slice(0,10)===hoy;
+    const age = timeAgo(l.created_at);
     const src = l.source||'popup';
     const seq = l.sequence_day||0;
     const label = l.label||'sin-etiquetar';
-    const seqPips = [0,3,7].map(d => `<div class="pip${seq>=d&&d>0?' done':''}" title="Día ${d}"></div>`).join('');
+    const { cls, label: statusLabel } = getStatusDisplay(l.status);
+    const seqPips = [3,7].map(d => `<div class="pip${seq>=d?' done':''}" title="Día ${d}"></div>`).join('');
+    const waMsg = encodeURIComponent(`Hola! Te escribo de JuanoConecta. Vi que descargaste los 5 prompts de IA 🤖 ¿Cómo te está yendo con ellos?`);
+    const emailDomain = l.email.split('@')[1] || '';
     return `<tr>
-      <td style="color:#F5F0EB;font-weight:500">${l.email}${isNew?'<span class="new-dot"></span>':''}</td>
+      <td style="color:#F5F0EB;font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${l.email}">${l.email}</td>
       <td>
         <select class="label-select label-${label}" onchange="changeLabel('${l.id}',this.value)">
           ${LABELS.map(lb=>`<option value="${lb}"${lb===label?' selected':''}>${LABEL_NAMES[lb]}</option>`).join('')}
         </select>
       </td>
       <td><span class="source-tag ${src}">${src}</span></td>
-      <td><span class="badge badge-${l.status}">${l.status}</span></td>
+      <td><span class="badge ${cls}">${statusLabel}</span></td>
       <td><div class="seq-pip">${seqPips}</div></td>
-      <td style="color:#555">${fmtDate(l.created_at)}</td>
+      <td><span class="age-tag${age.hot?' hot':''}">${age.text}</span></td>
+      <td><input class="notes-input" placeholder="Añadir nota..." value="${(l.notes||'').replace(/"/g,'&quot;')}" onblur="saveNote('${l.id}',this.value)" onkeydown="if(event.key==='Enter')this.blur()"></td>
       <td>
         <div class="actions">
-          <button class="btn btn-sm btn-coral" onclick="resendEmail('${l.id}','${l.email}')">↑</button>
-          <select class="btn btn-sm" onchange="changeStatus('${l.id}',this.value);this.value=''">
+          <button class="btn btn-sm btn-coral" onclick="resendEmail('${l.id}','${l.email}')" title="Reenviar PDF">↑ PDF</button>
+          <a class="wa-btn" href="https://wa.me/?text=${waMsg}" target="_blank" title="WhatsApp">💬</a>
+          <select class="btn btn-sm" style="color:#666" onchange="changeStatus('${l.id}',this.value);this.value=''">
             <option value="" disabled selected>Estado</option>
             <option value="pendiente">Pendiente</option>
             <option value="enviado">Enviado</option>
-            <option value="error">Error</option>
+            <option value="error">Captado</option>
             <option value="rebotado">Rebotado</option>
           </select>
         </div>
@@ -274,30 +341,40 @@ function renderTable() {
   }).join('');
 }
 
+async function updateLead(id, fields) {
+  const res = await fetch('/api/update-lead', {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret },
+    body: JSON.stringify({ id, ...fields }),
+  });
+  if (res.status === 401) { showToast('No autorizado', true); return false; }
+  return true;
+}
+
 async function changeLabel(leadId, label) {
-  try {
-    await fetch(`${SUPABASE_URL}/rest/v1/leads?id=eq.${leadId}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` },
-      body: JSON.stringify({ label }),
-    });
+  const ok = await updateLead(leadId, { label });
+  if (ok) {
     showToast(`Etiqueta → "${LABEL_NAMES[label]}"`);
     const lead = allLeads.find(l=>l.id===leadId);
     if (lead) lead.label = label;
     updateMetrics();
-  } catch { showToast('Error', true); }
+  } else showToast('Error', true);
 }
 
 async function changeStatus(leadId, status) {
-  try {
-    await fetch(`${SUPABASE_URL}/rest/v1/leads?id=eq.${leadId}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` },
-      body: JSON.stringify({ status }),
-    });
-    showToast(`Estado → "${status}"`);
-    await loadLeads();
-  } catch { showToast('Error', true); }
+  const ok = await updateLead(leadId, { status });
+  if (ok) { showToast(`Estado actualizado`); await loadLeads(); }
+  else showToast('Error', true);
+}
+
+async function saveNote(leadId, notes) {
+  const lead = allLeads.find(l=>l.id===leadId);
+  if (lead && lead.notes === notes) return;
+  const ok = await updateLead(leadId, { notes });
+  if (ok) {
+    if (lead) lead.notes = notes;
+    showToast('Nota guardada');
+  }
 }
 
 async function resendEmail(leadId, email) {
@@ -309,9 +386,24 @@ async function resendEmail(leadId, email) {
       body: JSON.stringify({ leadId, email }),
     });
     const data = await res.json();
-    if (data.ok) { showToast('Reenviado'); await loadLeads(); }
+    if (data.ok) { showToast('PDF reenviado ✓'); await loadLeads(); }
     else showToast('Error al reenviar', true);
   } catch { showToast('Error', true); }
+}
+
+function copyEmails() {
+  const q = document.getElementById('search-input').value.toLowerCase();
+  const st = document.getElementById('filter-status').value;
+  const lbl = document.getElementById('filter-label').value;
+  const src = document.getElementById('filter-source').value;
+  const filtered = allLeads.filter(l =>
+    (!q || l.email.toLowerCase().includes(q)) &&
+    (!st || l.status===st) &&
+    (!lbl || (l.label||'sin-etiquetar')===lbl) &&
+    (!src || l.source===src)
+  );
+  const emails = filtered.map(l=>l.email).join(', ');
+  navigator.clipboard.writeText(emails).then(() => showToast(`${filtered.length} emails copiados ✓`));
 }
 
 async function triggerSequence() {
@@ -329,19 +421,14 @@ async function triggerSequence() {
 }
 
 function exportCSV() {
-  const rows = [['Email','Etiqueta','Origen','Estado','Secuencia','Registrado'],
-    ...allLeads.map(l=>[l.email,l.label||'',l.source||'',l.status,l.sequence_day||0,fmtDate(l.created_at)])
+  const rows = [['Email','Etiqueta','Origen','Estado','Secuencia','Notas','Registrado'],
+    ...allLeads.map(l=>[l.email,l.label||'',l.source||'',l.status,l.sequence_day||0,l.notes||'',new Date(l.created_at).toLocaleDateString('es-AR')])
   ];
   const csv = rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
   const a = document.createElement('a');
-  a.href = 'data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
+  a.href = 'data:text/csv;charset=utf-8,﻿'+encodeURIComponent(csv);
   a.download = `leads-${new Date().toISOString().slice(0,10)}.csv`;
   a.click();
-}
-
-function fmtDate(iso) {
-  if (!iso) return '—';
-  return new Date(iso).toLocaleDateString('es-AR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
 }
 
 function showToast(msg,isError=false) {
