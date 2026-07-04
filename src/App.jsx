@@ -18,6 +18,7 @@ import CommunityManagerRafaela from './pages/CommunityManagerRafaela'
 import RedesSocialesNegociosRafaela from './pages/RedesSocialesNegociosRafaela'
 import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
 import MarketingDigitalRafaela from './pages/MarketingDigitalRafaela'
+import SobreJuanoConecta from './pages/SobreJuanoConecta'
 
 function Home() {
   const [popupTrigger, setPopupTrigger] = useState(0)
@@ -53,6 +54,7 @@ export default function App() {
         <Route path="/redes-sociales-para-negocios-rafaela" element={<RedesSocialesNegociosRafaela />} />
         <Route path="/publicidad-instagram-rafaela" element={<PublicidadInstagramRafaela />} />
         <Route path="/marketing-digital-rafaela" element={<MarketingDigitalRafaela />} />
+        <Route path="/sobre-juanoconecta" element={<SobreJuanoConecta />} />
       </Routes>
     </BrowserRouter>
   )

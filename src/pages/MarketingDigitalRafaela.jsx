@@ -1,28 +1,154 @@
-import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { Helmet } from 'react-helmet-async'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import WhatsAppButton from '../components/WhatsAppButton'
 
 const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20el%20marketing%20digital%20para%20mi%20negocio%20en%20Rafaela'
 
+const LOCAL_BUSINESS_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'JuanoConecta',
+  description: 'Agencia de marketing digital en Rafaela, Santa Fe. Estrategia integral con IA aplicada.',
+  url: 'https://juanoconecta.ar',
+  telephone: '+543492627811',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Rafaela',
+    addressRegion: 'Santa Fe',
+    addressCountry: 'AR',
+  },
+  priceRange: '$$$',
+  knowsAbout: ['Community Management', 'Meta Ads', 'Marketing Digital', 'Diseño Web', 'Branding', 'Copywriting'],
+  areaServed: 'Rafaela, Santa Fe, Argentina',
+  sameAs: ['https://instagram.com/juanoconecta'],
+}
+
+const FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Qué incluye el marketing digital para un negocio en Rafaela?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'El marketing digital para negocios en Rafaela puede incluir: gestión de redes sociales (Community Management), campañas de publicidad paga en Meta Ads (Facebook e Instagram), diseño gráfico para contenido digital, desarrollo de sitio web, branding y copywriting. JuanoConecta ofrece todos estos servicios por separado o como estrategia integral.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto se invierte en Meta Ads para ver resultados en Rafaela?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Para negocios locales en Rafaela, una inversión inicial de entre $30.000 y $80.000 pesos mensuales en pauta permite empezar a ver resultados medibles. El mínimo recomendado para campañas de reconocimiento es $20.000/mes; para generación de leads o ventas directas, $50.000/mes o más según el objetivo.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto tarda en verse resultados con marketing digital en Rafaela?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Con Meta Ads, los primeros resultados (alcance, clics, consultas) se ven en la primera semana. Con estrategia orgánica (Community Management), los resultados significativos se consolidan entre el primer y segundo mes. A los 60 días, Tatitos Pañalera logró +340% de alcance orgánico.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuál es la diferencia entre contenido orgánico y publicidad paga?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'El contenido orgánico (posts, reels, stories sin pagar) construye comunidad y autoridad a largo plazo. La publicidad paga (Meta Ads) llega a audiencias nuevas de forma inmediata. La estrategia ideal combina ambos: el orgánico fideliza y el pago acelera el crecimiento.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Puedo contratar solo un servicio o tengo que tomar el paquete completo?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Podés contratar servicios por separado. Si solo necesitás gestión de redes sociales, un diseño gráfico específico o una campaña de Meta Ads puntual, podemos trabajar así. También ofrecemos estrategia integral si querés cubrir todos los frentes.',
+      },
+    },
+  ],
+}
+
+const faqs = [
+  {
+    q: '¿Qué incluye el marketing digital para un negocio en Rafaela?',
+    a: 'Puede incluir gestión de redes sociales, campañas de Meta Ads, diseño gráfico, desarrollo web, branding y copywriting. En JuanoConecta podés contratar servicios por separado o una estrategia integral que combine todos los frentes.',
+  },
+  {
+    q: '¿Cuánto se invierte en Meta Ads para ver resultados en Rafaela?',
+    a: 'Para negocios locales en Rafaela, entre $30.000 y $80.000/mes en pauta permite resultados medibles. El mínimo para reconocimiento es $20.000/mes; para leads o ventas, $50.000/mes o más según el objetivo.',
+  },
+  {
+    q: '¿Cuánto tarda en verse resultados?',
+    a: 'Con Meta Ads, los primeros resultados se ven en la primera semana. Con estrategia orgánica, los resultados significativos se consolidan entre el primer y segundo mes. A los 60 días, Tatitos Pañalera logró +340% de alcance.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre orgánico y publicidad paga?',
+    a: 'El orgánico (posts, reels sin pagar) construye comunidad y autoridad a largo plazo. La publicidad paga llega a audiencias nuevas de forma inmediata. La estrategia ideal combina ambos.',
+  },
+  {
+    q: '¿Puedo contratar solo un servicio?',
+    a: 'Sí. Podés contratar solo gestión de redes, solo Meta Ads, o solo diseño. También hay estrategia integral si querés cubrir todos los frentes con un solo proveedor.',
+  },
+]
+
 const servicios = [
-  { titulo: 'Community Management', descripcion: 'Gestión profesional de tus redes. Contenido, respuestas y crecimiento orgánico que fideliza.', icono: '💬', color: '#6A8FC4' },
-  { titulo: 'Meta Ads', descripcion: 'Campañas en Facebook e Instagram optimizadas con IA. Más leads, menos desperdicio de presupuesto.', icono: '🎯', color: '#C4846A' },
-  { titulo: 'Diseño Gráfico', descripcion: 'Piezas visuales para redes, historias, flyers y banners. Identidad visual coherente y profesional.', icono: '🎨', color: '#8FC46A' },
-  { titulo: 'Web Design con IA', descripcion: 'Sitios web modernos, rápidos y orientados a conversión, potenciados con inteligencia artificial.', icono: '🖥️', color: '#C46AAD' },
-  { titulo: 'Branding', descripcion: 'Construcción de identidad de marca: logo, paleta, tipografía y manual de marca completo.', icono: '✨', color: '#C4B86A' },
-  { titulo: 'Copywriting + IA', descripcion: 'Textos persuasivos para redes, emails y landing pages. Escritura que convierte potenciada con IA.', icono: '✍️', color: '#6AC4B8' },
+  {
+    titulo: 'Community Management',
+    descripcion: 'Gestión profesional de redes. Contenido estratégico, diseño y análisis de métricas para crecer de forma orgánica y sostenida.',
+    icono: '💬', color: '#6A8FC4',
+    precio: 'Desde $320.000/mes',
+  },
+  {
+    titulo: 'Meta Ads',
+    descripcion: 'Campañas en Facebook e Instagram optimizadas con IA. Más leads, menos desperdicio de presupuesto. Resultados en la primera semana.',
+    icono: '🎯', color: '#C4846A',
+    precio: 'Pauta + gestión',
+    destacado: true,
+  },
+  {
+    titulo: 'Diseño Gráfico',
+    descripcion: 'Piezas visuales para redes, historias, flyers y banners. Identidad visual coherente y profesional para todos tus canales.',
+    icono: '🎨', color: '#8FC46A',
+    precio: 'Por proyecto',
+  },
+  {
+    titulo: 'Web Design con IA',
+    descripcion: 'Sitios web modernos, rápidos y orientados a conversión, potenciados con inteligencia artificial.',
+    icono: '🖥️', color: '#C46AAD',
+    precio: 'Por proyecto',
+  },
+  {
+    titulo: 'Branding',
+    descripcion: 'Identidad de marca completa: logo, paleta, tipografía y manual. Todo lo que necesitás para comunicar quién sos.',
+    icono: '✨', color: '#C4B86A',
+    precio: 'Por proyecto',
+  },
+  {
+    titulo: 'Copywriting + IA',
+    descripcion: 'Textos persuasivos para redes, emails y landing pages. Escritura que convierte, potenciada con IA.',
+    icono: '✍️', color: '#6AC4B8',
+    precio: 'Por proyecto',
+  },
 ]
 
 export default function MarketingDigitalRafaela() {
-  useEffect(() => {
-    document.title = 'Marketing Digital en Rafaela | Estrategia con IA | JuanoConecta'
-    document.querySelector('meta[name="description"]')?.setAttribute('content', 'Agencia de marketing digital en Rafaela, Santa Fe. Estrategia integral con IA aplicada: redes sociales, Meta Ads, diseño y web. Resultados medibles para negocios locales.')
-  }, [])
-
   return (
     <div className="bg-fondo text-crema min-h-screen">
+      <Helmet>
+        <title>Marketing Digital en Rafaela | JuanoConecta</title>
+        <meta name="description" content="Agencia de marketing digital en Rafaela, Santa Fe. Community Management, Meta Ads, diseño web y branding con IA. Resultados reales para negocios locales." />
+        <link rel="canonical" href="https://juanoconecta.ar/marketing-digital-rafaela" />
+        <meta property="og:title" content="Marketing Digital en Rafaela | JuanoConecta" />
+        <meta property="og:description" content="Estrategia digital integral con IA para negocios en Rafaela. Community Management, Meta Ads, web y branding." />
+        <meta property="og:url" content="https://juanoconecta.ar/marketing-digital-rafaela" />
+        <script type="application/ld+json">{JSON.stringify(LOCAL_BUSINESS_SCHEMA)}</script>
+        <script type="application/ld+json">{JSON.stringify(FAQ_SCHEMA)}</script>
+      </Helmet>
+
       <Navbar />
 
       {/* Hero */}
@@ -32,10 +158,11 @@ export default function MarketingDigitalRafaela() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <span className="text-acento text-sm font-semibold tracking-widest uppercase">Rafaela · Santa Fe · Argentina</span>
             <h1 className="text-4xl md:text-6xl font-bold text-crema mt-4 mb-6 leading-tight">
-              Marketing Digital en Rafaela
+              Marketing Digital en Rafaela:<br />
+              <span className="text-acento">servicios, precios y cómo empezar</span>
             </h1>
             <p className="text-crema/50 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-              Estrategia digital integral con inteligencia artificial para negocios en Rafaela. Resultados reales, medibles y sostenibles.
+              Estrategia digital integral con inteligencia artificial para negocios en Rafaela y Santa Fe. Resultados reales, medibles y sostenibles.
             </p>
             <a href={WA} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:scale-105"
@@ -49,39 +176,52 @@ export default function MarketingDigitalRafaela() {
         </div>
       </section>
 
-      {/* Texto SEO */}
+      {/* ¿Qué incluye el marketing digital? */}
       <section className="py-16 px-6 bg-[#0A0A0A]">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <h2 className="text-2xl md:text-3xl font-bold text-crema mb-6">Marketing digital en Rafaela: la diferencia entre crecer y estancarse</h2>
-            <div className="space-y-4 text-crema/55 leading-relaxed text-base">
-              <p>El <strong className="text-crema/80">marketing digital en Rafaela</strong> cambió radicalmente en los últimos años. Ya no alcanza con tener una cuenta en Instagram o una página de Facebook desactualizada. Los negocios que están creciendo en Rafaela y Santa Fe son los que tienen una estrategia digital coherente, ejecutada con consistencia y optimizada con datos reales.</p>
-              <p>JuanoConecta es la propuesta de marketing digital con IA aplicada para negocios en Rafaela. La diferencia con las agencias tradicionales es que integramos inteligencia artificial en cada parte del proceso: desde el análisis de mercado y competencia hasta la producción de contenido, la gestión de campañas y la medición de resultados. Eso permite hacer más, más rápido y con mejor calidad.</p>
-              <p>El mercado local de Rafaela tiene características particulares: es una ciudad con fuerte identidad comercial, con consumidores que valoran la cercanía y la confianza. Una estrategia de marketing digital que funcione en Buenos Aires no necesariamente funciona igual en Rafaela. Conocer el mercado local es tan importante como conocer las herramientas digitales.</p>
-              <p>Los servicios que ofrecemos cubren todo el espectro digital: gestión de redes sociales, campañas de Meta Ads en Instagram y Facebook, diseño gráfico para redes, desarrollo web, branding y copywriting. Podés contratar un servicio específico o una estrategia integral que combine todos los frentes.</p>
-              <p>Los resultados hablan solos en Rafaela: Pura Vida Tatuajes empezó a <strong className="text-crema/80">cerrar turnos por Instagram desde el primer mes</strong>. Tatitos Pañalera triplicó su alcance orgánico en 60 días. Alarcón Ecografías construyó su presencia profesional desde cero. Estos no son casos aislados — son el resultado de aplicar una metodología que funciona para el mercado de Rafaela y Santa Fe.</p>
-              <p>Si querés que tu negocio en Rafaela tenga una estrategia digital real — no posts improvisados ni plata tirada en publicidad sin sentido — escribime por WhatsApp. En 15 minutos analizamos tu situación y definimos qué tiene más sentido para vos.</p>
-            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-crema mb-6">¿Qué incluye el marketing digital para un negocio local en Rafaela?</h2>
+            <p className="text-crema/55 leading-relaxed mb-6">
+              El <strong className="text-crema/80">marketing digital en Rafaela</strong> abarca todo lo que permite que tu negocio exista, sea encontrado y genere confianza en el mundo online. No es solo tener Instagram o un sitio web — es tener una estrategia coherente que conecte todos los puntos.
+            </p>
+            <p className="text-crema/55 leading-relaxed mb-6">
+              JuanoConecta integra inteligencia artificial en cada parte del proceso: desde el análisis de mercado hasta la producción de contenido, la gestión de campañas y la medición de resultados. Eso permite hacer más, más rápido y con mejor calidad que una agencia tradicional.
+            </p>
+
+            <h2 className="text-xl md:text-2xl font-bold text-crema mb-4 mt-10">Meta Ads en Rafaela: publicidad en Facebook e Instagram</h2>
+            <p className="text-crema/55 leading-relaxed mb-4">
+              Las campañas de Meta Ads son la forma más directa de llegar a clientes potenciales en Rafaela y zona. Con segmentación por ubicación, intereses y comportamiento, es posible mostrar tu negocio exactamente a quien lo necesita — sin desperdiciar presupuesto.
+            </p>
+            <p className="text-crema/55 leading-relaxed">
+              Los negocios en Rafaela que combinan estrategia orgánica + Meta Ads ven resultados acelerados: Tatitos Pañalera triplicó su alcance en 60 días. Pura Vida Tatuajes comenzó a cerrar turnos desde el primer mes.
+            </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Servicios */}
+      {/* Servicios con precio */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <span className="text-acento text-sm font-semibold tracking-widest uppercase">Lo que hago</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-crema mt-4 mb-4">Servicios de marketing digital</h2>
-            <p className="text-crema/35 max-w-md mx-auto">Estrategia integral para negocios en Rafaela y Santa Fe</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-crema mt-4 mb-4">¿Cuánto cuesta el marketing digital en Rafaela?</h2>
+            <p className="text-crema/35 max-w-md mx-auto">Servicios de marketing digital para negocios en Rafaela y Santa Fe</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {servicios.map((s, i) => (
               <motion.div key={s.titulo} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.07 }}
-                className="rounded-2xl p-7 group relative overflow-hidden"
-                style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5" style={{ background: `${s.color}15`, border: `1px solid ${s.color}25` }}>{s.icono}</div>
+                className="rounded-2xl p-7 flex flex-col relative overflow-hidden"
+                style={{
+                  background: s.destacado ? 'linear-gradient(135deg, rgba(196,132,106,0.12) 0%, rgba(196,132,106,0.04) 100%)' : 'rgba(255,255,255,0.025)',
+                  border: s.destacado ? '1px solid rgba(196,132,106,0.3)' : '1px solid rgba(255,255,255,0.07)',
+                }}>
+                {s.destacado && (
+                  <div className="absolute top-4 right-4 text-white text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ background: '#C4846A' }}>POPULAR</div>
+                )}
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-4" style={{ background: `${s.color}15`, border: `1px solid ${s.color}25` }}>{s.icono}</div>
                 <h3 className="text-lg font-bold text-crema mb-2">{s.titulo}</h3>
-                <p className="text-crema/45 text-sm leading-relaxed mb-6">{s.descripcion}</p>
+                <p className="text-crema/45 text-sm leading-relaxed flex-1 mb-4">{s.descripcion}</p>
+                <div className="text-xs font-semibold mb-5" style={{ color: s.color }}>{s.precio}</div>
                 <a href={WA} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-crema/50 hover:text-acento transition-colors">Consultar →</a>
               </motion.div>
             ))}
@@ -89,40 +229,62 @@ export default function MarketingDigitalRafaela() {
         </div>
       </section>
 
-      {/* Caso de éxito */}
+      {/* JuanoConecta: quién soy */}
       <section className="py-16 px-6 bg-[#0A0A0A]">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="rounded-3xl p-8 md:p-12 relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, rgba(143,196,106,0.1) 0%, rgba(143,196,106,0.03) 100%)', border: '1px solid rgba(143,196,106,0.25)' }}>
-            <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-20" style={{ background: '#8FC46A' }} />
-            <span className="text-[#8FC46A] text-xs font-bold tracking-widest uppercase">Caso de éxito</span>
-            <div className="text-5xl font-bold mt-4 mb-1" style={{ color: '#8FC46A' }}>1er mes</div>
-            <p className="text-crema/50 text-sm mb-6">turnos cerrados y alcance expandido desde el arranque</p>
-            <div className="h-px bg-white/5 mb-6" />
-            <div className="flex items-start gap-3">
-              <div className="w-1 h-14 rounded-full flex-shrink-0" style={{ background: 'linear-gradient(to bottom, #8FC46A, transparent)' }} />
-              <div>
-                <div className="text-crema font-bold text-base">🎨 Pura Vida Tatuajes</div>
-                <div className="text-xs font-medium mb-2 mt-0.5" style={{ color: '#8FC46Aaa' }}>Estudio de tatuajes · Rafaela</div>
-                <p className="text-crema/35 text-sm leading-relaxed">Desde el primer mes generaban consultas reales, cerraban turnos por Instagram y expandían su alcance orgánico de forma sostenida.</p>
-              </div>
+            style={{ background: 'linear-gradient(135deg, rgba(196,132,106,0.1) 0%, rgba(196,132,106,0.03) 100%)', border: '1px solid rgba(196,132,106,0.25)' }}>
+            <h2 className="text-xl md:text-2xl font-bold text-crema mb-4">JuanoConecta: agencia de marketing digital en Rafaela, Santa Fe</h2>
+            <p className="text-crema/55 text-sm leading-relaxed mb-4">
+              JuanoConecta es la propuesta de <strong className="text-crema/80">Juan Gallino</strong>, diseñador de marcas y estratega digital con base en Rafaela, Santa Fe. Con más de 3 años de experiencia trabajando con negocios locales, el enfoque es claro: estrategia digital real que genera resultados medibles, no solo likes.
+            </p>
+            <p className="text-crema/55 text-sm leading-relaxed mb-6">
+              Clientes activos: Tatitos Pañalera, Alarcón Ecografías, Pura Vida Tatuajes, Brisa Latina Festa, Konexa Marketing, ComoEnvío y más de 20 marcas en Rafaela y Santa Fe.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {['Rafaela', 'Santa Fe', 'IA aplicada', '+20 marcas', '3 años de trayectoria'].map(tag => (
+                <span key={tag} className="text-xs px-3 py-1.5 rounded-full font-medium" style={{ background: 'rgba(196,132,106,0.12)', color: '#C4846A', border: '1px solid rgba(196,132,106,0.2)' }}>{tag}</span>
+              ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* CTA final */}
+      {/* FAQ */}
       <section className="py-20 px-6">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-crema mb-10">Preguntas frecuentes</h2>
+          <div className="space-y-5">
+            {faqs.map((faq, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}
+                className="rounded-2xl p-6"
+                style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                <h3 className="font-semibold text-crema mb-2 text-base">{faq.q}</h3>
+                <p className="text-crema/50 text-sm leading-relaxed">{faq.a}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA final */}
+      <section className="py-20 px-6 bg-[#0A0A0A]">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-3xl md:text-4xl font-bold text-crema mb-4">Tu negocio en Rafaela merece una estrategia real</h2>
             <p className="text-crema/40 mb-8">Escribime y en 15 minutos te cuento qué haría puntualmente para tu caso.</p>
-            <a href={WA} target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
-              style={{ background: 'linear-gradient(135deg, #C4846A, #E8A882)' }}>
-              Hablar con Juan por WhatsApp
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href={WA} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
+                style={{ background: 'linear-gradient(135deg, #C4846A, #E8A882)' }}>
+                Hablar con Juan por WhatsApp
+              </a>
+              <a href="/#servicios"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full font-semibold text-sm border border-white/10 bg-white/5 text-crema hover:bg-white/10 transition-all">
+                Ver todos los servicios
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>

@@ -61,6 +61,19 @@ export default function Footer() {
 
         <div className="h-px bg-white/5 my-8" />
 
+        {/* Links GEO */}
+        <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center mb-8">
+          {[
+            { href: '/community-manager-rafaela', label: 'Community Manager Rafaela' },
+            { href: '/marketing-digital-rafaela', label: 'Marketing Digital Rafaela' },
+            { href: '/sobre-juanoconecta', label: 'Sobre nosotros' },
+          ].map((link) => (
+            <a key={link.href} href={link.href} className="text-crema/25 hover:text-crema/50 text-xs transition-colors">
+              {link.label}
+            </a>
+          ))}
+        </div>
+
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-crema/25 text-xs">
           <p>© 2026 JuanoConecta. Todos los derechos reservados.</p>
           <p>Rafaela, Santa Fe, Argentina · Estrategia digital con IA aplicada</p>
