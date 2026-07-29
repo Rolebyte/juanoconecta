@@ -15,6 +15,7 @@ import PopupLeadMagnet from './components/PopupLeadMagnet'
 import WhatsAppButton from './components/WhatsAppButton'
 import CursorCustom from './components/CursorCustom'
 import Portfolio from './components/Portfolio'
+import Precios from './components/Precios'
 import CommunityManagerRafaela from './pages/CommunityManagerRafaela'
 import RedesSocialesNegociosRafaela from './pages/RedesSocialesNegociosRafaela'
 import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
@@ -39,6 +40,7 @@ function Home() {
         <Servicios />
         <Tienda onOpenPopup={() => setPopupTrigger(n => n + 1)} />
         <Portfolio />
+        <Precios />
         <Resultados />
         <Clientes />
         <Contacto />
