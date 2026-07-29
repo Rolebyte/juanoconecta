@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "https://www.juanoconecta.ar/(.*)", "destination": "https://juanoconecta.ar/$1", "permanent": true }
+  ],
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }

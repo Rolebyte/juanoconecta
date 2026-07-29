@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SobreMi from './components/SobreMi'
@@ -22,9 +23,13 @@ import SobreJuanoConecta from './pages/SobreJuanoConecta'
 
 function Home() {
   const [popupTrigger, setPopupTrigger] = useState(0)
+  // Helmet para canonical de la home (evita duplicados www vs non-www)
 
   return (
     <div className="bg-fondo text-crema min-h-screen">
+      <Helmet>
+        <link rel="canonical" href="https://juanoconecta.ar/" />
+      </Helmet>
       <CursorCustom />
       <Navbar />
       <main>
