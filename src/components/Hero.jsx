@@ -69,15 +69,15 @@ export default function Hero() {
               variants={fadeUp}
               className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-crema mb-6 tracking-tight font-display"
             >
-              Tu marca
+              Tu negocio
               <br />
-              vendiendo en
+              creciendo online,
               <br />
               <span
                 className="text-transparent bg-clip-text"
                 style={{ backgroundImage: 'linear-gradient(135deg, #C4846A 0%, #E8A882 50%, #C4846A 100%)' }}
               >
-                redes con IA
+                con IA
               </span>
             </motion.h1>
 
