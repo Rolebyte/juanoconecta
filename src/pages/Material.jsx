@@ -9,6 +9,32 @@ import { MATERIALES } from '../data/materiales'
 
 const WA_CONSULTA = 'https://wa.me/543492627811?text=' + encodeURIComponent('Hola Juan, estuve en la capacitación Emprender con IA y tengo una consulta.')
 
+function Beneficio({ b }) {
+  if (!b || Date.now() > new Date(b.vence).getTime()) return null
+  const wa = 'https://wa.me/543492627811?text=' + encodeURIComponent(`Hola Juan, participé de la capacitación y quiero usar el código ${b.codigo} (${b.porcentaje}% de descuento).`)
+  return (
+    <Reveal>
+      <div className="relative overflow-hidden rounded-3xl p-px bg-gradient-to-br from-acento via-teal/70 to-acento/30">
+        <div className="relative rounded-[calc(1.5rem-1px)] bg-[#0F1629] p-7 md:p-9 grid md:grid-cols-[auto_1fr] gap-6 md:gap-9 items-center">
+          <div className="text-center md:text-left">
+            <div className="text-6xl md:text-7xl font-bold text-acento leading-none tabular-nums">{b.porcentaje}%</div>
+            <div className="text-crema/60 text-sm mt-2">de descuento</div>
+          </div>
+          <div>
+            <Eyebrow>Beneficio por participar</Eyebrow>
+            <p className="text-crema text-lg mt-4 leading-relaxed">{b.detalle}</p>
+            <div className="flex flex-wrap items-center gap-3 mt-5">
+              <span className="rounded-xl border border-dashed border-teal/60 bg-teal/10 px-4 py-2 font-mono font-bold tracking-wider text-teal">{b.codigo}</span>
+              <span className="text-crema/50 text-sm">Válido hasta el {b.venceTexto}</span>
+            </div>
+            <div className="mt-6"><BtnPrimary href={wa} external>Usar mi descuento</BtnPrimary></div>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
 function Descarga({ a }) {
   return (
     <a href={a.href} target="_blank" rel="noopener noreferrer" download className="block">
@@ -60,6 +86,8 @@ export default function Material() {
               </div>
             )}
           </Reveal>
+
+          <Beneficio b={m.beneficio} />
 
           <Reveal>
             <h2 className="text-2xl font-bold tracking-tight mb-5">Regalos para empezar</h2>
