@@ -1,22 +1,19 @@
-import { motion } from 'framer-motion'
+const columnas = [
+  {
+    titulo: 'Navegación',
+    links: [['Inicio', '/'], ['Servicios', '/#servicios'], ['Casos de éxito', '/#resultados'], ['Precios', '/#precios'], ['Sobre JuanoConecta', '/sobre-juanoconecta']],
+  },
+  {
+    titulo: 'Servicios',
+    links: [['IA para negocios', '/#servicios'], ['Webs y web apps', '/#servicios'], ['Diseño y marca', '/#servicios'], ['Community Manager Rafaela', '/community-manager-rafaela'], ['Publicidad en Instagram', '/publicidad-instagram-rafaela']],
+  },
+  {
+    titulo: 'Recursos',
+    links: [['Curso de IA', '/curso-ia'], ['Tienda de recursos', '/#tienda'], ['Marketing digital en Rafaela', '/marketing-digital-rafaela'], ['Redes para negocios', '/redes-sociales-para-negocios-rafaela'], ['Preguntas frecuentes', '/#faq']],
+  },
+]
 
-export default function Footer() {
-  return (
-    <footer className="bg-[#080C18] border-t border-white/5 py-12 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-
-          {/* Logo y tagline */}
-          <div className="text-center md:text-left">
-            <div className="text-xl font-bold text-crema mb-1">
-              Juano<span className="text-acento">Conecta</span>
-            </div>
-            <p className="text-crema/40 text-sm">Comunicación digital e inteligencia artificial</p>
-          </div>
-
-          {/* Redes sociales */}
-          <div className="flex items-center gap-4">
-            {[
+const redes = [
               {
                 name: 'Instagram',
                 href: 'https://instagram.com/juanoconecta',
@@ -44,40 +41,48 @@ export default function Footer() {
                   </svg>
                 ),
               },
-            ].map((red) => (
-              <a
-                key={red.name}
-                href={red.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={red.name}
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-acento/20 text-crema/50 hover:text-acento flex items-center justify-center transition-all duration-200 hover:scale-110"
-              >
-                {red.icon}
-              </a>
-            ))}
+            ]
+
+export default function Footer() {
+  return (
+    <footer className="bg-[#080C18] border-t border-white/5 pt-20 pb-10 px-6">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr]">
+          <div>
+            <a href="/" className="text-2xl font-bold text-crema">Juano<span className="text-acento">Conecta</span></a>
+            <p className="text-crema/50 text-sm leading-relaxed mt-4 max-w-xs">Estudio de comunicación digital e inteligencia artificial. Webs, web apps, diseño, redes y formación en IA.</p>
+            <div className="flex items-center gap-3 mt-6">
+              {redes.map((red) => (
+                <a key={red.name} href={red.href} target="_blank" rel="noopener noreferrer" aria-label={red.name}
+                  className="w-10 h-10 rounded-full border border-white/10 text-crema/60 hover:text-white hover:bg-acento hover:border-acento flex items-center justify-center transition-all duration-300">
+                  {red.icon}
+                </a>
+              ))}
+            </div>
+          </div>
+          {columnas.map((c) => (
+            <div key={c.titulo}>
+              <h3 className="text-crema font-semibold mb-5">{c.titulo}</h3>
+              <ul className="space-y-3">
+                {c.links.map(([label, href]) => (
+                  <li key={label}><a href={href} className="text-crema/50 hover:text-crema text-sm transition-colors">{label}</a></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <div>
+            <h3 className="text-crema font-semibold mb-5">Contacto</h3>
+            <ul className="space-y-3 text-sm text-crema/50">
+              <li><a href="https://wa.me/543492627811" target="_blank" rel="noopener noreferrer" className="hover:text-crema transition-colors">WhatsApp +54 9 3492 627811</a></li>
+              <li><a href="mailto:juanoconecta@gmail.com" className="hover:text-crema transition-colors">juanoconecta@gmail.com</a></li>
+              <li>Rafaela, Santa Fe, Argentina</li>
+            </ul>
           </div>
         </div>
-
-        <div className="h-px bg-white/5 my-8" />
-
-        {/* Links GEO */}
-        <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center mb-8">
-          {[
-            { href: '/curso-ia', label: 'Curso de IA' },
-            { href: '/community-manager-rafaela', label: 'Community Manager Rafaela' },
-            { href: '/marketing-digital-rafaela', label: 'Marketing Digital Rafaela' },
-            { href: '/sobre-juanoconecta', label: 'Sobre nosotros' },
-          ].map((link) => (
-            <a key={link.href} href={link.href} className="text-crema/25 hover:text-crema/50 text-xs transition-colors">
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-crema/25 text-xs">
+        <div className="h-px bg-white/5 my-10" />
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-crema/35 text-xs">
           <p>© 2026 JuanoConecta. Todos los derechos reservados.</p>
-          <p>Rafaela, Santa Fe, Argentina · Comunicación digital e IA</p>
+          <p>Comunicación digital e inteligencia artificial · Rafaela, Argentina</p>
         </div>
       </div>
     </footer>

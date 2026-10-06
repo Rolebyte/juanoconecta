@@ -15,7 +15,7 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const sectionIds = ['servicios', 'curso-ia', 'sobre-mi', 'portfolio', 'resultados', 'contacto']
+    const sectionIds = ['servicios', 'curso-ia', 'sobre-mi', 'resultados', 'precios', 'contacto']
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -34,9 +34,9 @@ export default function Navbar() {
   const links = [
     { label: 'Servicios', href: '/#servicios', id: 'servicios' },
     { label: 'Curso de IA', href: '/curso-ia', id: 'curso-ia' },
-    { label: 'Sobre mí', href: '/#sobre-mi', id: 'sobre-mi' },
-    { label: 'Portfolio', href: '/#portfolio', id: 'portfolio' },
-    { label: 'Resultados', href: '/#resultados', id: 'resultados' },
+    { label: 'Nosotros', href: '/#sobre-mi', id: 'sobre-mi' },
+    { label: 'Casos', href: '/#resultados', id: 'resultados' },
+    { label: 'Precios', href: '/#precios', id: 'precios' },
     { label: 'Contacto', href: '/#contacto', id: 'contacto' },
   ]
 

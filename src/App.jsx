@@ -2,22 +2,24 @@ import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import SobreMi from './components/SobreMi'
-import ComoTrabajo from './components/ComoTrabajo'
-import Servicios from './components/Servicios'
-import Tienda from './components/Tienda'
-import Resultados from './components/Resultados'
-import Clientes from './components/Clientes'
-import Contacto from './components/Contacto'
 import Footer from './components/Footer'
+import Contacto from './components/Contacto'
 import PopupLeadMagnet from './components/PopupLeadMagnet'
 import WhatsAppButton from './components/WhatsAppButton'
-import CursorCustom from './components/CursorCustom'
 import Portfolio from './components/Portfolio'
 import Precios from './components/Precios'
+import Tienda from './components/Tienda'
 import CursoIA from './components/CursoIA'
 import CursoIAPage from './pages/CursoIA'
+import HeroNx from './components/home/HeroNx'
+import MarqueeClientes from './components/home/MarqueeClientes'
+import SobreNx from './components/home/SobreNx'
+import ServiciosNx from './components/home/ServiciosNx'
+import StatsNx from './components/home/StatsNx'
+import PorQueNx from './components/home/PorQueNx'
+import CasosNx from './components/home/CasosNx'
+import FaqNx from './components/home/FaqNx'
+import CtaNx from './components/home/CtaNx'
 import CommunityManagerRafaela from './pages/CommunityManagerRafaela'
 import RedesSocialesNegociosRafaela from './pages/RedesSocialesNegociosRafaela'
 import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
@@ -33,19 +35,21 @@ function Home() {
       <Helmet>
         <link rel="canonical" href="https://juanoconecta.ar/" />
       </Helmet>
-      <CursorCustom />
       <Navbar />
       <main>
-        <Hero />
-        <Servicios />
+        <HeroNx />
+        <MarqueeClientes />
+        <SobreNx />
+        <ServiciosNx />
+        <StatsNx />
         <CursoIA />
-        <SobreMi />
-        <ComoTrabajo />
-        <Tienda onOpenPopup={() => setPopupTrigger(n => n + 1)} />
+        <PorQueNx />
+        <CasosNx />
         <Portfolio />
+        <Tienda onOpenPopup={() => setPopupTrigger(n => n + 1)} />
         <Precios />
-        <Resultados />
-        <Clientes />
+        <FaqNx />
+        <CtaNx />
         <Contacto />
       </main>
       <Footer />
