@@ -12,7 +12,7 @@ const logros = [
   { num: '+20', label: 'Clientes atendidos', icon: '🏆' },
   { num: '+5', label: 'Años capacitándome', icon: '📚' },
   { num: '3', label: 'Años de trayectoria', icon: '⚡' },
-  { num: '6', label: 'Servicios digitales', icon: '🎯' },
+  { num: '4', label: 'Áreas de trabajo', icon: '🎯' },
 ]
 
 const toolGroups = [
@@ -156,10 +156,10 @@ export default function SobreMi() {
               Hola, soy <span className="text-acento">Juan</span> 👋
             </h3>
             <p className="text-crema/50 text-base leading-relaxed mb-6">
-              Especialista en marketing digital con IA, basado en Rafaela, Santa Fe. Trabajo con marcas y emprendedores para que su presencia en redes no sea solo linda, sino que venda.
+              Fundador de JuanoConecta, estudio de comunicación digital e inteligencia artificial en Rafaela, Santa Fe. Acompaño a marcas y emprendedores con webs, web apps, diseño, redes y publicidad.
             </p>
             <p className="text-crema/40 text-base leading-relaxed mb-10">
-              Combiné años de experiencia en gestión de comunidades con las últimas herramientas de inteligencia artificial para crear estrategias que generan resultados reales y medibles.
+              Uso la IA todos los días para crear más rápido y con mejores resultados, y también la enseño: en capacitaciones para equipos y en mi curso de IA aplicada.
             </p>
 
             {/* Logros en grid */}

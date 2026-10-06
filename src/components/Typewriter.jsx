@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 
 const PALABRAS = [
-  'Community Manager',
-  'Estratega digital',
-  'Experto en Meta Ads',
-  'Creador con IA',
-  'Diseñador de marcas',
+  'Formación en IA',
+  'Webs y web apps',
+  'Diseño y branding',
+  'Redes y Meta Ads',
 ]
 
 export default function Typewriter() {

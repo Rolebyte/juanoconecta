@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="text-xl font-bold text-crema mb-1">
               Juano<span className="text-acento">Conecta</span>
             </div>
-            <p className="text-crema/30 text-sm">Estrategia digital con IA aplicada</p>
+            <p className="text-crema/40 text-sm">Comunicación digital e inteligencia artificial</p>
           </div>
 
           {/* Redes sociales */}
@@ -64,6 +64,7 @@ export default function Footer() {
         {/* Links GEO */}
         <div className="flex flex-wrap gap-x-6 gap-y-2 justify-center mb-8">
           {[
+            { href: '/curso-ia', label: 'Curso de IA' },
             { href: '/community-manager-rafaela', label: 'Community Manager Rafaela' },
             { href: '/marketing-digital-rafaela', label: 'Marketing Digital Rafaela' },
             { href: '/sobre-juanoconecta', label: 'Sobre nosotros' },
@@ -76,7 +77,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-crema/25 text-xs">
           <p>© 2026 JuanoConecta. Todos los derechos reservados.</p>
-          <p>Rafaela, Santa Fe, Argentina · Estrategia digital con IA aplicada</p>
+          <p>Rafaela, Santa Fe, Argentina · Comunicación digital e IA</p>
         </div>
       </div>
     </footer>

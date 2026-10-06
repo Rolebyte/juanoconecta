@@ -2,51 +2,45 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useTilt } from '../hooks/useTilt'
 
-const WA_BASE = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20me%20interesa%20el%20servicio%20de%20'
+const WA_BASE = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20me%20interesa%20el%20%C3%A1rea%20de%20'
 
 const servicios = [
   {
-    titulo: 'Community Management',
-    descripcion: 'Gestión profesional de tus redes. Contenido, respuestas y crecimiento orgánico que fideliza.',
-    icono: '💬',
-    color: '#6A8FC4',
-    wa: WA_BASE + 'Community%20Management',
-  },
-  {
-    titulo: 'Meta Ads',
-    descripcion: 'Campañas en Facebook e Instagram optimizadas con IA. Más leads, menos desperdicio de presupuesto.',
-    icono: '🎯',
+    area: 'IA para negocios',
+    titulo: 'Usá la IA con criterio',
+    descripcion: 'Formación y herramientas para que tu equipo aproveche la inteligencia artificial en el día a día.',
+    items: ['Cursos y capacitaciones', 'Asistentes y automatizaciones', 'Contenido creado con IA'],
+    icono: '🤖',
     color: '#FF6B6B',
-    wa: WA_BASE + 'Meta%20Ads',
+    wa: WA_BASE + 'IA%20para%20negocios',
     destacado: true,
   },
   {
-    titulo: 'Diseño Gráfico',
-    descripcion: 'Piezas visuales para redes, historias, flyers y banners. Identidad visual coherente y profesional.',
-    icono: '🎨',
-    color: '#8FC46A',
-    wa: WA_BASE + 'Diseño%20Gráfico',
-  },
-  {
-    titulo: 'Web Design con IA',
-    descripcion: 'Sitios web modernos, rápidos y orientados a conversión, potenciados con inteligencia artificial.',
+    area: 'Webs y web apps',
+    titulo: 'Tu negocio online y funcionando',
+    descripcion: 'Sitios rápidos y orientados a conversión, y aplicaciones web a medida construidas con IA.',
+    items: ['Sitios institucionales', 'Landings y tiendas online', 'Web apps a medida'],
     icono: '🖥️',
-    color: '#C46AAD',
-    wa: WA_BASE + 'Web%20Design%20con%20IA',
+    color: '#4ECDC4',
+    wa: WA_BASE + 'Webs%20y%20web%20apps',
   },
   {
-    titulo: 'Branding',
-    descripcion: 'Construcción de identidad de marca: logo, paleta, tipografía y manual de marca completo.',
-    icono: '✨',
-    color: '#C4B86A',
-    wa: WA_BASE + 'Branding',
+    area: 'Diseño y marca',
+    titulo: 'Una imagen que se recuerda',
+    descripcion: 'Identidad visual coherente en cada punto de contacto con tus clientes.',
+    items: ['Identidad visual y branding', 'Diseño gráfico para redes', 'Manual de marca'],
+    icono: '🎨',
+    color: '#FFE66D',
+    wa: WA_BASE + 'Dise%C3%B1o%20y%20marca',
   },
   {
-    titulo: 'Copywriting + IA',
-    descripcion: 'Textos persuasivos para redes, emails y landing pages. Escritura que convierte potenciada con IA.',
-    icono: '✍️',
-    color: '#6AC4B8',
-    wa: WA_BASE + 'Copywriting%20con%20IA',
+    area: 'Redes y publicidad',
+    titulo: 'Presencia que convierte',
+    descripcion: 'Gestión de redes, contenido y campañas pagas con estrategia y métricas reales.',
+    items: ['Community management', 'Estrategia y copywriting', 'Meta Ads'],
+    icono: '🎯',
+    color: '#4ECDC4',
+    wa: WA_BASE + 'Redes%20y%20publicidad',
   },
 ]
 
@@ -86,10 +80,10 @@ function ServicioCard({ servicio, index }) {
         }}
       />
 
-      {/* Badge "popular" para destacado */}
+      {/* Badge para destacado */}
       {servicio.destacado && (
         <div className="absolute top-5 right-5 bg-acento text-white text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wider">
-          POPULAR
+          NUEVO
         </div>
       )}
 
@@ -101,10 +95,21 @@ function ServicioCard({ servicio, index }) {
         {servicio.icono}
       </div>
 
+      <span className="text-[11px] font-semibold tracking-widest uppercase mb-2" style={{ color: servicio.color }}>
+        {servicio.area}
+      </span>
       <h3 className="text-lg font-bold text-crema mb-2 group-hover:text-acento transition-colors duration-300">
         {servicio.titulo}
       </h3>
-      <p className="text-crema/45 text-sm leading-relaxed flex-1 mb-7">{servicio.descripcion}</p>
+      <p className="text-crema/55 text-sm leading-relaxed mb-5">{servicio.descripcion}</p>
+      <ul className="flex-1 mb-7 space-y-1.5">
+        {servicio.items.map((item) => (
+          <li key={item} className="text-crema/70 text-sm flex items-start gap-2">
+            <span className="mt-2 w-1 h-1 rounded-full bg-teal flex-shrink-0" />
+            {item}
+          </li>
+        ))}
+      </ul>
 
       <a
         href={servicio.wa}
@@ -113,7 +118,7 @@ function ServicioCard({ servicio, index }) {
         className="inline-flex items-center gap-2 text-sm font-semibold group/link"
         style={{ color: servicio.destacado ? '#FF6B6B' : '#F7F7F299' }}
       >
-        <span className="group-hover/link:text-acento transition-colors">Consultar precio</span>
+        <span className="group-hover/link:text-acento transition-colors">Consultar</span>
         <motion.svg
           className="w-4 h-4"
           fill="none"
@@ -157,14 +162,14 @@ export default function Servicios() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <span className="text-acento text-sm font-semibold tracking-widest uppercase">Lo que hago</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-crema mt-4 mb-5">Servicios</h2>
+          <span className="text-teal text-sm font-semibold tracking-widest uppercase">Qué hacemos</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-crema mt-4 mb-5">Cuatro áreas, una misma estrategia</h2>
           <p className="text-crema/35 max-w-md mx-auto leading-relaxed">
-            Soluciones digitales integrales para hacer crecer tu negocio en el mundo online
+            Combinamos inteligencia artificial, desarrollo web, diseño y redes para que tu negocio crezca con una sola visión.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {servicios.map((s, i) => (
             <ServicioCard key={s.titulo} servicio={s} index={i} />
           ))}

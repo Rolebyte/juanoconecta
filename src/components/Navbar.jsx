@@ -15,7 +15,7 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const sectionIds = ['sobre-mi', 'servicios', 'tienda', 'portfolio', 'resultados', 'contacto']
+    const sectionIds = ['servicios', 'curso-ia', 'sobre-mi', 'portfolio', 'resultados', 'contacto']
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -32,12 +32,12 @@ export default function Navbar() {
   }, [])
 
   const links = [
-    { label: 'Sobre mí', href: '#sobre-mi', id: 'sobre-mi' },
-    { label: 'Servicios', href: '#servicios', id: 'servicios' },
-    { label: 'Tienda', href: '#tienda', id: 'tienda' },
-    { label: 'Portfolio', href: '#portfolio', id: 'portfolio' },
-    { label: 'Resultados', href: '#resultados', id: 'resultados' },
-    { label: 'Contacto', href: '#contacto', id: 'contacto' },
+    { label: 'Servicios', href: '/#servicios', id: 'servicios' },
+    { label: 'Curso de IA', href: '/curso-ia', id: 'curso-ia' },
+    { label: 'Sobre mí', href: '/#sobre-mi', id: 'sobre-mi' },
+    { label: 'Portfolio', href: '/#portfolio', id: 'portfolio' },
+    { label: 'Resultados', href: '/#resultados', id: 'resultados' },
+    { label: 'Contacto', href: '/#contacto', id: 'contacto' },
   ]
 
   return (
@@ -53,7 +53,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="#" className="text-xl font-bold tracking-tight text-crema hover:text-acento transition-colors">
+        <a href="/" className="text-xl font-bold tracking-tight text-crema hover:text-acento transition-colors">
           Juano<span className="text-acento">Conecta</span>
         </a>
 

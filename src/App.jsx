@@ -16,6 +16,8 @@ import WhatsAppButton from './components/WhatsAppButton'
 import CursorCustom from './components/CursorCustom'
 import Portfolio from './components/Portfolio'
 import Precios from './components/Precios'
+import CursoIA from './components/CursoIA'
+import CursoIAPage from './pages/CursoIA'
 import CommunityManagerRafaela from './pages/CommunityManagerRafaela'
 import RedesSocialesNegociosRafaela from './pages/RedesSocialesNegociosRafaela'
 import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
@@ -35,9 +37,10 @@ function Home() {
       <Navbar />
       <main>
         <Hero />
+        <Servicios />
+        <CursoIA />
         <SobreMi />
         <ComoTrabajo />
-        <Servicios />
         <Tienda onOpenPopup={() => setPopupTrigger(n => n + 1)} />
         <Portfolio />
         <Precios />
@@ -62,6 +65,7 @@ export default function App() {
         <Route path="/publicidad-instagram-rafaela" element={<PublicidadInstagramRafaela />} />
         <Route path="/marketing-digital-rafaela" element={<MarketingDigitalRafaela />} />
         <Route path="/sobre-juanoconecta" element={<SobreJuanoConecta />} />
+        <Route path="/curso-ia" element={<CursoIAPage />} />
       </Routes>
     </BrowserRouter>
   )
