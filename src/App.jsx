@@ -27,21 +27,25 @@ import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
 import MarketingDigitalRafaela from './pages/MarketingDigitalRafaela'
 import SobreJuanoConecta from './pages/SobreJuanoConecta'
 
-function Home() {
-  // Helmet para canonical de la home (evita duplicados www vs non-www)
-
-  // Al llegar desde otra página con /#seccion, el navegador intenta saltar antes de que
-  // React dibuje la home. Saltamos nosotros y repetimos mientras cargan imágenes y animaciones.
+// Al llegar a cualquier página con /ruta#seccion, el navegador intenta saltar antes de que
+// React dibuje el contenido. Saltamos nosotros y repetimos mientras cargan imágenes y animaciones.
+function IrASeccion() {
   useEffect(() => {
     const hash = window.location.hash
     if (!hash) return
     const ir = (suave) => {
-      const el = document.querySelector(hash)
+      const el = document.getElementById(decodeURIComponent(hash.slice(1)))
       if (el) el.scrollIntoView({ behavior: suave ? 'smooth' : 'auto' })
     }
     const timers = [50, 400, 1000].map((ms, i) => setTimeout(() => ir(i === 0), ms))
     return () => timers.forEach(clearTimeout)
   }, [])
+  return null
+}
+
+function Home() {
+  // Helmet para canonical de la home (evita duplicados www vs non-www)
+
 
   return (
     <div className="bg-fondo text-crema min-h-screen">
@@ -73,6 +77,7 @@ function Home() {
 export default function App() {
   return (
     <BrowserRouter>
+      <IrASeccion />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/community-manager-rafaela" element={<CommunityManagerRafaela />} />

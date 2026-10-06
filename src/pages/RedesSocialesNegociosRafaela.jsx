@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
@@ -83,13 +82,6 @@ const planes = [
 const faqs = faqSchema.mainEntity
 
 export default function RedesSocialesNegociosRafaela() {
-  // Si llegan con #precios-redes (desde la home), bajar directo a los planes
-  useEffect(() => {
-    if (!window.location.hash) return
-    const el = document.querySelector(window.location.hash)
-    if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100)
-  }, [])
-
   return (
     <div className="bg-fondo text-crema min-h-screen">
       <Helmet>
