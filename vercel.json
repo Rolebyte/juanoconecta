@@ -1,16 +1,47 @@
 {
   "redirects": [
-    { "source": "https://www.juanoconecta.ar/(.*)", "destination": "https://juanoconecta.ar/$1", "permanent": true }
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.juanoconecta.ar"
+        }
+      ],
+      "destination": "https://juanoconecta.ar/$1",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
   "functions": {
-    "api/submit-lead.js": { "memory": 256, "maxDuration": 10 },
-    "api/resend-lead.js": { "memory": 256, "maxDuration": 10 },
-    "api/sequence-emails.js": { "memory": 256, "maxDuration": 30 },
-    "api/get-leads.js": { "memory": 256, "maxDuration": 10 },
-    "api/update-lead.js": { "memory": 256, "maxDuration": 10 }
+    "api/submit-lead.js": {
+      "memory": 256,
+      "maxDuration": 10
+    },
+    "api/resend-lead.js": {
+      "memory": 256,
+      "maxDuration": 10
+    },
+    "api/sequence-emails.js": {
+      "memory": 256,
+      "maxDuration": 30
+    },
+    "api/get-leads.js": {
+      "memory": 256,
+      "maxDuration": 10
+    },
+    "api/update-lead.js": {
+      "memory": 256,
+      "maxDuration": 10
+    }
   }
 }
