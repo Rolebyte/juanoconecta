@@ -30,11 +30,6 @@ body {
 ::-webkit-scrollbar-thumb { background: #3D7BFF55; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: #3D7BFF; }
 
-/* ── Cursor personalizado solo desktop ── */
-@media (min-width: 768px) {
-  * { cursor: none !important; }
-}
-
 /* ── Selección de texto ── */
 ::selection { background: #3D7BFF; color: #0B1020; }
 
