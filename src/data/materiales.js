@@ -8,7 +8,7 @@ export const MATERIALES = [
     contexto: 'Programa de Mentorías para el Desarrollo Emprendedor 2026 · CCIRR',
     fecha: 'Miércoles 7 de octubre de 2026',
     archivos: [
-      // { titulo: 'Presentación de la jornada', detalle: 'PDF con todas las diapositivas', href: '/descargas/emprender-con-ia/presentacion.pdf' },
+      { titulo: 'Presentación de la jornada', detalle: 'PDF · Las 20 diapositivas con la fórmula de prompts y los ejemplos', href: '/descargas/emprender-con-ia/emprender-con-ia-presentacion.pdf' },
     ],
     regalos: [
       { titulo: '5 prompts para arrancar con IA', detalle: 'PDF · Para crear contenido en minutos', href: '/5-prompts-gratis.pdf' },
