@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { Eyebrow, GridGlow } from './home/ui'
 
 const WA_LINK = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20contactarte'
 
@@ -49,7 +50,9 @@ export default function Contacto() {
 
   return (
     <section id="contacto" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto overflow-hidden rounded-[2.5rem] border border-acento/30 bg-gradient-to-br from-[#16245A] via-[#121A30] to-[#0B1020] px-6 py-16 md:px-16 md:py-20">
+        <GridGlow />
+        <div className="relative">
 
         <motion.div
           ref={titleRef}
@@ -58,10 +61,12 @@ export default function Contacto() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-acento text-sm font-semibold tracking-widest uppercase">Hablemos</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-crema mt-3">Contacto</h2>
-          <p className="text-crema/40 mt-4 max-w-md mx-auto">
-            ¿Listo para hacer crecer tu marca? Escribime y te respondo en menos de 24hs.
+          <Eyebrow>Hablemos</Eyebrow>
+          <h2 className="text-3xl md:text-5xl font-bold text-crema mt-4 tracking-tight max-w-3xl mx-auto" style={{ textWrap: 'balance' }}>
+            ¿Listo para llevar tu marca al próximo nivel?
+          </h2>
+          <p className="text-crema/60 text-lg mt-5 max-w-xl mx-auto">
+            Contanos tu proyecto y te armamos una propuesta a medida, sin compromiso. Te respondemos en menos de 24 horas.
           </p>
         </motion.div>
 
@@ -232,6 +237,7 @@ export default function Contacto() {
             </div>
           </motion.div>
 
+        </div>
         </div>
       </div>
     </section>

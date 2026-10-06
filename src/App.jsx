@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import Navbar from './components/Navbar'
@@ -8,18 +7,15 @@ import PopupLeadMagnet from './components/PopupLeadMagnet'
 import WhatsAppButton from './components/WhatsAppButton'
 import Portfolio from './components/Portfolio'
 import Precios from './components/Precios'
-import Tienda from './components/Tienda'
 import CursoIA from './components/CursoIA'
 import CursoIAPage from './pages/CursoIA'
+import Recursos from './pages/Recursos'
 import HeroNx from './components/home/HeroNx'
 import MarqueeClientes from './components/home/MarqueeClientes'
 import SobreNx from './components/home/SobreNx'
 import ServiciosNx from './components/home/ServiciosNx'
-import StatsNx from './components/home/StatsNx'
-import PorQueNx from './components/home/PorQueNx'
 import CasosNx from './components/home/CasosNx'
 import FaqNx from './components/home/FaqNx'
-import CtaNx from './components/home/CtaNx'
 import KeywordBand from './components/home/KeywordBand'
 import ProcesoNx from './components/home/ProcesoNx'
 import CommunityManagerRafaela from './pages/CommunityManagerRafaela'
@@ -29,7 +25,6 @@ import MarketingDigitalRafaela from './pages/MarketingDigitalRafaela'
 import SobreJuanoConecta from './pages/SobreJuanoConecta'
 
 function Home() {
-  const [popupTrigger, setPopupTrigger] = useState(0)
   // Helmet para canonical de la home (evita duplicados www vs non-www)
 
   return (
@@ -41,23 +36,19 @@ function Home() {
       <main>
         <HeroNx />
         <MarqueeClientes />
-        <SobreNx />
         <ServiciosNx />
-        <KeywordBand />
-        <ProcesoNx />
-        <StatsNx />
         <CursoIA />
-        <PorQueNx />
+        <ProcesoNx />
+        <KeywordBand />
         <CasosNx />
         <Portfolio />
-        <Tienda onOpenPopup={() => setPopupTrigger(n => n + 1)} />
         <Precios />
+        <SobreNx />
         <FaqNx />
-        <CtaNx />
         <Contacto />
       </main>
       <Footer />
-      <PopupLeadMagnet forceOpen={popupTrigger} />
+      <PopupLeadMagnet />
       <WhatsAppButton />
     </div>
   )
@@ -74,6 +65,7 @@ export default function App() {
         <Route path="/marketing-digital-rafaela" element={<MarketingDigitalRafaela />} />
         <Route path="/sobre-juanoconecta" element={<SobreJuanoConecta />} />
         <Route path="/curso-ia" element={<CursoIAPage />} />
+        <Route path="/tienda" element={<Recursos />} />
       </Routes>
     </BrowserRouter>
   )

@@ -34,9 +34,10 @@ export default function Navbar() {
   const links = [
     { label: 'Servicios', href: '/#servicios', id: 'servicios' },
     { label: 'Curso de IA', href: '/curso-ia', id: 'curso-ia' },
-    { label: 'Nosotros', href: '/#sobre-mi', id: 'sobre-mi' },
     { label: 'Casos', href: '/#resultados', id: 'resultados' },
     { label: 'Precios', href: '/#precios', id: 'precios' },
+    { label: 'Nosotros', href: '/#sobre-mi', id: 'sobre-mi' },
+    { label: 'Tienda', href: '/tienda', id: 'tienda' },
     { label: 'Contacto', href: '/#contacto', id: 'contacto' },
   ]
 

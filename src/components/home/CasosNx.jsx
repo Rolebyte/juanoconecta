@@ -1,4 +1,4 @@
-import { SectionTitle, Reveal, Check, BtnGhost, GlowCard } from './ui'
+import { SectionTitle, Reveal, Check, GlowCard } from './ui'
 
 const casos = [
   {
@@ -24,7 +24,7 @@ const casos = [
 
 export default function CasosNx() {
   return (
-    <section id="resultados" className="py-28 px-6 bg-[#080C18]">
+    <section id="resultados" className="pt-28 pb-8 px-6">
       <div className="max-w-7xl mx-auto">
         <SectionTitle eyebrow="Casos de éxito" title="Resultados reales de clientes reales" sub="Algunos de los proyectos que hicimos crecer con estrategia, diseño e IA." />
         <div className="grid lg:grid-cols-3 gap-6">
@@ -51,9 +51,6 @@ export default function CasosNx() {
             </Reveal>
           ))}
         </div>
-        <Reveal className="text-center mt-12">
-          <BtnGhost href="#portfolio">Ver más proyectos</BtnGhost>
-        </Reveal>
       </div>
     </section>
   )

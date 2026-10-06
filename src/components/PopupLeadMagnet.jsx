@@ -13,8 +13,16 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
   useEffect(() => {
     if (forceOpen > 0) { setVisible(true); setEnviado(false); setEmail(''); setError(''); return }
     if (localStorage.getItem(STORAGE_KEY)) return
-    const timer = setTimeout(() => setVisible(true), 10000)
-    return () => clearTimeout(timer)
+    // Aparece cuando la persona ya recorrió la mitad de la página
+    function onScroll() {
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      if (max > 0 && window.scrollY / max >= 0.5) {
+        setVisible(true)
+        window.removeEventListener('scroll', onScroll)
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [forceOpen])
 
   function cerrar() {

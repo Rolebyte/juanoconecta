@@ -183,7 +183,7 @@ export default function Portfolio() {
   const titleInView = useInView(titleRef, { once: true })
 
   return (
-    <section id="portfolio" className="py-28 px-6 relative overflow-hidden">
+    <section id="portfolio" className="pt-12 pb-28 px-6 relative overflow-hidden">
       <div className="absolute inset-0 bg-[#0B1020]" />
       <div className="absolute inset-0 pointer-events-none" style={{
         background: 'radial-gradient(ellipse 60% 40% at 50% 100%, rgba(61,123,255,0.05) 0%, transparent 60%)',
@@ -197,15 +197,10 @@ export default function Portfolio() {
           initial={{ opacity: 0, y: 30 }}
           animate={titleInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-10 border-t border-white/10 pt-12"
         >
-          <span className="text-acento text-sm font-semibold tracking-widest uppercase">Portfolio</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-crema mt-4 mb-5">
-            Proyectos que hablan solos
-          </h2>
-          <p className="text-crema/35 max-w-md mx-auto leading-relaxed">
-            Hacé click para interactuar con el sitio real.
-          </p>
+          <h3 className="text-2xl md:text-3xl font-bold text-crema">Más proyectos</h3>
+          <p className="text-crema/45">Hacé clic para navegar el sitio real.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
