@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import Navbar from './components/Navbar'
@@ -28,6 +29,19 @@ import SobreJuanoConecta from './pages/SobreJuanoConecta'
 
 function Home() {
   // Helmet para canonical de la home (evita duplicados www vs non-www)
+
+  // Al llegar desde otra página con /#seccion, el navegador intenta saltar antes de que
+  // React dibuje la home. Saltamos nosotros y repetimos mientras cargan imágenes y animaciones.
+  useEffect(() => {
+    const hash = window.location.hash
+    if (!hash) return
+    const ir = (suave) => {
+      const el = document.querySelector(hash)
+      if (el) el.scrollIntoView({ behavior: suave ? 'smooth' : 'auto' })
+    }
+    const timers = [50, 400, 1000].map((ms, i) => setTimeout(() => ir(i === 0), ms))
+    return () => timers.forEach(clearTimeout)
+  }, [])
 
   return (
     <div className="bg-fondo text-crema min-h-screen">
