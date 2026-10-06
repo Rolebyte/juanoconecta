@@ -16,7 +16,6 @@ export const MATERIALES = [
     ],
     beneficio: {
       porcentaje: 20,
-      codigo: 'EMPRENDERCONIA',
       vence: '2026-11-07T23:59:59-03:00',
       venceTexto: '7 de noviembre de 2026',
       detalle: 'En el primer mes de cualquier plan de redes, en la Auditoría IA de tu perfil o en tu web.',

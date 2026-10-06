@@ -10,9 +10,20 @@ import { MATERIALES } from '../data/materiales'
 
 const WA_CONSULTA = 'https://wa.me/543492627811?text=' + encodeURIComponent('Hola Juan, estuve en la capacitación Emprender con IA y tengo una consulta.')
 
-function Beneficio({ b }) {
-  if (!b || Date.now() > new Date(b.vence).getTime()) return null
-  const wa = 'https://wa.me/543492627811?text=' + encodeURIComponent(`Hola Juan, participé de la capacitación y quiero usar el código ${b.codigo} (${b.porcentaje}% de descuento).`)
+const ars = (n) => '$' + n.toLocaleString('es-AR')
+const vigente = (b) => b && Date.now() <= new Date(b.vence).getTime()
+
+// El código se guarda en el navegador para que no tengan que responder la encuesta de nuevo
+const claveCupon = (slug) => `jc_cupon_${slug}`
+function leerCupon(slug) {
+  try { return localStorage.getItem(claveCupon(slug)) || '' } catch { return '' }
+}
+function guardarCupon(slug, codigo) {
+  try { localStorage.setItem(claveCupon(slug), codigo) } catch { /* sin almacenamiento: igual sigue */ }
+}
+
+function Beneficio({ b, codigo }) {
+  if (!vigente(b)) return null
   return (
     <Reveal>
       <div className="relative overflow-hidden rounded-3xl p-px bg-gradient-to-br from-acento via-teal/70 to-acento/30">
@@ -24,11 +35,20 @@ function Beneficio({ b }) {
           <div>
             <Eyebrow>Beneficio por participar</Eyebrow>
             <p className="text-crema text-lg mt-4 leading-relaxed">{b.detalle}</p>
-            <div className="flex flex-wrap items-center gap-3 mt-5">
-              <span className="rounded-xl border border-dashed border-teal/60 bg-teal/10 px-4 py-2 font-mono font-bold tracking-wider text-teal">{b.codigo}</span>
-              <span className="text-crema/50 text-sm">Válido hasta el {b.venceTexto}</span>
-            </div>
-            <div className="mt-6"><BtnPrimary href="#canjear">Usar mi descuento</BtnPrimary></div>
+            {codigo ? (
+              <>
+                <div className="flex flex-wrap items-center gap-3 mt-5">
+                  <span className="rounded-xl border border-dashed border-teal/60 bg-teal/10 px-4 py-2 font-mono font-bold tracking-wider text-teal">{codigo}</span>
+                  <span className="text-crema/50 text-sm">Válido hasta el {b.venceTexto}</span>
+                </div>
+                <div className="mt-6"><BtnPrimary href="#canjear">Usar mi descuento</BtnPrimary></div>
+              </>
+            ) : (
+              <>
+                <p className="text-crema/60 mt-3">Para desbloquearlo, contanos en 1 minuto qué te pareció la capacitación. Válido hasta el {b.venceTexto}.</p>
+                <div className="mt-6"><BtnPrimary href="#encuesta">Completar la encuesta</BtnPrimary></div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -36,19 +56,115 @@ function Beneficio({ b }) {
   )
 }
 
-const ars = (n) => '$' + n.toLocaleString('es-AR')
+const OPC_RECOMIENDA = [['si', 'Sí'], ['tal-vez', 'Tal vez'], ['no', 'No']]
+const OPC_INTERESES = [['redes', 'Redes sociales'], ['web', 'Página web'], ['ia-equipo', 'Capacitación en IA para mi equipo'], ['auditoria', 'Auditoría de mi perfil'], ['nada', 'Nada por ahora']]
+const campo = 'w-full bg-fondo border border-white/15 rounded-2xl px-5 py-3.5 text-crema placeholder:text-crema/30 focus:outline-none focus:border-acento'
 
-function Canjear({ b }) {
-  const [codigo, setCodigo] = useState('')
+function Chip({ activo, onClick, children, role = 'radio' }) {
+  return (
+    <button type="button" role={role} aria-checked={activo} onClick={onClick}
+      className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${activo ? 'border-acento bg-acento text-white' : 'border-white/15 text-crema/80 hover:border-white/35'}`}>
+      {children}
+    </button>
+  )
+}
+
+function Encuesta({ slug, b, onListo }) {
+  const [f, setF] = useState({ puntaje: 0, recomienda: '', lo_mas_util: '', mejoras: '', intereses: [], nombre: '', contacto: '' })
+  const [estado, setEstado] = useState('')
+  const set = (k, v) => setF((x) => ({ ...x, [k]: v }))
+  const alternar = (id) => set('intereses', id === 'nada'
+    ? (f.intereses.includes('nada') ? [] : ['nada'])
+    : (f.intereses.includes(id) ? f.intereses.filter((x) => x !== id) : [...f.intereses.filter((x) => x !== 'nada'), id]))
+  const completo = f.puntaje > 0 && f.recomienda
+
+  async function enviar(e) {
+    e.preventDefault()
+    if (!completo || estado === 'enviando') return
+    setEstado('enviando')
+    try {
+      const r = await fetch('/api/encuesta', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ material: slug, ...f }) })
+      const data = await r.json()
+      if (data.codigo) { guardarCupon(slug, data.codigo); onListo(data.codigo); return }
+      setEstado('error')
+    } catch {
+      setEstado('error')
+    }
+  }
+
+  return (
+    <Reveal>
+      <form id="encuesta" onSubmit={enviar} className="scroll-mt-28 rounded-3xl border border-white/10 bg-[#0F1629] p-6 md:p-8 space-y-7">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight">¿Qué te pareció la capacitación?</h2>
+          <p className="text-crema/60 mt-2">Es 1 minuto y nos ayuda a mejorar. Al enviarla se desbloquea tu {b.porcentaje}% de descuento.</p>
+        </div>
+
+        <fieldset>
+          <legend className="font-semibold text-crema mb-3">Puntaje general <span className="text-acento">*</span></legend>
+          <div className="flex gap-2" role="radiogroup" aria-label="Puntaje del 1 al 5">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <button key={n} type="button" role="radio" aria-checked={f.puntaje === n} aria-label={`${n} de 5`} onClick={() => set('puntaje', n)}
+                className={`w-12 h-12 rounded-2xl border text-lg font-bold transition-colors ${f.puntaje >= n ? 'border-acento bg-acento text-white' : 'border-white/15 text-crema/60 hover:border-white/35'}`}>
+                {n}
+              </button>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend className="font-semibold text-crema mb-3">¿Se la recomendarías a otro emprendedor? <span className="text-acento">*</span></legend>
+          <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Recomendación">
+            {OPC_RECOMIENDA.map(([id, t]) => <Chip key={id} activo={f.recomienda === id} onClick={() => set('recomienda', id)}>{t}</Chip>)}
+          </div>
+        </fieldset>
+
+        <label className="block">
+          <span className="block font-semibold text-crema mb-3">¿Qué fue lo más útil?</span>
+          <textarea rows={2} maxLength={1000} value={f.lo_mas_util} onChange={(e) => set('lo_mas_util', e.target.value)} className={campo} placeholder="Una herramienta, un ejemplo, la fórmula de prompts…" />
+        </label>
+
+        <label className="block">
+          <span className="block font-semibold text-crema mb-3">¿Qué mejorarías o qué te faltó?</span>
+          <textarea rows={2} maxLength={1000} value={f.mejoras} onChange={(e) => set('mejoras', e.target.value)} className={campo} placeholder="Más tiempo de práctica, otro tema…" />
+        </label>
+
+        <fieldset>
+          <legend className="font-semibold text-crema mb-3">¿Querés que te contacte para alguna de estas cosas?</legend>
+          <div className="flex flex-wrap gap-2">
+            {OPC_INTERESES.map(([id, t]) => <Chip key={id} role="checkbox" activo={f.intereses.includes(id)} onClick={() => alternar(id)}>{t}</Chip>)}
+          </div>
+        </fieldset>
+
+        <div className="grid sm:grid-cols-2 gap-3">
+          <input maxLength={120} value={f.nombre} onChange={(e) => set('nombre', e.target.value)} className={campo} placeholder="Tu nombre (opcional)" aria-label="Nombre" />
+          <input maxLength={160} value={f.contacto} onChange={(e) => set('contacto', e.target.value)} className={campo} placeholder="WhatsApp o email (opcional)" aria-label="WhatsApp o email" />
+        </div>
+
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-t border-white/10 pt-6">
+          <button type="submit" disabled={!completo || estado === 'enviando'}
+            className={`inline-flex items-center justify-center rounded-full px-7 py-4 font-semibold text-sm transition-all ${completo ? 'bg-acento hover:bg-acento-dark text-white shadow-[0_10px_40px_-10px_rgba(61,123,255,0.8)]' : 'bg-white/10 text-crema/50 cursor-not-allowed'}`}>
+            {estado === 'enviando' ? 'Enviando…' : `Enviar y desbloquear mi ${b.porcentaje}%`}
+          </button>
+          <span className="text-sm text-crema/40">{completo ? 'Listo para enviar' : 'Completá el puntaje y si la recomendarías'}</span>
+        </div>
+        {estado === 'error' && (
+          <p className="text-sm text-red-300">No pudimos enviar la encuesta. Probá de nuevo en un momento o <a href={WA_CONSULTA} target="_blank" rel="noopener noreferrer" className="underline">escribinos por WhatsApp</a>.</p>
+        )}
+      </form>
+    </Reveal>
+  )
+}
+
+function Canjear({ b, codigo }) {
   const [elegido, setElegido] = useState(b.servicios[0].id)
-  const valido = codigo.trim().toUpperCase() === b.codigo
   const s = b.servicios.find((x) => x.id === elegido)
   const final = s.precio ? Math.round(s.precio * (1 - b.porcentaje / 100)) : null
-  const wa = 'https://wa.me/543492627811?text=' + encodeURIComponent(`Hola Juan, participé de la capacitación y quiero contratar "${s.nombre}" con el código ${b.codigo} (${b.porcentaje}% de descuento).`)
+  const wa = 'https://wa.me/543492627811?text=' + encodeURIComponent(`Hola Juan, participé de la capacitación y quiero contratar "${s.nombre}" con el código ${codigo} (${b.porcentaje}% de descuento).`)
   const [estado, setEstado] = useState('')
 
   async function pagar(e) {
-    if (!valido || !s.precio) return
+    if (!s.precio) return
     e.preventDefault()
     setEstado('cargando')
     try {
@@ -68,7 +184,8 @@ function Canjear({ b }) {
   return (
     <Reveal>
       <div id="canjear" className="scroll-mt-28 rounded-3xl border border-white/10 bg-[#0F1629] p-6 md:p-8">
-        <h2 className="text-2xl font-bold tracking-tight">Elegí tu servicio y aplicá el cupón</h2>
+        <h2 className="text-2xl font-bold tracking-tight">Elegí tu servicio</h2>
+        <p className="text-teal text-sm font-semibold mt-2">✓ Código {codigo} aplicado: {b.porcentaje}% de descuento</p>
         <div className="grid gap-3 mt-6" role="radiogroup" aria-label="Servicio">
           {b.servicios.map((x) => {
             const activo = x.id === elegido
@@ -81,34 +198,25 @@ function Canjear({ b }) {
                   <span className="block text-sm text-crema/50">{x.detalle}</span>
                 </span>
                 <span className="text-right whitespace-nowrap">
-                  {x.precio ? (valido ? (
+                  {x.precio ? (
                     <>
                       <span className="block text-xs text-crema/40 line-through">{ars(x.precio)}</span>
                       <span className="block font-bold text-teal">{ars(Math.round(x.precio * (1 - b.porcentaje / 100)))}</span>
                     </>
-                  ) : <span className="font-bold text-crema">{ars(x.precio)}</span>) : <span className="text-sm text-crema/60">A cotizar</span>}
+                  ) : <span className="text-sm text-crema/60">A cotizar</span>}
                 </span>
               </button>
             )
           })}
         </div>
 
-        <div className="mt-6 flex flex-col sm:flex-row gap-3">
-          <input value={codigo} onChange={(e) => setCodigo(e.target.value)} placeholder="Código de descuento" aria-label="Código de descuento"
-            className="flex-1 bg-fondo border border-white/15 rounded-full px-5 py-3.5 font-mono uppercase tracking-wider text-crema placeholder:normal-case placeholder:tracking-normal placeholder:font-sans placeholder:text-crema/30 focus:outline-none focus:border-acento" />
-          <span className={`self-center text-sm font-semibold ${valido ? 'text-teal' : codigo ? 'text-red-400' : 'text-crema/40'}`}>
-            {valido ? `✓ ${b.porcentaje}% aplicado` : codigo ? 'Código no válido' : 'Ingresá tu código'}
-          </span>
-        </div>
-
         <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/10 pt-6">
           <div>
             <div className="text-sm text-crema/50">Total</div>
-            <div className="text-3xl font-bold text-crema">{final ? ars(valido ? final : s.precio) : 'A cotizar'}</div>
+            <div className="text-3xl font-bold text-crema">{final ? ars(final) : 'A cotizar'}</div>
           </div>
           <a href={wa} onClick={pagar} target="_blank" rel="noopener noreferrer"
-            className={`inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 font-semibold text-sm transition-all ${valido ? 'bg-acento hover:bg-acento-dark text-white shadow-[0_10px_40px_-10px_rgba(61,123,255,0.8)]' : 'bg-white/10 text-crema/50 pointer-events-none'}`}
-            aria-disabled={!valido}>
+            className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 font-semibold text-sm transition-all bg-acento hover:bg-acento-dark text-white shadow-[0_10px_40px_-10px_rgba(61,123,255,0.8)]">
             {estado === 'cargando' ? 'Abriendo Mercado Pago…' : s.precio ? 'Pagar con Mercado Pago' : 'Pedir presupuesto por WhatsApp'}
           </a>
         </div>
@@ -156,6 +264,7 @@ function ResultadoPago() {
 export default function Material() {
   const { slug } = useParams()
   const m = (slug ? MATERIALES.find((x) => x.slug === slug) : null) || MATERIALES[0]
+  const [codigo, setCodigo] = useState(() => leerCupon(m.slug))
 
   return (
     <div className="bg-fondo text-crema min-h-screen">
@@ -190,8 +299,10 @@ export default function Material() {
             )}
           </Reveal>
 
-          <Beneficio b={m.beneficio} />
-          {m.beneficio && Date.now() <= new Date(m.beneficio.vence).getTime() && <Canjear b={{ ...m.beneficio, slug: m.slug }} />}
+          <Beneficio b={m.beneficio} codigo={codigo} />
+          {vigente(m.beneficio) && (codigo
+            ? <Canjear b={{ ...m.beneficio, slug: m.slug }} codigo={codigo} />
+            : <Encuesta slug={m.slug} b={m.beneficio} onListo={(c) => { setCodigo(c); setTimeout(() => document.getElementById('canjear')?.scrollIntoView({ behavior: 'smooth' }), 100) }} />)}
 
           <Reveal>
             <h2 className="text-2xl font-bold tracking-tight mb-5">Regalos para empezar</h2>
