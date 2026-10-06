@@ -5,7 +5,7 @@ const columnas = [
   },
   {
     titulo: 'Servicios',
-    links: [['IA para negocios', '/#servicios'], ['Webs y web apps', '/#servicios'], ['Diseño y marca', '/#servicios'], ['Community Manager Rafaela', '/community-manager-rafaela'], ['Publicidad en Instagram', '/publicidad-instagram-rafaela']],
+    links: [['IA para negocios', '/#servicios'], ['Capacitaciones para instituciones', '/capacitaciones'], ['Webs y web apps', '/#servicios'], ['Diseño y marca', '/#servicios'], ['Community Manager Rafaela', '/community-manager-rafaela'], ['Publicidad en Instagram', '/publicidad-instagram-rafaela']],
   },
   {
     titulo: 'Recursos',

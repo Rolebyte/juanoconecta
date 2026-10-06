@@ -10,6 +10,7 @@ const servicios = [
     desc: 'Formación y herramientas para que tu equipo aproveche la inteligencia artificial en el día a día.',
     items: ['Curso de IA aplicada', 'Capacitaciones para equipos', 'Asistentes y chatbots', 'Automatizaciones de tareas', 'Contenido creado con IA'],
     wa: 'IA%20para%20negocios',
+    planes: { texto: 'Capacitaciones para municipios e instituciones', href: '/capacitaciones' },
   },
   {
     n: '02',
@@ -31,7 +32,7 @@ const servicios = [
     desc: 'Gestión de redes, contenido y campañas pagas con estrategia y métricas reales.',
     items: ['Community management', 'Estrategia y calendario de contenido', 'Copywriting con IA', 'Campañas en Meta Ads', 'Reportes mensuales'],
     wa: 'redes%20y%20publicidad',
-    planes: { texto: 'Planes desde $320.000 por mes', href: '/redes-sociales-para-negocios-rafaela#precios-redes' },
+    planes: { texto: 'Planes desde $320.000 por mes · Ver planes', href: '/redes-sociales-para-negocios-rafaela#precios-redes' },
   },
 ]
 
@@ -76,7 +77,7 @@ export default function ServiciosNx() {
                           </ul>
                           {s.planes && (
                             <a href={s.planes.href} tabIndex={activo ? 0 : -1} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-teal hover:text-crema transition-colors">
-                              {s.planes.texto} · Ver planes →
+                              {s.planes.texto} →
                             </a>
                           )}
                         </div>

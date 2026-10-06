@@ -14,6 +14,6 @@ export const CAPACITACIONES = [
     horario: '13:00 a 16:00',
     lugar: 'SUM del Centro Comercial e Industrial de Rafaela y la Región (CCIRR)',
     descripcion: 'Una jornada práctica para usar la inteligencia artificial en el día a día de un emprendimiento. Actividad del Programa de Mentorías para el Desarrollo Emprendedor 2026.',
-    imagen: '/capacitaciones/emprender-con-ia.jpg',
+    imagen: '/img/capacitaciones/emprender-con-ia.jpg',
   },
 ]

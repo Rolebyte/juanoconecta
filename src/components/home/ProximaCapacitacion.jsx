@@ -1,4 +1,4 @@
-import { Reveal, Eyebrow, BtnPrimary, WA } from './ui'
+import { Reveal, Eyebrow, BtnPrimary } from './ui'
 import { CAPACITACIONES } from '../../data/capacitaciones'
 
 function Dato({ label, children }) {
@@ -65,7 +65,7 @@ export default function ProximaCapacitacion() {
             <div className="sm:col-span-2"><Dato label="Lugar">{c.lugar}</Dato></div>
           </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 sm:items-center">
-            <BtnPrimary href={WA} external>Quiero una capacitación para mi equipo</BtnPrimary>
+            <BtnPrimary href="/capacitaciones">Capacitaciones para tu localidad o institución</BtnPrimary>
             <a href="/curso-ia" className="text-sm font-semibold text-teal hover:text-crema transition-colors">Ver el curso de IA →</a>
           </div>
         </Reveal>

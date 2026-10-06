@@ -9,6 +9,7 @@ import Portfolio from './components/Portfolio'
 import CursoIA from './components/CursoIA'
 import CursoIAPage from './pages/CursoIA'
 import Recursos from './pages/Recursos'
+import CapacitacionesInstituciones from './pages/CapacitacionesInstituciones'
 import HeroNx from './components/home/HeroNx'
 import MarqueeClientes from './components/home/MarqueeClientes'
 import SobreNx from './components/home/SobreNx'
@@ -66,6 +67,7 @@ export default function App() {
         <Route path="/sobre-juanoconecta" element={<SobreJuanoConecta />} />
         <Route path="/curso-ia" element={<CursoIAPage />} />
         <Route path="/tienda" element={<Recursos />} />
+        <Route path="/capacitaciones" element={<CapacitacionesInstituciones />} />
       </Routes>
     </BrowserRouter>
   )
