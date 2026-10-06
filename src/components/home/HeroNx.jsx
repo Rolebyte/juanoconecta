@@ -93,7 +93,7 @@ export default function HeroNx() {
           </div>
           <div className="col-span-12 md:col-span-5 relative order-1 md:order-2">
             <div className="rounded-[2rem] overflow-hidden border border-white/10 h-[380px] md:h-[440px] bg-[#121A30]">
-              <img src="/hero.jpg" alt="Juan Gallino, fundador de JuanoConecta" className="w-full h-full object-cover object-top" />
+              <img src="/img/juan/juan-hero.webp" alt="Juan Gallino, fundador de JuanoConecta" className="w-full h-full object-cover object-top" />
             </div>
             <div className="absolute -top-12 right-4 md:right-6 z-10 hidden sm:block"><BadgeCircular /></div>
           </div>

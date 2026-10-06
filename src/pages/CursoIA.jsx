@@ -97,7 +97,7 @@ export default function CursoIAPage() {
       <section className="py-24 px-6 bg-[#080C18]">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[300px_1fr] gap-12 items-center">
           <div className="relative">
-            <img src="/hero.jpg" alt="Juan Gallino" className="w-full max-w-[300px] aspect-square object-cover object-top rounded-3xl border border-white/10" />
+            <img src="/img/juan/juan-retrato.webp" alt="Juan Gallino" className="w-full max-w-[300px] aspect-square object-cover object-top rounded-3xl border border-white/10" />
             <div className="absolute -bottom-5 -right-2 md:-right-6 rounded-2xl bg-acento px-5 py-3 shadow-[0_20px_60px_-15px_rgba(61,123,255,0.9)]">
               <div className="text-2xl font-bold text-white">+20</div>
               <div className="text-white/80 text-xs">marcas acompañadas</div>

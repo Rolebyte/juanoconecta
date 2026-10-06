@@ -13,7 +13,7 @@ export default function SobreNx() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <Reveal className="relative order-2 lg:order-1">
           <div className="relative rounded-[2rem] overflow-hidden border border-white/10 aspect-[5/4] bg-[#121A30]">
-            <img src="/hero.jpg" alt="Juan Gallino trabajando" className="w-full h-full object-cover object-[center_20%]" />
+            <img src="/img/juan/juan-sobre.webp" alt="Juan Gallino, fundador de JuanoConecta" className="w-full h-full object-cover object-[center_6%]" />
             <div className="absolute inset-0 bg-gradient-to-tr from-fondo/80 via-transparent to-transparent" />
           </div>
           <div className="absolute -bottom-8 right-6 md:right-10 rounded-2xl bg-acento text-white px-6 py-5 shadow-[0_20px_60px_-20px_rgba(61,123,255,0.9)]">
