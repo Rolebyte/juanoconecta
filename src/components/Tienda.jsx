@@ -24,7 +24,7 @@ const productos = [
     nombre: 'Kit Contenido IA',
     descripcion: '¿Publicás pero el algoritmo no te acompaña? El problema no es tu producto — es cómo lo comunicás. Estos 30 prompts te dan el lenguaje exacto para conectar con tu audiencia y generar contenido que vende.',
     badge: 'MÁS VENDIDO',
-    badgeStyle: { background: 'rgba(255,107,107,0.2)', color: '#FF6B6B', border: '1px solid rgba(255,107,107,0.4)' },
+    badgeStyle: { background: 'rgba(61,123,255,0.2)', color: '#3D7BFF', border: '1px solid rgba(61,123,255,0.4)' },
     precioARS: '$8.000 ARS',
     precioUSD: '$7 USD',
     btnARS: 'https://mpago.la/327WvYV',
@@ -33,7 +33,7 @@ const productos = [
     emoji: '⚡',
     includes: ['30 prompts probados en cuentas reales', 'Guía de implementación paso a paso', 'Ejemplos aplicados por industria', 'Acceso a actualizaciones futuras'],
     compatible: ['ChatGPT', 'Claude', 'Gemini', 'Grok'],
-    color: '#FF6B6B',
+    color: '#3D7BFF',
   },
   {
     nombre: 'Prompt Power Pack',
@@ -136,7 +136,7 @@ function ProductoCard({ producto, index }) {
           transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
           className="rounded-xl px-4 py-3 mb-6"
           style={{
-            background: 'linear-gradient(135deg, rgba(234,179,8,0.07) 0%, rgba(255,107,107,0.05) 100%)',
+            background: 'linear-gradient(135deg, rgba(234,179,8,0.07) 0%, rgba(61,123,255,0.05) 100%)',
             border: '1px solid rgba(234,179,8,0.35)',
           }}
         >
@@ -145,7 +145,7 @@ function ProductoCard({ producto, index }) {
             <div
               className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 font-black text-xs tracking-tighter"
               style={{
-                background: 'linear-gradient(135deg, rgba(234,179,8,0.2), rgba(255,107,107,0.15))',
+                background: 'linear-gradient(135deg, rgba(234,179,8,0.2), rgba(61,123,255,0.15))',
                 border: '1px solid rgba(234,179,8,0.4)',
                 color: '#EAB308',
                 fontFamily: "'DM Sans', sans-serif",

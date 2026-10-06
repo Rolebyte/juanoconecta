@@ -72,7 +72,7 @@ export default function CursoIAPage() {
       </section>
 
       {/* Para quién */}
-      <section className="py-20 px-6 bg-[#2D2D44]">
+      <section className="py-20 px-6 bg-[#121A30]">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold mb-10">¿Para quién es?</h2>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -109,7 +109,7 @@ export default function CursoIAPage() {
       </section>
 
       {/* Quién enseña */}
-      <section className="py-20 px-6 bg-[#2D2D44]">
+      <section className="py-20 px-6 bg-[#121A30]">
         <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-[220px_1fr] gap-10 items-center">
           <img src="/hero.jpg" alt="Juan Gallino" className="w-full max-w-[220px] aspect-square object-cover object-top rounded-2xl" />
           <div>

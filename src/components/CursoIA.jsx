@@ -3,7 +3,7 @@ import { CURSO } from '../data/curso'
 
 export default function CursoIA() {
   return (
-    <section id="curso-ia" className="py-24 px-6 relative overflow-hidden bg-[#2D2D44]">
+    <section id="curso-ia" className="py-24 px-6 relative overflow-hidden bg-[#121A30]">
       {/* Círculos decorativos */}
       <div className="absolute -right-24 -top-24 w-72 h-72 rounded-full border-2 border-acento/25 pointer-events-none" />
       <div className="absolute -left-16 -bottom-20 w-56 h-56 rounded-full border-2 border-teal/25 pointer-events-none" />

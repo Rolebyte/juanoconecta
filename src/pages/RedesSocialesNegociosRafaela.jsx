@@ -112,7 +112,7 @@ export default function RedesSocialesNegociosRafaela() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={WA} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)' }}>
+                style={{ background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)' }}>
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
                 </svg>
@@ -127,7 +127,7 @@ export default function RedesSocialesNegociosRafaela() {
       </section>
 
       {/* Qué incluye */}
-      <section className="py-16 px-6 bg-[#1A1A2E]">
+      <section className="py-16 px-6 bg-[#0B1020]">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <h2 className="text-2xl md:text-3xl font-bold text-crema mb-6">¿Qué incluye la gestión de redes sociales para negocios en Rafaela?</h2>
@@ -171,8 +171,8 @@ export default function RedesSocialesNegociosRafaela() {
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="relative rounded-2xl p-7 flex flex-col"
                 style={{
-                  background: plan.destacado ? 'linear-gradient(135deg, rgba(255,107,107,0.15) 0%, rgba(255,107,107,0.05) 100%)' : 'rgba(255,255,255,0.025)',
-                  border: plan.destacado ? '1px solid rgba(255,107,107,0.4)' : '1px solid rgba(255,255,255,0.07)',
+                  background: plan.destacado ? 'linear-gradient(135deg, rgba(61,123,255,0.15) 0%, rgba(61,123,255,0.05) 100%)' : 'rgba(255,255,255,0.025)',
+                  border: plan.destacado ? '1px solid rgba(61,123,255,0.4)' : '1px solid rgba(255,255,255,0.07)',
                 }}>
                 {plan.destacado && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-acento text-white text-[10px] font-bold px-4 py-1.5 rounded-full tracking-wider whitespace-nowrap">MÁS ELEGIDO</div>
@@ -191,7 +191,7 @@ export default function RedesSocialesNegociosRafaela() {
                 </ul>
                 <a href={`${WA}%20-%20plan%20${plan.nombre}`} target="_blank" rel="noopener noreferrer"
                   className="block text-center py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-300"
-                  style={plan.destacado ? { background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)', color: '#fff' } : { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#F7F7F2' }}>
+                  style={plan.destacado ? { background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)', color: '#fff' } : { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#EAF0FF' }}>
                   Quiero este plan
                 </a>
               </motion.div>
@@ -201,7 +201,7 @@ export default function RedesSocialesNegociosRafaela() {
       </section>
 
       {/* Resultados */}
-      <section className="py-16 px-6 bg-[#1A1A2E]">
+      <section className="py-16 px-6 bg-[#0B1020]">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-acento text-sm font-semibold tracking-widest uppercase">Resultados reales</span>
@@ -209,7 +209,7 @@ export default function RedesSocialesNegociosRafaela() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { stat: '+340%', label: 'alcance orgánico en 60 días', nombre: 'Tatitos Pañalera', rubro: 'Comercio minorista · Rafaela', desc: 'Contenido estratégico diario + Meta Ads segmentada. Triplicaron visibilidad y generaron ventas directas desde Instagram.', color: '#FF6B6B' },
+              { stat: '+340%', label: 'alcance orgánico en 60 días', nombre: 'Tatitos Pañalera', rubro: 'Comercio minorista · Rafaela', desc: 'Contenido estratégico diario + Meta Ads segmentada. Triplicaron visibilidad y generaron ventas directas desde Instagram.', color: '#3D7BFF' },
               { stat: '100%', label: 'imagen profesional desde cero', nombre: 'Alarcón Ecografías', rubro: 'Profesional de la salud · Rafaela', desc: 'Partieron sin presencia digital. Hoy tienen identidad visual coherente en todas sus redes y una comunidad activa.', color: '#6A8FC4' },
             ].map((r) => (
               <motion.div key={r.nombre} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
@@ -248,7 +248,7 @@ export default function RedesSocialesNegociosRafaela() {
       </section>
 
       {/* CTA final */}
-      <section className="py-20 px-6 bg-[#1A1A2E]">
+      <section className="py-20 px-6 bg-[#0B1020]">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-3xl md:text-4xl font-bold text-crema mb-4">Empezá a crecer en redes hoy</h2>
@@ -256,7 +256,7 @@ export default function RedesSocialesNegociosRafaela() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={WA} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)' }}>
+                style={{ background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)' }}>
                 Hablar con Juan por WhatsApp
               </a>
               <a href="/sobre-juanoconecta"

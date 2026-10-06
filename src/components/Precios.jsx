@@ -66,16 +66,16 @@ export default function Precios() {
 
   return (
     <section id="precios" className="py-28 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#1A1A2E]" />
+      <div className="absolute inset-0 bg-[#0B1020]" />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(255,107,107,0.07) 0%, transparent 60%)',
+            'radial-gradient(ellipse 70% 50% at 50% 100%, rgba(61,123,255,0.07) 0%, transparent 60%)',
         }}
       />
-      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #1A1A2E, transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, #1A1A2E, transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #0B1020, transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, #0B1020, transparent)' }} />
 
       <div className="relative max-w-6xl mx-auto">
         <motion.div
@@ -105,10 +105,10 @@ export default function Precios() {
               className="relative flex flex-col rounded-2xl p-8"
               style={{
                 background: plan.destacado
-                  ? 'linear-gradient(135deg, rgba(255,107,107,0.15) 0%, rgba(255,107,107,0.05) 100%)'
+                  ? 'linear-gradient(135deg, rgba(61,123,255,0.15) 0%, rgba(61,123,255,0.05) 100%)'
                   : 'rgba(255,255,255,0.025)',
                 border: plan.destacado
-                  ? '1px solid rgba(255,107,107,0.4)'
+                  ? '1px solid rgba(61,123,255,0.4)'
                   : '1px solid rgba(255,255,255,0.07)',
               }}
             >
@@ -145,19 +145,19 @@ export default function Precios() {
                 style={
                   plan.destacado
                     ? {
-                        background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)',
+                        background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)',
                         color: '#fff',
                       }
                     : {
                         background: 'rgba(255,255,255,0.05)',
                         border: '1px solid rgba(255,255,255,0.1)',
-                        color: '#F7F7F2',
+                        color: '#EAF0FF',
                       }
                 }
                 onMouseEnter={(e) => {
                   if (!plan.destacado) {
-                    e.currentTarget.style.background = 'rgba(255,107,107,0.15)'
-                    e.currentTarget.style.borderColor = 'rgba(255,107,107,0.4)'
+                    e.currentTarget.style.background = 'rgba(61,123,255,0.15)'
+                    e.currentTarget.style.borderColor = 'rgba(61,123,255,0.4)'
                   }
                 }}
                 onMouseLeave={(e) => {

@@ -7,8 +7,8 @@ export default function MorphingBlob({ className = '', opacity = 0.12, size = 60
       <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
         <defs>
           <radialGradient id="blobGrad" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#FF8E8E" stopOpacity={opacity * 1.5} />
-            <stop offset="100%" stopColor="#FF6B6B" stopOpacity={0} />
+            <stop offset="0%" stopColor="#6E9BFF" stopOpacity={opacity * 1.5} />
+            <stop offset="100%" stopColor="#3D7BFF" stopOpacity={0} />
           </radialGradient>
         </defs>
         <path fill="url(#blobGrad)">

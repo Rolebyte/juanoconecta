@@ -47,7 +47,7 @@ export default function CanvasParticles({ count = 70 }) {
             ctx.beginPath()
             ctx.moveTo(pts[i].x, pts[i].y)
             ctx.lineTo(pts[j].x, pts[j].y)
-            ctx.strokeStyle = `rgba(255,107,107,${0.18 * (1 - dist / 130)})`
+            ctx.strokeStyle = `rgba(61,123,255,${0.18 * (1 - dist / 130)})`
             ctx.lineWidth = 0.6
             ctx.stroke()
           }
@@ -77,7 +77,7 @@ export default function CanvasParticles({ count = 70 }) {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255,107,107,${p.alpha})`
+        ctx.fillStyle = `rgba(61,123,255,${p.alpha})`
         ctx.fill()
       }
 

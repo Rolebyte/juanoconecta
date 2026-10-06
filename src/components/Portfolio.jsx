@@ -28,7 +28,7 @@ function Modal({ project, onClose }) {
           exit={{ opacity: 0, scale: 0.94, y: 20 }}
           transition={{ type: 'spring', stiffness: 300, damping: 28 }}
           onClick={(e) => e.stopPropagation()}
-          className="relative w-full max-w-5xl bg-[#23233A] rounded-2xl overflow-hidden flex flex-col"
+          className="relative w-full max-w-5xl bg-[#141C33] rounded-2xl overflow-hidden flex flex-col"
           style={{ height: '80vh', border: '1px solid rgba(255,255,255,0.08)' }}
         >
           {/* Header */}
@@ -118,7 +118,7 @@ function ProjectCard({ project, index, onClick }) {
         background: 'rgba(255,255,255,0.025)',
         border: '1px solid rgba(255,255,255,0.07)',
       }}
-      whileHover={{ y: -3, borderColor: 'rgba(255,107,107,0.4)' }}
+      whileHover={{ y: -3, borderColor: 'rgba(61,123,255,0.4)' }}
     >
       {/* Glow on hover */}
       <div
@@ -184,12 +184,12 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="py-28 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#1A1A2E]" />
+      <div className="absolute inset-0 bg-[#0B1020]" />
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255,107,107,0.05) 0%, transparent 60%)',
+        background: 'radial-gradient(ellipse 60% 40% at 50% 100%, rgba(61,123,255,0.05) 0%, transparent 60%)',
       }} />
-      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #1A1A2E, transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, #1A1A2E, transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #0B1020, transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, #0B1020, transparent)' }} />
 
       <div className="relative max-w-7xl mx-auto">
         <motion.div

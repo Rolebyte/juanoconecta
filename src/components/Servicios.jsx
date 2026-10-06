@@ -11,7 +11,7 @@ const servicios = [
     descripcion: 'Formación y herramientas para que tu equipo aproveche la inteligencia artificial en el día a día.',
     items: ['Cursos y capacitaciones', 'Asistentes y automatizaciones', 'Contenido creado con IA'],
     icono: '🤖',
-    color: '#FF6B6B',
+    color: '#3D7BFF',
     wa: WA_BASE + 'IA%20para%20negocios',
     destacado: true,
   },
@@ -21,7 +21,7 @@ const servicios = [
     descripcion: 'Sitios rápidos y orientados a conversión, y aplicaciones web a medida construidas con IA.',
     items: ['Sitios institucionales', 'Landings y tiendas online', 'Web apps a medida'],
     icono: '🖥️',
-    color: '#4ECDC4',
+    color: '#22D3EE',
     wa: WA_BASE + 'Webs%20y%20web%20apps',
   },
   {
@@ -30,7 +30,7 @@ const servicios = [
     descripcion: 'Identidad visual coherente en cada punto de contacto con tus clientes.',
     items: ['Identidad visual y branding', 'Diseño gráfico para redes', 'Manual de marca'],
     icono: '🎨',
-    color: '#FFE66D',
+    color: '#8FB3FF',
     wa: WA_BASE + 'Dise%C3%B1o%20y%20marca',
   },
   {
@@ -39,7 +39,7 @@ const servicios = [
     descripcion: 'Gestión de redes, contenido y campañas pagas con estrategia y métricas reales.',
     items: ['Community management', 'Estrategia y copywriting', 'Meta Ads'],
     icono: '🎯',
-    color: '#4ECDC4',
+    color: '#22D3EE',
     wa: WA_BASE + 'Redes%20y%20publicidad',
   },
 ]
@@ -65,10 +65,10 @@ function ServicioCard({ servicio, index }) {
       }`}
       style={{
         background: servicio.destacado
-          ? 'linear-gradient(135deg, rgba(255,107,107,0.15) 0%, rgba(255,107,107,0.05) 100%)'
+          ? 'linear-gradient(135deg, rgba(61,123,255,0.15) 0%, rgba(61,123,255,0.05) 100%)'
           : 'rgba(255,255,255,0.025)',
         border: servicio.destacado
-          ? '1px solid rgba(255,107,107,0.4)'
+          ? '1px solid rgba(61,123,255,0.4)'
           : '1px solid rgba(255,255,255,0.07)',
       }}
     >
@@ -116,7 +116,7 @@ function ServicioCard({ servicio, index }) {
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 text-sm font-semibold group/link"
-        style={{ color: servicio.destacado ? '#FF6B6B' : '#F7F7F299' }}
+        style={{ color: servicio.destacado ? '#3D7BFF' : '#EAF0FF99' }}
       >
         <span className="group-hover/link:text-acento transition-colors">Consultar</span>
         <motion.svg
@@ -147,12 +147,12 @@ export default function Servicios() {
 
   return (
     <section id="servicios" className="py-28 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#1A1A2E]" />
+      <div className="absolute inset-0 bg-[#0B1020]" />
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255,107,107,0.06) 0%, transparent 60%)',
+        background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(61,123,255,0.06) 0%, transparent 60%)',
       }} />
-      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #1A1A2E, transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, #1A1A2E, transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #0B1020, transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, #0B1020, transparent)' }} />
 
       <div className="relative max-w-7xl mx-auto">
         <motion.div
