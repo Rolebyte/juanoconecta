@@ -31,6 +31,7 @@ const servicios = [
     desc: 'Gestión de redes, contenido y campañas pagas con estrategia y métricas reales.',
     items: ['Community management', 'Estrategia y calendario de contenido', 'Copywriting con IA', 'Campañas en Meta Ads', 'Reportes mensuales'],
     wa: 'redes%20y%20publicidad',
+    planes: { texto: 'Planes desde $320.000 por mes', href: '/redes-sociales-para-negocios-rafaela#precios-redes' },
   },
 ]
 
@@ -73,6 +74,11 @@ export default function ServiciosNx() {
                               <li key={it} className="flex gap-3 text-crema/80"><Check />{it}</li>
                             ))}
                           </ul>
+                          {s.planes && (
+                            <a href={s.planes.href} tabIndex={activo ? 0 : -1} className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-teal hover:text-crema transition-colors">
+                              {s.planes.texto} · Ver planes →
+                            </a>
+                          )}
                         </div>
                         <a href={WA_BASE + s.wa} target="_blank" rel="noopener noreferrer" tabIndex={activo ? 0 : -1}
                           className="inline-flex items-center justify-center gap-2 rounded-full bg-crema text-fondo font-semibold px-6 py-3 hover:bg-teal transition-colors whitespace-nowrap">

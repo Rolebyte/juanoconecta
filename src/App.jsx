@@ -6,7 +6,6 @@ import Contacto from './components/Contacto'
 import PopupLeadMagnet from './components/PopupLeadMagnet'
 import WhatsAppButton from './components/WhatsAppButton'
 import Portfolio from './components/Portfolio'
-import Precios from './components/Precios'
 import CursoIA from './components/CursoIA'
 import CursoIAPage from './pages/CursoIA'
 import Recursos from './pages/Recursos'
@@ -42,7 +41,6 @@ function Home() {
         <KeywordBand />
         <CasosNx />
         <Portfolio />
-        <Precios />
         <SobreNx />
         <FaqNx />
         <Contacto />

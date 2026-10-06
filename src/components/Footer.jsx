@@ -1,7 +1,7 @@
 const columnas = [
   {
     titulo: 'Navegación',
-    links: [['Inicio', '/'], ['Servicios', '/#servicios'], ['Casos de éxito', '/#resultados'], ['Precios', '/#precios'], ['Sobre JuanoConecta', '/sobre-juanoconecta']],
+    links: [['Inicio', '/'], ['Servicios', '/#servicios'], ['Casos de éxito', '/#resultados'], ['Planes de redes', '/redes-sociales-para-negocios-rafaela#precios-redes'], ['Sobre JuanoConecta', '/sobre-juanoconecta']],
   },
   {
     titulo: 'Servicios',
