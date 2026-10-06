@@ -10,6 +10,7 @@ import CursoIA from './components/CursoIA'
 import CursoIAPage from './pages/CursoIA'
 import Recursos from './pages/Recursos'
 import CapacitacionesInstituciones from './pages/CapacitacionesInstituciones'
+import Material from './pages/Material'
 import HeroNx from './components/home/HeroNx'
 import MarqueeClientes from './components/home/MarqueeClientes'
 import SobreNx from './components/home/SobreNx'
@@ -68,6 +69,8 @@ export default function App() {
         <Route path="/curso-ia" element={<CursoIAPage />} />
         <Route path="/tienda" element={<Recursos />} />
         <Route path="/capacitaciones" element={<CapacitacionesInstituciones />} />
+        <Route path="/material" element={<Material />} />
+        <Route path="/material/:slug" element={<Material />} />
       </Routes>
     </BrowserRouter>
   )
