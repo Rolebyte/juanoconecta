@@ -20,10 +20,19 @@ export function Reveal({ children, delay = 0, y = 32, className = '', as = 'div'
 
 export function Eyebrow({ children, className = '' }) {
   return (
-    <span className={`inline-flex items-center gap-2 text-teal text-xs font-semibold tracking-[0.2em] uppercase ${className}`}>
-      <span className="w-6 h-px bg-teal" />
+    <span className={`inline-flex items-center gap-2 rounded-full border border-acento/40 bg-acento/10 px-4 py-1.5 text-crema text-xs font-semibold tracking-[0.15em] uppercase ${className}`}>
+      <span className="w-1.5 h-1.5 rounded-full bg-teal shadow-[0_0_10px_#22D3EE]" />
       {children}
     </span>
+  )
+}
+
+// Borde con degradé que brilla al pasar el mouse
+export function GlowCard({ children, className = '', inner = '' }) {
+  return (
+    <div className={`group relative rounded-3xl p-px bg-gradient-to-br from-white/15 via-white/5 to-white/0 hover:from-acento hover:via-teal/60 hover:to-acento/20 transition-all duration-500 ${className}`}>
+      <div className={`relative h-full rounded-[calc(1.5rem-1px)] bg-[#0F1629] ${inner}`}>{children}</div>
+    </div>
   )
 }
 

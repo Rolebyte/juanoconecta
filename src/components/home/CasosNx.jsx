@@ -1,4 +1,4 @@
-import { SectionTitle, Reveal, Check, BtnGhost } from './ui'
+import { SectionTitle, Reveal, Check, BtnGhost, GlowCard } from './ui'
 
 const casos = [
   {
@@ -30,7 +30,8 @@ export default function CasosNx() {
         <div className="grid lg:grid-cols-3 gap-6">
           {casos.map((c, i) => (
             <Reveal key={c.titulo} delay={i * 0.1} className="h-full">
-              <article className="h-full flex flex-col rounded-3xl border border-white/10 bg-[#121A30] p-8 hover:border-teal/40 transition-colors duration-500">
+              <GlowCard className="h-full" inner="p-8 flex flex-col">
+                <span className="absolute right-7 top-5 text-7xl font-bold text-transparent [-webkit-text-stroke:1px_rgba(234,240,255,0.12)] group-hover:[-webkit-text-stroke:1px_rgba(61,123,255,0.6)] transition-all duration-500 tabular-nums" aria-hidden="true">0{i + 1}</span>
                 <span className="self-start text-[11px] font-semibold tracking-[0.18em] uppercase text-teal border border-teal/40 rounded-full px-3 py-1">{c.rubro}</span>
                 <h3 className="text-xl font-bold text-crema mt-6 leading-snug">{c.titulo}</h3>
                 <div className="mt-6">
@@ -46,7 +47,7 @@ export default function CasosNx() {
                 {c.link && (
                   <a href={c.link} target="_blank" rel="noopener noreferrer" className="mt-8 text-sm font-semibold text-acento hover:text-crema transition-colors">Ver el sitio →</a>
                 )}
-              </article>
+              </GlowCard>
             </Reveal>
           ))}
         </div>

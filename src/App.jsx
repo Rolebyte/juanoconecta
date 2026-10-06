@@ -20,6 +20,8 @@ import PorQueNx from './components/home/PorQueNx'
 import CasosNx from './components/home/CasosNx'
 import FaqNx from './components/home/FaqNx'
 import CtaNx from './components/home/CtaNx'
+import KeywordBand from './components/home/KeywordBand'
+import ProcesoNx from './components/home/ProcesoNx'
 import CommunityManagerRafaela from './pages/CommunityManagerRafaela'
 import RedesSocialesNegociosRafaela from './pages/RedesSocialesNegociosRafaela'
 import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
@@ -41,6 +43,8 @@ function Home() {
         <MarqueeClientes />
         <SobreNx />
         <ServiciosNx />
+        <KeywordBand />
+        <ProcesoNx />
         <StatsNx />
         <CursoIA />
         <PorQueNx />

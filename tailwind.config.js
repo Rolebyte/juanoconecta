@@ -22,9 +22,15 @@ export default {
       },
       animation: {
         'marquee': 'marquee 30s linear infinite',
+        'marquee-rev': 'marquee-rev 34s linear infinite',
+        'spin-slow': 'spin 18s linear infinite',
         'pulse-coral': 'pulse-coral 2s ease-in-out infinite',
       },
       keyframes: {
+        'marquee-rev': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
         marquee: {
           '0%': { transform: 'translateX(0%)' },
           '100%': { transform: 'translateX(-50%)' },

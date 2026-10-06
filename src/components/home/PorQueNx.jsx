@@ -1,4 +1,4 @@
-import { SectionTitle, Reveal } from './ui'
+import { SectionTitle, Reveal, GlowCard } from './ui'
 
 const razones = [
   {
@@ -26,13 +26,13 @@ export default function PorQueNx() {
         <div className="grid md:grid-cols-3 gap-6">
           {razones.map((r, i) => (
             <Reveal key={r.titulo} delay={i * 0.1}>
-              <div className="h-full rounded-3xl p-8 border border-white/10 bg-[#121A30]/60 hover:bg-[#121A30] transition-colors duration-500">
-                <span className="w-14 h-14 rounded-2xl bg-acento/15 text-acento flex items-center justify-center">
+              <GlowCard className="h-full" inner="p-8">
+                <span className="w-14 h-14 rounded-2xl bg-acento/15 text-acento group-hover:bg-acento group-hover:text-white transition-colors duration-500 flex items-center justify-center">
                   <svg className="w-7 h-7" fill="none" stroke="currentColor" strokeWidth={1.6} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d={r.icono} /></svg>
                 </span>
                 <h3 className="text-xl font-bold text-crema mt-6">{r.titulo}</h3>
                 <p className="text-crema/55 leading-relaxed mt-3">{r.texto}</p>
-              </div>
+              </GlowCard>
             </Reveal>
           ))}
         </div>
