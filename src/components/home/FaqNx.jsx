@@ -7,7 +7,7 @@ const faqs = [
   ['¿Cómo sé qué servicio necesita mi negocio?', 'Escribinos por WhatsApp y te orientamos gratis. Miramos dónde está hoy tu negocio y te recomendamos por dónde empezar.'],
   ['¿Necesito saber programar para tener una web app?', 'No. Nosotros diseñamos y desarrollamos la aplicación, y te enseñamos a usarla. Si querés aprender a hacerlo vos, el curso de IA incluye un módulo para crear tu propia web.'],
   ['¿Cuándo empieza el curso de IA?', 'Estamos armando la próxima edición. Sumate a la lista de espera y te avisamos primero cuando abran las inscripciones.'],
-  ['¿Trabajan solo con negocios de Rafaela?', 'Estamos en Rafaela y trabajamos con marcas de toda la región. La mayoría de los servicios se hacen 100% online, así que podemos trabajar con vos estés donde estés.'],
+  ['¿Trabajan solo con negocios de Rafaela?', 'No. Estamos en Rafaela y trabajamos con marcas de toda Argentina, de Brasil y de Italia. La mayoría de los servicios se hacen 100% online, así que podemos trabajar con vos estés donde estés.'],
 ]
 
 function Item({ q, a, abierto, onClick }) {

@@ -4,7 +4,7 @@ const puntos = [
   ['Estrategias con resultados', 'Medimos ventas, consultas y alcance, no solo likes.'],
   ['IA en cada proceso', 'Usamos inteligencia artificial para crear más rápido y con más precisión.'],
   ['Todo en un mismo lugar', 'Web, diseño, redes y publicidad con una sola estrategia.'],
-  ['Cerca tuyo', 'Estamos en Rafaela y trabajamos con marcas de toda la región.'],
+  ['De Rafaela al mundo', 'Clientes en Argentina, Brasil e Italia, online o en persona.'],
 ]
 
 export default function SobreNx() {

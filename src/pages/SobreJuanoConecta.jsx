@@ -41,6 +41,8 @@ const ORGANIZATION_SCHEMA = {
     { '@type': 'City', name: 'Rafaela' },
     { '@type': 'State', name: 'Santa Fe' },
     { '@type': 'Country', name: 'Argentina' },
+    { '@type': 'Country', name: 'Brasil' },
+    { '@type': 'Country', name: 'Italia' },
   ],
   knowsAbout: [
     'Community Management',
@@ -70,7 +72,7 @@ const clientes = [
   { nombre: 'Tatitos Pañalera', rubro: 'Comercio minorista', resultado: 'Posicionado #1 en Google para "pañalera online Rafaela". Aparece en el AI Overview de Google.' },
   { nombre: 'Alarcón Ecografías', rubro: 'Salud', resultado: 'Presencia digital profesional construida desde cero. Consultas orgánicas semanales desde el tercer mes.' },
   { nombre: 'Pura Vida Tatuajes', rubro: 'Estudio de tatuajes', resultado: 'Turnos cerrados por Instagram desde el primer mes de trabajo.' },
-  { nombre: 'Brisa Latina Festa', rubro: 'Entretenimiento', resultado: 'Estrategia de contenido y Meta Ads para eventos en Rafaela y Santa Fe.' },
+  { nombre: 'Brisa Latina Festa', rubro: 'Entretenimiento', resultado: 'Estrategia de contenido y Meta Ads para sus eventos en Brasil.' },
   { nombre: 'Konexa Marketing', rubro: 'Agencia', resultado: 'Identidad de marca y estrategia de contenido digital.' },
   { nombre: 'ComoEnvío', rubro: 'Logística', resultado: 'Presencia en redes y diseño gráfico para plataforma de envíos.' },
 ]
@@ -92,7 +94,7 @@ export default function SobreJuanoConecta() {
         <meta name="description" content="JuanoConecta es la agencia de marketing digital con IA de Juan Gallino en Rafaela, Santa Fe. Community Management, Meta Ads, branding y web para negocios locales." />
         <link rel="canonical" href="https://juanoconecta.ar/sobre-juanoconecta" />
         <meta property="og:title" content="Sobre JuanoConecta | Agencia de Marketing Digital en Rafaela" />
-        <meta property="og:description" content="Agencia de marketing digital y diseño de marcas con IA en Rafaela, Santa Fe. Más de 20 marcas trabajadas, resultados verificables." />
+        <meta property="og:description" content="Agencia de marketing digital y diseño de marcas con IA en Rafaela, Santa Fe. Más de 20 marcas en Argentina, Brasil e Italia, resultados verificables." />
         <meta property="og:url" content="https://juanoconecta.ar/sobre-juanoconecta" />
         <script type="application/ld+json">{JSON.stringify(ORGANIZATION_SCHEMA)}</script>
       </Helmet>
@@ -112,7 +114,7 @@ export default function SobreJuanoConecta() {
               Agencia de marketing digital y diseño de marcas con IA en Rafaela, Santa Fe.
             </p>
             <p className="text-crema/35 text-base leading-relaxed max-w-xl mx-auto mb-10">
-              Fundada por Juan Gallino. Más de 20 marcas trabajadas en Rafaela y Santa Fe. 3 años de trayectoria.
+              Fundada por Juan Gallino. Más de 20 marcas trabajadas en Argentina, Brasil e Italia. 3 años de trayectoria.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={WA} target="_blank" rel="noopener noreferrer"
@@ -143,7 +145,7 @@ export default function SobreJuanoConecta() {
                 { label: 'Web', value: 'juanoconecta.ar' },
                 { label: 'Instagram', value: '@juanoconecta' },
                 { label: 'Trayectoria', value: '3 años (desde 2022)' },
-                { label: 'Marcas trabajadas', value: '+20 en Rafaela y Santa Fe' },
+                { label: 'Marcas trabajadas', value: '+20 en Argentina, Brasil e Italia' },
               ].map((item) => (
                 <div key={item.label} className="rounded-xl p-4" style={{ background: 'linear-gradient(180deg, #121A30 0%, #0F1629 100%)', border: '1px solid rgba(255,255,255,0.10)' }}>
                   <div className="text-xs text-crema/35 mb-1 uppercase tracking-wider">{item.label}</div>
@@ -152,7 +154,7 @@ export default function SobreJuanoConecta() {
               ))}
             </div>
             <p className="text-crema/55 leading-relaxed text-sm">
-              JuanoConecta nació en Rafaela con un objetivo claro: hacer que los negocios locales compitan en el mundo digital con las mismas herramientas que las grandes marcas, potenciadas con inteligencia artificial. No somos una agencia genérica — conocemos el mercado de Rafaela y Santa Fe, sus dinámicas, sus consumidores y sus oportunidades.
+              JuanoConecta nació en Rafaela con un objetivo claro: hacer que los negocios locales compitan en el mundo digital con las mismas herramientas que las grandes marcas, potenciadas con inteligencia artificial. Hoy trabajamos con marcas de Rafaela, de toda Argentina, de Brasil y de Italia, sin perder lo que nos distingue: conocemos de cerca a cada cliente y su mercado.
             </p>
           </motion.div>
         </div>
@@ -163,7 +165,7 @@ export default function SobreJuanoConecta() {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mb-3">Servicios</h2>
-            <p className="text-crema/35 text-sm">Todo lo que ofrecemos para hacer crecer tu negocio en Rafaela</p>
+            <p className="text-crema/35 text-sm">Todo lo que ofrecemos para hacer crecer tu negocio</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {servicios.map((s, i) => (

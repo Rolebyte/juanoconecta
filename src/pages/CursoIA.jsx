@@ -107,7 +107,7 @@ export default function CursoIAPage() {
             <Eyebrow>Quién enseña</Eyebrow>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-4 mb-5">Juan Gallino</h2>
             <p className="text-crema/60 text-lg leading-relaxed">
-              Fundador de JuanoConecta. Trabaja todos los días con IA para crear contenido, campañas, webs y web apps para más de 20 marcas de Rafaela y la región. En el curso comparte las herramientas y los métodos que usa con sus clientes.
+              Fundador de JuanoConecta. Trabaja todos los días con IA para crear contenido, campañas, webs y web apps para más de 20 marcas de Argentina, Latinoamérica y Europa. En el curso comparte las herramientas y los métodos que usa con sus clientes.
             </p>
           </div>
         </div>

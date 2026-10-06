@@ -241,7 +241,7 @@ export default function MarketingDigitalRafaela() {
               JuanoConecta es la propuesta de <strong className="text-crema/80">Juan Gallino</strong>, diseñador de marcas y estratega digital con base en Rafaela, Santa Fe. Con más de 3 años de experiencia trabajando con negocios locales, el enfoque es claro: estrategia digital real que genera resultados medibles, no solo likes.
             </p>
             <p className="text-crema/55 text-sm leading-relaxed mb-6">
-              Clientes activos: Tatitos Pañalera, Alarcón Ecografías, Pura Vida Tatuajes, Brisa Latina Festa, Konexa Marketing, ComoEnvío y más de 20 marcas en Rafaela y Santa Fe.
+              Clientes activos: Tatitos Pañalera, Alarcón Ecografías, Pura Vida Tatuajes, Brisa Latina Festa, Konexa Marketing, ComoEnvío y más de 20 marcas de Rafaela, Argentina, Brasil e Italia.
             </p>
             <div className="flex flex-wrap gap-3">
               {['Rafaela', 'Santa Fe', 'IA aplicada', '+20 marcas', '3 años de trayectoria'].map(tag => (
