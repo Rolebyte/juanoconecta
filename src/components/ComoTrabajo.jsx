@@ -15,7 +15,7 @@ const pasos = [
     titulo: 'Diseño la estrategia',
     descripcion: 'Plan de contenido personalizado y calendario editorial basado en los datos del análisis. Sin templates genéricos — estrategia a medida.',
     icono: '🧠',
-    color: '#C4846A',
+    color: '#FF6B6B',
     items: ['Plan de contenido 30 días', 'Calendario editorial', 'Estrategia de crecimiento'],
   },
   {
@@ -40,7 +40,7 @@ function PasoCard({ paso, index }) {
       transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex-1 rounded-3xl p-8 group overflow-hidden"
       style={{
-        background: 'rgba(10,10,10,0.45)',
+        background: 'rgba(26,26,46,0.45)',
         backdropFilter: 'blur(16px)',
         WebkitBackdropFilter: 'blur(16px)',
         border: '1px solid rgba(255,255,255,0.1)',
@@ -117,14 +117,14 @@ export default function ComoTrabajo() {
         />
         {/* Overlays con pointer-events-none para no bloquear clics en los cards */}
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: 'linear-gradient(to bottom, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.3) 50%, rgba(10,10,10,0.6) 100%)',
+          background: 'linear-gradient(to bottom, rgba(26,26,46,0.6) 0%, rgba(26,26,46,0.3) 50%, rgba(26,26,46,0.6) 100%)',
         }} />
         <div className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none" style={{
-          background: 'linear-gradient(to bottom, transparent 0%, #0A0A0A 70%)',
+          background: 'linear-gradient(to bottom, transparent 0%, #1A1A2E 70%)',
         }} />
         <div className="absolute bottom-0 left-0 right-0 h-10 bg-fondo pointer-events-none" />
         <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{
-          background: 'linear-gradient(to top, transparent 0%, #0A0A0A 100%)',
+          background: 'linear-gradient(to top, transparent 0%, #1A1A2E 100%)',
         }} />
       </div>
 
@@ -155,7 +155,7 @@ export default function ComoTrabajo() {
               viewport={{ once: true }}
               transition={{ duration: 1.2, delay: 0.5, ease: 'easeInOut' }}
               className="h-px flex-1 origin-left"
-              style={{ background: 'linear-gradient(to right, #6A8FC430, #C4846A80, #8FC46A30)' }}
+              style={{ background: 'linear-gradient(to right, #6A8FC430, #FF6B6B80, #8FC46A30)' }}
             />
           </div>
 

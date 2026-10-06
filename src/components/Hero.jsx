@@ -21,7 +21,7 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center pt-20 overflow-hidden"
       style={{
-        background: 'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(196,132,106,0.12) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 10% 90%, rgba(196,132,106,0.07) 0%, transparent 50%), #0A0A0A',
+        background: 'radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,107,107,0.12) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 10% 90%, rgba(255,107,107,0.07) 0%, transparent 50%), #1A1A2E',
       }}
     >
       {/* Canvas de partículas coral interactivo */}
@@ -34,7 +34,7 @@ export default function Hero() {
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: 'linear-gradient(#F5F0EB 1px, transparent 1px), linear-gradient(90deg, #F5F0EB 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(#F7F7F2 1px, transparent 1px), linear-gradient(90deg, #F7F7F2 1px, transparent 1px)',
           backgroundSize: '80px 80px',
         }}
       />
@@ -75,7 +75,7 @@ export default function Hero() {
               <br />
               <span
                 className="text-transparent bg-clip-text"
-                style={{ backgroundImage: 'linear-gradient(135deg, #C4846A 0%, #E8A882 50%, #C4846A 100%)' }}
+                style={{ backgroundImage: 'linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 50%, #FF6B6B 100%)' }}
               >
                 con IA
               </span>
@@ -98,7 +98,7 @@ export default function Hero() {
               <a
                 href="#resultados"
                 className="relative px-8 py-4 rounded-full font-semibold text-sm overflow-hidden group"
-                style={{ background: 'linear-gradient(135deg, #C4846A, #E8A882)' }}
+                style={{ background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)' }}
               >
                 <span className="relative z-10 text-white flex items-center gap-2 justify-center">
                   Ver resultados reales
@@ -151,20 +151,20 @@ export default function Hero() {
               className="relative w-full h-[420px] md:h-[620px] rounded-3xl overflow-hidden"
               style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)',
-                border: '1px solid rgba(196,132,106,0.15)',
-                boxShadow: '0 0 80px rgba(196,132,106,0.08), inset 0 1px 0 rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,107,107,0.15)',
+                boxShadow: '0 0 80px rgba(255,107,107,0.08), inset 0 1px 0 rgba(255,255,255,0.05)',
               }}
             >
               {/* Fade radial para fundir Spline con el fondo */}
               <div
                 className="absolute inset-0 z-10 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(ellipse at center, transparent 40%, rgba(10,10,10,0.7) 80%, rgba(10,10,10,0.95) 100%)',
+                  background: 'radial-gradient(ellipse at center, transparent 40%, rgba(26,26,46,0.7) 80%, rgba(26,26,46,0.95) 100%)',
                 }}
               />
               {/* Fade superior e inferior extra */}
-              <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-[#1A1A2E] to-transparent z-10 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#1A1A2E] to-transparent z-10 pointer-events-none" />
 
               {/* NexBot Robot 3D — interactivo, fondo oscuro nativo */}
               <iframe
@@ -186,7 +186,7 @@ export default function Hero() {
               className="absolute -left-4 md:-left-8 top-1/3 backdrop-blur-xl rounded-2xl px-5 py-4 border z-20"
               style={{
                 background: 'rgba(20,20,20,0.8)',
-                borderColor: 'rgba(196,132,106,0.25)',
+                borderColor: 'rgba(255,107,107,0.25)',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
               }}
             >

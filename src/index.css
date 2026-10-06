@@ -8,17 +8,17 @@ html {
 
 /* ── Fuente global ── */
 * {
-  font-family: 'Inter', sans-serif;
+  font-family: 'DM Sans', sans-serif;
   box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'DM Sans', sans-serif;
 }
 
 body {
-  background-color: #0A0A0A;
-  color: #F5F0EB;
+  background-color: #1A1A2E;
+  color: #F7F7F2;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -26,9 +26,9 @@ body {
 
 /* ── Scrollbar personalizada ── */
 ::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #0A0A0A; }
-::-webkit-scrollbar-thumb { background: #C4846A55; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #C4846A; }
+::-webkit-scrollbar-track { background: #1A1A2E; }
+::-webkit-scrollbar-thumb { background: #FF6B6B55; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #FF6B6B; }
 
 /* ── Cursor personalizado solo desktop ── */
 @media (min-width: 768px) {
@@ -36,7 +36,7 @@ body {
 }
 
 /* ── Selección de texto ── */
-::selection { background: #C4846A; color: #0A0A0A; }
+::selection { background: #FF6B6B; color: #1A1A2E; }
 
 /* ── Smooth scroll ── */
 html { scroll-behavior: smooth; }
@@ -51,7 +51,7 @@ html { scroll-behavior: smooth; }
 
 /* ── Card hover glow ── */
 .card-glow:hover {
-  box-shadow: 0 0 40px rgba(196, 132, 106, 0.12), 0 0 80px rgba(196, 132, 106, 0.04);
+  box-shadow: 0 0 40px rgba(255,107,107, 0.12), 0 0 80px rgba(255,107,107, 0.04);
 }
 
 /* ── Glass effect ── */
@@ -64,7 +64,7 @@ html { scroll-behavior: smooth; }
 
 /* ── Texto gradiente coral ── */
 .text-gradient-coral {
-  background: linear-gradient(135deg, #C4846A 0%, #E8A882 50%, #C4846A 100%);
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 50%, #FF6B6B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

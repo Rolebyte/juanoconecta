@@ -105,7 +105,7 @@ const servicios = [
   {
     titulo: 'Meta Ads',
     descripcion: 'Campañas en Facebook e Instagram optimizadas con IA. Más leads, menos desperdicio de presupuesto. Resultados en la primera semana.',
-    icono: '🎯', color: '#C4846A',
+    icono: '🎯', color: '#FF6B6B',
     precio: 'Pauta + gestión',
     destacado: true,
   },
@@ -166,7 +166,7 @@ export default function MarketingDigitalRafaela() {
             </p>
             <a href={WA} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:scale-105"
-              style={{ background: 'linear-gradient(135deg, #C4846A, #E8A882)' }}>
+              style={{ background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)' }}>
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
@@ -177,7 +177,7 @@ export default function MarketingDigitalRafaela() {
       </section>
 
       {/* ¿Qué incluye el marketing digital? */}
-      <section className="py-16 px-6 bg-[#0A0A0A]">
+      <section className="py-16 px-6 bg-[#1A1A2E]">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <h2 className="text-2xl md:text-3xl font-bold text-crema mb-6">¿Qué incluye el marketing digital para un negocio local en Rafaela?</h2>
@@ -212,11 +212,11 @@ export default function MarketingDigitalRafaela() {
               <motion.div key={s.titulo} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.07 }}
                 className="rounded-2xl p-7 flex flex-col relative overflow-hidden"
                 style={{
-                  background: s.destacado ? 'linear-gradient(135deg, rgba(196,132,106,0.12) 0%, rgba(196,132,106,0.04) 100%)' : 'rgba(255,255,255,0.025)',
-                  border: s.destacado ? '1px solid rgba(196,132,106,0.3)' : '1px solid rgba(255,255,255,0.07)',
+                  background: s.destacado ? 'linear-gradient(135deg, rgba(255,107,107,0.12) 0%, rgba(255,107,107,0.04) 100%)' : 'rgba(255,255,255,0.025)',
+                  border: s.destacado ? '1px solid rgba(255,107,107,0.3)' : '1px solid rgba(255,255,255,0.07)',
                 }}>
                 {s.destacado && (
-                  <div className="absolute top-4 right-4 text-white text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ background: '#C4846A' }}>POPULAR</div>
+                  <div className="absolute top-4 right-4 text-white text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ background: '#FF6B6B' }}>POPULAR</div>
                 )}
                 <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-4" style={{ background: `${s.color}15`, border: `1px solid ${s.color}25` }}>{s.icono}</div>
                 <h3 className="text-lg font-bold text-crema mb-2">{s.titulo}</h3>
@@ -230,11 +230,11 @@ export default function MarketingDigitalRafaela() {
       </section>
 
       {/* JuanoConecta: quién soy */}
-      <section className="py-16 px-6 bg-[#0A0A0A]">
+      <section className="py-16 px-6 bg-[#1A1A2E]">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="rounded-3xl p-8 md:p-12 relative overflow-hidden"
-            style={{ background: 'linear-gradient(135deg, rgba(196,132,106,0.1) 0%, rgba(196,132,106,0.03) 100%)', border: '1px solid rgba(196,132,106,0.25)' }}>
+            style={{ background: 'linear-gradient(135deg, rgba(255,107,107,0.1) 0%, rgba(255,107,107,0.03) 100%)', border: '1px solid rgba(255,107,107,0.25)' }}>
             <h2 className="text-xl md:text-2xl font-bold text-crema mb-4">JuanoConecta: agencia de marketing digital en Rafaela, Santa Fe</h2>
             <p className="text-crema/55 text-sm leading-relaxed mb-4">
               JuanoConecta es la propuesta de <strong className="text-crema/80">Juan Gallino</strong>, diseñador de marcas y estratega digital con base en Rafaela, Santa Fe. Con más de 3 años de experiencia trabajando con negocios locales, el enfoque es claro: estrategia digital real que genera resultados medibles, no solo likes.
@@ -244,7 +244,7 @@ export default function MarketingDigitalRafaela() {
             </p>
             <div className="flex flex-wrap gap-3">
               {['Rafaela', 'Santa Fe', 'IA aplicada', '+20 marcas', '3 años de trayectoria'].map(tag => (
-                <span key={tag} className="text-xs px-3 py-1.5 rounded-full font-medium" style={{ background: 'rgba(196,132,106,0.12)', color: '#C4846A', border: '1px solid rgba(196,132,106,0.2)' }}>{tag}</span>
+                <span key={tag} className="text-xs px-3 py-1.5 rounded-full font-medium" style={{ background: 'rgba(255,107,107,0.12)', color: '#FF6B6B', border: '1px solid rgba(255,107,107,0.2)' }}>{tag}</span>
               ))}
             </div>
           </motion.div>
@@ -269,7 +269,7 @@ export default function MarketingDigitalRafaela() {
       </section>
 
       {/* CTA final */}
-      <section className="py-20 px-6 bg-[#0A0A0A]">
+      <section className="py-20 px-6 bg-[#1A1A2E]">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-3xl md:text-4xl font-bold text-crema mb-4">Tu negocio en Rafaela merece una estrategia real</h2>
@@ -277,7 +277,7 @@ export default function MarketingDigitalRafaela() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={WA} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #C4846A, #E8A882)' }}>
+                style={{ background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)' }}>
                 Hablar con Juan por WhatsApp
               </a>
               <a href="/#servicios"

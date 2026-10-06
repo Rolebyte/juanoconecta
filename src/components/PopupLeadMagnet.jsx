@@ -66,7 +66,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             className="fixed inset-0 flex items-center justify-center z-50 px-4 pointer-events-none"
           >
-            <div className="bg-[#141414] border border-card-border rounded-2xl p-8 max-w-md w-full pointer-events-auto relative overflow-hidden">
+            <div className="bg-[#20203A] border border-card-border rounded-2xl p-8 max-w-md w-full pointer-events-auto relative overflow-hidden">
 
               {/* Glow de fondo */}
               <div className="absolute -top-20 -right-20 w-40 h-40 bg-acento/20 rounded-full blur-3xl pointer-events-none" />
@@ -127,7 +127,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
                     href="/5-prompts-gratis.pdf"
                     download
                     className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm text-white mb-4 transition-all hover:opacity-90"
-                    style={{ background: 'linear-gradient(135deg, #C4846A, #E8A882)' }}
+                    style={{ background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)' }}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -142,7 +142,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
                   {/* Instagram CTA */}
                   <div
                     className="rounded-xl p-4 mb-4"
-                    style={{ background: 'linear-gradient(135deg, rgba(131,58,180,0.12), rgba(196,132,106,0.08))', border: '1px solid rgba(196,132,106,0.2)' }}
+                    style={{ background: 'linear-gradient(135deg, rgba(131,58,180,0.12), rgba(255,107,107,0.08))', border: '1px solid rgba(255,107,107,0.2)' }}
                   >
                     <p className="text-crema text-sm font-semibold mb-1">
                       ¿Querés seguir aprendiendo gratis?

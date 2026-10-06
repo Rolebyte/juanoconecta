@@ -44,14 +44,14 @@ function FotoPlaceholder({ label, className = '', delay = 0 }) {
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
       className={`relative rounded-2xl overflow-hidden ${className}`}
       style={{
-        background: 'linear-gradient(135deg, #1a1a1a 0%, #141414 100%)',
-        border: '1px solid rgba(196,132,106,0.15)',
+        background: 'linear-gradient(135deg, #26263F 0%, #20203A 100%)',
+        border: '1px solid rgba(255,107,107,0.15)',
       }}
     >
       <div
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(ellipse at 30% 30%, rgba(196,132,106,0.15) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse at 30% 30%, rgba(255,107,107,0.15) 0%, transparent 60%)',
         }}
       />
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
@@ -74,12 +74,12 @@ function FotoReal({ src, alt, className = '', delay = 0 }) {
       viewport={{ once: true }}
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
       className={`relative rounded-2xl overflow-hidden ${className}`}
-      style={{ border: '1px solid rgba(196,132,106,0.15)' }}
+      style={{ border: '1px solid rgba(255,107,107,0.15)' }}
     >
       <img src={src} alt={alt} className="w-full h-full object-cover" />
       <div
         className="absolute inset-0"
-        style={{ background: 'linear-gradient(to top, rgba(10,10,10,0.4) 0%, transparent 50%)' }}
+        style={{ background: 'linear-gradient(to top, rgba(26,26,46,0.4) 0%, transparent 50%)' }}
       />
     </motion.div>
   )
@@ -106,7 +106,7 @@ export default function SobreMi() {
       >
         <span
           className="text-[18vw] font-black uppercase tracking-tighter leading-none"
-          style={{ color: 'rgba(196,132,106,0.04)' }}
+          style={{ color: 'rgba(255,107,107,0.04)' }}
         >
           SOBRE MÍ
         </span>
@@ -136,11 +136,11 @@ export default function SobreMi() {
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="relative rounded-2xl overflow-hidden w-full h-[580px]"
-              style={{ border: '1px solid rgba(196,132,106,0.15)' }}
+              style={{ border: '1px solid rgba(255,107,107,0.15)' }}
             >
               <img src={heroImg} alt="Juan Gallino - JuanoConecta" className="w-full h-full object-cover object-top" />
               {/* Cubre el watermark del fondo */}
-              <div className="absolute bottom-0 left-0 right-0 h-16" style={{ background: 'linear-gradient(to top, #0A0A0A 0%, transparent 100%)' }} />
+              <div className="absolute bottom-0 left-0 right-0 h-16" style={{ background: 'linear-gradient(to top, #1A1A2E 0%, transparent 100%)' }} />
             </motion.div>
 
           </div>
@@ -173,8 +173,8 @@ export default function SobreMi() {
                   transition={{ delay: 0.1 * i }}
                   className="rounded-xl p-4 border"
                   style={{
-                    background: 'rgba(196,132,106,0.05)',
-                    borderColor: 'rgba(196,132,106,0.15)',
+                    background: 'rgba(255,107,107,0.05)',
+                    borderColor: 'rgba(255,107,107,0.15)',
                   }}
                 >
                   <div className="text-xl mb-1">{l.icon}</div>
@@ -220,10 +220,10 @@ export default function SobreMi() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mt-20 relative rounded-3xl overflow-hidden h-48 md:h-64"
-            style={{ border: '1px solid rgba(196,132,106,0.15)' }}
+            style={{ border: '1px solid rgba(255,107,107,0.15)' }}
           >
             <img src={foto3} alt="JuanoConecta en acción" className="w-full h-full object-cover" />
-            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(10,10,10,0.7) 0%, transparent 50%, rgba(10,10,10,0.7) 100%)' }} />
+            <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(26,26,46,0.7) 0%, transparent 50%, rgba(26,26,46,0.7) 100%)' }} />
           </motion.div>
         )}
       </div>

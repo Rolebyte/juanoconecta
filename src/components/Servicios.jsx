@@ -16,7 +16,7 @@ const servicios = [
     titulo: 'Meta Ads',
     descripcion: 'Campañas en Facebook e Instagram optimizadas con IA. Más leads, menos desperdicio de presupuesto.',
     icono: '🎯',
-    color: '#C4846A',
+    color: '#FF6B6B',
     wa: WA_BASE + 'Meta%20Ads',
     destacado: true,
   },
@@ -71,10 +71,10 @@ function ServicioCard({ servicio, index }) {
       }`}
       style={{
         background: servicio.destacado
-          ? 'linear-gradient(135deg, rgba(196,132,106,0.15) 0%, rgba(196,132,106,0.05) 100%)'
+          ? 'linear-gradient(135deg, rgba(255,107,107,0.15) 0%, rgba(255,107,107,0.05) 100%)'
           : 'rgba(255,255,255,0.025)',
         border: servicio.destacado
-          ? '1px solid rgba(196,132,106,0.4)'
+          ? '1px solid rgba(255,107,107,0.4)'
           : '1px solid rgba(255,255,255,0.07)',
       }}
     >
@@ -111,7 +111,7 @@ function ServicioCard({ servicio, index }) {
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 text-sm font-semibold group/link"
-        style={{ color: servicio.destacado ? '#C4846A' : '#F5F0EB99' }}
+        style={{ color: servicio.destacado ? '#FF6B6B' : '#F7F7F299' }}
       >
         <span className="group-hover/link:text-acento transition-colors">Consultar precio</span>
         <motion.svg
@@ -142,12 +142,12 @@ export default function Servicios() {
 
   return (
     <section id="servicios" className="py-28 px-6 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#0A0A0A]" />
+      <div className="absolute inset-0 bg-[#1A1A2E]" />
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(196,132,106,0.06) 0%, transparent 60%)',
+        background: 'radial-gradient(ellipse 60% 50% at 50% 0%, rgba(255,107,107,0.06) 0%, transparent 60%)',
       }} />
-      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #0A0A0A, transparent)' }} />
-      <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, #0A0A0A, transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to bottom, #1A1A2E, transparent)' }} />
+      <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style={{ background: 'linear-gradient(to top, #1A1A2E, transparent)' }} />
 
       <div className="relative max-w-7xl mx-auto">
         <motion.div

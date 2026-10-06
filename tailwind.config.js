@@ -7,16 +7,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        fondo: '#0A0A0A',
-        crema: '#F5F0EB',
-        acento: '#C4846A',
-        'acento-dark': '#A86D55',
-        'card-bg': '#111111',
-        'card-border': '#1E1E1E',
+        fondo: '#1A1A2E',
+        crema: '#F7F7F2',
+        acento: '#FF6B6B',
+        'acento-dark': '#E05555',
+        teal: '#4ECDC4',
+        highlight: '#FFE66D',
+        'card-bg': '#2D2D44',
+        'card-border': '#34344F',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        display: ['DM Sans', 'system-ui', 'sans-serif'],
       },
       animation: {
         'marquee': 'marquee 30s linear infinite',
@@ -28,8 +30,8 @@ export default {
           '100%': { transform: 'translateX(-50%)' },
         },
         'pulse-coral': {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(196, 132, 106, 0.7)' },
-          '50%': { boxShadow: '0 0 0 12px rgba(196, 132, 106, 0)' },
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(255,107,107, 0.7)' },
+          '50%': { boxShadow: '0 0 0 12px rgba(255,107,107, 0)' },
         },
       },
     },

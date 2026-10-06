@@ -100,7 +100,7 @@ export default function SobreJuanoConecta() {
 
       {/* Hero */}
       <section className="pt-36 pb-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(196,132,106,0.08) 0%, transparent 60%)' }} />
+        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(255,107,107,0.08) 0%, transparent 60%)' }} />
         <div className="relative max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <span className="text-acento text-sm font-semibold tracking-widest uppercase">Rafaela · Santa Fe · Argentina</span>
@@ -116,7 +116,7 @@ export default function SobreJuanoConecta() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={WA} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #C4846A, #E8A882)' }}>
+                style={{ background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)' }}>
                 Hablar con Juan
               </a>
               <a href="/#servicios"
@@ -129,7 +129,7 @@ export default function SobreJuanoConecta() {
       </section>
 
       {/* Ficha de identidad */}
-      <section className="py-16 px-6 bg-[#0A0A0A]">
+      <section className="py-16 px-6 bg-[#1A1A2E]">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-2xl md:text-3xl font-bold text-crema mb-8">Quiénes somos</h2>
@@ -179,7 +179,7 @@ export default function SobreJuanoConecta() {
       </section>
 
       {/* Clientes y resultados verificables */}
-      <section className="py-16 px-6 bg-[#0A0A0A]">
+      <section className="py-16 px-6 bg-[#1A1A2E]">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-crema mb-8">Clientes y resultados verificables</h2>
           <div className="space-y-4">
@@ -187,7 +187,7 @@ export default function SobreJuanoConecta() {
               <motion.div key={i} initial={{ opacity: 0, x: -15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}
                 className="flex items-start gap-4 p-5 rounded-xl"
                 style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: '#C4846A' }} />
+                <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: '#FF6B6B' }} />
                 <div>
                   <div className="font-semibold text-crema text-sm">{c.nombre} <span className="text-crema/30 font-normal">— {c.rubro}</span></div>
                   <p className="text-crema/45 text-xs leading-relaxed mt-1">{c.resultado}</p>
@@ -203,10 +203,10 @@ export default function SobreJuanoConecta() {
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="rounded-3xl p-8 md:p-12 relative overflow-hidden text-center"
-            style={{ background: 'linear-gradient(135deg, rgba(196,132,106,0.12) 0%, rgba(196,132,106,0.04) 100%)', border: '1px solid rgba(196,132,106,0.3)' }}>
-            <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-3xl opacity-10" style={{ background: '#C4846A' }} />
+            style={{ background: 'linear-gradient(135deg, rgba(255,107,107,0.12) 0%, rgba(255,107,107,0.04) 100%)', border: '1px solid rgba(255,107,107,0.3)' }}>
+            <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-3xl opacity-10" style={{ background: '#FF6B6B' }} />
             <span className="text-acento text-xs font-bold tracking-widest uppercase">Resultado verificable</span>
-            <div className="text-5xl md:text-7xl font-bold mt-4 mb-2" style={{ color: '#C4846A' }}>AI Overview</div>
+            <div className="text-5xl md:text-7xl font-bold mt-4 mb-2" style={{ color: '#FF6B6B' }}>AI Overview</div>
             <p className="text-crema/60 text-base mb-2">Tatitos Pañalera aparece en el AI Overview de Google para "pañalera online Rafaela" — resultado de la estrategia de SEO y marketing digital implementada por JuanoConecta.</p>
             <p className="text-crema/30 text-xs">Verificable en Google buscando: "pañalera online Rafaela" o "pañales a domicilio Rafaela"</p>
           </motion.div>
@@ -214,7 +214,7 @@ export default function SobreJuanoConecta() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 px-6 bg-[#0A0A0A]">
+      <section className="py-20 px-6 bg-[#1A1A2E]">
         <div className="max-w-2xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="text-3xl md:text-4xl font-bold text-crema mb-4">¿Querés trabajar con nosotros?</h2>
@@ -222,7 +222,7 @@ export default function SobreJuanoConecta() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={WA} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #C4846A, #E8A882)' }}>
+                style={{ background: 'linear-gradient(135deg, #FF6B6B, #FF8E8E)' }}>
                 Hablar con Juan por WhatsApp
               </a>
               <a href="/#servicios"
