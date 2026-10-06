@@ -20,6 +20,14 @@ export const MATERIALES = [
       vence: '2026-11-07T23:59:59-03:00',
       venceTexto: '7 de noviembre de 2026',
       detalle: 'En el primer mes de cualquier plan de redes, en la Auditoría IA de tu perfil o en tu web.',
+      // Los servicios con precio se pagan con Mercado Pago (api/crear-pago.js); "A cotizar" sigue por WhatsApp.
+      servicios: [
+        { id: 'starter', nombre: 'Plan Starter de redes', detalle: 'Primer mes · 2 redes, 12 publicaciones', precio: 320000 },
+        { id: 'pro', nombre: 'Plan Pro de redes', detalle: 'Primer mes · 3 redes, 20 publicaciones, Meta Ads básico', precio: 550000 },
+        { id: 'full', nombre: 'Plan Full de redes', detalle: 'Primer mes · 4 redes, publicaciones ilimitadas, Meta Ads avanzado', precio: 850000 },
+        { id: 'auditoria', nombre: 'Auditoría IA de tu perfil', detalle: 'Diagnóstico, sesión 1 a 1 con Juan y plan de 30 días', precio: 120000 },
+        { id: 'web', nombre: 'Tu web o web app', detalle: 'Se cotiza a medida; el descuento se aplica sobre el presupuesto', precio: null },
+      ],
     },
     herramientas: [
       { nombre: 'ChatGPT', uso: 'Textos, ideas y respuestas', href: 'https://chatgpt.com' },

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
@@ -27,9 +28,93 @@ function Beneficio({ b }) {
               <span className="rounded-xl border border-dashed border-teal/60 bg-teal/10 px-4 py-2 font-mono font-bold tracking-wider text-teal">{b.codigo}</span>
               <span className="text-crema/50 text-sm">Válido hasta el {b.venceTexto}</span>
             </div>
-            <div className="mt-6"><BtnPrimary href={wa} external>Usar mi descuento</BtnPrimary></div>
+            <div className="mt-6"><BtnPrimary href="#canjear">Usar mi descuento</BtnPrimary></div>
           </div>
         </div>
+      </div>
+    </Reveal>
+  )
+}
+
+const ars = (n) => '$' + n.toLocaleString('es-AR')
+
+function Canjear({ b }) {
+  const [codigo, setCodigo] = useState('')
+  const [elegido, setElegido] = useState(b.servicios[0].id)
+  const valido = codigo.trim().toUpperCase() === b.codigo
+  const s = b.servicios.find((x) => x.id === elegido)
+  const final = s.precio ? Math.round(s.precio * (1 - b.porcentaje / 100)) : null
+  const wa = 'https://wa.me/543492627811?text=' + encodeURIComponent(`Hola Juan, participé de la capacitación y quiero contratar "${s.nombre}" con el código ${b.codigo} (${b.porcentaje}% de descuento).`)
+  const [estado, setEstado] = useState('')
+
+  async function pagar(e) {
+    if (!valido || !s.precio) return
+    e.preventDefault()
+    setEstado('cargando')
+    try {
+      const r = await fetch('/api/crear-pago', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ material: b.slug, servicio: s.id, codigo }),
+      })
+      const data = await r.json()
+      if (data.url) { window.location.href = data.url; return }
+      setEstado('error')
+    } catch {
+      setEstado('error')
+    }
+  }
+
+  return (
+    <Reveal>
+      <div id="canjear" className="scroll-mt-28 rounded-3xl border border-white/10 bg-[#0F1629] p-6 md:p-8">
+        <h2 className="text-2xl font-bold tracking-tight">Elegí tu servicio y aplicá el cupón</h2>
+        <div className="grid gap-3 mt-6" role="radiogroup" aria-label="Servicio">
+          {b.servicios.map((x) => {
+            const activo = x.id === elegido
+            return (
+              <button key={x.id} type="button" role="radio" aria-checked={activo} onClick={() => setElegido(x.id)}
+                className={`text-left flex items-center gap-4 rounded-2xl border px-5 py-4 transition-colors ${activo ? 'border-acento bg-acento/10' : 'border-white/10 hover:border-white/25'}`}>
+                <span className={`w-5 h-5 rounded-full border-2 flex-shrink-0 ${activo ? 'border-acento bg-acento shadow-[inset_0_0_0_3px_#0F1629]' : 'border-white/30'}`} />
+                <span className="flex-1 min-w-0">
+                  <span className="block font-semibold text-crema">{x.nombre}</span>
+                  <span className="block text-sm text-crema/50">{x.detalle}</span>
+                </span>
+                <span className="text-right whitespace-nowrap">
+                  {x.precio ? (valido ? (
+                    <>
+                      <span className="block text-xs text-crema/40 line-through">{ars(x.precio)}</span>
+                      <span className="block font-bold text-teal">{ars(Math.round(x.precio * (1 - b.porcentaje / 100)))}</span>
+                    </>
+                  ) : <span className="font-bold text-crema">{ars(x.precio)}</span>) : <span className="text-sm text-crema/60">A cotizar</span>}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+
+        <div className="mt-6 flex flex-col sm:flex-row gap-3">
+          <input value={codigo} onChange={(e) => setCodigo(e.target.value)} placeholder="Código de descuento" aria-label="Código de descuento"
+            className="flex-1 bg-fondo border border-white/15 rounded-full px-5 py-3.5 font-mono uppercase tracking-wider text-crema placeholder:normal-case placeholder:tracking-normal placeholder:font-sans placeholder:text-crema/30 focus:outline-none focus:border-acento" />
+          <span className={`self-center text-sm font-semibold ${valido ? 'text-teal' : codigo ? 'text-red-400' : 'text-crema/40'}`}>
+            {valido ? `✓ ${b.porcentaje}% aplicado` : codigo ? 'Código no válido' : 'Ingresá tu código'}
+          </span>
+        </div>
+
+        <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/10 pt-6">
+          <div>
+            <div className="text-sm text-crema/50">Total</div>
+            <div className="text-3xl font-bold text-crema">{final ? ars(valido ? final : s.precio) : 'A cotizar'}</div>
+          </div>
+          <a href={wa} onClick={pagar} target="_blank" rel="noopener noreferrer"
+            className={`inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 font-semibold text-sm transition-all ${valido ? 'bg-acento hover:bg-acento-dark text-white shadow-[0_10px_40px_-10px_rgba(61,123,255,0.8)]' : 'bg-white/10 text-crema/50 pointer-events-none'}`}
+            aria-disabled={!valido}>
+            {estado === 'cargando' ? 'Abriendo Mercado Pago…' : s.precio ? 'Pagar con Mercado Pago' : 'Pedir presupuesto por WhatsApp'}
+          </a>
+        </div>
+        {estado === 'error' && (
+          <p className="mt-4 text-sm text-red-300">No pudimos abrir el pago. <a href={wa} target="_blank" rel="noopener noreferrer" className="underline">Escribinos por WhatsApp</a> y lo resolvemos.</p>
+        )}
       </div>
     </Reveal>
   )
@@ -48,6 +133,23 @@ function Descarga({ a }) {
         </span>
       </GlowCard>
     </a>
+  )
+}
+
+function ResultadoPago() {
+  const r = new URLSearchParams(window.location.search).get('pago')
+  if (!r) return null
+  const msj = {
+    aprobado: ['¡Pago aprobado!', 'Gracias. Te escribo en las próximas horas para coordinar el arranque.', 'border-teal/50 bg-teal/10'],
+    pendiente: ['Pago pendiente', 'Mercado Pago está procesando el pago. Te aviso apenas se acredite.', 'border-yellow-400/40 bg-yellow-400/10'],
+    rechazado: ['El pago no se completó', 'Podés intentarlo de nuevo más abajo o escribirme por WhatsApp.', 'border-red-400/40 bg-red-400/10'],
+  }[r]
+  if (!msj) return null
+  return (
+    <div className={`max-w-3xl mx-auto mb-10 rounded-2xl border px-6 py-5 ${msj[2]}`} role="status">
+      <div className="font-bold text-crema">{msj[0]}</div>
+      <div className="text-crema/70 mt-1">{msj[1]}</div>
+    </div>
   )
 }
 
@@ -75,6 +177,7 @@ export default function Material() {
       </section>
 
       <section className="px-6 pb-16">
+        <ResultadoPago />
         <div className="max-w-3xl mx-auto space-y-12">
           <Reveal>
             <h2 className="text-2xl font-bold tracking-tight mb-5">Material de la jornada</h2>
@@ -88,6 +191,7 @@ export default function Material() {
           </Reveal>
 
           <Beneficio b={m.beneficio} />
+          {m.beneficio && Date.now() <= new Date(m.beneficio.vence).getTime() && <Canjear b={{ ...m.beneficio, slug: m.slug }} />}
 
           <Reveal>
             <h2 className="text-2xl font-bold tracking-tight mb-5">Regalos para empezar</h2>
