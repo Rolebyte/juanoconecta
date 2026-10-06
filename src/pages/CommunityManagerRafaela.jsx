@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
 
 const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20el%20servicio%20de%20Community%20Manager%20en%20Rafaela'
@@ -140,12 +141,12 @@ export default function CommunityManagerRafaela() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-36 pb-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(61,123,255,0.08) 0%, transparent 60%)' }} />
+      <section className="pt-40 pb-24 px-6 relative overflow-hidden">
+        <GridGlow />
         <div className="relative max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <span className="text-acento text-sm font-semibold tracking-widest uppercase">Rafaela · Santa Fe</span>
-            <h1 className="text-4xl md:text-6xl font-bold text-crema mt-4 mb-6 leading-tight">
+            <Eyebrow>Rafaela · Santa Fe</Eyebrow>
+            <h1 className="text-4xl md:text-6xl font-bold text-crema mt-6 mb-6 leading-[1.05] tracking-tight">
               Community Manager en Rafaela:<br />
               <span className="text-acento">qué es, cuánto cuesta y cómo contratar uno</span>
             </h1>
@@ -154,7 +155,7 @@ export default function CommunityManagerRafaela() {
             </p>
             <a href={WA} target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all duration-200 hover:scale-105"
-              style={{ background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)' }}>
+              style={{ background: '#3D7BFF', boxShadow: '0 10px 40px -10px rgba(61,123,255,0.8)' }}>
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
               </svg>
@@ -165,10 +166,10 @@ export default function CommunityManagerRafaela() {
       </section>
 
       {/* ¿Qué hace un Community Manager? */}
-      <section className="py-16 px-6 bg-[#0B1020]">
+      <section className="py-16 px-6 bg-[#080C18]">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <h2 className="text-2xl md:text-3xl font-bold text-crema mb-6">¿Qué hace un Community Manager?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mb-6">¿Qué hace un Community Manager?</h2>
             <p className="text-crema/55 leading-relaxed mb-6">
               Un <strong className="text-crema/80">Community Manager en Rafaela</strong> es el profesional encargado de gestionar la presencia digital de un negocio en redes sociales. No es solo alguien que "sube fotos" — es quien define la estrategia de contenido, mantiene la voz de la marca, interactúa con la comunidad y mide resultados para optimizar continuamente.
             </p>
@@ -195,8 +196,8 @@ export default function CommunityManagerRafaela() {
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-acento text-sm font-semibold tracking-widest uppercase">Transparencia total</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-crema mt-4 mb-4">¿Cuánto cuesta un Community Manager en Rafaela?</h2>
+            <Eyebrow>Transparencia total</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mt-4 mb-4">¿Cuánto cuesta un Community Manager en Rafaela?</h2>
             <p className="text-crema/35 max-w-lg mx-auto">Precios en pesos argentinos, sin sorpresas. El presupuesto de pauta de Meta Ads se acuerda por separado.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
@@ -227,7 +228,7 @@ export default function CommunityManagerRafaela() {
                 <a href={WA} target="_blank" rel="noopener noreferrer"
                   className="block text-center py-3 rounded-xl text-sm font-semibold transition-all hover:scale-[1.02]"
                   style={plan.destacado
-                    ? { background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)', color: '#fff' }
+                    ? { background: '#3D7BFF', color: '#fff', boxShadow: '0 10px 40px -10px rgba(61,123,255,0.8)' }
                     : { background: 'rgba(255,255,255,0.06)', color: '#EAF0FF', border: '1px solid rgba(255,255,255,0.1)' }}>
                   Consultar plan {plan.nombre}
                 </a>
@@ -238,9 +239,9 @@ export default function CommunityManagerRafaela() {
       </section>
 
       {/* Resultados */}
-      <section className="py-16 px-6 bg-[#0B1020]">
+      <section className="py-16 px-6 bg-[#080C18]">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-crema mb-8">¿Qué resultados esperar?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mb-8">¿Qué resultados esperar?</h2>
           <div className="space-y-5">
             {[
               {
@@ -267,7 +268,7 @@ export default function CommunityManagerRafaela() {
             ].map((caso, i) => (
               <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
                 className="flex items-start gap-4 p-5 rounded-2xl"
-                style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                style={{ background: 'linear-gradient(180deg, #121A30 0%, #0F1629 100%)', border: '1px solid rgba(255,255,255,0.10)' }}>
                 <div className="w-1 h-full rounded-full flex-shrink-0 self-stretch min-h-[60px]" style={{ background: `linear-gradient(to bottom, ${caso.color}, transparent)` }} />
                 <div>
                   <div className="font-bold text-crema text-sm">{caso.cliente}</div>
@@ -284,12 +285,12 @@ export default function CommunityManagerRafaela() {
       {/* FAQ */}
       <section className="py-20 px-6">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-crema mb-10">Preguntas frecuentes</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mb-10">Preguntas frecuentes</h2>
           <div className="space-y-5">
             {faqs.map((faq, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}
                 className="rounded-2xl p-6"
-                style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                style={{ background: 'linear-gradient(180deg, #121A30 0%, #0F1629 100%)', border: '1px solid rgba(255,255,255,0.10)' }}>
                 <h3 className="font-semibold text-crema mb-2 text-base">{faq.q}</h3>
                 <p className="text-crema/50 text-sm leading-relaxed">{faq.a}</p>
               </motion.div>
@@ -299,15 +300,17 @@ export default function CommunityManagerRafaela() {
       </section>
 
       {/* CTA final */}
-      <section className="py-20 px-6 bg-[#0B1020]">
-        <div className="max-w-2xl mx-auto text-center">
+      <section className="py-24 px-6">
+        <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[2.5rem] border border-acento/30 bg-gradient-to-br from-[#16245A] via-[#121A30] to-[#0B1020] px-6 py-16 md:px-16 md:py-20 text-center">
+          <GridGlow />
+          <div className="relative max-w-2xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-crema mb-4">¿Listo para crecer en Rafaela?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mb-4">¿Listo para crecer en Rafaela?</h2>
             <p className="text-crema/40 mb-8">Escribime por WhatsApp y en 15 minutos analizamos tu situación sin compromiso.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={WA} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)' }}>
+                style={{ background: '#3D7BFF', boxShadow: '0 10px 40px -10px rgba(61,123,255,0.8)' }}>
                 Hablar con Juan por WhatsApp
               </a>
               <a href="/#servicios"
@@ -316,6 +319,7 @@ export default function CommunityManagerRafaela() {
               </a>
             </div>
           </motion.div>
+        </div>
         </div>
       </section>
 

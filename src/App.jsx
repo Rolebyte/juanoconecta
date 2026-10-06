@@ -17,6 +17,7 @@ import CasosNx from './components/home/CasosNx'
 import FaqNx from './components/home/FaqNx'
 import KeywordBand from './components/home/KeywordBand'
 import ProcesoNx from './components/home/ProcesoNx'
+import ProximaCapacitacion from './components/home/ProximaCapacitacion'
 import CommunityManagerRafaela from './pages/CommunityManagerRafaela'
 import RedesSocialesNegociosRafaela from './pages/RedesSocialesNegociosRafaela'
 import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
@@ -35,6 +36,7 @@ function Home() {
       <main>
         <HeroNx />
         <MarqueeClientes />
+        <ProximaCapacitacion />
         <ServiciosNx />
         <CursoIA />
         <ProcesoNx />

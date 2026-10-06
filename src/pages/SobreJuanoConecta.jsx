@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
 
 const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20saber%20m%C3%A1s%20sobre%20JuanoConecta'
@@ -99,12 +100,12 @@ export default function SobreJuanoConecta() {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-36 pb-20 px-6 relative overflow-hidden">
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(61,123,255,0.08) 0%, transparent 60%)' }} />
+      <section className="pt-40 pb-24 px-6 relative overflow-hidden">
+        <GridGlow />
         <div className="relative max-w-4xl mx-auto text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <span className="text-acento text-sm font-semibold tracking-widest uppercase">Rafaela · Santa Fe · Argentina</span>
-            <h1 className="text-4xl md:text-6xl font-bold text-crema mt-4 mb-6 leading-tight">
+            <Eyebrow>Rafaela · Santa Fe · Argentina</Eyebrow>
+            <h1 className="text-4xl md:text-6xl font-bold text-crema mt-6 mb-6 leading-[1.05] tracking-tight">
               JuanoConecta
             </h1>
             <p className="text-crema/50 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-4">
@@ -116,7 +117,7 @@ export default function SobreJuanoConecta() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={WA} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)' }}>
+                style={{ background: '#3D7BFF', boxShadow: '0 10px 40px -10px rgba(61,123,255,0.8)' }}>
                 Hablar con Juan
               </a>
               <a href="/#servicios"
@@ -129,10 +130,10 @@ export default function SobreJuanoConecta() {
       </section>
 
       {/* Ficha de identidad */}
-      <section className="py-16 px-6 bg-[#0B1020]">
+      <section className="py-16 px-6 bg-[#080C18]">
         <div className="max-w-3xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-2xl md:text-3xl font-bold text-crema mb-8">Quiénes somos</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mb-8">Quiénes somos</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               {[
                 { label: 'Nombre', value: 'JuanoConecta' },
@@ -144,7 +145,7 @@ export default function SobreJuanoConecta() {
                 { label: 'Trayectoria', value: '3 años (desde 2022)' },
                 { label: 'Marcas trabajadas', value: '+20 en Rafaela y Santa Fe' },
               ].map((item) => (
-                <div key={item.label} className="rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                <div key={item.label} className="rounded-xl p-4" style={{ background: 'linear-gradient(180deg, #121A30 0%, #0F1629 100%)', border: '1px solid rgba(255,255,255,0.10)' }}>
                   <div className="text-xs text-crema/35 mb-1 uppercase tracking-wider">{item.label}</div>
                   <div className="text-crema/80 text-sm font-medium">{item.value}</div>
                 </div>
@@ -161,14 +162,14 @@ export default function SobreJuanoConecta() {
       <section className="py-20 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-crema mb-3">Servicios</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mb-3">Servicios</h2>
             <p className="text-crema/35 text-sm">Todo lo que ofrecemos para hacer crecer tu negocio en Rafaela</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {servicios.map((s, i) => (
               <motion.div key={s.nombre} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}
                 className="rounded-xl p-5"
-                style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                style={{ background: 'linear-gradient(180deg, #121A30 0%, #0F1629 100%)', border: '1px solid rgba(255,255,255,0.10)' }}>
                 <div className="text-2xl mb-3">{s.icono}</div>
                 <h3 className="font-bold text-crema text-sm mb-1">{s.nombre}</h3>
                 <p className="text-crema/40 text-xs leading-relaxed">{s.descripcion}</p>
@@ -179,14 +180,14 @@ export default function SobreJuanoConecta() {
       </section>
 
       {/* Clientes y resultados verificables */}
-      <section className="py-16 px-6 bg-[#0B1020]">
+      <section className="py-16 px-6 bg-[#080C18]">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-crema mb-8">Clientes y resultados verificables</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mb-8">Clientes y resultados verificables</h2>
           <div className="space-y-4">
             {clientes.map((c, i) => (
               <motion.div key={i} initial={{ opacity: 0, x: -15 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.07 }}
                 className="flex items-start gap-4 p-5 rounded-xl"
-                style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                style={{ background: 'linear-gradient(180deg, #121A30 0%, #0F1629 100%)', border: '1px solid rgba(255,255,255,0.10)' }}>
                 <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0" style={{ background: '#3D7BFF' }} />
                 <div>
                   <div className="font-semibold text-crema text-sm">{c.nombre} <span className="text-crema/30 font-normal">— {c.rubro}</span></div>
@@ -205,7 +206,7 @@ export default function SobreJuanoConecta() {
             className="rounded-3xl p-8 md:p-12 relative overflow-hidden text-center"
             style={{ background: 'linear-gradient(135deg, rgba(61,123,255,0.12) 0%, rgba(61,123,255,0.04) 100%)', border: '1px solid rgba(61,123,255,0.3)' }}>
             <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-3xl opacity-10" style={{ background: '#3D7BFF' }} />
-            <span className="text-acento text-xs font-bold tracking-widest uppercase">Resultado verificable</span>
+            <Eyebrow>Resultado verificable</Eyebrow>
             <div className="text-5xl md:text-7xl font-bold mt-4 mb-2" style={{ color: '#3D7BFF' }}>AI Overview</div>
             <p className="text-crema/60 text-base mb-2">Tatitos Pañalera aparece en el AI Overview de Google para "pañalera online Rafaela" — resultado de la estrategia de SEO y marketing digital implementada por JuanoConecta.</p>
             <p className="text-crema/30 text-xs">Verificable en Google buscando: "pañalera online Rafaela" o "pañales a domicilio Rafaela"</p>
@@ -213,16 +214,18 @@ export default function SobreJuanoConecta() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 px-6 bg-[#0B1020]">
-        <div className="max-w-2xl mx-auto text-center">
+      {/* CTA final */}
+      <section className="py-24 px-6">
+        <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[2.5rem] border border-acento/30 bg-gradient-to-br from-[#16245A] via-[#121A30] to-[#0B1020] px-6 py-16 md:px-16 md:py-20 text-center">
+          <GridGlow />
+          <div className="relative max-w-2xl mx-auto">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="text-3xl md:text-4xl font-bold text-crema mb-4">¿Querés trabajar con nosotros?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mb-4">¿Querés trabajar con nosotros?</h2>
             <p className="text-crema/40 mb-8">Escribinos por WhatsApp. En 15 minutos analizamos tu situación sin compromiso.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href={WA} target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-3 text-white font-semibold px-8 py-4 rounded-full transition-all hover:scale-105"
-                style={{ background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)' }}>
+                style={{ background: '#3D7BFF', boxShadow: '0 10px 40px -10px rgba(61,123,255,0.8)' }}>
                 Hablar con Juan por WhatsApp
               </a>
               <a href="/#servicios"
@@ -231,6 +234,7 @@ export default function SobreJuanoConecta() {
               </a>
             </div>
           </motion.div>
+        </div>
         </div>
       </section>
 

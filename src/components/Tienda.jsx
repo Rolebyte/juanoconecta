@@ -1,16 +1,17 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useTilt } from '../hooks/useTilt'
+import { Eyebrow, GridGlow } from './home/ui'
 
 const WA_AUDITORIA = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20la%20Auditoría%20IA%20de%20mi%20perfil'
 
-const TEAL = '#00C9A7'
+const TEAL = '#22D3EE'
 
 const productoGratis = {
   nombre: '5 Prompts para Arrancar con IA',
   descripcion: '¿No sabés por dónde empezar con la IA? Estos 5 prompts te dan el punto de partida exacto para generar contenido real en menos de 10 minutos — sin experiencia previa.',
   badge: 'GRATIS',
-  badgeStyle: { background: 'rgba(0,201,167,0.15)', color: '#00C9A7', border: '1px solid rgba(0,201,167,0.4)' },
+  badgeStyle: { background: 'rgba(34,211,238,0.15)', color: '#22D3EE', border: '1px solid rgba(34,211,238,0.4)' },
   precioARS: null,
   precioUSD: null,
   tipo: 'gratis',
@@ -266,8 +267,8 @@ function ProductoGratisCard({ onOpenPopup }) {
         onMouseLeave={tilt.onMouseLeave}
         className="relative rounded-3xl p-8 group overflow-hidden"
         style={{
-          background: 'linear-gradient(135deg, rgba(0,201,167,0.08) 0%, rgba(0,201,167,0.02) 100%)',
-          border: '1px solid rgba(0,201,167,0.25)',
+          background: 'linear-gradient(135deg, rgba(34,211,238,0.08) 0%, rgba(34,211,238,0.02) 100%)',
+          border: '1px solid rgba(34,211,238,0.25)',
         }}
       >
         <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity duration-500" style={{ background: TEAL }} />
@@ -310,7 +311,7 @@ function ProductoGratisCard({ onOpenPopup }) {
               whileTap={{ scale: 0.97 }}
               onClick={onOpenPopup}
               className="px-10 py-4 rounded-2xl font-bold text-sm text-white transition-all duration-200"
-              style={{ background: `linear-gradient(135deg, ${TEAL}, #00a88e)`, boxShadow: `0 0 30px rgba(0,201,167,0.25)` }}
+              style={{ background: `linear-gradient(135deg, ${TEAL}, #00a88e)`, boxShadow: `0 0 30px rgba(34,211,238,0.25)` }}
             >
               Descargar gratis →
             </motion.button>
@@ -327,8 +328,9 @@ export default function Tienda({ onOpenPopup }) {
   const titleInView = useInView(titleRef, { once: true })
 
   return (
-    <section id="tienda" className="py-28 px-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section id="tienda" className="pt-20 pb-28 px-6 relative overflow-hidden">
+      <GridGlow className="h-[700px]" />
+      <div className="relative max-w-7xl mx-auto">
 
         <motion.div
           ref={titleRef}
@@ -337,8 +339,8 @@ export default function Tienda({ onOpenPopup }) {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <span className="text-acento text-sm font-semibold tracking-widest uppercase">Recursos digitales</span>
-          <h2 className="text-3xl md:text-5xl font-bold text-crema mt-4 mb-5">Lo que uso cada día<br />para hacer crecer marcas</h2>
+          <Eyebrow>Recursos digitales</Eyebrow>
+          <h1 className="text-4xl md:text-6xl font-bold text-crema mt-6 mb-5 leading-[1.05] tracking-tight">Lo que uso cada día<br />para hacer crecer marcas</h1>
           <p className="text-crema/35 max-w-lg mx-auto">
             Metodología probada en marcas argentinas y de latinoamérica, aplicando recursos que traccionan desde el primer día — con o sin experiencia previa en IA.
           </p>
