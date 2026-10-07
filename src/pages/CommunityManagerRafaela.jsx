@@ -43,7 +43,7 @@ const FAQ_SCHEMA = {
       name: '¿Cuánto cuesta un Community Manager en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'En JuanoConecta los planes de Community Management en Rafaela arrancan en $320.000/mes (plan Starter, 1 red social, 12 publicaciones mensuales), el plan Pro cuesta $550.000/mes (2 redes, 20 publicaciones, reels incluidos) y el plan Full es $850.000/mes (todas las redes, contenido diario, Meta Ads incluido). El presupuesto de pauta en Meta Ads se acuerda por separado según el objetivo.',
+        text: 'En JuanoConecta los planes de Community Management en Rafaela arrancan en $146.000/mes (plan Emprende, pensado para emprendedores: 1 red social, 8 publicaciones mensuales), el plan Starter cuesta $320.000/mes (1 red social, 12 publicaciones mensuales), el plan Pro cuesta $550.000/mes (2 redes, 20 publicaciones, reels incluidos) y el plan Full es $850.000/mes (todas las redes, contenido diario, Meta Ads incluido). El presupuesto de pauta en Meta Ads se acuerda por separado según el objetivo.',
       },
     },
     {
@@ -80,7 +80,7 @@ const faqs = [
   },
   {
     q: '¿Cuánto cuesta un Community Manager en Rafaela?',
-    a: 'Los planes arrancan en $320.000/mes (Starter: 1 red, 12 publicaciones), $550.000/mes (Pro: 2 redes, 20 publicaciones + reels) y $850.000/mes (Full: todas las redes + Meta Ads incluido). El presupuesto de pauta se acuerda aparte.',
+    a: 'Los planes arrancan en $146.000/mes (Emprende, para emprendedores: 1 red, 8 publicaciones), $320.000/mes (Starter: 1 red, 12 publicaciones), $550.000/mes (Pro: 2 redes, 20 publicaciones + reels) y $850.000/mes (Full: todas las redes + Meta Ads incluido). El presupuesto de pauta se acuerda aparte.',
   },
   {
     q: '¿Qué resultados puedo esperar en los primeros meses?',
@@ -97,6 +97,14 @@ const faqs = [
 ]
 
 const planes = [
+  {
+    nombre: 'Emprende',
+    precio: '$146.000',
+    periodo: '/mes',
+    descripcion: 'Para emprendedores que dan sus primeros pasos en redes.',
+    items: ['1 red social (Instagram o Facebook)', '8 publicaciones mensuales', 'Diseño de piezas incluido', 'Análisis mensual de métricas'],
+    color: '#22D3EE',
+  },
   {
     nombre: 'Starter',
     precio: '$320.000',
@@ -129,7 +137,7 @@ export default function CommunityManagerRafaela() {
     <div className="bg-fondo text-crema min-h-screen">
       <Helmet>
         <title>Community Manager en Rafaela | JuanoConecta</title>
-        <meta name="description" content="Community Manager profesional en Rafaela, Santa Fe. Gestión de redes sociales con IA aplicada. Planes desde $320.000/mes. Resultados medibles para negocios locales." />
+        <meta name="description" content="Community Manager profesional en Rafaela, Santa Fe. Gestión de redes sociales con IA aplicada. Planes desde $146.000/mes. Resultados medibles para negocios locales." />
         <link rel="canonical" href="https://juanoconecta.ar/community-manager-rafaela" />
         <meta property="og:title" content="Community Manager en Rafaela | JuanoConecta" />
         <meta property="og:description" content="Gestión profesional de redes sociales para negocios en Rafaela y Santa Fe, potenciada con IA." />
@@ -194,13 +202,13 @@ export default function CommunityManagerRafaela() {
 
       {/* Precios */}
       <section className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <Eyebrow>Transparencia total</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mt-4 mb-4">¿Cuánto cuesta un Community Manager en Rafaela?</h2>
             <p className="text-crema/35 max-w-lg mx-auto">Precios en pesos argentinos, sin sorpresas. El presupuesto de pauta de Meta Ads se acuerda por separado.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {planes.map((plan, i) => (
               <motion.div key={plan.nombre}
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}

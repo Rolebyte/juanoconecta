@@ -101,7 +101,7 @@ const servicios = [
     titulo: 'Community Management',
     descripcion: 'Gestión profesional de redes. Contenido estratégico, diseño y análisis de métricas para crecer de forma orgánica y sostenida.',
     icono: '💬', color: '#6A8FC4',
-    precio: 'Desde $320.000/mes',
+    precio: 'Desde $146.000/mes',
   },
   {
     titulo: 'Meta Ads',

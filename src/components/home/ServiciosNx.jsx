@@ -32,7 +32,7 @@ const servicios = [
     desc: 'Gestión de redes, contenido y campañas pagas con estrategia y métricas reales.',
     items: ['Community management', 'Estrategia y calendario de contenido', 'Copywriting con IA', 'Campañas en Meta Ads', 'Reportes mensuales'],
     wa: 'redes%20y%20publicidad',
-    planes: { texto: 'Planes desde $320.000 por mes · Ver planes', href: '/redes-sociales-para-negocios-rafaela#precios-redes' },
+    planes: { texto: 'Planes desde $146.000 por mes · Ver planes', href: '/redes-sociales-para-negocios-rafaela#precios-redes' },
   },
 ]
 

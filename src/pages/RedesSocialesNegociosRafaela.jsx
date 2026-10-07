@@ -22,7 +22,7 @@ const schema = {
   },
   founder: { '@type': 'Person', name: 'Juan Gallino' },
   areaServed: ['Rafaela', 'Santa Fe', 'Argentina'],
-  priceRange: '$320.000 - $850.000 ARS/mes',
+  priceRange: '$146.000 - $850.000 ARS/mes',
   sameAs: ['https://www.instagram.com/juanoconecta'],
 }
 
@@ -35,7 +35,7 @@ const faqSchema = {
       name: '¿Cuánto cuesta gestionar las redes sociales de un negocio en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'La gestión de redes sociales en Rafaela con JuanoConecta tiene planes desde $320.000 por mes (plan Starter, 2 redes, 12 publicaciones), hasta $850.000 por mes (plan Full, 4 redes, publicaciones ilimitadas con Meta Ads incluido). El precio depende de la cantidad de redes, la frecuencia de publicación y si se incluye publicidad paga.',
+        text: 'La gestión de redes sociales en Rafaela con JuanoConecta tiene planes desde $146.000 por mes (plan Emprende, pensado para emprendedores: 1 red, 8 publicaciones), pasando por el plan Starter a $320.000 (2 redes, 12 publicaciones), hasta $850.000 por mes (plan Full, 4 redes, publicaciones ilimitadas con Meta Ads incluido). El precio depende de la cantidad de redes, la frecuencia de publicación y si se incluye publicidad paga.',
       },
     },
     {
@@ -74,6 +74,7 @@ const faqSchema = {
 }
 
 const planes = [
+  { nombre: 'Emprende', precio: '$146.000', etiqueta: 'PARA EMPRENDEDORES', features: ['1 red social', '8 publicaciones/mes', 'Diseño gráfico incluido', 'Reporte mensual'] },
   { nombre: 'Starter', precio: '$320.000', features: ['2 redes sociales', '12 publicaciones/mes', 'Diseño gráfico incluido', 'Reporte mensual'] },
   { nombre: 'Pro', precio: '$550.000', features: ['3 redes sociales', '20 publicaciones/mes', 'Diseño + Reels/Stories', 'Meta Ads básico', 'Reporte semanal'], destacado: true },
   { nombre: 'Full', precio: '$850.000', features: ['4 redes sociales', 'Publicaciones ilimitadas', 'Meta Ads avanzado', 'Branding integral', 'Soporte 7 días'] },
@@ -86,10 +87,10 @@ export default function RedesSocialesNegociosRafaela() {
     <div className="bg-fondo text-crema min-h-screen">
       <Helmet>
         <title>Redes Sociales para Negocios en Rafaela: gestión, estrategia y precios | JuanoConecta</title>
-        <meta name="description" content="Gestión profesional de redes sociales para negocios en Rafaela y Santa Fe. Planes desde $320.000/mes. Diseño, contenido y estrategia con IA aplicada. Consultá gratis." />
+        <meta name="description" content="Gestión profesional de redes sociales para negocios en Rafaela y Santa Fe. Planes desde $146.000/mes. Diseño, contenido y estrategia con IA aplicada. Consultá gratis." />
         <link rel="canonical" href="https://juanoconecta.ar/redes-sociales-para-negocios-rafaela" />
         <meta property="og:title" content="Redes Sociales para Negocios en Rafaela | JuanoConecta" />
-        <meta property="og:description" content="Gestión profesional de redes sociales para negocios en Rafaela. Planes desde $320.000/mes con diseño, contenido y estrategia con IA." />
+        <meta property="og:description" content="Gestión profesional de redes sociales para negocios en Rafaela. Planes desde $146.000/mes con diseño, contenido y estrategia con IA." />
         <meta property="og:url" content="https://juanoconecta.ar/redes-sociales-para-negocios-rafaela" />
         <meta property="og:type" content="website" />
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
@@ -160,13 +161,13 @@ export default function RedesSocialesNegociosRafaela() {
 
       {/* Precios */}
       <section id="precios-redes" className="py-20 px-6">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
             <Eyebrow>Inversión</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mt-4 mb-4">¿Cuánto cuesta gestionar redes en Rafaela?</h2>
             <p className="text-crema/35 max-w-md mx-auto">Sin contratos largos. Sin sorpresas. Empezás cuando querés.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {planes.map((plan, i) => (
               <motion.div key={plan.nombre}
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
@@ -177,6 +178,9 @@ export default function RedesSocialesNegociosRafaela() {
                 }}>
                 {plan.destacado && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-acento text-white text-[10px] font-bold px-4 py-1.5 rounded-full tracking-wider whitespace-nowrap">MÁS ELEGIDO</div>
+                )}
+                {plan.etiqueta && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#121A30] border border-[#22D3EE]/40 text-[#22D3EE] text-[10px] font-bold px-4 py-1.5 rounded-full tracking-wider whitespace-nowrap">{plan.etiqueta}</div>
                 )}
                 <h3 className="text-lg font-bold text-crema mb-1">{plan.nombre}</h3>
                 <div className="text-3xl font-bold text-crema mb-6">{plan.precio}<span className="text-crema/35 text-sm font-normal">/mes</span></div>

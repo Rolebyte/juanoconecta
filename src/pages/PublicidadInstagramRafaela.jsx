@@ -22,7 +22,7 @@ const schema = {
   },
   founder: { '@type': 'Person', name: 'Juan Gallino' },
   areaServed: ['Rafaela', 'Santa Fe', 'Argentina'],
-  priceRange: '$320.000 - $850.000 ARS/mes',
+  priceRange: '$146.000 - $850.000 ARS/mes',
   sameAs: ['https://www.instagram.com/juanoconecta'],
 }
 
