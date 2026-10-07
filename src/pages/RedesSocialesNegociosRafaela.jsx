@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
+import { PLANES_REDES } from '../data/planesRedes'
 
 const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20gestionar%20las%20redes%20sociales%20de%20mi%20negocio%20en%20Rafaela'
 
@@ -35,7 +36,7 @@ const faqSchema = {
       name: '¿Cuánto cuesta gestionar las redes sociales de un negocio en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'La gestión de redes sociales en Rafaela con JuanoConecta tiene planes desde $146.000 por mes (plan Emprende, pensado para emprendedores: 1 red, 8 publicaciones), pasando por el plan Starter a $320.000 (2 redes, 12 publicaciones), hasta $850.000 por mes (plan Full, 4 redes, publicaciones ilimitadas con Meta Ads incluido). El precio depende de la cantidad de redes, la frecuencia de publicación y si se incluye publicidad paga.',
+        text: 'La gestión de redes sociales en Rafaela con JuanoConecta tiene planes desde $146.000 por mes (plan Emprende, pensado para emprendedores: 1 red, 8 publicaciones), pasando por el plan Starter a $320.000 (2 redes, 12 publicaciones), hasta $850.000 por mes (plan Full, 4 redes, publicaciones ilimitadas y Meta Ads avanzado). El precio depende de la cantidad de redes, la frecuencia de publicación y si se incluye publicidad paga.',
       },
     },
     {
@@ -73,12 +74,7 @@ const faqSchema = {
   ],
 }
 
-const planes = [
-  { nombre: 'Emprende', precio: '$146.000', etiqueta: 'PARA EMPRENDEDORES', features: ['1 red social', '8 publicaciones/mes', 'Diseño gráfico incluido', 'Reporte mensual'] },
-  { nombre: 'Starter', precio: '$320.000', features: ['2 redes sociales', '12 publicaciones/mes', 'Diseño gráfico incluido', 'Reporte mensual'] },
-  { nombre: 'Pro', precio: '$550.000', features: ['3 redes sociales', '20 publicaciones/mes', 'Diseño + Reels/Stories', 'Meta Ads básico', 'Reporte semanal'], destacado: true },
-  { nombre: 'Full', precio: '$850.000', features: ['4 redes sociales', 'Publicaciones ilimitadas', 'Meta Ads avanzado', 'Branding integral', 'Soporte 7 días'] },
-]
+const planes = PLANES_REDES
 
 const faqs = faqSchema.mainEntity
 
@@ -183,7 +179,8 @@ export default function RedesSocialesNegociosRafaela() {
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#121A30] border border-[#22D3EE]/40 text-[#22D3EE] text-[10px] font-bold px-4 py-1.5 rounded-full tracking-wider whitespace-nowrap">{plan.etiqueta}</div>
                 )}
                 <h3 className="text-lg font-bold text-crema mb-1">{plan.nombre}</h3>
-                <div className="text-3xl font-bold text-crema mb-6">{plan.precio}<span className="text-crema/35 text-sm font-normal">/mes</span></div>
+                <div className="text-3xl font-bold text-crema">{plan.precio}<span className="text-crema/35 text-sm font-normal">/mes</span></div>
+                <p className="text-crema/40 text-xs mt-2 mb-6 leading-relaxed">{plan.descripcion}</p>
                 <ul className="space-y-2.5 flex-1 mb-7">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-center gap-2.5 text-sm text-crema/65">

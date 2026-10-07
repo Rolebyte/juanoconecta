@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
+import { PLANES_REDES } from '../data/planesRedes'
 
 const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20el%20servicio%20de%20Community%20Manager%20en%20Rafaela'
 
@@ -43,7 +44,7 @@ const FAQ_SCHEMA = {
       name: '¿Cuánto cuesta un Community Manager en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'En JuanoConecta los planes de Community Management en Rafaela arrancan en $146.000/mes (plan Emprende, pensado para emprendedores: 1 red social, 8 publicaciones mensuales), el plan Starter cuesta $320.000/mes (1 red social, 12 publicaciones mensuales), el plan Pro cuesta $550.000/mes (2 redes, 20 publicaciones, reels incluidos) y el plan Full es $850.000/mes (todas las redes, contenido diario, Meta Ads incluido). El presupuesto de pauta en Meta Ads se acuerda por separado según el objetivo.',
+        text: 'En JuanoConecta los planes de Community Management en Rafaela arrancan en $146.000/mes (plan Emprende, pensado para emprendedores: 1 red social, 8 publicaciones mensuales), el plan Starter cuesta $320.000/mes (2 redes sociales, 12 publicaciones mensuales), el plan Pro cuesta $550.000/mes (3 redes, 20 publicaciones, reels y Meta Ads básico) y el plan Full es $850.000/mes (4 redes, publicaciones ilimitadas, Meta Ads avanzado y branding). El presupuesto de pauta en Meta Ads se acuerda por separado según el objetivo.',
       },
     },
     {
@@ -80,7 +81,7 @@ const faqs = [
   },
   {
     q: '¿Cuánto cuesta un Community Manager en Rafaela?',
-    a: 'Los planes arrancan en $146.000/mes (Emprende, para emprendedores: 1 red, 8 publicaciones), $320.000/mes (Starter: 1 red, 12 publicaciones), $550.000/mes (Pro: 2 redes, 20 publicaciones + reels) y $850.000/mes (Full: todas las redes + Meta Ads incluido). El presupuesto de pauta se acuerda aparte.',
+    a: 'Los planes arrancan en $146.000/mes (Emprende, para emprendedores: 1 red, 8 publicaciones), $320.000/mes (Starter: 2 redes, 12 publicaciones), $550.000/mes (Pro: 3 redes, 20 publicaciones, reels y Meta Ads básico) y $850.000/mes (Full: 4 redes, publicaciones ilimitadas, Meta Ads avanzado y branding). El presupuesto de pauta se acuerda aparte.',
   },
   {
     q: '¿Qué resultados puedo esperar en los primeros meses?',
@@ -96,41 +97,7 @@ const faqs = [
   },
 ]
 
-const planes = [
-  {
-    nombre: 'Emprende',
-    precio: '$146.000',
-    periodo: '/mes',
-    descripcion: 'Para emprendedores que dan sus primeros pasos en redes.',
-    items: ['1 red social (Instagram o Facebook)', '8 publicaciones mensuales', 'Diseño de piezas incluido', 'Análisis mensual de métricas'],
-    color: '#22D3EE',
-  },
-  {
-    nombre: 'Starter',
-    precio: '$320.000',
-    periodo: '/mes',
-    descripcion: 'Para negocios que quieren arrancar con presencia profesional.',
-    items: ['1 red social (Instagram o Facebook)', '12 publicaciones mensuales', 'Diseño de piezas incluido', 'Análisis mensual de métricas', 'Respuesta a comentarios'],
-    color: '#6A8FC4',
-  },
-  {
-    nombre: 'Pro',
-    precio: '$550.000',
-    periodo: '/mes',
-    descripcion: 'Para negocios que quieren crecer con estrategia y contenido.',
-    items: ['2 redes sociales', '20 publicaciones mensuales', 'Reels y stories incluidos', 'Análisis quincenal', 'Respuesta a DMs y comentarios', 'Informe de competencia'],
-    color: '#3D7BFF',
-    destacado: true,
-  },
-  {
-    nombre: 'Full',
-    precio: '$850.000',
-    periodo: '/mes',
-    descripcion: 'Estrategia integral con publicidad incluida.',
-    items: ['Todas las redes sociales', 'Contenido diario', 'Meta Ads incluido', 'Análisis semanal', 'Gestión completa de comunidad', 'Copywriting + diseño'],
-    color: '#8FC46A',
-  },
-]
+const planes = PLANES_REDES.map((p) => ({ ...p, periodo: '/mes', items: p.features }))
 
 export default function CommunityManagerRafaela() {
   return (
@@ -218,7 +185,10 @@ export default function CommunityManagerRafaela() {
                   border: plan.destacado ? '1px solid rgba(61,123,255,0.35)' : '1px solid rgba(255,255,255,0.07)',
                 }}>
                 {plan.destacado && (
-                  <div className="absolute top-4 right-4 text-white text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ background: '#3D7BFF' }}>MÁS POPULAR</div>
+                  <div className="absolute top-4 right-4 text-white text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ background: '#3D7BFF' }}>MÁS ELEGIDO</div>
+                )}
+                {plan.etiqueta && (
+                  <div className="absolute top-4 right-4 text-[#22D3EE] text-[10px] font-bold px-2.5 py-1 rounded-full border border-[#22D3EE]/40 bg-[#121A30]">{plan.etiqueta}</div>
                 )}
                 <div className="mb-5">
                   <div className="text-sm font-semibold mb-1" style={{ color: plan.color }}>{plan.nombre}</div>
