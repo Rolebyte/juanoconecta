@@ -13,7 +13,7 @@ const publicos = [
   { titulo: 'Emprendedores y comercios', texto: 'Para que usen la IA para vender más, comunicar mejor y ahorrar tiempo en el día a día.' },
   { titulo: 'Personal municipal y comunal', texto: 'Para agilizar tareas administrativas, redactar mejor y atender consultas de vecinos con criterio.' },
   { titulo: 'Jóvenes y estudiantes', texto: 'Para sumar una herramienta clave en la búsqueda de su primer trabajo o en su propio proyecto.' },
-  { titulo: 'Cámaras e instituciones', texto: 'Para socios, asociados o equipos que quieren actualizarse con una propuesta práctica y local.' },
+  { titulo: 'Cámaras e instituciones', texto: 'Para que sus socios y equipos se actualicen con una propuesta práctica y cercana.' },
 ]
 
 const temas = [
@@ -31,7 +31,6 @@ const resultados = [
   { valor: '100%', texto: 'de quienes respondieron recomienda la capacitación' },
 ]
 
-const opiniones = ['Explicación muy clara.', 'Toda la información que se nos brindó.']
 
 const incluye = [
   { titulo: 'Presentación y ejemplos locales', texto: 'Casos de comercios y emprendimientos de la región, no ejemplos de otro país.' },
@@ -44,7 +43,7 @@ const preguntas = [
   { q: '¿Cuánto cuesta?', a: 'Depende del formato, la cantidad de encuentros y la distancia. Contanos qué necesitan y armamos una propuesta a medida, sin compromiso.' },
   { q: '¿Para cuántas personas es?', a: 'La charla funciona bien con grupos grandes. Para el taller práctico recomendamos hasta 30 personas, así cada uno puede trabajar sobre su caso.' },
   { q: '¿Qué necesitan los participantes?', a: 'Solo un celular con internet. Si el lugar tiene computadoras, mejor, pero no es obligatorio. La institución pone el espacio, un proyector y buena conexión.' },
-  { q: '¿Viajan a otras localidades?', a: 'Sí. Damos capacitaciones presenciales en Rafaela, Sunchales y localidades de la región, y también virtuales para cualquier lugar.' },
+  { q: '¿Hacen capacitaciones fuera de Rafaela?', a: 'Sí. Vamos a la localidad que lo necesite, y si la distancia no lo permite, la hacemos en forma virtual.' },
   { q: '¿Hace falta saber de tecnología?', a: 'No. Arrancamos desde cero, con un lenguaje simple y herramientas gratuitas.' },
 ]
 
@@ -66,7 +65,7 @@ const SCHEMA = {
   '@type': 'Service',
   name: 'Capacitaciones en inteligencia artificial para municipios, comunas e instituciones',
   provider: { '@type': 'Organization', name: 'JuanoConecta', url: 'https://juanoconecta.ar' },
-  areaServed: ['Rafaela', 'Sunchales', 'Provincia de Santa Fe'],
+  areaServed: ['Rafaela', 'Provincia de Santa Fe'],
   serviceType: 'Capacitación en inteligencia artificial',
 }
 
@@ -82,7 +81,7 @@ export default function CapacitacionesInstituciones() {
     <div className="bg-fondo text-crema min-h-screen">
       <Helmet>
         <title>Capacitaciones en IA para municipios, comunas e instituciones | JuanoConecta</title>
-        <meta name="description" content="Charlas, talleres y ciclos de inteligencia artificial para municipios, comunas, cámaras e instituciones de Rafaela, Sunchales y la región. Propuestas a medida." />
+        <meta name="description" content="Charlas, talleres y ciclos de inteligencia artificial para municipios, comunas, cámaras e instituciones de Rafaela y la región. Propuestas a medida." />
         <link rel="canonical" href="https://juanoconecta.ar/capacitaciones" />
         <meta property="og:title" content="Capacitaciones en IA para municipios e instituciones | JuanoConecta" />
         <meta property="og:url" content="https://juanoconecta.ar/capacitaciones" />
@@ -101,7 +100,7 @@ export default function CapacitacionesInstituciones() {
             Llevá la <span className="text-acento">inteligencia artificial</span> a tu localidad
           </h1>
           <p className="text-crema/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-            Charlas, talleres y ciclos prácticos para emprendedores, comercios, socios de cámaras, personal municipal y jóvenes de Rafaela, Sunchales y toda la región.
+            Charlas, talleres y ciclos prácticos para emprendedores, comercios, socios de cámaras, personal municipal y jóvenes de Rafaela y toda la región.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <BtnPrimary href={WA_PROPUESTA} external>Pedir una propuesta para mi localidad</BtnPrimary>
@@ -118,7 +117,7 @@ export default function CapacitacionesInstituciones() {
             <img src="/img/capacitaciones/jornada-ccirr-2.webp" alt="Participantes de la capacitación trabajando con la presentación sobre qué tareas delegar a la IA" loading="lazy" width="960" height="1200" className="w-full rounded-3xl border border-white/10 object-cover aspect-[4/5] mt-10" />
           </Reveal>
           <div>
-            <SectionTitle eyebrow="Experiencia real" title="Ya lo hicimos en el Centro Comercial e Industrial de Rafaela" sub="En octubre de 2026 dimos “Emprender con IA” para el Programa de Mentorías para el Desarrollo Emprendedor del CCIRR. Esto dijeron los participantes." />
+            <SectionTitle eyebrow="Experiencia real" title="Ya lo hicimos en el Centro Comercial e Industrial de Rafaela" sub="En octubre de 2026 dimos “Emprender con IA” para el Programa de Mentorías para el Desarrollo Emprendedor del CCIRR. Así lo calificaron los participantes." />
             <div className="grid grid-cols-3 gap-3">
               {resultados.map((r) => (
                 <div key={r.valor} className="rounded-2xl border border-white/10 bg-[#0F1629] p-4">
@@ -127,11 +126,7 @@ export default function CapacitacionesInstituciones() {
                 </div>
               ))}
             </div>
-            <div className="mt-6 grid gap-3">
-              {opiniones.map((o) => (
-                <blockquote key={o} className="rounded-2xl border-l-2 border-teal bg-[#0F1629] px-5 py-3 text-crema/85 italic">“{o}”</blockquote>
-              ))}
-            </div>
+            <p className="mt-6 rounded-2xl border-l-2 border-teal bg-[#0F1629] px-5 py-4 text-crema/80 leading-relaxed">Lo que más valoraron: que la explicación fuera clara y salir con herramientas concretas para aplicar en su negocio.</p>
           </div>
         </div>
       </section>
