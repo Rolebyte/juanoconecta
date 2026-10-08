@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import WhatsAppButton from '../components/WhatsAppButton'
 import { Eyebrow, GridGlow, GlowCard, SectionTitle, BtnPrimary, BtnGhost, Check, Reveal } from '../components/home/ui'
 import { CAPACITACIONES } from '../data/capacitaciones'
+import GaleriaJornada from '../components/GaleriaJornada'
 
 const WA_PROPUESTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad, comuna o cámara de ____. Nos interesa una capacitación en inteligencia artificial para los emprendedores y comercios de nuestra localidad.')
 const MAIL = 'mailto:juanoconecta@gmail.com?subject=' + encodeURIComponent('Capacitación en IA para nuestra localidad')
@@ -111,8 +112,8 @@ export default function CapacitacionesInstituciones() {
       <section className="py-24 px-6 bg-[#080C18]">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <Reveal className="grid grid-cols-2 gap-4">
-            <img src="/img/capacitaciones/jornada-ccirr-1.webp" alt="Juan dando la capacitación Emprender con IA en el Centro Comercial e Industrial de Rafaela" loading="lazy" width="960" height="1200" className="w-full rounded-3xl border border-white/10 object-cover aspect-[4/5]" />
-            <img src="/img/capacitaciones/jornada-ccirr-2.webp" alt="Participantes de la capacitación trabajando con la presentación sobre qué tareas delegar a la IA" loading="lazy" width="960" height="1200" className="w-full rounded-3xl border border-white/10 object-cover aspect-[4/5] mt-10" />
+            <img src="/img/capacitaciones/jornada-ccirr-1.webp" alt="Juan Gallino dando la capacitación Emprender con IA en el Centro Comercial e Industrial de Rafaela" loading="lazy" width="960" height="1200" className="w-full rounded-3xl border border-white/10 object-cover aspect-[4/5]" />
+            <img src="/img/capacitaciones/jornada-ccirr-2.webp" alt="Participantes sonriendo durante la capacitación Emprender con IA" loading="lazy" width="960" height="1200" className="w-full rounded-3xl border border-white/10 object-cover aspect-[4/5] mt-10" />
           </Reveal>
           <div>
             <SectionTitle eyebrow="Experiencia real" title="Ya lo hicimos en el Centro Comercial e Industrial de Rafaela" sub="En octubre de 2026 dimos “Emprender con IA” para el Programa de Mentorías para el Desarrollo Emprendedor del CCIRR. Así lo calificaron los participantes." />
@@ -126,6 +127,16 @@ export default function CapacitacionesInstituciones() {
             </div>
             <p className="mt-6 rounded-2xl border-l-2 border-teal bg-[#0F1629] px-5 py-4 text-crema/80 leading-relaxed">Lo que más valoraron: que la explicación fuera clara y salir con herramientas concretas para aplicar en su negocio.</p>
           </div>
+        </div>
+        <div className="max-w-6xl mx-auto mt-20">
+          <Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
+            <div>
+              <Eyebrow>7 de octubre · SUM del CCIRR</Eyebrow>
+              <h3 className="text-2xl md:text-4xl font-bold text-crema mt-4 tracking-tight">Así fue la jornada</h3>
+            </div>
+            <p className="text-crema/45 text-sm">Tocá una foto para verla en grande.</p>
+          </Reveal>
+          <GaleriaJornada />
         </div>
       </section>
 
