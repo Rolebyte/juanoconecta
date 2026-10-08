@@ -214,10 +214,10 @@ export default function Contacto() {
                 <div className="w-12 h-12 rounded-xl bg-acento/10 flex items-center justify-center text-acento flex-shrink-0">
                   {item.icono}
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-crema/40 text-xs mb-1">{item.titulo}</p>
                   {item.href ? (
-                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-crema font-medium hover:text-acento transition-colors">
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-crema font-medium hover:text-acento transition-colors [overflow-wrap:anywhere]">
                       {item.valor}
                     </a>
                   ) : (

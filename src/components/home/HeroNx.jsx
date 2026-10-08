@@ -71,8 +71,8 @@ export default function HeroNx() {
         className="relative max-w-6xl mx-auto mt-20"
       >
         <div className="absolute -inset-x-10 -top-10 h-40 bg-acento/30 blur-[90px] rounded-full pointer-events-none" />
-        <div className="relative grid grid-cols-12 gap-4 md:gap-5">
-          <div className="col-span-12 md:col-span-4 flex flex-col gap-4 md:gap-5 order-2 md:order-1">
+        <div className="relative grid grid-cols-12 gap-4 lg:gap-5">
+          <div className="col-span-12 lg:col-span-4 flex flex-col gap-4 lg:gap-5 order-2 lg:order-1">
             <div className="rounded-3xl border border-white/10 bg-[#121A30]/80 backdrop-blur p-6 text-left">
               <div className="text-5xl font-bold text-crema">+340%</div>
               <div className="text-crema/55 text-sm mt-2">alcance orgánico promedio en clientes de redes</div>
@@ -91,11 +91,11 @@ export default function HeroNx() {
               </div>
             </div>
           </div>
-          <div className="col-span-12 md:col-span-5 relative order-1 md:order-2">
-            <div className="rounded-[2rem] overflow-hidden border border-white/10 h-[380px] md:h-[440px] bg-[#121A30]">
+          <div className="col-span-12 lg:col-span-5 relative order-1 lg:order-2">
+            <div className="rounded-[2rem] overflow-hidden border border-white/10 h-[380px] lg:h-[440px] bg-[#121A30]">
               <img src="/img/juan/juan-hero.webp" alt="Juan Gallino, fundador de JuanoConecta" className="w-full h-full object-cover object-top" />
             </div>
-            <div className="absolute -top-12 right-4 md:right-6 z-10 hidden sm:block"><BadgeCircular /></div>
+            <div className="absolute -top-12 right-4 lg:right-6 z-10 hidden sm:block"><BadgeCircular /></div>
           </div>
           <div className="col-span-12 md:col-span-3 flex flex-col gap-4 md:gap-5 order-3">
             <div className="rounded-3xl bg-acento p-6 text-left text-white flex-1 flex flex-col justify-between min-h-[180px]">

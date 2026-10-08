@@ -76,14 +76,14 @@ function SelectorTarifa({ tarifas, color, elegida, onElegir }) {
   return (
     <div className="mb-5">
       <p className="text-crema/30 text-[10px] tracking-widest uppercase mb-2">Elegí tu tipo de negocio</p>
-      <div className="relative grid grid-cols-3 p-1 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="relative grid grid-cols-[1.35fr_1fr_1fr] p-1 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
         {tarifas.map((x) => (
           <button
             key={x.id}
             type="button"
             onClick={() => onElegir(x.id)}
             aria-pressed={x.id === elegida}
-            className={`relative z-10 py-2 text-xs font-semibold rounded-lg transition-colors duration-300 ${x.id === elegida ? 'text-[#0B1020]' : 'text-crema/55 hover:text-crema'}`}
+            className={`relative z-10 py-2 px-1 text-[11px] sm:text-xs font-semibold whitespace-nowrap rounded-lg transition-colors duration-300 ${x.id === elegida ? 'text-[#0B1020]' : 'text-crema/55 hover:text-crema'}`}
           >
             {x.id === elegida && (
               <motion.span
@@ -107,10 +107,9 @@ function SelectorTarifa({ tarifas, color, elegida, onElegir }) {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0"
           >
-            <div className="flex items-baseline gap-3">
-              <span className="text-crema font-bold text-2xl">{t.ars} <span className="text-sm font-semibold text-crema/50">ARS</span></span>
-              <span className="text-crema/25 text-sm">|</span>
-              <span className="font-bold" style={{ color }}>{t.usd} USD</span>
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span className="text-crema font-bold text-2xl whitespace-nowrap">{t.ars} <span className="text-sm font-semibold text-crema/50">ARS</span></span>
+              <span className="font-bold whitespace-nowrap" style={{ color }}>{t.usd} USD</span>
             </div>
             <p className="text-crema/45 text-xs mt-1.5">{t.para}</p>
           </motion.div>
@@ -137,7 +136,7 @@ function ProductoCard({ producto, index }) {
       ref={tilt.ref}
       onMouseMove={tilt.onMouseMove}
       onMouseLeave={tilt.onMouseLeave}
-      className="relative rounded-3xl p-8 flex flex-col group overflow-hidden h-full"
+      className="relative rounded-3xl p-6 sm:p-8 flex flex-col group overflow-hidden h-full"
       style={{
         background: producto.destacado
           ? 'linear-gradient(160deg, rgba(234,179,8,0.08) 0%, rgba(234,179,8,0.02) 100%)'
@@ -210,7 +209,7 @@ function ProductoCard({ producto, index }) {
               A·I
             </div>
             <div className="flex-1">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                 <span className="text-crema text-xs font-bold">Potenciado con AuditAI</span>
                 <span
                   className="text-[9px] font-bold px-1.5 py-0.5 rounded-full tracking-wider"
@@ -292,7 +291,7 @@ function ProductoCard({ producto, index }) {
           href={producto.tarifas ? `${producto.btnWA}%20(tarifa%20${encodeURIComponent(producto.tarifas.find((x) => x.id === tarifa).nombre)})` : producto.btnWA}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full py-3.5 text-white font-semibold rounded-xl text-center flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
+          className="w-full py-3.5 px-3 text-sm sm:text-base text-white font-semibold rounded-xl text-center flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
           style={{ background: 'linear-gradient(135deg, #25D366, #1da851)' }}
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
