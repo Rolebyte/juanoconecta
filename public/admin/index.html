@@ -3,86 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin — JuanoConecta Leads</title>
+<title>Admin — JuanoConecta</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',system-ui,sans-serif;background:#0A0A0A;color:#F5F0EB;min-height:100vh}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#0B1020;color:#EAF0FF;min-height:100vh}
 .login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh}
-.login-card{background:#111;border:1px solid #222;border-radius:12px;padding:40px;width:340px}
+.login-card{background:#121A30;border:1px solid #2a3557;border-radius:12px;padding:40px;width:340px}
 .login-card h1{font-size:20px;font-weight:500;margin-bottom:6px}
-.login-card p{color:#666;font-size:14px;margin-bottom:24px}
-.login-card input{width:100%;padding:10px 14px;background:#1a1a1a;border:1px solid #333;border-radius:8px;color:#F5F0EB;font-size:14px;margin-bottom:12px}
-.login-card input:focus{outline:none;border-color:#C4846A}
+.login-card p{color:#8A94B8;font-size:14px;margin-bottom:24px}
+.login-card input{width:100%;padding:10px 14px;background:#18223D;border:1px solid #34426A;border-radius:8px;color:#EAF0FF;font-size:14px;margin-bottom:12px}
+.login-card input:focus{outline:none;border-color:#3D7BFF}
 .logo{font-size:14px;font-weight:500;margin-bottom:20px}
-.logo span{color:#C4846A}
-header{background:#111;border-bottom:1px solid #1e1e1e;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.logo span{color:#3D7BFF}
+header{background:#121A30;border-bottom:1px solid #22304F;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
 .metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:20px 28px 0}
-.metric{background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:14px 16px}
-.metric-label{font-size:11px;color:#555;margin-bottom:5px}
+.metric{background:#121A30;border:1px solid #22304F;border-radius:10px;padding:14px 16px}
+.metric-label{font-size:11px;color:#6B769A;margin-bottom:5px}
 .metric-val{font-size:22px;font-weight:500}
-.metric-sub{font-size:10px;color:#444;margin-top:3px}
-.metric-val.green{color:#1D9E75}.metric-val.coral{color:#C4846A}.metric-val.amber{color:#BA7517}.metric-val.purple{color:#7C6FCD}.metric-val.blue{color:#4A9EDB}
-.chart-wrap{margin:16px 28px 0;background:#111;border:1px solid #1e1e1e;border-radius:10px;padding:16px;display:flex;gap:24px}
+.metric-sub{font-size:10px;color:#5A6588;margin-top:3px}
+.metric-val.green{color:#1D9E75}.metric-val.coral{color:#3D7BFF}.metric-val.amber{color:#BA7517}.metric-val.purple{color:#7C6FCD}.metric-val.blue{color:#4A9EDB}
+.chart-wrap{margin:16px 28px 0;background:#121A30;border:1px solid #22304F;border-radius:10px;padding:16px;display:flex;gap:24px}
 .chart-main{flex:1}
-.chart-title{font-size:11px;color:#555;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
+.chart-title{font-size:11px;color:#6B769A;margin-bottom:10px;text-transform:uppercase;letter-spacing:.04em}
 .chart-bars{display:flex;align-items:flex-end;gap:5px;height:56px}
 .bar-col{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
-.bar{background:#C4846A;border-radius:3px 3px 0 0;width:100%;min-height:2px;transition:height .3s}
-.bar-label{font-size:9px;color:#444}
-.bar-val{font-size:9px;color:#666;min-height:12px}
+.bar{background:#3D7BFF;border-radius:3px 3px 0 0;width:100%;min-height:2px;transition:height .3s}
+.bar-label{font-size:9px;color:#5A6588}
+.bar-val{font-size:9px;color:#8A94B8;min-height:12px}
 .source-split{display:flex;flex-direction:column;gap:8px;min-width:110px;justify-content:center}
 .source-row{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px}
-.source-bar-bg{flex:1;height:4px;background:#1a1a1a;border-radius:2px;overflow:hidden}
+.source-bar-bg{flex:1;height:4px;background:#18223D;border-radius:2px;overflow:hidden}
 .source-bar-fill{height:100%;border-radius:2px;transition:width .4s}
 .toolbar{padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .toolbar-left{display:flex;gap:7px;flex-wrap:wrap}
-input.search{padding:7px 12px;background:#111;border:1px solid #222;border-radius:8px;color:#F5F0EB;font-size:13px;width:190px}
-input.search:focus{outline:none;border-color:#C4846A}
-select.filter{padding:7px 10px;background:#111;border:1px solid #222;border-radius:8px;color:#F5F0EB;font-size:12px;cursor:pointer}
-.btn{padding:7px 14px;border-radius:8px;border:1px solid #333;background:transparent;color:#F5F0EB;font-size:12px;cursor:pointer;transition:background .15s}
-.btn:hover{background:#1a1a1a}
-.btn-coral{background:#C4846A;border-color:#C4846A;color:#fff}
-.btn-coral:hover{background:#b07660}
+input.search{padding:7px 12px;background:#121A30;border:1px solid #2a3557;border-radius:8px;color:#EAF0FF;font-size:13px;width:190px}
+input.search:focus{outline:none;border-color:#3D7BFF}
+select.filter{padding:7px 10px;background:#121A30;border:1px solid #2a3557;border-radius:8px;color:#EAF0FF;font-size:12px;cursor:pointer}
+.btn{padding:7px 14px;border-radius:8px;border:1px solid #34426A;background:transparent;color:#EAF0FF;font-size:12px;cursor:pointer;transition:background .15s}
+.btn:hover{background:#18223D}
+.btn-coral{background:#3D7BFF;border-color:#3D7BFF;color:#fff}
+.btn-coral:hover{background:#2F66E0}
 .btn-green{background:#0e2e1a;border-color:#1D9E75;color:#1D9E75}
 .btn-green:hover{background:#0a2414}
 .btn-sm{padding:5px 10px;font-size:11px}
-.table-wrap{margin:0 28px 28px;background:#111;border:1px solid #1e1e1e;border-radius:12px;overflow:hidden}
+.table-wrap{margin:0 28px 28px;background:#121A30;border:1px solid #22304F;border-radius:12px;overflow:hidden}
 table{width:100%;border-collapse:collapse;font-size:12px}
-th{text-align:left;padding:9px 12px;font-size:10px;color:#444;border-bottom:1px solid #1e1e1e;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
-td{padding:8px 12px;border-bottom:1px solid #141414;color:#ccc;vertical-align:middle}
+th{text-align:left;padding:9px 12px;font-size:10px;color:#5A6588;border-bottom:1px solid #22304F;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+td{padding:8px 12px;border-bottom:1px solid #16203A;color:#ccc;vertical-align:middle}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:#0f0f0f}
+tr:hover td{background:#0E1528}
 .badge{padding:2px 7px;border-radius:20px;font-size:10px;font-weight:500;display:inline-block}
 .badge-pendiente{background:#2a1f0a;color:#BA7517;border:1px solid #3a2a0e}
 .badge-enviado{background:#0a1f12;color:#1D9E75;border:1px solid #0e2e1a}
 .badge-captado{background:#0f1e36;color:#4A9EDB;border:1px solid #1a3455}
 .badge-error{background:#1f0a0a;color:#A32D2D;border:1px solid #2e0e0e}
-.badge-rebotado{background:#1a1a1a;color:#555;border:1px solid #222}
-.label-sin-etiquetar{background:#1a1a1a;color:#444;border:1px solid #222}
+.badge-rebotado{background:#18223D;color:#6B769A;border:1px solid #2a3557}
+.label-sin-etiquetar{background:#18223D;color:#5A6588;border:1px solid #2a3557}
 .label-interesado{background:#0f1e36;color:#4A9EDB;border:1px solid #1a3455}
 .label-en-negociacion{background:#1a1f0a;color:#8DB843;border:1px solid #2a3510}
 .label-cerrado{background:#0a1f12;color:#1D9E75;border:1px solid #0e2e1a}
 .label-descartado{background:#1f0a0a;color:#664444;border:1px solid #2e0e0e}
-.source-tag{padding:2px 6px;border-radius:20px;font-size:10px;background:#1a1a1a;border:1px solid #2a2a2a;color:#555}
+.source-tag{padding:2px 6px;border-radius:20px;font-size:10px;background:#18223D;border:1px solid #2a3557;color:#6B769A}
 .source-tag.popup{color:#534AB7;background:#13103A;border-color:#1e1956}
 .source-tag.boton{color:#1D9E75;background:#0a1f12;border-color:#0e2e1a}
 .seq-pip{display:inline-flex;gap:3px;align-items:center}
-.pip{width:8px;height:8px;border-radius:50%;border:1px solid #333;background:#1a1a1a}
+.pip{width:8px;height:8px;border-radius:50%;border:1px solid #34426A;background:#18223D}
 .pip.done{background:#1D9E75;border-color:#1D9E75}
 .actions{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
-.empty{text-align:center;padding:50px;color:#444;font-size:13px}
+.empty{text-align:center;padding:50px;color:#5A6588;font-size:13px}
 .toast{position:fixed;bottom:20px;right:20px;background:#1D9E75;color:#fff;padding:10px 16px;border-radius:8px;font-size:13px;display:none;z-index:999}
 .toast.error{background:#A32D2D}
 #app{display:none}
-.new-dot{display:inline-block;width:6px;height:6px;background:#C4846A;border-radius:50%;margin-left:4px;vertical-align:middle}
-.label-select{padding:3px 7px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;color:#888;font-size:11px;cursor:pointer}
-.label-select:focus{outline:none;border-color:#C4846A}
-.age-tag{font-size:10px;color:#444}
-.age-tag.hot{color:#C4846A}
-.notes-input{background:#0f0f0f;border:1px solid #1e1e1e;border-radius:6px;color:#888;font-size:11px;padding:3px 7px;width:120px}
-.notes-input:focus{outline:none;border-color:#C4846A;color:#F5F0EB}
+.new-dot{display:inline-block;width:6px;height:6px;background:#3D7BFF;border-radius:50%;margin-left:4px;vertical-align:middle}
+.label-select{padding:3px 7px;background:#18223D;border:1px solid #2a3557;border-radius:6px;color:#888;font-size:11px;cursor:pointer}
+.label-select:focus{outline:none;border-color:#3D7BFF}
+.age-tag{font-size:10px;color:#5A6588}
+.age-tag.hot{color:#3D7BFF}
+.notes-input{background:#0E1528;border:1px solid #22304F;border-radius:6px;color:#888;font-size:11px;padding:3px 7px;width:120px}
+.notes-input:focus{outline:none;border-color:#3D7BFF;color:#EAF0FF}
 .wa-btn{padding:4px 8px;border-radius:6px;border:1px solid #1a3020;background:#0a1f14;color:#25D366;font-size:11px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
 .wa-btn:hover{background:#0e2a1a}
+.tabs{display:flex;gap:6px;padding:16px 28px 0;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:999px;border:1px solid #2a3557;background:#121A30;color:#8A94B8;font-size:13px;cursor:pointer;font-family:inherit}
+.tab.on{background:#3D7BFF;border-color:#3D7BFF;color:#fff}
+.tab .n{opacity:.7;margin-left:6px;font-size:11px}
+.panel{display:none}.panel.on{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;padding:16px 28px 28px}
+.card{background:#121A30;border:1px solid #22304F;border-radius:12px;padding:16px;font-size:13px;line-height:1.5}
+.card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.stars{color:#22D3EE;letter-spacing:2px}
+.card .k{font-size:10px;color:#6B769A;text-transform:uppercase;letter-spacing:.05em;margin-top:8px}
+.chip{display:inline-block;padding:2px 8px;border-radius:999px;background:#16203A;border:1px solid #2a3557;color:#8A94B8;font-size:11px;margin:2px 4px 0 0}
+.chip.si{color:#1D9E75;border-color:#0e2e1a}.chip.no{color:#A32D2D}
+.lead-ok{border-color:#3D7BFF}
+@media(max-width:700px){.metrics{grid-template-columns:repeat(2,1fr)}header{flex-wrap:wrap;gap:10px}.cards{padding:16px}}
 </style>
 </head>
 <body>
@@ -90,7 +104,7 @@ tr:hover td{background:#0f0f0f}
 <div class="login-screen" id="login-screen">
   <div class="login-card">
     <div class="logo">Juano<span>Conecta</span></div>
-    <h1>Panel de leads</h1>
+    <h1>Panel de admin</h1>
     <p>Ingresá tu contraseña de admin</p>
     <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
     <button class="btn btn-coral" style="width:100%;text-align:center;display:block;padding:10px" onclick="doLogin()">Ingresar</button>
@@ -102,18 +116,52 @@ tr:hover td{background:#0f0f0f}
   <header>
     <div style="display:flex;align-items:center;gap:12px">
       <div class="logo" style="margin:0">Juano<span>Conecta</span></div>
-      <span style="color:#333">|</span>
-      <span style="font-size:13px;color:#555">Leads CRM</span>
+      <span style="color:#34426A">|</span>
+      <span style="font-size:13px;color:#6B769A">Panel</span>
     </div>
     <div style="display:flex;gap:7px">
-      <button class="btn btn-sm" onclick="loadLeads()">↻ Actualizar</button>
+      <button class="btn btn-sm" onclick="loadLeads();loadExtras()">↻ Actualizar</button>
       <button class="btn btn-sm btn-green" onclick="copyEmails()" title="Copiar todos los emails visibles">⎘ Copiar emails</button>
       <button class="btn btn-sm" onclick="exportCSV()">↓ CSV</button>
       <button class="btn btn-sm btn-coral" onclick="triggerSequence()" title="Ejecutar secuencia manualmente">▶ Secuencia</button>
-      <button class="btn btn-sm" onclick="doLogout()" style="color:#444">Salir</button>
+      <button class="btn btn-sm" onclick="doLogout()" style="color:#5A6588">Salir</button>
     </div>
   </header>
 
+  <div class="tabs">
+    <button class="tab on" data-tab="leads" onclick="showTab('leads')">Leads<span class="n" id="n-leads"></span></button>
+    <button class="tab" data-tab="encuestas" onclick="showTab('encuestas')">Encuestas<span class="n" id="n-encuestas"></span></button>
+    <button class="tab" data-tab="ventas" onclick="showTab('ventas')">Ventas<span class="n" id="n-ventas"></span></button>
+  </div>
+
+  <div class="panel" id="tab-encuestas">
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Respuestas</div><div class="metric-val" id="e-total">—</div></div>
+      <div class="metric"><div class="metric-label">Puntaje promedio</div><div class="metric-val blue" id="e-prom">—</div><div class="metric-sub">sobre 5</div></div>
+      <div class="metric"><div class="metric-label">Lo recomiendan</div><div class="metric-val green" id="e-reco">—</div></div>
+      <div class="metric"><div class="metric-label">Dejaron contacto</div><div class="metric-val purple" id="e-contacto">—</div></div>
+      <div class="metric"><div class="metric-label">Intereses</div><div class="metric-sub" id="e-intereses" style="font-size:12px;color:#8A94B8;margin-top:6px">—</div></div>
+    </div>
+    <div class="toolbar"><div class="toolbar-left"><select class="filter" id="e-material" onchange="renderEncuestas()"><option value="">Todas las capacitaciones</option></select></div>
+    <button class="btn btn-sm" onclick="exportEncuestas()">↓ CSV</button></div>
+    <div class="cards" id="e-cards"><div class="empty">Cargando...</div></div>
+  </div>
+
+  <div class="panel" id="tab-ventas">
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Ventas</div><div class="metric-val" id="v-total">—</div></div>
+      <div class="metric"><div class="metric-label">Facturado</div><div class="metric-val green" id="v-monto">—</div></div>
+      <div class="metric"><div class="metric-label">Con cupón</div><div class="metric-val blue" id="v-cupon">—</div></div>
+      <div class="metric"><div class="metric-label">Este mes</div><div class="metric-val purple" id="v-mes">—</div></div>
+      <div class="metric"><div class="metric-label">Ticket promedio</div><div class="metric-val amber" id="v-ticket">—</div></div>
+    </div>
+    <div class="table-wrap" style="margin-top:16px">
+      <table><thead><tr><th>Fecha</th><th>Servicio</th><th>Monto</th><th>Cliente</th><th>Email</th><th>Cupón</th><th>ID de pago</th></tr></thead>
+      <tbody id="v-body"><tr><td colspan="7" class="empty">Cargando...</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <div class="panel on" id="tab-leads">
   <div class="metrics">
     <div class="metric"><div class="metric-label">Total leads</div><div class="metric-val" id="m-total">—</div><div class="metric-sub" id="m-semana-sub"></div></div>
     <div class="metric"><div class="metric-label">Esta semana</div><div class="metric-val green" id="m-semana">—</div><div class="metric-sub" id="m-ayer-sub"></div></div>
@@ -153,7 +201,7 @@ tr:hover td{background:#0f0f0f}
         <option value="boton">Botón</option>
       </select>
     </div>
-    <span id="count-label" style="font-size:12px;color:#555"></span>
+    <span id="count-label" style="font-size:12px;color:#6B769A"></span>
   </div>
 
   <div class="table-wrap">
@@ -175,6 +223,7 @@ tr:hover td{background:#0f0f0f}
       </tbody>
     </table>
   </div>
+  </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -186,7 +235,7 @@ let adminSecret = localStorage.getItem('admin_secret') || '';
 if (adminSecret) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  loadLeads();
+  loadLeads(); loadExtras();
 }
 
 function doLogin() {
@@ -196,7 +245,7 @@ function doLogin() {
   localStorage.setItem('admin_secret', pwd);
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  loadLeads();
+  loadLeads(); loadExtras();
 }
 function doLogout() { localStorage.removeItem('admin_secret'); location.reload(); }
 
@@ -208,6 +257,7 @@ async function loadLeads() {
     if (res.status === 401) { showToast('Contraseña incorrecta', true); doLogout(); return; }
     allLeads = await res.json();
     updateMetrics(); renderChart(); renderTable();
+    document.getElementById('n-leads').textContent = allLeads.length;
   } catch(e) { showToast('Error al cargar', true); }
 }
 
@@ -250,12 +300,12 @@ function renderChart() {
     <div class="source-row">
       <span style="color:#534AB7;font-size:10px">Popup</span>
       <div class="source-bar-bg"><div class="source-bar-fill" style="width:${Math.round(popupCount/total*100)}%;background:#534AB7"></div></div>
-      <span style="color:#555;font-size:10px">${popupCount}</span>
+      <span style="color:#6B769A;font-size:10px">${popupCount}</span>
     </div>
     <div class="source-row">
       <span style="color:#1D9E75;font-size:10px">Botón</span>
       <div class="source-bar-bg"><div class="source-bar-fill" style="width:${Math.round(botonCount/total*100)}%;background:#1D9E75"></div></div>
-      <span style="color:#555;font-size:10px">${botonCount}</span>
+      <span style="color:#6B769A;font-size:10px">${botonCount}</span>
     </div>`;
 }
 
@@ -313,7 +363,7 @@ function renderTable() {
     const waMsg = encodeURIComponent(`Hola! Te escribo de JuanoConecta. Vi que descargaste los 5 prompts de IA 🤖 ¿Cómo te está yendo con ellos?`);
     const emailDomain = l.email.split('@')[1] || '';
     return `<tr>
-      <td style="color:#F5F0EB;font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${l.email}">${l.email}</td>
+      <td style="color:#EAF0FF;font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${l.email}">${l.email}</td>
       <td>
         <select class="label-select label-${label}" onchange="changeLabel('${l.id}',this.value)">
           ${LABELS.map(lb=>`<option value="${lb}"${lb===label?' selected':''}>${LABEL_NAMES[lb]}</option>`).join('')}
@@ -328,7 +378,7 @@ function renderTable() {
         <div class="actions">
           <button class="btn btn-sm btn-coral" onclick="resendEmail('${l.id}','${l.email}')" title="Reenviar PDF">↑ PDF</button>
           <a class="wa-btn" href="https://wa.me/?text=${waMsg}" target="_blank" title="WhatsApp">💬</a>
-          <select class="btn btn-sm" style="color:#666" onchange="changeStatus('${l.id}',this.value);this.value=''">
+          <select class="btn btn-sm" style="color:#8A94B8" onchange="changeStatus('${l.id}',this.value);this.value=''">
             <option value="" disabled selected>Estado</option>
             <option value="pendiente">Pendiente</option>
             <option value="enviado">Enviado</option>
@@ -435,6 +485,90 @@ function showToast(msg,isError=false) {
   const t = document.getElementById('toast');
   t.textContent=msg; t.className='toast'+(isError?' error':'');
   t.style.display='block'; setTimeout(()=>t.style.display='none',2500);
+}
+
+// ---- Pestañas: encuestas de las capacitaciones y ventas de Mercado Pago ----
+let allEncuestas = [], allVentas = [];
+const INTERESES = { redes: 'Redes', web: 'Web', auditoria: 'Auditoría', 'ia-equipo': 'IA para el equipo', curso: 'Curso de IA' };
+const RECOMIENDA = { si: 'Sí', 'tal-vez': 'Tal vez', no: 'No' };
+const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pesos = (n) => '$' + Math.round(Number(n) || 0).toLocaleString('es-AR');
+const fecha = (iso) => new Date(iso).toLocaleString('es-AR', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+
+function showTab(t) {
+  document.querySelectorAll('.tab').forEach((b) => b.classList.toggle('on', b.dataset.tab === t));
+  document.querySelectorAll('.panel').forEach((p) => p.classList.toggle('on', p.id === 'tab-' + t));
+}
+
+async function cargar(endpoint) {
+  const res = await fetch(endpoint, { headers: { 'x-admin-secret': adminSecret } });
+  if (res.status === 401) { showToast('Contraseña incorrecta', true); doLogout(); return null; }
+  if (!res.ok) throw new Error(res.status);
+  return res.json();
+}
+
+async function loadExtras() {
+  try {
+    const [e, v] = await Promise.all([cargar('/api/get-encuestas'), cargar('/api/get-ventas')]);
+    if (e) { allEncuestas = e; llenarMateriales(); renderEncuestas(); }
+    if (v) { allVentas = v; renderVentas(); }
+  } catch (err) { showToast('Error al cargar encuestas o ventas', true); }
+}
+
+function llenarMateriales() {
+  const sel = document.getElementById('e-material');
+  const actual = sel.value;
+  const mats = [...new Set(allEncuestas.map((r) => r.material).filter(Boolean))];
+  sel.innerHTML = '<option value="">Todas las capacitaciones</option>' + mats.map((m) => `<option value="${esc(m)}">${esc(m)}</option>`).join('');
+  sel.value = actual;
+}
+
+function renderEncuestas() {
+  const mat = document.getElementById('e-material').value;
+  const rows = allEncuestas.filter((r) => !mat || r.material === mat);
+  document.getElementById('n-encuestas').textContent = allEncuestas.length;
+  document.getElementById('e-total').textContent = rows.length;
+  const prom = rows.length ? rows.reduce((a, r) => a + (r.puntaje || 0), 0) / rows.length : 0;
+  document.getElementById('e-prom').textContent = rows.length ? prom.toFixed(1) : '—';
+  const si = rows.filter((r) => r.recomienda === 'si').length;
+  document.getElementById('e-reco').textContent = rows.length ? Math.round(si / rows.length * 100) + '%' : '—';
+  document.getElementById('e-contacto').textContent = rows.filter((r) => r.contacto).length;
+  const cuenta = {};
+  rows.forEach((r) => (r.intereses || []).forEach((i) => { cuenta[i] = (cuenta[i] || 0) + 1; }));
+  document.getElementById('e-intereses').textContent = Object.entries(cuenta).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${INTERESES[k] || k}: ${n}`).join(' · ') || '—';
+  const cont = document.getElementById('e-cards');
+  if (!rows.length) { cont.innerHTML = '<div class="empty">Todavía no hay respuestas.</div>'; return; }
+  cont.innerHTML = rows.map((r) => {
+    const wa = r.contacto && /\d{6,}/.test(r.contacto.replace(/\D/g, '')) ? `https://wa.me/${r.contacto.replace(/\D/g, '').replace(/^0/, '549')}` : '';
+    return `<div class="card ${r.contacto ? 'lead-ok' : ''}">
+      <div class="top"><span class="stars">${'★'.repeat(r.puntaje || 0)}${'☆'.repeat(5 - (r.puntaje || 0))}</span><span class="age-tag">${fecha(r.created_at)}</span></div>
+      <span class="chip ${r.recomienda === 'si' ? 'si' : r.recomienda === 'no' ? 'no' : ''}">Recomienda: ${RECOMIENDA[r.recomienda] || '—'}</span>
+      ${(r.intereses || []).map((i) => `<span class="chip">${esc(INTERESES[i] || i)}</span>`).join('')}
+      ${r.lo_mas_util ? `<div class="k">Lo más útil</div><div>${esc(r.lo_mas_util)}</div>` : ''}
+      ${r.mejoras ? `<div class="k">Qué mejorar</div><div>${esc(r.mejoras)}</div>` : ''}
+      ${r.nombre || r.contacto ? `<div class="k">Contacto</div><div>${esc(r.nombre || 'Sin nombre')} · ${esc(r.contacto || '—')} ${wa ? `<a class="wa-btn" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>` : ''}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function exportEncuestas() {
+  const cols = ['created_at', 'material', 'puntaje', 'recomienda', 'lo_mas_util', 'mejoras', 'intereses', 'nombre', 'contacto'];
+  const csv = [cols.join(',')].concat(allEncuestas.map((r) => cols.map((c) => `"${String(Array.isArray(r[c]) ? r[c].join(' ') : r[c] ?? '').replace(/"/g, '""')}"`).join(','))).join('\n');
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' })); a.download = 'encuestas.csv'; a.click();
+}
+
+function renderVentas() {
+  document.getElementById('n-ventas').textContent = allVentas.length;
+  const total = allVentas.reduce((a, v) => a + (Number(v.monto) || 0), 0);
+  const mes = new Date().toISOString().slice(0, 7);
+  document.getElementById('v-total').textContent = allVentas.length;
+  document.getElementById('v-monto').textContent = pesos(total);
+  document.getElementById('v-cupon').textContent = allVentas.filter((v) => v.cupon).length;
+  document.getElementById('v-mes').textContent = pesos(allVentas.filter((v) => v.created_at?.slice(0, 7) === mes).reduce((a, v) => a + (Number(v.monto) || 0), 0));
+  document.getElementById('v-ticket').textContent = allVentas.length ? pesos(total / allVentas.length) : '—';
+  document.getElementById('v-body').innerHTML = allVentas.length
+    ? allVentas.map((v) => `<tr><td>${fecha(v.created_at)}</td><td>${esc(v.servicio)}</td><td>${pesos(v.monto)}</td><td>${esc(v.cliente)}</td><td>${esc(v.email)}</td><td>${esc(v.cupon || '—')}</td><td>${esc(v.mp_id)}</td></tr>`).join('')
+    : '<tr><td colspan="7" class="empty">Todavía no hay ventas. Aparecen acá apenas Mercado Pago aprueba un pago.</td></tr>';
 }
 </script>
 </body>

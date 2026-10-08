@@ -1,8 +1,7 @@
 // Mercado Pago avisa acá cada pago. Se consulta el pago a la API (no se confía en el aviso)
-// y si está aprobado se le manda un mail a Juan con los datos del cliente.
+// y si está aprobado se guarda en la tabla `ventas` (panel de admin) y se le manda un mail a Juan.
 export default async function handler(req, res) {
-  const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN
-  const RESEND_API_KEY = process.env.RESEND_API_KEY
+  const { MP_ACCESS_TOKEN, RESEND_API_KEY, SUPABASE_URL, SUPABASE_SERVICE_KEY } = process.env
   const tipo = req.query?.type || req.query?.topic || req.body?.type
   const id = req.query?.['data.id'] || req.query?.id || req.body?.data?.id
   if (!MP_ACCESS_TOKEN || tipo !== 'payment' || !id) return res.status(200).end()
@@ -18,7 +17,30 @@ export default async function handler(req, res) {
     const [material, servicio, codigo] = String(p.external_reference || '').split('|')
     const payer = p.payer || {}
     const nombre = [payer.first_name, payer.last_name].filter(Boolean).join(' ') || 'Sin nombre'
-    if (RESEND_API_KEY) {
+
+    // Mercado Pago repite los avisos: mp_id es único, así que un aviso repetido no se guarda
+    // ni manda otro mail. Si la base no responde, el mail sale igual.
+    let nueva = true
+    if (SUPABASE_URL && SUPABASE_SERVICE_KEY) {
+      try {
+        const r = await fetch(`${SUPABASE_URL}/rest/v1/ventas?on_conflict=mp_id`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json', apikey: SUPABASE_SERVICE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+            Prefer: 'return=representation,resolution=ignore-duplicates',
+          },
+          body: JSON.stringify({
+            mp_id: String(p.id), servicio: p.description || servicio || null, monto: p.transaction_amount ?? null,
+            cupon: codigo || null, material: material || null, cliente: nombre, email: payer.email || null,
+          }),
+        })
+        if (r.ok) nueva = (await r.json()).length > 0
+      } catch (e) {
+        console.error('webhook-mp ventas', e?.message)
+      }
+    }
+
+    if (RESEND_API_KEY && nueva) {
       await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${RESEND_API_KEY}` },
