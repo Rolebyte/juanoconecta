@@ -55,8 +55,12 @@ const productos = [
     descripcion: '¿Invertís tiempo en redes pero los números no reflejan ese esfuerzo? Usamos IA para analizar tu perfil en profundidad — contenido, métricas, competencia y oportunidades — y te entregamos un diagnóstico preciso con un plan de acción concreto para los próximos 30 días. No es una revisión genérica: es una sesión personalizada con Juan donde identificamos exactamente qué está frenando tu crecimiento y cómo revertirlo.',
     badge: 'PREMIUM',
     badgeStyle: { background: 'rgba(234,179,8,0.15)', color: '#EAB308', border: '1px solid rgba(234,179,8,0.3)' },
-    precioARS: '$120.000 ARS',
-    precioUSD: '$110 USD',
+    // Escalones según el tarifario de la Cámara de Diseñadores de Rafaela (Particular / PyME / Empresa).
+    tarifas: [
+      { id: 'emprendedor', nombre: 'Emprendedor', para: 'Emprendedores y profesionales independientes', ars: '$120.000', usd: '$110' },
+      { id: 'pyme', nombre: 'PyME', para: 'Comercios y pymes con equipo', ars: '$185.000', usd: '$170' },
+      { id: 'empresa', nombre: 'Empresa', para: 'Empresas e industrias', ars: '$250.000', usd: '$230' },
+    ],
     btnWA: WA_AUDITORIA,
     tipo: 'servicio',
     emoji: '🏆',
@@ -67,7 +71,57 @@ const productos = [
   },
 ]
 
+function SelectorTarifa({ tarifas, color, elegida, onElegir }) {
+  const t = tarifas.find((x) => x.id === elegida)
+  return (
+    <div className="mb-5">
+      <p className="text-crema/30 text-[10px] tracking-widest uppercase mb-2">Elegí tu tipo de negocio</p>
+      <div className="relative grid grid-cols-3 p-1 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+        {tarifas.map((x) => (
+          <button
+            key={x.id}
+            type="button"
+            onClick={() => onElegir(x.id)}
+            aria-pressed={x.id === elegida}
+            className={`relative z-10 py-2 text-xs font-semibold rounded-lg transition-colors duration-300 ${x.id === elegida ? 'text-[#0B1020]' : 'text-crema/55 hover:text-crema'}`}
+          >
+            {x.id === elegida && (
+              <motion.span
+                layoutId="tarifa-activa"
+                className="absolute inset-0 -z-10 rounded-lg"
+                style={{ background: `linear-gradient(135deg, ${color}, #f5d06b)`, boxShadow: `0 4px 18px -4px ${color}` }}
+                transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+              />
+            )}
+            {x.nombre}
+          </button>
+        ))}
+      </div>
+      <div className="relative h-[68px] mt-4 overflow-hidden">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={t.id}
+            initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
+            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            exit={{ opacity: 0, y: -18, filter: 'blur(6px)' }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute inset-0"
+          >
+            <div className="flex items-baseline gap-3">
+              <span className="text-crema font-bold text-2xl">{t.ars} <span className="text-sm font-semibold text-crema/50">ARS</span></span>
+              <span className="text-crema/25 text-sm">|</span>
+              <span className="font-bold" style={{ color }}>{t.usd} USD</span>
+            </div>
+            <p className="text-crema/45 text-xs mt-1.5">{t.para}</p>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
+  )
+}
+
 function ProductoCard({ producto, index }) {
+  const [tarifa, setTarifa] = useState(producto.tarifas?.[0].id)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const tilt = useTilt(8)
@@ -201,11 +255,15 @@ function ProductoCard({ producto, index }) {
       )}
 
       {/* Precios */}
-      <div className="flex items-baseline gap-3 mb-5">
-        <span className="text-crema font-bold text-lg">{producto.precioARS}</span>
-        <span className="text-crema/25 text-sm">|</span>
-        <span className="font-bold" style={{ color: producto.color }}>{producto.precioUSD}</span>
-      </div>
+      {producto.tarifas ? (
+        <SelectorTarifa tarifas={producto.tarifas} color={producto.color} elegida={tarifa} onElegir={setTarifa} />
+      ) : (
+        <div className="flex items-baseline gap-3 mb-5">
+          <span className="text-crema font-bold text-lg">{producto.precioARS}</span>
+          <span className="text-crema/25 text-sm">|</span>
+          <span className="font-bold" style={{ color: producto.color }}>{producto.precioUSD}</span>
+        </div>
+      )}
 
       {/* Botones */}
       {producto.tipo === 'digital' ? (
@@ -231,7 +289,7 @@ function ProductoCard({ producto, index }) {
         </div>
       ) : (
         <a
-          href={producto.btnWA}
+          href={producto.tarifas ? `${producto.btnWA}%20(tarifa%20${encodeURIComponent(producto.tarifas.find((x) => x.id === tarifa).nombre)})` : producto.btnWA}
           target="_blank"
           rel="noopener noreferrer"
           className="w-full py-3.5 text-white font-semibold rounded-xl text-center flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
@@ -388,6 +446,10 @@ const faqs = [
   {
     q: '¿Cómo funciona la Auditoría IA de tu perfil?',
     a: 'Es una sesión de 30 a 40 minutos por videollamada o llamada de WhatsApp. Una vez que comprás, coordinamos día y horario juntos.',
+  },
+  {
+    q: '¿Por qué la auditoría tiene tres precios?',
+    a: 'Porque el trabajo cambia según el tamaño del negocio: una pyme o una empresa suele tener más cuentas, más competencia para analizar y más información para revisar que un emprendimiento. Elegí la tarifa que corresponde a tu negocio y, si tenés dudas, escribime y lo vemos.',
   },
   {
     q: '¿Hay garantía de devolución?',

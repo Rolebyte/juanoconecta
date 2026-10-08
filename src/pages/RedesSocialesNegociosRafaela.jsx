@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
 import { PLANES_REDES } from '../data/planesRedes'
+import NotaPlanes from '../components/NotaPlanes'
 
 const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20gestionar%20las%20redes%20sociales%20de%20mi%20negocio%20en%20Rafaela'
 
@@ -199,6 +200,7 @@ export default function RedesSocialesNegociosRafaela() {
               </motion.div>
             ))}
           </div>
+          <NotaPlanes wa={WA} />
         </div>
       </section>
 

@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
 import { PLANES_REDES } from '../data/planesRedes'
+import NotaPlanes from '../components/NotaPlanes'
 
 const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20el%20servicio%20de%20Community%20Manager%20en%20Rafaela'
 
@@ -213,6 +214,7 @@ export default function CommunityManagerRafaela() {
               </motion.div>
             ))}
           </div>
+          <NotaPlanes wa={WA} />
         </div>
       </section>
 
