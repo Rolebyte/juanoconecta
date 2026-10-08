@@ -17,7 +17,7 @@ import MarqueeClientes from './components/home/MarqueeClientes'
 import SobreNx from './components/home/SobreNx'
 import ServiciosNx from './components/home/ServiciosNx'
 import CasosNx from './components/home/CasosNx'
-import FaqNx from './components/home/FaqNx'
+import FaqNx, { faqs } from './components/home/FaqNx'
 import KeywordBand from './components/home/KeywordBand'
 import ProcesoNx from './components/home/ProcesoNx'
 import ProximaCapacitacion from './components/home/ProximaCapacitacion'
@@ -43,14 +43,71 @@ function IrASeccion() {
   return null
 }
 
+// Datos estructurados de la home: le dicen a Google y a los asistentes de IA quién es
+// JuanoConecta, qué hace, dónde está y qué preguntas responde.
+const HOME_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': ['ProfessionalService', 'LocalBusiness'],
+      '@id': 'https://juanoconecta.ar/#negocio',
+      name: 'JuanoConecta',
+      alternateName: 'Juano Conecta',
+      description: 'Estudio de comunicación digital e inteligencia artificial en Rafaela, Santa Fe. Cursos y capacitaciones de IA, webs y web apps con IA, diseño y branding, redes sociales y Meta Ads.',
+      url: 'https://juanoconecta.ar/',
+      image: 'https://juanoconecta.ar/img/juan/juan-og.jpg',
+      telephone: '+5493492627811',
+      email: 'juanoconecta@gmail.com',
+      priceRange: '$$',
+      address: { '@type': 'PostalAddress', addressLocality: 'Rafaela', addressRegion: 'Santa Fe', postalCode: '2300', addressCountry: 'AR' },
+      geo: { '@type': 'GeoCoordinates', latitude: -31.2518, longitude: -61.4868 },
+      areaServed: ['Rafaela', 'Santa Fe', 'Argentina', 'Brasil', 'Italia'],
+      founder: { '@id': 'https://juanoconecta.ar/#juan' },
+      sameAs: ['https://www.instagram.com/juanoconecta', 'https://linkedin.com/in/juan_gallino'],
+      knowsAbout: ['Inteligencia artificial aplicada a negocios', 'Capacitaciones en IA', 'Desarrollo web', 'Web apps con IA', 'Diseño y branding', 'Community management', 'Meta Ads', 'Marketing digital'],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Servicios de JuanoConecta',
+        itemListElement: [
+          'Cursos y capacitaciones de inteligencia artificial',
+          'Webs y web apps con IA',
+          'Diseño y branding',
+          'Gestión de redes sociales',
+          'Publicidad en Meta Ads',
+        ].map((name) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name } })),
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://juanoconecta.ar/#juan',
+      name: 'Juan Gallino',
+      jobTitle: 'Comunicador digital y capacitador en inteligencia artificial',
+      worksFor: { '@id': 'https://juanoconecta.ar/#negocio' },
+      image: 'https://juanoconecta.ar/img/juan/juan-og.jpg',
+      address: { '@type': 'PostalAddress', addressLocality: 'Rafaela', addressRegion: 'Santa Fe', addressCountry: 'AR' },
+      sameAs: ['https://www.instagram.com/juanoconecta', 'https://linkedin.com/in/juan_gallino'],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': 'https://juanoconecta.ar/#web',
+      url: 'https://juanoconecta.ar/',
+      name: 'JuanoConecta',
+      inLanguage: 'es-AR',
+      publisher: { '@id': 'https://juanoconecta.ar/#negocio' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+    },
+  ],
+}
+
 function Home() {
-  // Helmet para canonical de la home (evita duplicados www vs non-www)
-
-
   return (
     <div className="bg-fondo text-crema min-h-screen">
       <Helmet>
         <link rel="canonical" href="https://juanoconecta.ar/" />
+        <script type="application/ld+json">{JSON.stringify(HOME_SCHEMA)}</script>
       </Helmet>
       <Navbar />
       <main>
@@ -74,9 +131,10 @@ function Home() {
   )
 }
 
-export default function App() {
+// Rutas compartidas entre el navegador (BrowserRouter) y el prerender de build (StaticRouter).
+export function AppRoutes() {
   return (
-    <BrowserRouter>
+    <>
       <IrASeccion />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -91,6 +149,14 @@ export default function App() {
         <Route path="/material" element={<Material />} />
         <Route path="/material/:slug" element={<Material />} />
       </Routes>
+    </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   )
 }

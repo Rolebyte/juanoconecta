@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { SectionTitle, Reveal, BtnPrimary, WA } from './ui'
 
-const faqs = [
+export const faqs = [
   ['¿Qué servicios ofrecen?', 'Trabajamos en cuatro áreas: IA para negocios (cursos, capacitaciones y automatizaciones), webs y web apps, diseño y marca, y redes y publicidad con Meta Ads. Podés contratar una sola o combinarlas.'],
   ['¿Cómo sé qué servicio necesita mi negocio?', 'Escribinos por WhatsApp y te orientamos gratis. Miramos dónde está hoy tu negocio y te recomendamos por dónde empezar.'],
   ['¿Necesito saber programar para tener una web app?', 'No. Nosotros diseñamos y desarrollamos la aplicación, y te enseñamos a usarla. Si querés aprender a hacerlo vos, el curso de IA incluye un módulo para crear tu propia web.'],
