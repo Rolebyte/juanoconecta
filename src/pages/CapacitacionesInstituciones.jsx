@@ -6,23 +6,21 @@ import WhatsAppButton from '../components/WhatsAppButton'
 import { Eyebrow, GridGlow, GlowCard, SectionTitle, BtnPrimary, BtnGhost, Check, Reveal } from '../components/home/ui'
 import { CAPACITACIONES } from '../data/capacitaciones'
 
-const WA_PROPUESTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad, comuna o cámara de ____. Nos interesa una capacitación en inteligencia artificial.')
+const WA_PROPUESTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad, comuna o cámara de ____. Nos interesa una capacitación en inteligencia artificial para los emprendedores y comercios de nuestra localidad.')
 const MAIL = 'mailto:juanoconecta@gmail.com?subject=' + encodeURIComponent('Capacitación en IA para nuestra localidad')
 
 const publicos = [
-  { titulo: 'Emprendedores y comercios', texto: 'Para que usen la IA para vender más, comunicar mejor y ahorrar tiempo en el día a día.' },
-  { titulo: 'Personal municipal y comunal', texto: 'Para agilizar tareas administrativas, redactar mejor y atender consultas de vecinos con criterio.' },
-  { titulo: 'Jóvenes y estudiantes', texto: 'Para sumar una herramienta clave en la búsqueda de su primer trabajo o en su propio proyecto.' },
-  { titulo: 'Cámaras e instituciones', texto: 'Para que sus socios y equipos se actualicen con una propuesta práctica y cercana.' },
+  { titulo: 'Emprendedores', texto: 'Para crear contenido, vender por redes y ordenar su negocio sin gastar de más.' },
+  { titulo: 'Comercios', texto: 'Para atender mejor por WhatsApp, promocionar ofertas y ahorrar tiempo en tareas repetidas.' },
+  { titulo: 'Jóvenes que emprenden', texto: 'Para arrancar su proyecto o su primer trabajo con una herramienta que ya piden en todos lados.' },
+  { titulo: 'Socios de cámaras', texto: 'Para que la cámara les ofrezca algo práctico y cercano, que se note en el día a día de cada negocio.' },
 ]
 
-const temas = [
-  'Qué es la IA generativa y cómo pedirle bien las cosas',
-  'Crear textos, imágenes y videos para redes sociales',
-  'Responder consultas y organizar el trabajo con asistentes',
-  'Armar una web o web app simple sin saber programar',
-  'Herramientas gratuitas para empezar hoy',
-  'Uso responsable: datos personales, errores y límites',
+const modulos = [
+  { titulo: 'Redes y ventas', items: ['Textos, imágenes y videos para redes', 'Ideas de publicaciones para todo el mes', 'Promociones y anuncios simples'] },
+  { titulo: 'Atención al cliente', items: ['Respuestas rápidas por WhatsApp', 'Preguntas frecuentes y catálogos', 'Mensajes para recuperar clientes'] },
+  { titulo: 'Organización y gestión', items: ['Presupuestos, mails y documentos', 'Planillas, costos y precios', 'Ordenar la semana con un asistente'] },
+  { titulo: 'Tu negocio en internet', items: ['Una web o web app simple sin programar', 'Aparecer en Google y en los asistentes de IA', 'Uso responsable: datos, errores y límites'] },
 ]
 
 const resultados = [
@@ -49,13 +47,13 @@ const preguntas = [
 
 const formatos = [
   { n: '01', titulo: 'Charla introductoria', duracion: '2 horas', texto: 'Ideal para abrir el tema con mucha gente. Ejemplos concretos y herramientas para empezar al día siguiente.' },
-  { n: '02', titulo: 'Taller práctico', duracion: '3 horas', texto: 'Cada participante trabaja con su celular o computadora sobre casos reales de su negocio o su área.' },
-  { n: '03', titulo: 'Ciclo de encuentros', duracion: '4 encuentros', texto: 'Un programa completo con una práctica en cada encuentro, para que la IA quede incorporada en el trabajo.' },
+  { n: '02', titulo: 'Taller práctico', duracion: '3 horas', texto: 'Cada participante trabaja con su celular sobre casos reales de su propio negocio.' },
+  { n: '03', titulo: 'Ciclo de encuentros', duracion: '4 encuentros', texto: 'Un programa completo con una práctica en cada encuentro, uno por módulo, para que la IA quede incorporada en cada negocio.' },
 ]
 
 const pasos = [
-  { titulo: 'Charla inicial', texto: 'Hablamos con el área de producción, desarrollo o juventud para entender a quién está dirigida.' },
-  { titulo: 'Propuesta a medida', texto: 'Definimos temas, formato, fechas y lugar según la realidad de cada localidad.' },
+  { titulo: 'Charla inicial', texto: 'Hablamos con el área de producción o desarrollo, o con la cámara, para conocer a los emprendedores y comercios de la localidad.' },
+  { titulo: 'Propuesta a medida', texto: 'Elegimos el módulo, el formato, la fecha y el lugar según la realidad de cada localidad.' },
   { titulo: 'Capacitación', texto: 'Presencial en tu localidad o virtual, con material para que los participantes sigan practicando.' },
   { titulo: 'Cierre', texto: 'Compartimos con la institución un resumen de la jornada y los próximos pasos sugeridos.' },
 ]
@@ -63,7 +61,7 @@ const pasos = [
 const SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Capacitaciones en inteligencia artificial para municipios, comunas e instituciones',
+  name: 'Capacitaciones en inteligencia artificial para emprendedores y comercios, organizadas por municipios, comunas y cámaras',
   provider: { '@type': 'Organization', name: 'JuanoConecta', url: 'https://juanoconecta.ar' },
   areaServed: ['Rafaela', 'Provincia de Santa Fe'],
   serviceType: 'Capacitación en inteligencia artificial',
@@ -80,10 +78,10 @@ export default function CapacitacionesInstituciones() {
   return (
     <div className="bg-fondo text-crema min-h-screen">
       <Helmet>
-        <title>Capacitaciones en IA para municipios, comunas e instituciones | JuanoConecta</title>
-        <meta name="description" content="Charlas, talleres y ciclos de inteligencia artificial para municipios, comunas, cámaras e instituciones de Rafaela y la región. Propuestas a medida." />
+        <title>Capacitaciones en IA para emprendedores y comercios de tu localidad | JuanoConecta</title>
+        <meta name="description" content="Charlas y talleres de inteligencia artificial para que los emprendedores y comercios de tu localidad vendan más, atiendan mejor y ahorren tiempo. Para municipios, comunas y cámaras de Rafaela y la región." />
         <link rel="canonical" href="https://juanoconecta.ar/capacitaciones" />
-        <meta property="og:title" content="Capacitaciones en IA para municipios e instituciones | JuanoConecta" />
+        <meta property="og:title" content="Capacitaciones en IA para emprendedores y comercios | JuanoConecta" />
         <meta property="og:url" content="https://juanoconecta.ar/capacitaciones" />
         <script type="application/ld+json">{JSON.stringify(SCHEMA)}</script>
         <script type="application/ld+json">{JSON.stringify(FAQ_SCHEMA)}</script>
@@ -97,10 +95,10 @@ export default function CapacitacionesInstituciones() {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="relative max-w-4xl mx-auto text-center">
           <Eyebrow>Municipios · Comunas · Cámaras</Eyebrow>
           <h1 className="text-4xl md:text-7xl font-bold leading-[1.05] tracking-tight mt-6 mb-6" style={{ textWrap: 'balance' }}>
-            Llevá la <span className="text-acento">inteligencia artificial</span> a tu localidad
+            Llevá la <span className="text-acento">inteligencia artificial</span> a los emprendedores de tu localidad
           </h1>
           <p className="text-crema/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-            Charlas, talleres y ciclos prácticos para emprendedores, comercios, socios de cámaras, personal municipal y jóvenes de Rafaela y toda la región.
+            Charlas y talleres prácticos para que emprendedores y comercios vendan más, atiendan mejor y ahorren tiempo con IA. Para municipios, comunas y cámaras de Rafaela y toda la región.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <BtnPrimary href={WA_PROPUESTA} external>Pedir una propuesta para mi localidad</BtnPrimary>
@@ -134,7 +132,7 @@ export default function CapacitacionesInstituciones() {
       {/* Para quién */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <SectionTitle eyebrow="Para quién" title="Una capacitación pensada para cada público de tu comunidad" />
+          <SectionTitle eyebrow="Para quién" title="Pensada para quienes mueven la economía de tu localidad" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {publicos.map((p, i) => (
               <Reveal key={p.titulo} delay={i * 0.08} className="h-full">
@@ -149,18 +147,26 @@ export default function CapacitacionesInstituciones() {
         </div>
       </section>
 
-      {/* Temas */}
+      {/* Módulos */}
       <section className="py-24 px-6 relative overflow-hidden bg-[#080C18]">
         <div className="absolute -left-40 top-20 w-[480px] h-[480px] rounded-full bg-acento/10 blur-[120px] pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-          <SectionTitle eyebrow="Temas" title="Qué se llevan los participantes" sub="Contenido práctico y adaptado. Nada de teoría difícil: herramientas que se pueden usar al día siguiente." />
-          <Reveal>
-            <ul className="grid gap-3">
-              {temas.map((t) => (
-                <li key={t} className="flex gap-3 items-start rounded-2xl border border-white/10 bg-[#0F1629] px-5 py-4 text-crema/85"><Check />{t}</li>
-              ))}
-            </ul>
-          </Reveal>
+        <div className="relative max-w-6xl mx-auto">
+          <SectionTitle eyebrow="Módulos" title="Elegí el foco según tu gente" sub="Todas las capacitaciones arrancan desde cero con herramientas gratuitas. Después, la institución elige en qué profundizar, y puede repetir con otro módulo." />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {modulos.map((m, i) => (
+              <Reveal key={m.titulo} delay={i * 0.08} className="h-full">
+                <GlowCard className="h-full" inner="p-7">
+                  <span className="text-acento font-bold text-sm tabular-nums">0{i + 1}</span>
+                  <h3 className="text-xl font-bold text-crema mt-4">{m.titulo}</h3>
+                  <ul className="mt-4 grid gap-2">
+                    {m.items.map((it) => (
+                      <li key={it} className="flex gap-2 items-start text-crema/65 text-[15px] leading-snug"><Check />{it}</li>
+                    ))}
+                  </ul>
+                </GlowCard>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -266,7 +272,7 @@ export default function CapacitacionesInstituciones() {
         <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[2.5rem] border border-acento/30 bg-gradient-to-br from-[#16245A] via-[#121A30] to-[#0B1020] px-6 py-16 md:px-16 md:py-20 text-center">
           <GridGlow />
           <div className="relative">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl mx-auto" style={{ textWrap: 'balance' }}>¿Querés una capacitación en IA para tu localidad o tu cámara?</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl mx-auto" style={{ textWrap: 'balance' }}>¿Querés llevar la IA a los emprendedores de tu localidad?</h2>
             <p className="text-crema/65 text-lg max-w-xl mx-auto mt-5 mb-10">Contanos a quién está dirigida y armamos una propuesta a medida, sin compromiso.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <BtnPrimary href={WA_PROPUESTA} external>Escribir por WhatsApp</BtnPrimary>

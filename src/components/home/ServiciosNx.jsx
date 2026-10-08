@@ -10,7 +10,7 @@ const servicios = [
     desc: 'Formación y herramientas para que tu equipo aproveche la inteligencia artificial en el día a día.',
     items: ['Curso de IA aplicada', 'Capacitaciones para equipos', 'Asistentes y chatbots', 'Automatizaciones de tareas', 'Contenido creado con IA'],
     wa: 'IA%20para%20negocios',
-    planes: { texto: 'Capacitaciones para municipios e instituciones', href: '/capacitaciones' },
+    planes: { texto: 'Capacitaciones para emprendedores de tu localidad', href: '/capacitaciones' },
   },
   {
     n: '02',
