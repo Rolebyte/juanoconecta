@@ -6,7 +6,7 @@ import WhatsAppButton from '../components/WhatsAppButton'
 import { Eyebrow, GridGlow, GlowCard, SectionTitle, BtnPrimary, BtnGhost, Check, Reveal } from '../components/home/ui'
 import { CAPACITACIONES } from '../data/capacitaciones'
 
-const WA_PROPUESTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad/comuna de ____. Nos interesa una capacitación en inteligencia artificial.')
+const WA_PROPUESTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad, comuna o cámara de ____. Nos interesa una capacitación en inteligencia artificial.')
 const MAIL = 'mailto:juanoconecta@gmail.com?subject=' + encodeURIComponent('Capacitación en IA para nuestra localidad')
 
 const publicos = [
@@ -23,6 +23,29 @@ const temas = [
   'Armar una web o web app simple sin saber programar',
   'Herramientas gratuitas para empezar hoy',
   'Uso responsable: datos personales, errores y límites',
+]
+
+const resultados = [
+  { valor: '3 h', texto: 'de taller práctico con emprendedores' },
+  { valor: '5/5', texto: 'puntaje promedio en la encuesta' },
+  { valor: '100%', texto: 'de quienes respondieron recomienda la capacitación' },
+]
+
+const opiniones = ['Explicación muy clara.', 'Toda la información que se nos brindó.']
+
+const incluye = [
+  { titulo: 'Presentación y ejemplos locales', texto: 'Casos de comercios y emprendimientos de la región, no ejemplos de otro país.' },
+  { titulo: 'Material descargable por QR', texto: 'Los participantes escanean un código y se llevan la presentación, prompts y herramientas para seguir practicando.' },
+  { titulo: 'Encuesta de satisfacción', texto: 'Cada participante la completa desde el celular al terminar la jornada.' },
+  { titulo: 'Informe para la institución', texto: 'Un resumen con asistencia, opiniones y temas de interés, útil para rendir la actividad y planificar la próxima.' },
+]
+
+const preguntas = [
+  { q: '¿Cuánto cuesta?', a: 'Depende del formato, la cantidad de encuentros y la distancia. Contanos qué necesitan y armamos una propuesta a medida, sin compromiso.' },
+  { q: '¿Para cuántas personas es?', a: 'La charla funciona bien con grupos grandes. Para el taller práctico recomendamos hasta 30 personas, así cada uno puede trabajar sobre su caso.' },
+  { q: '¿Qué necesitan los participantes?', a: 'Solo un celular con internet. Si el lugar tiene computadoras, mejor, pero no es obligatorio. La institución pone el espacio, un proyector y buena conexión.' },
+  { q: '¿Viajan a otras localidades?', a: 'Sí. Damos capacitaciones presenciales en Rafaela, Sunchales y localidades de la región, y también virtuales para cualquier lugar.' },
+  { q: '¿Hace falta saber de tecnología?', a: 'No. Arrancamos desde cero, con un lenguaje simple y herramientas gratuitas.' },
 ]
 
 const formatos = [
@@ -47,6 +70,12 @@ const SCHEMA = {
   serviceType: 'Capacitación en inteligencia artificial',
 }
 
+const FAQ_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: preguntas.map((p) => ({ '@type': 'Question', name: p.q, acceptedAnswer: { '@type': 'Answer', text: p.a } })),
+}
+
 export default function CapacitacionesInstituciones() {
   const antecedentes = [...CAPACITACIONES].sort((a, b) => new Date(b.fin) - new Date(a.fin))
   return (
@@ -58,6 +87,7 @@ export default function CapacitacionesInstituciones() {
         <meta property="og:title" content="Capacitaciones en IA para municipios e instituciones | JuanoConecta" />
         <meta property="og:url" content="https://juanoconecta.ar/capacitaciones" />
         <script type="application/ld+json">{JSON.stringify(SCHEMA)}</script>
+        <script type="application/ld+json">{JSON.stringify(FAQ_SCHEMA)}</script>
       </Helmet>
 
       <Navbar />
@@ -66,12 +96,12 @@ export default function CapacitacionesInstituciones() {
       <section className="pt-40 pb-24 px-6 relative overflow-hidden">
         <GridGlow />
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="relative max-w-4xl mx-auto text-center">
-          <Eyebrow>Municipios · Comunas · Instituciones</Eyebrow>
+          <Eyebrow>Municipios · Comunas · Cámaras</Eyebrow>
           <h1 className="text-4xl md:text-7xl font-bold leading-[1.05] tracking-tight mt-6 mb-6" style={{ textWrap: 'balance' }}>
             Llevá la <span className="text-acento">inteligencia artificial</span> a tu localidad
           </h1>
           <p className="text-crema/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">
-            Charlas, talleres y ciclos prácticos para emprendedores, comercios, personal municipal y jóvenes de Rafaela, Sunchales y toda la región.
+            Charlas, talleres y ciclos prácticos para emprendedores, comercios, socios de cámaras, personal municipal y jóvenes de Rafaela, Sunchales y toda la región.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <BtnPrimary href={WA_PROPUESTA} external>Pedir una propuesta para mi localidad</BtnPrimary>
@@ -80,8 +110,34 @@ export default function CapacitacionesInstituciones() {
         </motion.div>
       </section>
 
-      {/* Para quién */}
+      {/* Experiencia real */}
       <section className="py-24 px-6 bg-[#080C18]">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <Reveal className="grid grid-cols-2 gap-4">
+            <img src="/img/capacitaciones/jornada-ccirr-1.webp" alt="Juan dando la capacitación Emprender con IA en el Centro Comercial e Industrial de Rafaela" loading="lazy" width="960" height="1200" className="w-full rounded-3xl border border-white/10 object-cover aspect-[4/5]" />
+            <img src="/img/capacitaciones/jornada-ccirr-2.webp" alt="Participantes de la capacitación trabajando con la presentación sobre qué tareas delegar a la IA" loading="lazy" width="960" height="1200" className="w-full rounded-3xl border border-white/10 object-cover aspect-[4/5] mt-10" />
+          </Reveal>
+          <div>
+            <SectionTitle eyebrow="Experiencia real" title="Ya lo hicimos en el Centro Comercial e Industrial de Rafaela" sub="En octubre de 2026 dimos “Emprender con IA” para el Programa de Mentorías para el Desarrollo Emprendedor del CCIRR. Esto dijeron los participantes." />
+            <div className="grid grid-cols-3 gap-3">
+              {resultados.map((r) => (
+                <div key={r.valor} className="rounded-2xl border border-white/10 bg-[#0F1629] p-4">
+                  <div className="text-2xl md:text-3xl font-bold text-acento tabular-nums">{r.valor}</div>
+                  <p className="text-crema/55 text-xs md:text-sm leading-snug mt-2">{r.texto}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 grid gap-3">
+              {opiniones.map((o) => (
+                <blockquote key={o} className="rounded-2xl border-l-2 border-teal bg-[#0F1629] px-5 py-3 text-crema/85 italic">“{o}”</blockquote>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Para quién */}
+      <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionTitle eyebrow="Para quién" title="Una capacitación pensada para cada público de tu comunidad" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -99,7 +155,7 @@ export default function CapacitacionesInstituciones() {
       </section>
 
       {/* Temas */}
-      <section className="py-24 px-6 relative overflow-hidden">
+      <section className="py-24 px-6 relative overflow-hidden bg-[#080C18]">
         <div className="absolute -left-40 top-20 w-[480px] h-[480px] rounded-full bg-acento/10 blur-[120px] pointer-events-none" />
         <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <SectionTitle eyebrow="Temas" title="Qué se llevan los participantes" sub="Contenido práctico y adaptado. Nada de teoría difícil: herramientas que se pueden usar al día siguiente." />
@@ -114,7 +170,7 @@ export default function CapacitacionesInstituciones() {
       </section>
 
       {/* Formatos */}
-      <section id="formatos" className="py-24 px-6 bg-[#080C18]">
+      <section id="formatos" className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionTitle center eyebrow="Formatos" title="Elegí el formato que mejor se adapta" sub="Presencial en tu localidad o virtual. El contenido se ajusta a cada público." />
           <div className="grid md:grid-cols-3 gap-5">
@@ -134,8 +190,26 @@ export default function CapacitacionesInstituciones() {
         </div>
       </section>
 
+      {/* Qué incluye */}
+      <section className="py-24 px-6 bg-[#080C18]">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle center eyebrow="Qué incluye" title="Todo lo que recibe la institución" sub="En cualquiera de los tres formatos." />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {incluye.map((x, i) => (
+              <Reveal key={x.titulo} delay={i * 0.08} className="h-full">
+                <GlowCard className="h-full" inner="p-7">
+                  <Check />
+                  <h3 className="text-lg font-bold text-crema mt-4">{x.titulo}</h3>
+                  <p className="text-crema/55 leading-relaxed mt-2 text-[15px]">{x.texto}</p>
+                </GlowCard>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Antecedentes */}
-      {antecedentes.length > 0 && (
+      {antecedentes.length > 1 && (
         <section className="py-24 px-6">
           <div className="max-w-6xl mx-auto">
             <SectionTitle eyebrow="Antecedentes" title="Capacitaciones con instituciones de la región" />
@@ -158,7 +232,7 @@ export default function CapacitacionesInstituciones() {
       )}
 
       {/* Proceso */}
-      <section className="py-24 px-6 bg-[#080C18]">
+      <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionTitle center eyebrow="Cómo trabajamos" title="De la primera charla a la capacitación" />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -175,12 +249,29 @@ export default function CapacitacionesInstituciones() {
         </div>
       </section>
 
+      {/* Preguntas */}
+      <section className="py-24 px-6 bg-[#080C18]">
+        <div className="max-w-3xl mx-auto">
+          <SectionTitle center eyebrow="Preguntas frecuentes" title="Lo que suelen preguntarnos" />
+          <div className="grid gap-3">
+            {preguntas.map((p) => (
+              <details key={p.q} className="group rounded-2xl border border-white/10 bg-[#0F1629] px-6 py-5">
+                <summary className="cursor-pointer list-none flex justify-between items-center gap-4 font-semibold text-crema">
+                  {p.q}<span className="text-acento text-xl transition-transform group-open:rotate-45">+</span>
+                </summary>
+                <p className="text-crema/60 leading-relaxed mt-3">{p.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-24 px-6">
         <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[2.5rem] border border-acento/30 bg-gradient-to-br from-[#16245A] via-[#121A30] to-[#0B1020] px-6 py-16 md:px-16 md:py-20 text-center">
           <GridGlow />
           <div className="relative">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl mx-auto" style={{ textWrap: 'balance' }}>¿Querés una capacitación en IA para tu localidad?</h2>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl mx-auto" style={{ textWrap: 'balance' }}>¿Querés una capacitación en IA para tu localidad o tu cámara?</h2>
             <p className="text-crema/65 text-lg max-w-xl mx-auto mt-5 mb-10">Contanos a quién está dirigida y armamos una propuesta a medida, sin compromiso.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <BtnPrimary href={WA_PROPUESTA} external>Escribir por WhatsApp</BtnPrimary>
