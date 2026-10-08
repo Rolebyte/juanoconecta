@@ -97,6 +97,13 @@ tr:hover td{background:#0E1528}
 .chip.si{color:#1D9E75;border-color:#0e2e1a}.chip.no{color:#A32D2D}
 .lead-ok{border-color:#3D7BFF}
 @media(max-width:700px){.metrics{grid-template-columns:repeat(2,1fr)}header{flex-wrap:wrap;gap:10px}.cards{padding:16px}}
+.seg-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.seg-row select,.seg-row input{padding:5px 8px;background:#18223D;border:1px solid #2a3557;border-radius:6px;color:#EAF0FF;font-size:12px;font-family:inherit}
+.seg-row textarea{width:100%;padding:6px 8px;background:#0E1528;border:1px solid #22304F;border-radius:6px;color:#EAF0FF;font-size:12px;font-family:inherit;resize:vertical;min-height:34px}
+.vence{color:#F5A524}.vencido{color:#FF6B6B}
+.mini{padding:4px 8px;border-radius:6px;border:1px solid #2a3557;background:#16203A;color:#8A94B8;font-size:11px;cursor:pointer;text-decoration:none}
+.mini:hover{border-color:#3D7BFF;color:#EAF0FF}
+.origen{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#22D3EE}
 </style>
 </head>
 <body>
@@ -120,7 +127,7 @@ tr:hover td{background:#0E1528}
       <span style="font-size:13px;color:#6B769A">Panel</span>
     </div>
     <div style="display:flex;gap:7px">
-      <button class="btn btn-sm" onclick="loadLeads();loadExtras()">↻ Actualizar</button>
+      <button class="btn btn-sm" onclick="loadLeads();loadExtras();loadSeg();loadClics()">↻ Actualizar</button>
       <button class="btn btn-sm btn-green" onclick="copyEmails()" title="Copiar todos los emails visibles">⎘ Copiar emails</button>
       <button class="btn btn-sm" onclick="exportCSV()">↓ CSV</button>
       <button class="btn btn-sm btn-coral" onclick="triggerSequence()" title="Ejecutar secuencia manualmente">▶ Secuencia</button>
@@ -129,9 +136,11 @@ tr:hover td{background:#0E1528}
   </header>
 
   <div class="tabs">
-    <button class="tab on" data-tab="leads" onclick="showTab('leads')">Leads<span class="n" id="n-leads"></span></button>
+    <button class="tab on" data-tab="seguimientos" onclick="showTab('seguimientos')">Seguimientos<span class="n" id="n-hoy"></span></button>
+    <button class="tab" data-tab="leads" onclick="showTab('leads')">Leads<span class="n" id="n-leads"></span></button>
     <button class="tab" data-tab="encuestas" onclick="showTab('encuestas')">Encuestas<span class="n" id="n-encuestas"></span></button>
     <button class="tab" data-tab="ventas" onclick="showTab('ventas')">Ventas<span class="n" id="n-ventas"></span></button>
+    <button class="tab" data-tab="clics" onclick="showTab('clics')">Clics en WhatsApp<span class="n" id="n-clics"></span></button>
   </div>
 
   <div class="panel" id="tab-encuestas">
@@ -161,7 +170,56 @@ tr:hover td{background:#0E1528}
     </div>
   </div>
 
-  <div class="panel on" id="tab-leads">
+  <div class="panel on" id="tab-seguimientos">
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Para hoy</div><div class="metric-val blue" id="s-hoy">—</div><div class="metric-sub">próximo contacto vencido o de hoy</div></div>
+      <div class="metric"><div class="metric-label">Sin fecha</div><div class="metric-val amber" id="s-sinfecha">—</div><div class="metric-sub">contactos abiertos sin próximo paso</div></div>
+      <div class="metric"><div class="metric-label">Interesados</div><div class="metric-val purple" id="s-interesados">—</div></div>
+      <div class="metric"><div class="metric-label">Con propuesta</div><div class="metric-val green" id="s-propuesta">—</div></div>
+      <div class="metric"><div class="metric-label">Clientes</div><div class="metric-val coral" id="s-clientes">—</div></div>
+    </div>
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <select class="filter" id="s-vista" onchange="renderSeg()">
+          <option value="hoy">A quién escribir hoy</option>
+          <option value="abiertos">Todos los abiertos</option>
+          <option value="todos">Todos</option>
+        </select>
+        <select class="filter" id="s-etapa" onchange="renderSeg()"><option value="">Todas las etapas</option></select>
+        <select class="filter" id="s-origen" onchange="renderSeg()">
+          <option value="">Todos los orígenes</option><option value="lead">Leads</option><option value="encuesta">Encuestas</option><option value="venta">Ventas</option><option value="manual">Cargados a mano</option>
+        </select>
+        <input class="search" type="text" placeholder="Buscar..." id="s-buscar" oninput="renderSeg()">
+      </div>
+      <button class="btn btn-sm btn-coral" onclick="nuevoManual()">+ Nuevo contacto</button>
+    </div>
+    <div id="s-nuevo" class="card" style="display:none;margin:0 28px 12px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+        <input class="search" id="n-nombre" placeholder="Nombre">
+        <input class="search" id="n-contacto" placeholder="WhatsApp o email">
+        <input class="search" id="n-notas" placeholder="Qué consultó" style="width:260px">
+        <button class="btn btn-sm btn-coral" onclick="guardarManual()">Guardar</button>
+        <button class="btn btn-sm" onclick="document.getElementById('s-nuevo').style.display='none'">Cancelar</button>
+      </div>
+    </div>
+    <div class="cards" id="s-cards" style="padding-top:0"><div class="empty">Cargando...</div></div>
+  </div>
+
+  <div class="panel" id="tab-clics">
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Hoy</div><div class="metric-val blue" id="c-hoy">—</div></div>
+      <div class="metric"><div class="metric-label">Últimos 7 días</div><div class="metric-val green" id="c-7">—</div><div class="metric-sub" id="c-7-sub"></div></div>
+      <div class="metric"><div class="metric-label">Últimos 30 días</div><div class="metric-val purple" id="c-30">—</div></div>
+      <div class="metric"><div class="metric-label">Página que más consulta</div><div class="metric-sub" id="c-top" style="font-size:13px;color:#EAF0FF;margin-top:6px">—</div></div>
+      <div class="metric"><div class="metric-label">Leads por clic (30 días)</div><div class="metric-val amber" id="c-conv">—</div><div class="metric-sub">contactos nuevos / clics</div></div>
+    </div>
+    <div class="chart-wrap"><div class="chart-main"><div class="chart-title">Clics por día · últimos 14 días</div><div class="chart-bars" id="c-bars" style="height:80px"></div></div></div>
+    <div class="table-wrap" style="margin-top:16px">
+      <table><thead><tr><th>Página</th><th>Clics 30 días</th><th>Clics 7 días</th><th>Botón más usado</th></tr></thead><tbody id="c-body"><tr><td colspan="4" class="empty">Cargando...</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <div class="panel" id="tab-leads">
   <div class="metrics">
     <div class="metric"><div class="metric-label">Total leads</div><div class="metric-val" id="m-total">—</div><div class="metric-sub" id="m-semana-sub"></div></div>
     <div class="metric"><div class="metric-label">Esta semana</div><div class="metric-val green" id="m-semana">—</div><div class="metric-sub" id="m-ayer-sub"></div></div>
@@ -235,7 +293,7 @@ let adminSecret = localStorage.getItem('admin_secret') || '';
 if (adminSecret) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  loadLeads(); loadExtras();
+  loadLeads(); loadExtras(); loadSeg(); loadClics();
 }
 
 function doLogin() {
@@ -245,7 +303,7 @@ function doLogin() {
   localStorage.setItem('admin_secret', pwd);
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  loadLeads(); loadExtras();
+  loadLeads(); loadExtras(); loadSeg(); loadClics();
 }
 function doLogout() { localStorage.removeItem('admin_secret'); location.reload(); }
 
@@ -509,7 +567,7 @@ async function cargar(endpoint) {
 
 async function loadExtras() {
   try {
-    const [e, v] = await Promise.all([cargar('/api/get-encuestas'), cargar('/api/get-ventas')]);
+    const [e, v] = await Promise.all([cargar('/api/admin?accion=encuestas'), cargar('/api/admin?accion=ventas')]);
     if (e) { allEncuestas = e; llenarMateriales(); renderEncuestas(); }
     if (v) { allVentas = v; renderVentas(); }
   } catch (err) { showToast('Error al cargar encuestas o ventas', true); }
@@ -569,6 +627,142 @@ function renderVentas() {
   document.getElementById('v-body').innerHTML = allVentas.length
     ? allVentas.map((v) => `<tr><td>${fecha(v.created_at)}</td><td>${esc(v.servicio)}</td><td>${pesos(v.monto)}</td><td>${esc(v.cliente)}</td><td>${esc(v.email)}</td><td>${esc(v.cupon || '—')}</td><td>${esc(v.mp_id)}</td></tr>`).join('')
     : '<tr><td colspan="7" class="empty">Todavía no hay ventas. Aparecen acá apenas Mercado Pago aprueba un pago.</td></tr>';
+}
+
+// ---- Seguimientos: leads, encuestas, ventas y contactos cargados a mano, con etapa y próximo contacto ----
+let allSeg = [], allClics = [];
+const ETAPAS = { nuevo: 'Nuevo', contactado: 'Contactado', interesado: 'Interesado', propuesta: 'Propuesta enviada', cliente: 'Cliente', descartado: 'Descartado' };
+const ORIGEN_TXT = { lead: 'Lead web', encuesta: 'Encuesta', venta: 'Venta', manual: 'Manual' };
+const hoyISO = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+const masDias = (n) => { const d = new Date(); d.setDate(d.getDate() + n); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
+const abierto = (r) => r.etapa !== 'cliente' && r.etapa !== 'descartado';
+const paraHoy = (r) => abierto(r) && (r.proximo ? r.proximo <= hoyISO() : r.etapa === 'nuevo');
+
+function waLink(contacto, nombre) {
+  let d = String(contacto || '').replace(/\D/g, '');
+  if (d.length < 8 || /@/.test(contacto)) return '';
+  if (d.startsWith('549')) {} else if (d.startsWith('54')) d = '549' + d.slice(2); else { d = d.replace(/^0/, ''); d = '549' + d; }
+  const msg = encodeURIComponent(`Hola${nombre ? ' ' + nombre.split(' ')[0] : ''}, ¿cómo estás? Soy Juan de JuanoConecta.`);
+  return `https://wa.me/${d}?text=${msg}`;
+}
+
+async function loadSeg() {
+  try {
+    const data = await cargar('/api/admin?accion=seguimientos');
+    if (!data) return;
+    allSeg = data;
+    const sel = document.getElementById('s-etapa');
+    if (sel.options.length === 1) sel.innerHTML += Object.entries(ETAPAS).map(([k, v]) => `<option value="${k}">${v}</option>`).join('');
+    renderSeg();
+  } catch (e) { showToast('Error al cargar seguimientos', true); }
+}
+
+function renderSeg() {
+  const vista = document.getElementById('s-vista').value, etapa = document.getElementById('s-etapa').value;
+  const origen = document.getElementById('s-origen').value, q = document.getElementById('s-buscar').value.toLowerCase();
+  const hoy = allSeg.filter(paraHoy);
+  document.getElementById('n-hoy').textContent = hoy.length || '';
+  document.getElementById('s-hoy').textContent = hoy.length;
+  document.getElementById('s-sinfecha').textContent = allSeg.filter((r) => abierto(r) && !r.proximo && r.etapa !== 'nuevo').length;
+  document.getElementById('s-interesados').textContent = allSeg.filter((r) => r.etapa === 'interesado').length;
+  document.getElementById('s-propuesta').textContent = allSeg.filter((r) => r.etapa === 'propuesta').length;
+  document.getElementById('s-clientes').textContent = allSeg.filter((r) => r.etapa === 'cliente').length;
+  let rows = vista === 'hoy' ? hoy : vista === 'abiertos' ? allSeg.filter(abierto) : allSeg.slice();
+  if (etapa) rows = rows.filter((r) => r.etapa === etapa);
+  if (origen) rows = rows.filter((r) => r.origen === origen);
+  if (q) rows = rows.filter((r) => `${r.nombre} ${r.contacto} ${r.detalle} ${r.notas}`.toLowerCase().includes(q));
+  rows.sort((a, b) => (a.proximo || '9999') .localeCompare(b.proximo || '9999') || String(b.created_at).localeCompare(String(a.created_at)));
+  const cont = document.getElementById('s-cards');
+  if (!rows.length) { cont.innerHTML = `<div class="empty">${vista === 'hoy' ? 'Nadie para contactar hoy. 🎉' : 'No hay contactos con ese filtro.'}</div>`; return; }
+  cont.innerHTML = rows.map((r) => {
+    const i = allSeg.indexOf(r), wa = waLink(r.contacto, r.nombre);
+    const venc = r.proximo && r.proximo < hoyISO() ? 'vencido' : r.proximo === hoyISO() ? 'vence' : '';
+    const mail = /@/.test(r.contacto || '') ? `<a class="mini" href="mailto:${esc(r.contacto)}">Email</a>` : '';
+    return `<div class="card ${paraHoy(r) ? 'lead-ok' : ''}">
+      <div class="top"><span class="origen">${ORIGEN_TXT[r.origen]}</span><span class="age-tag">${fecha(r.created_at)}</span></div>
+      <div style="font-weight:600">${esc(r.nombre || r.contacto || 'Sin nombre')}</div>
+      ${r.nombre ? `<div style="color:#8A94B8">${esc(r.contacto)}</div>` : ''}
+      <div style="color:#8A94B8;font-size:12px;margin-top:4px">${esc(r.detalle)}</div>
+      <div class="seg-row">
+        <select onchange="guardarSeg(${i},{etapa:this.value})">${Object.entries(ETAPAS).map(([k, v]) => `<option value="${k}" ${k === r.etapa ? 'selected' : ''}>${v}</option>`).join('')}</select>
+        <input type="date" value="${r.proximo || ''}" onchange="guardarSeg(${i},{proximo:this.value})" title="Próximo contacto">
+        <span class="${venc}" style="font-size:11px">${venc === 'vencido' ? 'vencido' : venc === 'vence' ? 'hoy' : ''}</span>
+      </div>
+      <div class="seg-row">
+        <button class="mini" onclick="guardarSeg(${i},{proximo:masDias(3),etapa:'${r.etapa === 'nuevo' ? 'contactado' : r.etapa}'})">Contactado · +3 días</button>
+        <button class="mini" onclick="guardarSeg(${i},{proximo:masDias(7)})">+1 semana</button>
+        ${wa ? `<a class="wa-btn" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>` : ''}${mail}
+        ${r.origen === 'manual' ? `<button class="mini" onclick="borrarManual(${i})">Borrar</button>` : ''}
+      </div>
+      <div class="seg-row"><textarea placeholder="Notas" onchange="guardarSeg(${i},{notas:this.value})">${esc(r.notas)}</textarea></div>
+    </div>`;
+  }).join('');
+}
+
+async function guardarSeg(i, cambios) {
+  const r = allSeg[i]; if (!r) return;
+  Object.assign(r, cambios);
+  const body = { origen: r.origen, ref_id: r.ref_id, etapa: r.etapa, proximo: r.proximo || '', notas: r.notas || '' };
+  if (r.origen === 'manual') { body.nombre = r.nombre; body.contacto = r.contacto; }
+  try {
+    const res = await fetch('/api/admin?accion=guardar-seguimiento', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret }, body: JSON.stringify(body) });
+    if (!res.ok) throw new Error(res.status);
+    showToast('Guardado'); renderSeg();
+  } catch (e) { showToast('No se pudo guardar', true); }
+}
+
+function nuevoManual() { document.getElementById('s-nuevo').style.display = 'block'; document.getElementById('n-nombre').focus(); }
+
+async function guardarManual() {
+  const nombre = document.getElementById('n-nombre').value.trim(), contacto = document.getElementById('n-contacto').value.trim();
+  const notas = document.getElementById('n-notas').value.trim();
+  if (!nombre && !contacto) return showToast('Poné al menos el nombre o el contacto', true);
+  try {
+    const res = await fetch('/api/admin?accion=guardar-seguimiento', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret }, body: JSON.stringify({ origen: 'manual', nombre, contacto, notas, etapa: 'nuevo', proximo: hoyISO() }) });
+    if (!res.ok) throw new Error(res.status);
+    ['n-nombre', 'n-contacto', 'n-notas'].forEach((id) => { document.getElementById(id).value = ''; });
+    document.getElementById('s-nuevo').style.display = 'none';
+    showToast('Contacto agregado'); loadSeg();
+  } catch (e) { showToast('No se pudo guardar', true); }
+}
+
+async function borrarManual(i) {
+  const r = allSeg[i]; if (!r || !confirm(`¿Borrar a ${r.nombre || r.contacto}?`)) return;
+  try {
+    const res = await fetch('/api/admin?accion=borrar-manual', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret }, body: JSON.stringify({ ref_id: r.ref_id }) });
+    if (!res.ok) throw new Error(res.status);
+    showToast('Borrado'); loadSeg();
+  } catch (e) { showToast('No se pudo borrar', true); }
+}
+
+// ---- Clics en WhatsApp ----
+async function loadClics() {
+  try { const d = await cargar('/api/admin?accion=clics'); if (d) { allClics = d; renderClics(); } }
+  catch (e) { showToast('Error al cargar clics', true); }
+}
+
+function renderClics() {
+  const ahora = Date.now(), dia = 86400000;
+  const en = (n) => allClics.filter((c) => ahora - new Date(c.created_at) < n * dia);
+  const c7 = en(7), c30 = en(30), cPrev7 = allClics.filter((c) => { const t = ahora - new Date(c.created_at); return t >= 7 * dia && t < 14 * dia; });
+  const hoy = allClics.filter((c) => new Date(c.created_at).toDateString() === new Date().toDateString());
+  document.getElementById('n-clics').textContent = c7.length || '';
+  document.getElementById('c-hoy').textContent = hoy.length;
+  document.getElementById('c-7').textContent = c7.length;
+  document.getElementById('c-7-sub').textContent = cPrev7.length ? `${c7.length >= cPrev7.length ? '+' : ''}${c7.length - cPrev7.length} vs. semana anterior` : '';
+  document.getElementById('c-30').textContent = c30.length;
+  const porPag = {};
+  c30.forEach((c) => { const p = porPag[c.pagina] ||= { n30: 0, n7: 0, botones: {} }; p.n30++; if (ahora - new Date(c.created_at) < 7 * dia) p.n7++; if (c.boton) p.botones[c.boton] = (p.botones[c.boton] || 0) + 1; });
+  const orden = Object.entries(porPag).sort((a, b) => b[1].n30 - a[1].n30);
+  document.getElementById('c-top').textContent = orden[0] ? `${orden[0][0]} (${orden[0][1].n30})` : '—';
+  const nuevos30 = allLeads.filter((l) => ahora - new Date(l.created_at) < 30 * dia).length + allEncuestas.filter((e) => e.contacto && ahora - new Date(e.created_at) < 30 * dia).length;
+  document.getElementById('c-conv').textContent = c30.length ? Math.round(nuevos30 / c30.length * 100) + '%' : '—';
+  const dias = []; for (let i = 13; i >= 0; i--) { const d = new Date(ahora - i * dia); dias.push(d.toDateString()); }
+  const cuenta = dias.map((d) => allClics.filter((c) => new Date(c.created_at).toDateString() === d).length), max = Math.max(...cuenta, 1);
+  document.getElementById('c-bars').innerHTML = cuenta.map((n, i) => `<div class="bar-col"><div class="bar-val">${n || ''}</div><div class="bar" style="height:${Math.max(n / max * 62, n ? 3 : 1)}px;opacity:${i === 13 ? 1 : .6}"></div><div class="bar-label">${new Date(dias[i]).getDate()}</div></div>`).join('');
+  document.getElementById('c-body').innerHTML = orden.length
+    ? orden.map(([p, v]) => { const top = Object.entries(v.botones).sort((a, b) => b[1] - a[1])[0]; return `<tr><td>${esc(p)}</td><td>${v.n30}</td><td>${v.n7}</td><td>${top ? esc(top[0]) + ' (' + top[1] + ')' : '—'}</td></tr>`; }).join('')
+    : '<tr><td colspan="4" class="empty">Todavía no hay clics registrados. Empiezan a contarse desde hoy.</td></tr>';
 }
 </script>
 </body>
