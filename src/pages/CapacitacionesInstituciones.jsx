@@ -10,6 +10,12 @@ import GaleriaJornada from '../components/GaleriaJornada'
 const WA_PROPUESTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad, comuna o cámara de ____. Nos interesa una capacitación en inteligencia artificial para los emprendedores y comercios de nuestra localidad.')
 const MAIL = 'mailto:juanoconecta@gmail.com?subject=' + encodeURIComponent('Capacitación en IA para nuestra localidad')
 
+const ORGANIZADORES = [
+  { nombre: 'CCIRR', detalle: 'Programa de Mentorías' },
+  { nombre: 'FECECO' },
+  { nombre: 'Cámara Argentina de Comercio' },
+]
+
 const publicos = [
   { titulo: 'Emprendedores', texto: 'Para crear contenido, vender por redes y ordenar su negocio sin gastar de más.' },
   { titulo: 'Comercios', texto: 'Para atender mejor por WhatsApp, promocionar ofertas y ahorrar tiempo en tareas repetidas.' },
@@ -84,6 +90,11 @@ export default function CapacitacionesInstituciones() {
         <link rel="canonical" href="https://juanoconecta.ar/capacitaciones" />
         <meta property="og:title" content="Capacitaciones en IA para emprendedores y comercios | JuanoConecta" />
         <meta property="og:url" content="https://juanoconecta.ar/capacitaciones" />
+        <meta property="og:description" content="Charlas y talleres prácticos de IA para emprendedores y comercios de tu localidad. Ya lo hicimos en el CCIRR." />
+        <meta property="og:image" content="https://juanoconecta.ar/img/capacitaciones/og-capacitaciones.jpg" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:image" content="https://juanoconecta.ar/img/capacitaciones/og-capacitaciones.jpg" />
         <script type="application/ld+json">{JSON.stringify(SCHEMA)}</script>
         <script type="application/ld+json">{JSON.stringify(FAQ_SCHEMA)}</script>
       </Helmet>
@@ -126,6 +137,20 @@ export default function CapacitacionesInstituciones() {
               ))}
             </div>
             <p className="mt-6 rounded-2xl border-l-2 border-teal bg-[#0F1629] px-5 py-4 text-crema/80 leading-relaxed">Lo que más valoraron: que la explicación fuera clara y salir con herramientas concretas para aplicar en su negocio.</p>
+            <div className="mt-6">
+              <p className="text-crema/40 text-[11px] font-bold tracking-[0.2em] uppercase mb-3">Organizado con</p>
+              <div className="flex flex-wrap gap-2">
+                {ORGANIZADORES.map((o, i) => (
+                  <motion.span key={o.nombre}
+                    initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                    transition={{ duration: 0.45, delay: 0.15 + i * 0.12 }}
+                    className="inline-flex flex-col rounded-xl border border-white/10 bg-white/[0.03] px-4 py-2.5 hover:border-acento/40 transition-colors duration-300">
+                    <span className="text-crema text-sm font-semibold">{o.nombre}</span>
+                    {o.detalle && <span className="text-crema/45 text-xs">{o.detalle}</span>}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
         <div className="max-w-6xl mx-auto mt-20">
