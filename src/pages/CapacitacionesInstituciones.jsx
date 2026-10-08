@@ -12,7 +12,7 @@ const MAIL = 'mailto:juanoconecta@gmail.com?subject=' + encodeURIComponent('Capa
 const publicos = [
   { titulo: 'Emprendedores', texto: 'Para crear contenido, vender por redes y ordenar su negocio sin gastar de más.' },
   { titulo: 'Comercios', texto: 'Para atender mejor por WhatsApp, promocionar ofertas y ahorrar tiempo en tareas repetidas.' },
-  { titulo: 'Jóvenes que emprenden', texto: 'Para arrancar su proyecto o su primer trabajo con una herramienta que ya piden en todos lados.' },
+  { titulo: 'Profesionales independientes', texto: 'Para responder consultas, armar presupuestos y mostrar sus servicios en menos tiempo.' },
   { titulo: 'Socios de cámaras', texto: 'Para que la cámara les ofrezca algo práctico y cercano, que se note en el día a día de cada negocio.' },
 ]
 
