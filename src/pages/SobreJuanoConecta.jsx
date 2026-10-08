@@ -14,7 +14,7 @@ const ORGANIZATION_SCHEMA = {
   alternateName: 'Juano Conecta',
   description: 'Agencia de marketing digital y diseño de marcas con IA en Rafaela, Santa Fe, Argentina. Fundada por Juan Gallino.',
   url: 'https://juanoconecta.ar',
-  telephone: '+543492627811',
+  telephone: '+5493492627811',
   email: 'juanoconecta@gmail.com',
   foundingDate: '2022',
   founder: {

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-export const WA = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20saber%20m%C3%A1s%20sobre%20JuanoConecta'
+export const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20saber%20m%C3%A1s%20sobre%20JuanoConecta'
 
 // Aparición suave al hacer scroll. El contenido arranca visible si el navegador pide menos movimiento.
 export function Reveal({ children, delay = 0, y = 32, className = '', as = 'div' }) {

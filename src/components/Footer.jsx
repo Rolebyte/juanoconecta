@@ -73,7 +73,7 @@ export default function Footer() {
           <div>
             <h3 className="text-crema font-semibold mb-5">Contacto</h3>
             <ul className="space-y-3 text-sm text-crema/50">
-              <li><a href="https://wa.me/543492627811" target="_blank" rel="noopener noreferrer" className="hover:text-crema transition-colors">WhatsApp +54 9 3492 627811</a></li>
+              <li><a href="https://wa.me/5493492627811" target="_blank" rel="noopener noreferrer" className="hover:text-crema transition-colors">WhatsApp +54 9 3492 627811</a></li>
               <li><a href="mailto:juanoconecta@gmail.com" className="hover:text-crema transition-colors">juanoconecta@gmail.com</a></li>
               <li>Rafaela, Santa Fe, Argentina</li>
             </ul>

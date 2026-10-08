@@ -13,7 +13,7 @@ const schema = {
   name: 'JuanoConecta',
   description: 'Publicidad en Instagram y Facebook para negocios en Rafaela. Meta Ads optimizado con IA aplicada.',
   url: 'https://juanoconecta.ar/publicidad-instagram-rafaela',
-  telephone: '+543492627811',
+  telephone: '+5493492627811',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Rafaela',

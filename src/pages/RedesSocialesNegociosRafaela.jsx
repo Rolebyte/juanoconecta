@@ -14,7 +14,7 @@ const schema = {
   name: 'JuanoConecta',
   description: 'Gestión de redes sociales para negocios en Rafaela y Santa Fe. Estrategia digital con IA aplicada.',
   url: 'https://juanoconecta.ar/redes-sociales-para-negocios-rafaela',
-  telephone: '+543492627811',
+  telephone: '+5493492627811',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Rafaela',

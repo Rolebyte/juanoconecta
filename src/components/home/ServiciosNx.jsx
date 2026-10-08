@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { SectionTitle, Reveal, Check } from './ui'
 
-const WA_BASE = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20me%20interesa%20'
+const WA_BASE = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20'
 
 const servicios = [
   {

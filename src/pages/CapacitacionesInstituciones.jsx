@@ -6,7 +6,7 @@ import WhatsAppButton from '../components/WhatsAppButton'
 import { Eyebrow, GridGlow, GlowCard, SectionTitle, BtnPrimary, BtnGhost, Check, Reveal } from '../components/home/ui'
 import { CAPACITACIONES } from '../data/capacitaciones'
 
-const WA_PROPUESTA = 'https://wa.me/543492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad/comuna de ____. Nos interesa una capacitación en inteligencia artificial.')
+const WA_PROPUESTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad/comuna de ____. Nos interesa una capacitación en inteligencia artificial.')
 const MAIL = 'mailto:juanoconecta@gmail.com?subject=' + encodeURIComponent('Capacitación en IA para nuestra localidad')
 
 const publicos = [

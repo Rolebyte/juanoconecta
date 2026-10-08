@@ -3,7 +3,7 @@ import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useTilt } from '../hooks/useTilt'
 import { Eyebrow, GridGlow } from './home/ui'
 
-const WA_AUDITORIA = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20la%20Auditoría%20IA%20de%20mi%20perfil'
+const WA_AUDITORIA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20la%20Auditoría%20IA%20de%20mi%20perfil'
 
 const TEAL = '#22D3EE'
 

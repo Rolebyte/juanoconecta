@@ -14,7 +14,7 @@ const LOCAL_BUSINESS_SCHEMA = {
   name: 'JuanoConecta',
   description: 'Agencia de community management y marketing digital en Rafaela, Santa Fe',
   url: 'https://juanoconecta.ar',
-  telephone: '+543492627811',
+  telephone: '+5493492627811',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Rafaela',

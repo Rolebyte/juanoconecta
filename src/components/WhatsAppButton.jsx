@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-const WA_LINK = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20saber%20más%20sobre%20tus%20servicios'
+const WA_LINK = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20saber%20más%20sobre%20tus%20servicios'
 
 export default function WhatsAppButton() {
   return (

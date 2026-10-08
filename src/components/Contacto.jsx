@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Eyebrow, GridGlow } from './home/ui'
 
-const WA_LINK = 'https://wa.me/543492627811?text=Hola%20Juan%2C%20quiero%20contactarte'
+const WA_LINK = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20contactarte'
 
 const serviciosOpciones = [
   'Community Management',
