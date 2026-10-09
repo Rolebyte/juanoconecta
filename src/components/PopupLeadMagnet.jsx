@@ -76,7 +76,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
             transition={{ type: 'spring', stiffness: 300, damping: 25 }}
             className="fixed inset-0 flex items-center justify-center z-50 px-4 pointer-events-none"
           >
-            <div className="bg-[#141C33] border border-card-border rounded-2xl p-8 max-w-md w-full pointer-events-auto relative overflow-hidden">
+            <div className="bg-[#141C33] border border-card-border rounded-2xl p-6 sm:p-8 max-w-md w-full pointer-events-auto relative overflow-hidden">
 
               {/* Glow de fondo */}
               <div className="absolute -top-20 -right-20 w-40 h-40 bg-acento/20 rounded-full blur-3xl pointer-events-none" />
@@ -84,6 +84,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
               {/* Botón cerrar */}
               <button
                 onClick={cerrar}
+                aria-label="Cerrar"
                 className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-crema/50 hover:text-crema flex items-center justify-center transition-colors"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -93,16 +94,25 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
 
               {!enviado ? (
                 <>
-                  {/* Ícono */}
-                  <div className="w-14 h-14 rounded-2xl bg-acento/15 border border-acento/30 flex items-center justify-center text-2xl mb-5">
-                    🤖
+                  <div className="flex gap-5 items-start mb-6">
+                    <motion.img
+                      src="/img/prompts-portada.webp"
+                      alt="Portada de la guía 5 prompts para crear contenido con IA"
+                      width="300" height="424"
+                      initial={{ rotate: -8, y: 10, opacity: 0 }}
+                      animate={{ rotate: -4, y: 0, opacity: 1 }}
+                      transition={{ delay: 0.15, type: 'spring', stiffness: 200, damping: 18 }}
+                      className="w-[84px] shrink-0 rounded-lg shadow-2xl shadow-acento/30 border border-white/10"
+                    />
+                    <div className="min-w-0 pt-1">
+                      <span className="inline-block text-[10px] font-bold tracking-[0.18em] text-[#22D3EE] border border-[#22D3EE]/40 rounded-full px-2.5 py-1 mb-3">GUÍA GRATIS</span>
+                      <h3 className="text-xl font-bold text-crema leading-tight">
+                        5 prompts para crear contenido <span className="text-acento">con IA</span>
+                      </h3>
+                    </div>
                   </div>
-
-                  <h3 className="text-xl font-bold text-crema mb-2">
-                    5 prompts para crear contenido con IA
-                  </h3>
-                  <p className="text-crema/50 text-sm mb-6">
-                    Gratis. Descargalo ahora y empezá a crear contenido que convierte en minutos.
+                  <p className="text-crema/60 text-sm mb-6">
+                    Copiá, pegá en ChatGPT, Claude o Gemini y tené el contenido de la semana en minutos. Dejá tu correo y descargala al instante.
                   </p>
 
                   <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -111,75 +121,65 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      placeholder="Ingresá tu correo"
-                      className="w-full bg-card-bg border border-card-border text-crema placeholder-crema/20 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-acento/50 transition-colors"
+                      placeholder="Tu correo"
+                      aria-label="Tu correo"
+                      className="w-full bg-card-bg border border-card-border text-crema placeholder-crema/30 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-acento/50 transition-colors"
                     />
                     <motion.button
                       type="submit"
+                      disabled={loading}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full py-3.5 bg-acento hover:bg-acento-dark text-white font-semibold rounded-xl transition-colors"
+                      className="w-full py-3.5 bg-acento hover:bg-acento-dark disabled:opacity-60 text-white font-semibold rounded-xl transition-colors"
                     >
-                      Quiero los prompts gratis →
+                      {loading ? 'Enviando…' : 'Quiero la guía gratis →'}
                     </motion.button>
+                    {error && <p className="text-red-300 text-xs text-center">{error}</p>}
                   </form>
 
-                  <p className="text-crema/20 text-xs text-center mt-3">Sin spam. Podés darte de baja cuando quieras.</p>
+                  <p className="text-crema/30 text-xs text-center mt-3">Sin spam. Te podés dar de baja cuando quieras.</p>
                 </>
               ) : (
-                <div className="text-center py-2">
-                  <div className="text-4xl mb-2">⬇️</div>
-                  <h3 className="text-crema text-lg font-bold mb-1">¡Listo! Tu descarga está acá abajo</h3>
-                  <p className="text-crema/40 text-xs mb-4">Hacé click en el botón para descargar el PDF ahora mismo.</p>
+                <div className="text-center py-1">
+                  <h3 className="text-crema text-lg font-bold mb-1">¡Listo! Acá está tu guía</h3>
+                  <p className="text-crema/50 text-xs mb-4">Descargala ahora y guardala para cuando la necesites.</p>
 
-                  {/* Descarga directa */}
                   <a
                     href="/5-prompts-gratis.pdf"
                     download
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm text-white mb-4 transition-all hover:opacity-90"
-                    style={{ background: 'linear-gradient(135deg, #3D7BFF, #6E9BFF)' }}
+                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm text-white mb-5 transition-all hover:opacity-90 bg-acento"
                   >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
-                    Descargar los 5 prompts gratis
+                    Descargar la guía (PDF)
                   </a>
 
-                  <p className="text-crema/45 text-sm mb-4">
-                    <span className="text-crema/30">¿Querés seguir aprendiendo? —</span>
-                  </p>
-
-                  {/* Instagram CTA */}
-                  <div
-                    className="rounded-xl p-4 mb-4"
-                    style={{ background: 'linear-gradient(135deg, rgba(131,58,180,0.12), rgba(61,123,255,0.08))', border: '1px solid rgba(61,123,255,0.2)' }}
-                  >
-                    <p className="text-crema text-sm font-semibold mb-1">
-                      ¿Querés seguir aprendiendo gratis?
-                    </p>
-                    <p className="text-crema/40 text-xs mb-4">
-                      En mi Instagram subo prompts, estrategias y casos reales cada semana — lo que no vas a encontrar en ningún otro lado.
+                  {/* Próximo paso: la auditoría */}
+                  <div className="rounded-xl p-4 mb-4 text-left border border-acento/30 bg-acento/[0.08]">
+                    <p className="text-[10px] font-bold tracking-[0.18em] text-[#22D3EE] mb-1.5">EL PRÓXIMO PASO</p>
+                    <p className="text-crema text-sm font-semibold mb-1">¿Tu Instagram no trae consultas?</p>
+                    <p className="text-crema/55 text-xs mb-4">
+                      En la auditoría con IA reviso tu perfil, te doy un plan de mejora y lo vemos juntos en una sesión 1 a 1. Desde $120.000.
                     </p>
                     <a
-                      href="https://instagram.com/juanoconecta"
+                      href="https://wa.me/5493492627811?text=Hola%20Juan%2C%20descargu%C3%A9%20la%20gu%C3%ADa%20de%20prompts%20y%20quiero%20saber%20m%C3%A1s%20de%20la%20auditor%C3%ADa"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm text-white transition-all hover:opacity-90"
-                      style={{ background: 'linear-gradient(135deg, #833AB4, #C13584, #E1306C)' }}
+                      aria-label="Consultar por la auditoría por WhatsApp"
+                      className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl font-semibold text-sm text-white bg-[#25D366] hover:opacity-90 transition-opacity"
                     >
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                      </svg>
-                      Seguir @juanoconecta
+                      Consultar por WhatsApp
                     </a>
                   </div>
 
-                  <button
-                    onClick={cerrar}
-                    className="text-crema/25 text-xs hover:text-crema/50 transition-colors"
-                  >
-                    Ya te sigo, gracias →
-                  </button>
+                  <div className="flex items-center justify-center gap-4 text-xs">
+                    <a href="https://instagram.com/juanoconecta" target="_blank" rel="noopener noreferrer" className="text-crema/50 hover:text-crema transition-colors">
+                      Seguir @juanoconecta
+                    </a>
+                    <span className="text-crema/20">·</span>
+                    <button onClick={cerrar} className="text-crema/40 hover:text-crema/70 transition-colors">Cerrar</button>
+                  </div>
                 </div>
               )}
             </div>

@@ -8,7 +8,7 @@ const WA_AUDITORIA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%2
 const TEAL = '#22D3EE'
 
 const productoGratis = {
-  nombre: '5 Prompts para Arrancar con IA',
+  nombre: '5 prompts para crear contenido con IA',
   descripcion: '¿No sabés por dónde empezar con la IA? Estos 5 prompts te dan el punto de partida exacto para generar contenido real en menos de 10 minutos — sin experiencia previa.',
   badge: 'GRATIS',
   badgeStyle: { background: 'rgba(34,211,238,0.15)', color: '#22D3EE', border: '1px solid rgba(34,211,238,0.4)' },
@@ -16,7 +16,7 @@ const productoGratis = {
   precioUSD: null,
   tipo: 'gratis',
   emoji: '🎁',
-  includes: ['5 prompts listos para usar hoy', 'Funciona en ChatGPT, Claude y Gemini', 'Resultados desde el primer uso', 'Sin tarjeta. Sin registro. 100% gratis'],
+  includes: ['5 prompts listos para usar hoy', 'Funciona en ChatGPT, Claude y Gemini', 'Resultados desde el primer uso', 'Gratis: solo te pedimos tu correo'],
   color: TEAL,
 }
 
