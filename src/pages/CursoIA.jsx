@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import WhatsAppButton from '../components/WhatsAppButton'
 import { CURSO } from '../data/curso'
+import ListaEsperaCurso from '../components/ListaEsperaCurso'
 import { Eyebrow, GridGlow, GlowCard, SectionTitle, BtnPrimary, BtnGhost, Check } from '../components/home/ui'
 
 const COURSE_SCHEMA = {
@@ -50,7 +51,7 @@ export default function CursoIAPage() {
           </h1>
           <p className="text-crema/60 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-10">{CURSO.bajada}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <BtnPrimary href={CURSO.wa} external>Sumarme a la lista de espera</BtnPrimary>
+            <BtnPrimary href="#anotarme">Sumarme a la lista de espera</BtnPrimary>
             <BtnGhost href="#temario">Ver el temario</BtnGhost>
           </div>
           <p className="text-crema/45 text-sm mt-6">{CURSO.estado} · {CURSO.modalidad}</p>
@@ -114,13 +115,13 @@ export default function CursoIAPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 px-6">
+      <section id="anotarme" className="py-24 px-6 scroll-mt-16">
         <div className="relative max-w-6xl mx-auto overflow-hidden rounded-[2.5rem] border border-acento/30 bg-gradient-to-br from-[#16245A] via-[#121A30] to-[#0B1020] px-6 py-16 md:px-16 md:py-20 text-center">
           <GridGlow />
           <div className="relative">
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-5">Reservá tu lugar</h2>
             <p className="text-crema/65 text-lg max-w-xl mx-auto mb-10">Los cupos son limitados. Anotate en la lista de espera y te aviso primero cuando abran las inscripciones.</p>
-            <BtnPrimary href={CURSO.wa} external>Quiero anotarme</BtnPrimary>
+            <ListaEsperaCurso />
           </div>
         </div>
       </section>

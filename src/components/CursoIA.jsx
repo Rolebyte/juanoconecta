@@ -30,9 +30,7 @@ export default function CursoIA() {
               Ver el temario
             </a>
             <a
-              href={CURSO.wa}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/curso-ia#anotarme"
               className="px-8 py-4 rounded-full font-semibold text-sm border border-white/15 text-crema hover:border-teal/60 text-center transition-colors"
             >
               Sumarme a la lista de espera

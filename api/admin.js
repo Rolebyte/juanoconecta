@@ -1,7 +1,7 @@
 // Panel de admin: una sola función con varias acciones (?accion=...), para no sumar funciones en Vercel.
 // Usa la misma contraseña que los leads (ADMIN_SECRET) y la service key de Supabase.
 const ETAPAS = ['nuevo', 'contactado', 'interesado', 'propuesta', 'cliente', 'descartado']
-const ORIGENES = ['lead', 'encuesta', 'venta', 'manual']
+const ORIGENES = ['lead', 'encuesta', 'venta', 'manual', 'curso']
 // Etiquetas que ya tenían los leads en el panel viejo → etapa de seguimiento.
 const LABEL_A_ETAPA = { interesado: 'interesado', 'en-negociacion': 'propuesta', cerrado: 'cliente', descartado: 'descartado' }
 
@@ -57,6 +57,9 @@ export default async function handler(req, res) {
         ...ventas.map((v) => armar('venta', String(v.mp_id), {
           nombre: v.cliente || '', contacto: v.email || '', created_at: v.created_at,
           detalle: `Compró ${v.servicio || ''} ($${Math.round(v.monto || 0).toLocaleString('es-AR')})`, etapa: 'cliente',
+        })),
+        ...guardados.filter((g) => g.origen === 'curso').map((g) => armar('curso', g.ref_id, {
+          nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Lista de espera del curso de IA', etapa: g.etapa,
         })),
         ...guardados.filter((g) => g.origen === 'manual').map((g) => armar('manual', g.ref_id, {
           nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Cargado a mano', etapa: g.etapa,

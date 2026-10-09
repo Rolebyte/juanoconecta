@@ -187,7 +187,7 @@ tr:hover td{background:#0E1528}
         </select>
         <select class="filter" id="s-etapa" onchange="renderSeg()"><option value="">Todas las etapas</option></select>
         <select class="filter" id="s-origen" onchange="renderSeg()">
-          <option value="">Todos los orígenes</option><option value="lead">Leads</option><option value="encuesta">Encuestas</option><option value="venta">Ventas</option><option value="manual">Cargados a mano</option>
+          <option value="">Todos los orígenes</option><option value="lead">Leads</option><option value="encuesta">Encuestas</option><option value="venta">Ventas</option><option value="curso">Lista de espera curso</option><option value="manual">Cargados a mano</option>
         </select>
         <input class="search" type="text" placeholder="Buscar..." id="s-buscar" oninput="renderSeg()">
       </div>
@@ -632,7 +632,7 @@ function renderVentas() {
 // ---- Seguimientos: leads, encuestas, ventas y contactos cargados a mano, con etapa y próximo contacto ----
 let allSeg = [], allClics = [];
 const ETAPAS = { nuevo: 'Nuevo', contactado: 'Contactado', interesado: 'Interesado', propuesta: 'Propuesta enviada', cliente: 'Cliente', descartado: 'Descartado' };
-const ORIGEN_TXT = { lead: 'Lead web', encuesta: 'Encuesta', venta: 'Venta', manual: 'Manual' };
+const ORIGEN_TXT = { lead: 'Lead web', encuesta: 'Encuesta', venta: 'Venta', manual: 'Manual', curso: 'Lista de espera curso' };
 const hoyISO = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
 const masDias = (n) => { const d = new Date(); d.setDate(d.getDate() + n); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 10); };
 const abierto = (r) => r.etapa !== 'cliente' && r.etapa !== 'descartado';
