@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { pixel } from '../pixel'
 
 const STORAGE_KEY = 'jc_popup_cerrado'
 
@@ -43,6 +44,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
       const data = await res.json()
       if (data.ok) {
         setEnviado(true)
+        pixel('Lead', { content_name: 'material-gratis' })
       } else {
         setError('Hubo un problema. Intentá de nuevo.')
       }

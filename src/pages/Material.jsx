@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import WhatsAppButton from '../components/WhatsAppButton'
+import { pixel } from '../pixel'
 import { Eyebrow, GridGlow, GlowCard, BtnPrimary, BtnGhost, Reveal } from '../components/home/ui'
 import { MATERIALES } from '../data/materiales'
 
@@ -85,7 +86,7 @@ function Encuesta({ slug, b, onListo }) {
     try {
       const r = await fetch('/api/encuesta', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ material: slug, ...f }) })
       const data = await r.json()
-      if (data.codigo) { guardarCupon(slug, data.codigo); onListo(data.codigo); return }
+      if (data.codigo) { pixel('Lead', { content_name: 'encuesta-' + slug }); guardarCupon(slug, data.codigo); onListo(data.codigo); return }
       setEstado('error')
     } catch {
       setEstado('error')
@@ -174,7 +175,7 @@ function Canjear({ b, codigo }) {
         body: JSON.stringify({ material: b.slug, servicio: s.id, codigo }),
       })
       const data = await r.json()
-      if (data.url) { window.location.href = data.url; return }
+      if (data.url) { pixel('InitiateCheckout', { content_name: s.id }); window.location.href = data.url; return }
       setEstado('error')
     } catch {
       setEstado('error')

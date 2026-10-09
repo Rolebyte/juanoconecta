@@ -1,5 +1,6 @@
-import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useEffect, useRef } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { pixel } from './pixel'
 import { Helmet } from 'react-helmet-async'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -40,6 +41,18 @@ function IrASeccion() {
     const timers = [50, 400, 1000].map((ms, i) => setTimeout(() => ir(i === 0), ms))
     return () => timers.forEach(clearTimeout)
   }, [])
+  return null
+}
+
+// Avisa al Píxel de Meta cada cambio de página dentro de la web.
+// La primera visita ya la registra index.html, por eso se saltea.
+function PixelPaginas() {
+  const { pathname } = useLocation()
+  const primera = useRef(true)
+  useEffect(() => {
+    if (primera.current) { primera.current = false; return }
+    pixel('PageView')
+  }, [pathname])
   return null
 }
 
@@ -136,6 +149,7 @@ export function AppRoutes() {
   return (
     <>
       <IrASeccion />
+      <PixelPaginas />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/community-manager-rafaela" element={<CommunityManagerRafaela />} />

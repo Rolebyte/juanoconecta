@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { HelmetProvider } from 'react-helmet-async'
 import App from './App.jsx'
 import './index.css'
+import { pixel } from './pixel'
 
 // Cuenta los clics en cualquier botón de WhatsApp de la web (panel /admin → Clics).
 document.addEventListener('click', (e) => {
@@ -15,6 +16,7 @@ document.addEventListener('click', (e) => {
     }
   } catch { /* si falla el conteo, el botón igual abre WhatsApp */ }
   window.gtag?.('event', 'click_whatsapp', { pagina: window.location.pathname })
+  pixel('Contact', { content_name: 'whatsapp', content_category: window.location.pathname })
 }, true)
 
 ReactDOM.createRoot(document.getElementById('root')).render(

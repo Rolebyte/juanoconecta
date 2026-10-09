@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Eyebrow, GridGlow } from './home/ui'
+import { pixel } from '../pixel'
 
 const WA_LINK = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20contactarte'
 
@@ -37,6 +38,7 @@ export default function Contacto() {
       })
       if (res.ok) {
         setEnviado(true)
+        pixel('Lead', { content_name: 'formulario-contacto' })
         form.reset()
       } else {
         setError(true)
