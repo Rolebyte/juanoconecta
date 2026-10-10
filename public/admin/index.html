@@ -163,9 +163,11 @@ tr:hover td{background:#0E1528}
       <div class="metric"><div class="metric-label">Con cupón</div><div class="metric-val blue" id="v-cupon">—</div></div>
       <div class="metric"><div class="metric-label">Este mes</div><div class="metric-val purple" id="v-mes">—</div></div>
       <div class="metric"><div class="metric-label">Ticket promedio</div><div class="metric-val amber" id="v-ticket">—</div></div>
+      <div class="metric"><div class="metric-label">Clics en "Pagar" (30 días)</div><div class="metric-val blue" id="v-intentos">—</div><div class="metric-sub" id="v-intentos-sub"></div></div>
     </div>
+    <div class="metric-sub" style="margin-top:10px">Incluye las compras de la tienda con Mercado Pago y Gumroad: se traen solas cada vez que abrís el panel.</div>
     <div class="table-wrap" style="margin-top:16px">
-      <table><thead><tr><th>Fecha</th><th>Servicio</th><th>Monto</th><th>Cliente</th><th>Email</th><th>Cupón</th><th>ID de pago</th></tr></thead>
+      <table><thead><tr><th>Fecha</th><th>Servicio</th><th>Monto</th><th>Cliente</th><th>Email</th><th>Cupón / origen</th><th>ID de pago</th></tr></thead>
       <tbody id="v-body"><tr><td colspan="7" class="empty">Cargando...</td></tr></tbody></table>
     </div>
   </div>
@@ -619,17 +621,34 @@ function exportEncuestas() {
 }
 
 function renderVentas() {
+  // Los montos en pesos suman; las ventas en dólares (Gumroad) se muestran aparte.
+  const ars = allVentas.filter((v) => (v.moneda || 'ARS') === 'ARS'), usd = allVentas.filter((v) => v.moneda && v.moneda !== 'ARS');
+  const suma = (l) => l.reduce((a, v) => a + (Number(v.monto) || 0), 0);
+  const dolares = (n) => 'USD ' + (Math.round(n * 100) / 100).toLocaleString('es-AR');
+  const monto = (v) => v.moneda && v.moneda !== 'ARS' ? dolares(v.monto) : pesos(v.monto);
   document.getElementById('n-ventas').textContent = allVentas.length;
-  const total = allVentas.reduce((a, v) => a + (Number(v.monto) || 0), 0);
+  const total = suma(ars), totalUsd = suma(usd);
   const mes = new Date().toISOString().slice(0, 7);
   document.getElementById('v-total').textContent = allVentas.length;
-  document.getElementById('v-monto').textContent = pesos(total);
+  document.getElementById('v-monto').textContent = pesos(total) + (totalUsd ? ' + ' + dolares(totalUsd) : '');
   document.getElementById('v-cupon').textContent = allVentas.filter((v) => v.cupon).length;
-  document.getElementById('v-mes').textContent = pesos(allVentas.filter((v) => v.created_at?.slice(0, 7) === mes).reduce((a, v) => a + (Number(v.monto) || 0), 0));
-  document.getElementById('v-ticket').textContent = allVentas.length ? pesos(total / allVentas.length) : '—';
+  document.getElementById('v-mes').textContent = pesos(suma(ars.filter((v) => v.created_at?.slice(0, 7) === mes)));
+  document.getElementById('v-ticket').textContent = ars.length ? pesos(total / ars.length) : '—';
   document.getElementById('v-body').innerHTML = allVentas.length
-    ? allVentas.map((v) => `<tr><td>${fecha(v.created_at)}</td><td>${esc(v.servicio)}</td><td>${pesos(v.monto)}</td><td>${esc(v.cliente)}</td><td>${esc(v.email)}</td><td>${esc(v.cupon || '—')}</td><td>${esc(v.mp_id)}</td></tr>`).join('')
-    : '<tr><td colspan="7" class="empty">Todavía no hay ventas. Aparecen acá apenas Mercado Pago aprueba un pago.</td></tr>';
+    ? allVentas.map((v) => `<tr><td>${fecha(v.created_at)}</td><td>${esc(v.servicio)}</td><td>${monto(v)}</td><td>${esc(v.cliente)}</td><td>${esc(v.email)}</td><td>${esc(v.cupon || (v.material === 'tienda' ? 'Tienda' : '—'))}</td><td>${esc(v.mp_id)}</td></tr>`).join('')
+    : '<tr><td colspan="7" class="empty">Todavía no hay ventas. Aparecen acá apenas Mercado Pago o Gumroad aprueban un pago.</td></tr>';
+  renderIntentos();
+}
+
+// Clics en los botones de pago de la tienda: muestran cuánta gente quiso comprar, aunque no haya terminado.
+function renderIntentos() {
+  const el = document.getElementById('v-intentos');
+  if (!el) return;
+  const pagos = allClics.filter((c) => (c.destino === 'mercadopago' || c.destino === 'gumroad') && Date.now() - new Date(c.created_at) < 30 * 86400000);
+  el.textContent = pagos.length;
+  const porProd = {};
+  pagos.forEach((c) => { const n = String(c.boton || '').split(':')[0] || 'Otro'; porProd[n] = (porProd[n] || 0) + 1; });
+  document.getElementById('v-intentos-sub').textContent = Object.entries(porProd).sort((a, b) => b[1] - a[1]).map(([n, k]) => `${n} ${k}`).join(' · ');
 }
 
 // ---- Seguimientos: leads, encuestas, ventas y contactos cargados a mano, con etapa y próximo contacto ----
@@ -740,15 +759,16 @@ async function borrarManual(i) {
 
 // ---- Clics en WhatsApp ----
 async function loadClics() {
-  try { const d = await cargar('/api/admin?accion=clics'); if (d) { allClics = d; renderClics(); } }
+  try { const d = await cargar('/api/admin?accion=clics'); if (d) { allClics = d; renderClics(); renderIntentos(); } }
   catch (e) { showToast('Error al cargar clics', true); }
 }
 
 function renderClics() {
   const ahora = Date.now(), dia = 86400000;
-  const en = (n) => allClics.filter((c) => ahora - new Date(c.created_at) < n * dia);
-  const c7 = en(7), c30 = en(30), cPrev7 = allClics.filter((c) => { const t = ahora - new Date(c.created_at); return t >= 7 * dia && t < 14 * dia; });
-  const hoy = allClics.filter((c) => new Date(c.created_at).toDateString() === new Date().toDateString());
+  const clicsWa = allClics.filter((c) => !c.destino || c.destino === 'whatsapp');
+  const en = (n) => clicsWa.filter((c) => ahora - new Date(c.created_at) < n * dia);
+  const c7 = en(7), c30 = en(30), cPrev7 = clicsWa.filter((c) => { const t = ahora - new Date(c.created_at); return t >= 7 * dia && t < 14 * dia; });
+  const hoy = clicsWa.filter((c) => new Date(c.created_at).toDateString() === new Date().toDateString());
   document.getElementById('n-clics').textContent = c7.length || '';
   document.getElementById('c-hoy').textContent = hoy.length;
   document.getElementById('c-7').textContent = c7.length;
@@ -761,7 +781,7 @@ function renderClics() {
   const nuevos30 = allLeads.filter((l) => ahora - new Date(l.created_at) < 30 * dia).length + allEncuestas.filter((e) => e.contacto && ahora - new Date(e.created_at) < 30 * dia).length;
   document.getElementById('c-conv').textContent = c30.length ? Math.round(nuevos30 / c30.length * 100) + '%' : '—';
   const dias = []; for (let i = 13; i >= 0; i--) { const d = new Date(ahora - i * dia); dias.push(d.toDateString()); }
-  const cuenta = dias.map((d) => allClics.filter((c) => new Date(c.created_at).toDateString() === d).length), max = Math.max(...cuenta, 1);
+  const cuenta = dias.map((d) => clicsWa.filter((c) => new Date(c.created_at).toDateString() === d).length), max = Math.max(...cuenta, 1);
   document.getElementById('c-bars').innerHTML = cuenta.map((n, i) => `<div class="bar-col"><div class="bar-val">${n || ''}</div><div class="bar" style="height:${Math.max(n / max * 62, n ? 3 : 1)}px;opacity:${i === 13 ? 1 : .6}"></div><div class="bar-label">${new Date(dias[i]).getDate()}</div></div>`).join('');
   document.getElementById('c-body').innerHTML = orden.length
     ? orden.map(([p, v]) => { const top = Object.entries(v.botones).sort((a, b) => b[1] - a[1])[0]; return `<tr><td>${esc(p)}</td><td>${v.n30}</td><td>${v.n7}</td><td>${top ? esc(top[0]) + ' (' + top[1] + ')' : '—'}</td></tr>`; }).join('')

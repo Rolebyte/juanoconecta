@@ -1,9 +1,69 @@
 // Panel de admin: una sola función con varias acciones (?accion=...), para no sumar funciones en Vercel.
 // Usa la misma contraseña que los leads (ADMIN_SECRET) y la service key de Supabase.
+import { productos, precioNumero } from '../src/data/tienda.js'
+
 const ETAPAS = ['nuevo', 'contactado', 'interesado', 'propuesta', 'cliente', 'descartado']
 const ORIGENES = ['lead', 'encuesta', 'venta', 'manual', 'curso']
 // Etiquetas que ya tenían los leads en el panel viejo → etapa de seguimiento.
 const LABEL_A_ETAPA = { interesado: 'interesado', 'en-negociacion': 'propuesta', cerrado: 'cliente', descartado: 'descartado' }
+
+// Productos de la tienda que se cobran con links fijos de Mercado Pago o con Gumroad: esos pagos no pasan
+// por api/webhook-mp, así que se traen de cada plataforma al abrir el panel (mp_id único evita duplicados).
+const TIENDA = productos.filter((p) => p.btnARS || p.btnUSD).map((p) => ({ nombre: p.nombre, ars: precioNumero(p.precioARS) }))
+const deTienda = (pago) => {
+  const desc = String(pago.description || '').toLowerCase()
+  // Si no coincide el nombre, el monto exacto (solo pagos online: los cobros con QR o Point tienen pos_id).
+  return TIENDA.find((t) => desc.includes(t.nombre.toLowerCase())) || (!pago.pos_id && TIENDA.find((t) => t.ars === pago.transaction_amount))
+}
+
+async function sincronizarTienda(db) {
+  const { MP_ACCESS_TOKEN, GUMROAD_ACCESS_TOKEN } = process.env
+  const filas = []
+  const desde = new Date(Date.now() - 90 * 86400000)
+  if (MP_ACCESS_TOKEN) {
+    try {
+      const r = await fetch('https://api.mercadopago.com/v1/payments/search?status=approved&sort=date_created&criteria=desc&range=date_created&begin_date=NOW-90DAYS&end_date=NOW&limit=100', {
+        headers: { Authorization: `Bearer ${MP_ACCESS_TOKEN}` },
+      })
+      const d = r.ok ? await r.json() : { results: [] }
+      for (const pago of d.results || []) {
+        if (pago.external_reference) continue // pagos de la web con checkout propio: ya los guarda el webhook
+        const prod = deTienda(pago)
+        if (!prod) continue
+        const payer = pago.payer || {}
+        filas.push({
+          mp_id: String(pago.id), created_at: pago.date_approved || pago.date_created || new Date().toISOString(), servicio: prod.nombre, monto: pago.transaction_amount,
+          moneda: 'ARS', material: 'tienda', cliente: [payer.first_name, payer.last_name].filter(Boolean).join(' ') || null, email: payer.email || null,
+        })
+      }
+    } catch (e) { console.error('sync mp', e?.message) }
+  }
+  if (GUMROAD_ACCESS_TOKEN) {
+    try {
+      // Gumroad devuelve las ventas de a páginas (page_key); con 5 alcanza para 90 días de una tienda chica.
+      const ventas = []
+      let pagina = ''
+      for (let i = 0; i < 5; i++) {
+        const q = new URLSearchParams({ access_token: GUMROAD_ACCESS_TOKEN, after: desde.toISOString().slice(0, 10), ...(pagina ? { page_key: pagina } : {}) })
+        const r = await fetch(`https://api.gumroad.com/v2/sales?${q}`)
+        const d = r.ok ? await r.json() : {}
+        ventas.push(...(d.sales || []))
+        pagina = d.next_page_key
+        if (!pagina) break
+      }
+      for (const v of ventas) {
+        if (v.refunded || v.chargedback) continue
+        filas.push({
+          mp_id: `gumroad:${v.id}`, created_at: v.created_at || new Date().toISOString(), servicio: v.product_name || 'Gumroad', monto: (Number(v.price) || 0) / 100,
+          moneda: String(v.currency || 'usd').toUpperCase(), material: 'tienda', cliente: v.full_name || v.purchaser_name || null, email: v.email || null,
+        })
+      }
+    } catch (e) { console.error('sync gumroad', e?.message) }
+  }
+  if (filas.length) {
+    await db('ventas?on_conflict=mp_id', { method: 'POST', headers: { Prefer: 'return=minimal,resolution=ignore-duplicates' }, body: JSON.stringify(filas) })
+  }
+}
 
 export default async function handler(req, res) {
   const { ADMIN_SECRET, SUPABASE_URL, SUPABASE_SERVICE_KEY } = process.env
@@ -24,17 +84,20 @@ export default async function handler(req, res) {
   try {
     const accion = req.query?.accion
     if (req.method === 'GET' && accion === 'encuestas') return res.status(200).json(await db('encuestas?select=*&order=created_at.desc'))
+    if (req.method === 'GET' && (accion === 'ventas' || accion === 'seguimientos')) {
+      try { await sincronizarTienda(db) } catch (e) { console.error('sync tienda', e?.message) }
+    }
     if (req.method === 'GET' && accion === 'ventas') return res.status(200).json(await db('ventas?select=*&order=created_at.desc'))
     if (req.method === 'GET' && accion === 'clics') {
       const desde = new Date(Date.now() - 90 * 86400000).toISOString()
-      return res.status(200).json(await db(`clics?select=created_at,pagina,boton&created_at=gte.${desde}&order=created_at.desc&limit=10000`))
+      return res.status(200).json(await db(`clics?select=created_at,pagina,boton,destino&created_at=gte.${desde}&order=created_at.desc&limit=10000`))
     }
 
     if (req.method === 'GET' && accion === 'seguimientos') {
       const [leads, encuestas, ventas, guardados] = await Promise.all([
         db('leads?select=id,email,created_at,label,notes,source&order=created_at.desc'),
         db('encuestas?select=id,created_at,material,nombre,contacto,intereses,puntaje&contacto=not.is.null&order=created_at.desc'),
-        db('ventas?select=id,mp_id,created_at,servicio,monto,cliente,email&order=created_at.desc'),
+        db('ventas?select=id,mp_id,created_at,servicio,monto,moneda,cliente,email&order=created_at.desc'),
         db('seguimientos?select=*'),
       ])
       const porClave = Object.fromEntries(guardados.map((g) => [`${g.origen}:${g.ref_id}`, g]))
@@ -56,7 +119,7 @@ export default async function handler(req, res) {
         })),
         ...ventas.map((v) => armar('venta', String(v.mp_id), {
           nombre: v.cliente || '', contacto: v.email || '', created_at: v.created_at,
-          detalle: `Compró ${v.servicio || ''} ($${Math.round(v.monto || 0).toLocaleString('es-AR')})`, etapa: 'cliente',
+          detalle: `Compró ${v.servicio || ''} (${v.moneda && v.moneda !== 'ARS' ? v.moneda + ' ' : '$'}${Math.round(v.monto || 0).toLocaleString('es-AR')})`, etapa: 'cliente',
         })),
         ...guardados.filter((g) => g.origen === 'curso').map((g) => armar('curso', g.ref_id, {
           nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Lista de espera del curso de IA', etapa: g.etapa,

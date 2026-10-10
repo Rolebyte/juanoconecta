@@ -1,73 +1,8 @@
 import { useState } from 'react'
 import { Eyebrow, GridGlow, Reveal, Check } from './home/ui'
+import { productoGratis, productos } from '../data/tienda'
 
-const WA_AUDITORIA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20la%20Auditoría%20IA%20de%20mi%20perfil'
-
-const TEAL = '#22D3EE'
-
-export const productoGratis = {
-  nombre: '5 prompts para crear contenido con IA',
-  descripcion: '¿No sabés por dónde empezar con la IA? Estos 5 prompts te dan el punto de partida exacto para generar contenido real en menos de 10 minutos — sin experiencia previa.',
-  badge: 'GRATIS',
-  badgeStyle: { background: 'rgba(34,211,238,0.15)', color: '#22D3EE', border: '1px solid rgba(34,211,238,0.4)' },
-  precioARS: null,
-  precioUSD: null,
-  tipo: 'gratis',
-  emoji: '🎁',
-  includes: ['5 prompts listos para usar hoy', 'Funciona en ChatGPT, Claude y Gemini', 'Resultados desde el primer uso', 'Gratis: solo te pedimos tu correo'],
-  color: TEAL,
-}
-
-export const productos = [
-  {
-    nombre: 'Kit Contenido IA',
-    descripcion: '¿Publicás pero el algoritmo no te acompaña? El problema no es tu producto — es cómo lo comunicás. Estos 30 prompts te dan el lenguaje exacto para conectar con tu audiencia y generar contenido que vende.',
-    badge: 'MÁS VENDIDO',
-    badgeStyle: { background: 'rgba(61,123,255,0.2)', color: '#3D7BFF', border: '1px solid rgba(61,123,255,0.4)' },
-    precioARS: '$8.000 ARS',
-    precioUSD: '$7 USD',
-    btnARS: 'https://mpago.la/327WvYV',
-    btnUSD: 'https://juano1.gumroad.com/l/mmpvaw',
-    tipo: 'digital',
-    emoji: '⚡',
-    includes: ['30 prompts probados en cuentas reales', 'Guía de implementación paso a paso', 'Ejemplos aplicados por industria', 'Acceso a actualizaciones futuras'],
-    compatible: ['ChatGPT', 'Claude', 'Gemini', 'Grok'],
-    color: '#3D7BFF',
-  },
-  {
-    nombre: 'Prompt Power Pack',
-    descripcion: '¿Manejás múltiples cuentas sin un sistema claro? Consume tiempo, energía y resultados. Este pack te da la estructura para producir más en menos tiempo — con calidad constante y sin depender de la inspiración.',
-    badge: null,
-    precioARS: '$25.000 ARS',
-    precioUSD: '$22 USD',
-    btnARS: 'https://mpago.la/2ibu57G',
-    btnUSD: 'https://juano1.gumroad.com/l/rokkgk',
-    tipo: 'digital',
-    emoji: '🚀',
-    includes: ['90 prompts para feed, historias y reels', 'Templates de copy listos para usar', 'Banco de ganchos de alto impacto', 'Framework de estrategia de contenido'],
-    compatible: ['ChatGPT', 'Claude', 'Gemini', 'Grok'],
-    color: '#6A8FC4',
-  },
-  {
-    nombre: 'Auditoría IA de tu perfil',
-    descripcion: '¿Invertís tiempo en redes pero los números no reflejan ese esfuerzo? Usamos IA para analizar tu perfil en profundidad — contenido, métricas, competencia y oportunidades — y te entregamos un diagnóstico preciso con un plan de acción concreto para los próximos 30 días. No es una revisión genérica: es una sesión personalizada con Juan donde identificamos exactamente qué está frenando tu crecimiento y cómo revertirlo.',
-    badge: 'PREMIUM',
-    badgeStyle: { background: 'rgba(234,179,8,0.15)', color: '#EAB308', border: '1px solid rgba(234,179,8,0.3)' },
-    // Escalones según el tarifario de la Cámara de Diseñadores de Rafaela (Particular / PyME / Empresa).
-    tarifas: [
-      { id: 'emprendedor', nombre: 'Emprendedor', para: 'Emprendedores y profesionales independientes', ars: '$120.000', usd: '$110' },
-      { id: 'pyme', nombre: 'PyME', para: 'Comercios y pymes con equipo', ars: '$185.000', usd: '$170' },
-      { id: 'empresa', nombre: 'Empresa', para: 'Empresas e industrias', ars: '$250.000', usd: '$230' },
-    ],
-    btnWA: WA_AUDITORIA,
-    tipo: 'servicio',
-    emoji: '🏆',
-    includes: ['Análisis completo del perfil con IA', 'Auditoría de competencia y oportunidades', 'Informe PDF con diagnóstico detallado', 'Sesión 1:1 de 40 min con Juan (WhatsApp o videollamada)', 'Plan de acción para los próximos 30 días', 'Seguimiento por 7 días post-sesión'],
-    auditai: true,
-    color: '#EAB308',
-    destacado: true,
-  },
-]
+export { productoGratis, productos } from '../data/tienda'
 
 // Sin animaciones infinitas ni efectos 3D: solo la aparición al hacer scroll, como en la home.
 const ICONO_WA = 'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z'
@@ -136,8 +71,8 @@ function Digital({ p, n, delay }) {
           <div className="border-t border-white/10 pt-6">
             <Precio ars={p.precioARS} usd={p.precioUSD} />
             <div className="grid grid-cols-2 gap-3 mt-5">
-              <a href={p.btnARS} target="_blank" rel="noopener noreferrer" className="py-3.5 rounded-full bg-acento hover:bg-acento-dark text-white text-sm font-semibold text-center transition-colors duration-300">Pagar en pesos</a>
-              <a href={p.btnUSD} target="_blank" rel="noopener noreferrer" className="py-3.5 rounded-full border border-white/15 hover:border-teal/60 text-crema text-sm font-semibold text-center transition-colors duration-300">Pagar en USD</a>
+              <a href={p.btnARS} aria-label={`${p.nombre}: pagar en pesos`} target="_blank" rel="noopener noreferrer" className="py-3.5 rounded-full bg-acento hover:bg-acento-dark text-white text-sm font-semibold text-center transition-colors duration-300">Pagar en pesos</a>
+              <a href={p.btnUSD} aria-label={`${p.nombre}: pagar en USD`} target="_blank" rel="noopener noreferrer" className="py-3.5 rounded-full border border-white/15 hover:border-teal/60 text-crema text-sm font-semibold text-center transition-colors duration-300">Pagar en USD</a>
             </div>
           </div>
         </div>
