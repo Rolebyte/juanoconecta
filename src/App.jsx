@@ -13,6 +13,8 @@ import CursoIAPage from './pages/CursoIA'
 import Recursos from './pages/Recursos'
 import CapacitacionesInstituciones from './pages/CapacitacionesInstituciones'
 import Material from './pages/Material'
+import PromoTemporada from './pages/PromoTemporada'
+import PromoBanda from './components/PromoBanda'
 import HeroNx from './components/home/HeroNx'
 import MarqueeClientes from './components/home/MarqueeClientes'
 import SobreNx from './components/home/SobreNx'
@@ -126,6 +128,7 @@ function Home() {
       <main>
         <HeroNx />
         <MarqueeClientes />
+        <section className="px-6 pt-10"><PromoBanda className="max-w-6xl mx-auto" /></section>
         <ProximaCapacitacion />
         <ServiciosNx />
         <CursoIA />
@@ -160,6 +163,8 @@ export function AppRoutes() {
         <Route path="/curso-ia" element={<CursoIAPage />} />
         <Route path="/tienda" element={<Recursos />} />
         <Route path="/capacitaciones" element={<CapacitacionesInstituciones />} />
+        <Route path="/navidad" element={<PromoTemporada slug="navidad" />} />
+        <Route path="/verano" element={<PromoTemporada slug="verano" />} />
         <Route path="/material" element={<Material />} />
         <Route path="/material/:slug" element={<Material />} />
       </Routes>

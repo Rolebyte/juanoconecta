@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Eyebrow, GridGlow, Reveal, Check } from './home/ui'
 import { productoGratis, productos } from '../data/tienda'
+import PromoBanda from './PromoBanda'
 
 export { productoGratis, productos } from '../data/tienda'
 
@@ -150,6 +151,7 @@ export default function Tienda({ onOpenPopup }) {
         </Reveal>
 
         <div className="flex flex-col gap-6">
+          <PromoBanda />
           <Gratis onOpenPopup={onOpenPopup} />
           <div className="grid md:grid-cols-2 gap-6">
             {digitales.map((p, i) => <Digital key={p.nombre} p={p} n={String(i + 1).padStart(2, '0')} delay={i * 0.08} />)}

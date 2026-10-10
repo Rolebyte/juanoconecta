@@ -19,6 +19,8 @@ const RUTAS = [
   '/curso-ia',
   '/tienda',
   '/capacitaciones',
+  '/navidad',
+  '/verano',
 ]
 
 const plantilla = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
