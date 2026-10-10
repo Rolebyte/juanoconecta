@@ -144,8 +144,24 @@ export default function PromoTemporada({ slug }) {
         </div>
       </section>
 
+      {/* A medida */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <SectionTitle eyebrow="Hecho a medida" title="Nada de plantillas genéricas: todo sale con tu marca" sub="La IA nos permite trabajar rápido, pero cada pieza se piensa y se ajusta para tu negocio." />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {promo.aMedida.map((m, i) => (
+              <Reveal key={m.titulo} delay={i * 0.08} className="rounded-3xl border border-white/10 bg-[#0F1629] p-7">
+                <span className="font-bold text-sm tabular-nums" style={{ color: tono.color }}>0{i + 1}</span>
+                <h3 className="text-lg font-bold text-crema mt-3">{m.titulo}</h3>
+                <p className="text-crema/55 leading-relaxed mt-2 text-[15px]">{m.texto}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Paquetes */}
-      <section id="paquetes" className="py-24 px-6 scroll-mt-24">
+      <section id="paquetes" className="py-24 px-6 scroll-mt-24 bg-[#080C18]">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
             <SectionTitle eyebrow="Paquetes" title="Elegí cuánto querés que hagamos por vos" />
@@ -180,7 +196,7 @@ export default function PromoTemporada({ slug }) {
       </section>
 
       {/* Cómo funciona */}
-      <section className="py-24 px-6 bg-[#080C18]">
+      <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <SectionTitle eyebrow="Cómo funciona" title="Simple, rápido y sin vueltas" />
           <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -196,7 +212,7 @@ export default function PromoTemporada({ slug }) {
       </section>
 
       {/* Preguntas */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-[#080C18]">
         <div className="max-w-3xl mx-auto">
           <SectionTitle center eyebrow="Preguntas frecuentes" title="Antes de contratar" />
           <div className="grid gap-3">
@@ -213,7 +229,7 @@ export default function PromoTemporada({ slug }) {
       </section>
 
       {/* CTA */}
-      <section className="pb-24 px-6">
+      <section className="py-24 px-6">
         <div className={`relative max-w-6xl mx-auto overflow-hidden rounded-[2.5rem] border border-white/10 bg-gradient-to-br ${tono.fondo} px-6 py-16 md:px-16 md:py-20 text-center`}>
           <GridGlow />
           <div className="relative">
