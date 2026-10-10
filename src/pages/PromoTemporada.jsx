@@ -105,6 +105,8 @@ export default function PromoTemporada({ slug }) {
         <meta property="og:title" content={promo.seoTitulo} />
         <meta property="og:url" content={url} />
         <meta property="og:description" content={promo.seoDescripcion} />
+        <meta property="og:image" content={`${promo.imagen.src}&w=1200&h=630`} />
+        <meta name="twitter:image" content={`${promo.imagen.src}&w=1200&h=630`} />
         <script type="application/ld+json">{JSON.stringify(SCHEMA)}</script>
         <script type="application/ld+json">{JSON.stringify(FAQ_SCHEMA)}</script>
       </Helmet>
@@ -112,8 +114,10 @@ export default function PromoTemporada({ slug }) {
       <Navbar />
 
       {/* Hero */}
-      <section className="pt-40 pb-20 px-6 relative overflow-hidden">
-        <GridGlow />
+      <section className="pt-40 pb-24 px-6 relative overflow-hidden">
+        <img src={`${promo.imagen.src}&w=1920`} srcSet={`${promo.imagen.src}&w=800 800w, ${promo.imagen.src}&w=1400 1400w, ${promo.imagen.src}&w=1920 1920w`} sizes="100vw"
+          alt={promo.imagen.alt} fetchpriority="high" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0B1020]/85 via-[#0B1020]/70 to-[#0B1020]" />
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full opacity-25 pointer-events-none" style={{ background: `radial-gradient(closest-side, ${tono.color}, transparent)` }} />
         <div className="relative max-w-4xl mx-auto text-center">
           <Eyebrow>{promo.eyebrow}</Eyebrow>
@@ -128,6 +132,16 @@ export default function PromoTemporada({ slug }) {
           </p>
         </div>
       </section>
+
+      {/* Galería */}
+      <div className="px-6 -mt-10 relative">
+        <div className="max-w-6xl mx-auto grid grid-cols-3 gap-3 md:gap-5">
+          {promo.galeria.map((g) => (
+            <img key={g.src} src={`${g.src}&w=700`} srcSet={`${g.src}&w=400 400w, ${g.src}&w=700 700w`} sizes="(min-width: 768px) 33vw, 30vw"
+              alt={g.alt} loading="lazy" className="w-full aspect-[4/3] object-cover rounded-2xl md:rounded-3xl border border-white/10" />
+          ))}
+        </div>
+      </div>
 
       {/* Por qué ahora */}
       <section className="py-20 px-6 bg-[#080C18]">

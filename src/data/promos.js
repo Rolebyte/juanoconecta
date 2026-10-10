@@ -1,5 +1,6 @@
 // Promos de temporada: cada una tiene su página (/navidad, /verano) y aparece en la franja de la tienda
 // y de la home mientras no venza. Precios del análisis de mercado de octubre de 2026 (propuesta, a confirmar con Juan).
+// Fotos de Unsplash (licencia libre, se cargan desde su CDN).
 // Escalones como la auditoría: Emprendedor / PyME ≈1,5x / Empresa ≈2x. En cabañas, por cantidad de unidades.
 
 const WA = (texto) => 'https://wa.me/5493492627811?text=' + encodeURIComponent(texto)
@@ -22,6 +23,12 @@ export const PROMOS = [
     vence: '2026-12-15',
     cierre: 'Tienda hasta el 20/11 · Puesta a punto hasta el 30/11',
     tono: 'navidad',
+    imagen: { src: 'https://images.unsplash.com/photo-1513634864137-e7cffea683ae?auto=format&fit=crop&q=70', alt: 'Interior de un comercio con un árbol de Navidad iluminado' },
+    galeria: [
+      { src: 'https://images.unsplash.com/photo-1576072446584-4955dfe17b86?auto=format&fit=crop&q=70', alt: 'Regalos de Navidad envueltos en papeles de colores' },
+      { src: 'https://images.unsplash.com/photo-1513884923967-4b182ef167ab?auto=format&fit=crop&q=70', alt: 'Bolsas de compras de papel' },
+      { src: 'https://images.unsplash.com/photo-1575627693896-218836d20576?auto=format&fit=crop&q=70', alt: 'Gente paseando entre luces navideñas de noche' },
+    ],
     tarifas: [
       { id: 'emprendedor', nombre: 'Emprendedor', para: 'Emprendedores y profesionales' },
       { id: 'pyme', nombre: 'PyME', para: 'Comercios y pymes con equipo' },
@@ -91,6 +98,12 @@ export const PROMOS = [
     vence: '2026-12-15',
     cierre: 'Contratación hasta el 21/11 · Precio de lanzamiento hasta el 31/10',
     tono: 'verano',
+    imagen: { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=70', alt: 'Playa al atardecer con el mar en calma' },
+    galeria: [
+      { src: 'https://images.unsplash.com/photo-1619688137428-851529e61a0f?auto=format&fit=crop&q=70', alt: 'Cabaña de madera junto a un lago rodeada de árboles' },
+      { src: 'https://images.unsplash.com/photo-1644333192141-1135d690734f?auto=format&fit=crop&q=70', alt: 'Vista aérea de una playa con sombrillas' },
+      { src: 'https://images.unsplash.com/photo-1501426026826-31c667bdf23d?auto=format&fit=crop&q=70', alt: 'Flotador de flamenco en una pileta en verano' },
+    ],
     tarifas: [
       { id: 'emprendedor', nombre: '1 a 3 unidades', para: 'Cabañas y casas' },
       { id: 'pyme', nombre: '4 a 8 unidades', para: 'Complejos' },
