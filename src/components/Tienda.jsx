@@ -1,7 +1,5 @@
-import { useRef, useState } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useTilt } from '../hooks/useTilt'
-import { Eyebrow, GridGlow } from './home/ui'
+import { useState } from 'react'
+import { Eyebrow, GridGlow, Reveal, Check } from './home/ui'
 
 const WA_AUDITORIA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20la%20Auditoría%20IA%20de%20mi%20perfil'
 
@@ -71,351 +69,167 @@ export const productos = [
   },
 ]
 
-function SelectorTarifa({ tarifas, color, elegida, onElegir }) {
-  const t = tarifas.find((x) => x.id === elegida)
+// Sin animaciones infinitas ni efectos 3D: solo la aparición al hacer scroll, como en la home.
+const ICONO_WA = 'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z'
+
+const GARANTIAS = ['Acceso inmediato después del pago', 'Pagás en pesos con Mercado Pago o en dólares', 'Todo en español, pensado para Argentina']
+
+function Badge({ children, tono = 'acento' }) {
+  const tonos = {
+    acento: 'border-acento/40 bg-acento/10 text-acento',
+    teal: 'border-teal/40 bg-teal/10 text-teal',
+    oro: 'border-yellow-400/40 bg-yellow-400/10 text-yellow-300',
+  }
+  return <span className={`inline-flex px-3 py-1 rounded-full border text-[11px] font-bold tracking-[0.12em] uppercase ${tonos[tono]}`}>{children}</span>
+}
+
+function Precio({ ars, usd }) {
   return (
-    <div className="mb-5">
-      <p className="text-crema/30 text-[10px] tracking-widest uppercase mb-2">Elegí tu tipo de negocio</p>
-      <div className="relative grid grid-cols-[1.35fr_1fr_1fr] p-1 rounded-xl" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
-        {tarifas.map((x) => (
-          <button
-            key={x.id}
-            type="button"
-            onClick={() => onElegir(x.id)}
-            aria-pressed={x.id === elegida}
-            className={`relative z-10 py-2 px-1 text-[11px] sm:text-xs font-semibold whitespace-nowrap rounded-lg transition-colors duration-300 ${x.id === elegida ? 'text-[#0B1020]' : 'text-crema/55 hover:text-crema'}`}
-          >
-            {x.id === elegida && (
-              <motion.span
-                layoutId="tarifa-activa"
-                className="absolute inset-0 -z-10 rounded-lg"
-                style={{ background: `linear-gradient(135deg, ${color}, #f5d06b)`, boxShadow: `0 4px 18px -4px ${color}` }}
-                transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-              />
-            )}
-            {x.nombre}
+    <div className="flex items-baseline gap-3">
+      <span className="text-3xl font-bold text-crema tracking-tight">{ars.replace(' ARS', '')}<span className="text-sm font-semibold text-crema/45 ml-1.5">ARS</span></span>
+      <span className="text-crema/45 text-sm">o {usd}</span>
+    </div>
+  )
+}
+
+function Gratis({ onOpenPopup }) {
+  const p = productoGratis
+  return (
+    <Reveal>
+      <div className="relative rounded-3xl border border-teal/30 bg-gradient-to-r from-teal/[0.10] via-[#0F1629] to-[#0F1629] p-7 md:p-10 grid md:grid-cols-[1.3fr_1fr_auto] gap-8 md:gap-10 items-center">
+        <div>
+          <Badge tono="teal">{p.badge}</Badge>
+          <h2 className="text-2xl md:text-3xl font-bold text-crema mt-4 tracking-tight">{p.nombre}</h2>
+          <p className="text-crema/55 mt-3 leading-relaxed">{p.descripcion}</p>
+        </div>
+        <ul className="space-y-3">
+          {p.includes.map((it) => <li key={it} className="flex gap-3 text-crema/75 text-sm"><Check />{it}</li>)}
+        </ul>
+        <div className="md:text-center">
+          <button type="button" onClick={onOpenPopup} className="w-full md:w-auto px-8 py-4 rounded-full bg-teal text-[#0B1020] font-bold text-sm hover:bg-white transition-colors duration-300">
+            Descargar gratis →
           </button>
-        ))}
+          <p className="text-crema/35 text-xs mt-2.5">Sin tarjeta. Solo tu correo.</p>
+        </div>
       </div>
-      <div className="relative h-[68px] mt-4 overflow-hidden">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={t.id}
-            initial={{ opacity: 0, y: 18, filter: 'blur(6px)' }}
-            animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, y: -18, filter: 'blur(6px)' }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute inset-0"
-          >
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <span className="text-crema font-bold text-2xl whitespace-nowrap">{t.ars} <span className="text-sm font-semibold text-crema/50">ARS</span></span>
-              <span className="font-bold whitespace-nowrap" style={{ color }}>{t.usd} USD</span>
-            </div>
-            <p className="text-crema/45 text-xs mt-1.5">{t.para}</p>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </div>
+    </Reveal>
   )
 }
 
-function ProductoCard({ producto, index }) {
-  const [tarifa, setTarifa] = useState(producto.tarifas?.[0].id)
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  const tilt = useTilt(8)
-
+function Digital({ p, n, delay }) {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: index * 0.12, ease: [0.16, 1, 0.3, 1] }}
-    >
-    <div
-      ref={tilt.ref}
-      onMouseMove={tilt.onMouseMove}
-      onMouseLeave={tilt.onMouseLeave}
-      className="relative rounded-3xl p-6 sm:p-8 flex flex-col group overflow-hidden h-full"
-      style={{
-        background: producto.destacado
-          ? 'linear-gradient(160deg, rgba(234,179,8,0.08) 0%, rgba(234,179,8,0.02) 100%)'
-          : 'linear-gradient(160deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)',
-        border: producto.destacado
-          ? '1px solid rgba(234,179,8,0.25)'
-          : '1px solid rgba(255,255,255,0.07)',
-      }}
-    >
-      {/* Glow */}
-      <div
-        className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-15 group-hover:opacity-30 transition-opacity duration-500"
-        style={{ background: producto.color }}
-      />
-
-      {/* Badge */}
-      {producto.badge && (
-        <span className="inline-flex self-start px-3 py-1 rounded-full text-xs font-bold tracking-wider mb-5" style={producto.badgeStyle}>
-          {producto.badge}
-        </span>
-      )}
-
-      {/* Emoji */}
-      <motion.div
-        animate={{ y: [0, -5, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: index * 0.4 }}
-        className="text-4xl mb-5"
-      >
-        {producto.emoji}
-      </motion.div>
-
-      <h3 className="text-xl font-bold text-crema mb-3">{producto.nombre}</h3>
-      <p className="text-crema/45 text-sm leading-relaxed mb-6">{producto.descripcion}</p>
-
-      {/* Qué incluye */}
-      <ul className="space-y-2 mb-7 flex-1">
-        {producto.includes.map((item) => (
-          <li key={item} className="flex items-center gap-2.5 text-sm text-crema/50">
-            <svg className="w-4 h-4 flex-shrink-0" style={{ color: producto.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-            </svg>
-            {item}
-          </li>
-        ))}
-      </ul>
-
-      {/* AuditAI block con neón */}
-      {producto.auditai && (
-        <motion.div
-          animate={{ boxShadow: ['0 0 8px rgba(234,179,8,0.3), 0 0 20px rgba(234,179,8,0.1)', '0 0 16px rgba(234,179,8,0.55), 0 0 40px rgba(234,179,8,0.2)', '0 0 8px rgba(234,179,8,0.3), 0 0 20px rgba(234,179,8,0.1)'] }}
-          transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-          className="rounded-xl px-4 py-3 mb-6"
-          style={{
-            background: 'linear-gradient(135deg, rgba(234,179,8,0.07) 0%, rgba(61,123,255,0.05) 100%)',
-            border: '1px solid rgba(234,179,8,0.35)',
-          }}
-        >
-          <div className="flex items-center gap-3">
-            {/* Isologo AuditAI — reemplazá este SVG con tu imagen real */}
-            <div
-              className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 font-black text-xs tracking-tighter"
-              style={{
-                background: 'linear-gradient(135deg, rgba(234,179,8,0.2), rgba(61,123,255,0.15))',
-                border: '1px solid rgba(234,179,8,0.4)',
-                color: '#EAB308',
-                fontFamily: "'DM Sans', sans-serif",
-                letterSpacing: '-0.05em',
-              }}
-            >
-              A·I
-            </div>
-            <div className="flex-1">
-              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span className="text-crema text-xs font-bold">Potenciado con AuditAI</span>
-                <span
-                  className="text-[9px] font-bold px-1.5 py-0.5 rounded-full tracking-wider"
-                  style={{ background: 'rgba(234,179,8,0.18)', color: '#EAB308' }}
-                >
-                  EXCLUSIVO
-                </span>
-              </div>
-              <p className="text-crema/35 text-[11px] mt-0.5 leading-snug">Datos reales, métricas verificables — sin suposiciones ni estimaciones genéricas</p>
-            </div>
+    <Reveal delay={delay} className="h-full">
+      <div className="group relative h-full rounded-3xl p-px bg-gradient-to-br from-white/15 via-white/5 to-white/0 hover:from-acento hover:via-teal/50 hover:to-acento/20 transition-colors duration-500">
+        <div className="h-full rounded-[calc(1.5rem-1px)] bg-[#0F1629] p-7 md:p-9 flex flex-col">
+          <div className="flex items-start justify-between gap-4">
+            <span className="text-5xl font-bold leading-none tabular-nums text-transparent [-webkit-text-stroke:1px_rgba(234,240,255,0.35)] group-hover:[-webkit-text-stroke:1px_#3D7BFF] transition-all duration-500">{n}</span>
+            {p.badge && <Badge>{p.badge}</Badge>}
           </div>
-          {/* Powered by ligado al bloque */}
-          <div className="flex items-center gap-2 mt-3 pt-3" style={{ borderTop: '1px solid rgba(234,179,8,0.12)' }}>
-            <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse flex-shrink-0" />
-            <span className="text-[10px] tracking-widest uppercase" style={{ color: 'rgba(234,179,8,0.4)' }}>
-              Powered by JuanoConecta
-            </span>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Compatible con — solo para los digitales */}
-      {producto.compatible && !producto.auditai && (
-        <div className="mb-6">
-          <p className="text-crema/25 text-[10px] tracking-widest uppercase mb-2">Compatible con</p>
-          <div className="flex flex-wrap gap-1.5">
-            {producto.compatible.map((ia) => (
-              <span
-                key={ia}
-                className="px-2.5 py-1 rounded-lg text-[11px] font-medium"
-                style={{
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  color: 'rgba(245,240,235,0.5)',
-                }}
-              >
-                {ia}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Precios */}
-      {producto.tarifas ? (
-        <SelectorTarifa tarifas={producto.tarifas} color={producto.color} elegida={tarifa} onElegir={setTarifa} />
-      ) : (
-        <div className="flex items-baseline gap-3 mb-5">
-          <span className="text-crema font-bold text-lg">{producto.precioARS}</span>
-          <span className="text-crema/25 text-sm">|</span>
-          <span className="font-bold" style={{ color: producto.color }}>{producto.precioUSD}</span>
-        </div>
-      )}
-
-      {/* Botones */}
-      {producto.tipo === 'digital' ? (
-        <div className="flex gap-3">
-          <a
-            href={producto.btnARS}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 py-3 text-crema/70 text-sm font-semibold rounded-xl text-center transition-all duration-200 hover:text-crema"
-            style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
-          >
-            Pagar ARS
-          </a>
-          <a
-            href={producto.btnUSD}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 py-3 text-white text-sm font-semibold rounded-xl text-center transition-all duration-200 hover:opacity-90"
-            style={{ background: `linear-gradient(135deg, ${producto.color}, ${producto.color}cc)` }}
-          >
-            Pagar USD
-          </a>
-        </div>
-      ) : (
-        <a
-          href={producto.tarifas ? `${producto.btnWA}%20(tarifa%20${encodeURIComponent(producto.tarifas.find((x) => x.id === tarifa).nombre)})` : producto.btnWA}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full py-3.5 px-3 text-sm sm:text-base text-white font-semibold rounded-xl text-center flex items-center justify-center gap-2 transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
-          style={{ background: 'linear-gradient(135deg, #25D366, #1da851)' }}
-        >
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Quiero la Auditoría IA
-        </a>
-      )}
-    </div>
-    </motion.div>
-  )
-}
-
-function ProductoGratisCard({ onOpenPopup }) {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
-  const tilt = useTilt(8)
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay: 0, ease: [0.16, 1, 0.3, 1] }}
-      className="md:col-span-3"
-    >
-      <div
-        ref={tilt.ref}
-        onMouseMove={tilt.onMouseMove}
-        onMouseLeave={tilt.onMouseLeave}
-        className="relative rounded-3xl p-8 group overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, rgba(34,211,238,0.08) 0%, rgba(34,211,238,0.02) 100%)',
-          border: '1px solid rgba(34,211,238,0.25)',
-        }}
-      >
-        <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity duration-500" style={{ background: TEAL }} />
-
-        <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
-          {/* Izquierda */}
-          <div className="flex-1">
-            <span className="inline-flex self-start px-3 py-1 rounded-full text-xs font-bold tracking-wider mb-4" style={productoGratis.badgeStyle}>
-              {productoGratis.badge}
-            </span>
-            <div className="flex items-center gap-3 mb-3">
-              <motion.span
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="text-4xl"
-              >
-                {productoGratis.emoji}
-              </motion.span>
-              <h3 className="text-xl font-bold text-crema">{productoGratis.nombre}</h3>
-            </div>
-            <p className="text-crema/45 text-sm leading-relaxed">{productoGratis.descripcion}</p>
-          </div>
-
-          {/* Centro — qué incluye */}
-          <ul className="flex-1 space-y-2">
-            {productoGratis.includes.map((item) => (
-              <li key={item} className="flex items-center gap-2.5 text-sm text-crema/50">
-                <svg className="w-4 h-4 flex-shrink-0" style={{ color: TEAL }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-                {item}
-              </li>
-            ))}
+          <h2 className="text-2xl md:text-3xl font-bold text-crema mt-6 tracking-tight">{p.nombre}</h2>
+          <p className="text-crema/55 mt-3 leading-relaxed">{p.descripcion}</p>
+          <ul className="space-y-3 mt-6 mb-7 flex-1">
+            {p.includes.map((it) => <li key={it} className="flex gap-3 text-crema/75 text-sm"><Check />{it}</li>)}
           </ul>
-
-          {/* Derecha — CTA */}
-          <div className="flex-shrink-0">
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={onOpenPopup}
-              className="px-10 py-4 rounded-2xl font-bold text-sm text-white transition-all duration-200"
-              style={{ background: `linear-gradient(135deg, ${TEAL}, #00a88e)`, boxShadow: `0 0 30px rgba(34,211,238,0.25)` }}
-            >
-              Descargar gratis →
-            </motion.button>
-            <p className="text-crema/25 text-[11px] text-center mt-2">Sin tarjeta. Sin compromiso.</p>
+          {p.compatible && (
+            <p className="text-crema/40 text-xs mb-6">Funciona con {p.compatible.join(', ')}</p>
+          )}
+          <div className="border-t border-white/10 pt-6">
+            <Precio ars={p.precioARS} usd={p.precioUSD} />
+            <div className="grid grid-cols-2 gap-3 mt-5">
+              <a href={p.btnARS} target="_blank" rel="noopener noreferrer" className="py-3.5 rounded-full bg-acento hover:bg-acento-dark text-white text-sm font-semibold text-center transition-colors duration-300">Pagar en pesos</a>
+              <a href={p.btnUSD} target="_blank" rel="noopener noreferrer" className="py-3.5 rounded-full border border-white/15 hover:border-teal/60 text-crema text-sm font-semibold text-center transition-colors duration-300">Pagar en USD</a>
+            </div>
           </div>
         </div>
       </div>
-    </motion.div>
+    </Reveal>
+  )
+}
+
+function Auditoria({ p }) {
+  const [elegida, setElegida] = useState(p.tarifas[0].id)
+  const t = p.tarifas.find((x) => x.id === elegida)
+  const wa = `${p.btnWA}%20(tarifa%20${encodeURIComponent(t.nombre)})`
+  return (
+    <Reveal>
+      <div className="relative rounded-3xl p-px bg-gradient-to-br from-yellow-400/50 via-yellow-400/10 to-acento/30">
+        <div className="rounded-[calc(1.5rem-1px)] bg-[#0F1629] grid lg:grid-cols-[1.25fr_1fr] overflow-hidden">
+          <div className="p-7 md:p-10">
+            <div className="flex flex-wrap items-center gap-3">
+              <Badge tono="oro">{p.badge}</Badge>
+              <span className="text-crema/45 text-xs">Potenciado con AuditAI · sesión 1 a 1 con Juan</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-crema mt-5 tracking-tight">{p.nombre}</h2>
+            <p className="text-crema/55 mt-4 leading-relaxed">{p.descripcion}</p>
+            <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-3 mt-7">
+              {p.includes.map((it) => <li key={it} className="flex gap-3 text-crema/75 text-sm"><Check />{it}</li>)}
+            </ul>
+          </div>
+          <div className="p-7 md:p-10 bg-white/[0.02] border-t lg:border-t-0 lg:border-l border-white/10 flex flex-col justify-center">
+            <p className="text-crema/45 text-xs tracking-[0.15em] uppercase mb-3">Elegí tu tipo de negocio</p>
+            <div role="radiogroup" aria-label="Tipo de negocio" className="grid grid-cols-3 gap-1 p-1 rounded-full bg-white/[0.04] border border-white/10">
+              {p.tarifas.map((x) => (
+                <button key={x.id} type="button" role="radio" aria-checked={x.id === elegida} onClick={() => setElegida(x.id)}
+                  className={`py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-colors duration-200 ${x.id === elegida ? 'bg-yellow-400 text-[#0B1020]' : 'text-crema/60 hover:text-crema'}`}>
+                  {x.nombre}
+                </button>
+              ))}
+            </div>
+            <div className="mt-7">
+              <div className="flex items-baseline gap-3">
+                <span className="text-4xl md:text-5xl font-bold text-crema tracking-tight tabular-nums">{t.ars}<span className="text-base font-semibold text-crema/45 ml-1.5">ARS</span></span>
+                <span className="text-crema/45">o USD {t.usd.replace('$', '')}</span>
+              </div>
+              <p className="text-crema/50 text-sm mt-2">{t.para}</p>
+            </div>
+            <a href={wa} target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center justify-center gap-2 w-full py-4 rounded-full bg-[#25D366] hover:bg-[#1fb857] text-[#0B1020] font-bold transition-colors duration-300">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d={ICONO_WA} /></svg>
+              Quiero la auditoría
+            </a>
+            <p className="text-crema/35 text-xs text-center mt-3">Coordinamos día y horario por WhatsApp.</p>
+          </div>
+        </div>
+      </div>
+    </Reveal>
   )
 }
 
 export default function Tienda({ onOpenPopup }) {
-  const titleRef = useRef(null)
-  const titleInView = useInView(titleRef, { once: true })
-
+  const auditoria = productos.find((p) => p.tarifas)
+  const digitales = productos.filter((p) => p.tipo === 'digital')
   return (
-    <section id="tienda" className="pt-20 pb-28 px-6 relative overflow-hidden">
-      <GridGlow className="h-[700px]" />
-      <div className="relative max-w-7xl mx-auto">
-
-        <motion.div
-          ref={titleRef}
-          initial={{ opacity: 0, y: 30 }}
-          animate={titleInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <Eyebrow>Recursos digitales</Eyebrow>
-          <h1 className="text-4xl md:text-6xl font-bold text-crema mt-6 mb-5 leading-[1.05] tracking-tight">Lo que uso cada día<br />para hacer crecer marcas</h1>
-          <p className="text-crema/35 max-w-lg mx-auto">
-            Metodología probada en marcas argentinas y de latinoamérica, aplicando recursos que traccionan desde el primer día — con o sin experiencia previa en IA.
+    <section id="tienda" className="relative pt-20 pb-28 px-6 overflow-hidden">
+      <GridGlow className="h-[640px]" />
+      <div className="relative max-w-6xl mx-auto">
+        <Reveal className="max-w-3xl mb-14">
+          <Eyebrow>Tienda</Eyebrow>
+          <h1 className="text-4xl md:text-6xl font-bold text-crema mt-6 leading-[1.05] tracking-tight" style={{ textWrap: 'balance' }}>
+            Lo que uso cada día para hacer crecer marcas
+          </h1>
+          <p className="text-crema/60 text-lg leading-relaxed mt-5">
+            Recursos de IA probados con marcas de Argentina y Latinoamérica. Los usás desde el primer día, tengas o no experiencia con IA.
           </p>
-        </motion.div>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 mt-7">
+            {GARANTIAS.map((g) => <li key={g} className="flex gap-2 text-crema/60 text-sm"><Check />{g}</li>)}
+          </ul>
+        </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <ProductoGratisCard onOpenPopup={onOpenPopup} />
-          {productos.map((p, i) => (
-            <ProductoCard key={p.nombre} producto={p} index={i} />
-          ))}
+        <div className="flex flex-col gap-6">
+          <Gratis onOpenPopup={onOpenPopup} />
+          <div className="grid md:grid-cols-2 gap-6">
+            {digitales.map((p, i) => <Digital key={p.nombre} p={p} n={String(i + 1).padStart(2, '0')} delay={i * 0.08} />)}
+          </div>
+          {auditoria && <Auditoria p={auditoria} />}
         </div>
 
-        {/* FAQ */}
-        <div className="mt-20 max-w-2xl mx-auto">
-          <h3 className="text-crema text-2xl font-bold text-center mb-10">Preguntas frecuentes</h3>
+        <div className="mt-24 grid lg:grid-cols-[1fr_1.6fr] gap-10">
+          <Reveal>
+            <Eyebrow>Preguntas frecuentes</Eyebrow>
+            <h2 className="text-3xl md:text-4xl font-bold text-crema mt-5 tracking-tight">Antes de comprar</h2>
+            <p className="text-crema/55 mt-4 leading-relaxed">¿Otra duda? Escribime por WhatsApp y te ayudo a elegir.</p>
+          </Reveal>
           <FaqList />
         </div>
-
       </div>
     </section>
   )
@@ -459,31 +273,22 @@ export const faqs = [
 function FaqList() {
   const [open, setOpen] = useState(null)
   return (
-    <div className="flex flex-col gap-3">
-      {faqs.map((faq, i) => (
-        <div key={i} className="border border-white/10 rounded-2xl overflow-hidden">
-          <button
-            onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between px-6 py-4 text-left text-crema/80 hover:text-crema transition-colors duration-200"
-          >
-            <span className="font-medium pr-4">{faq.q}</span>
-            <span className="text-acento text-xl flex-shrink-0">{open === i ? '−' : '+'}</span>
-          </button>
-          <AnimatePresence initial={false}>
-            {open === i && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="overflow-hidden"
-              >
-                <p className="px-6 pb-5 text-crema/50 text-sm leading-relaxed">{faq.a}</p>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      ))}
+    <div className="border-t border-white/10">
+      {faqs.map((faq, i) => {
+        const activo = open === i
+        return (
+          <div key={faq.q} className="border-b border-white/10">
+            <button type="button" onClick={() => setOpen(activo ? null : i)} aria-expanded={activo}
+              className="w-full flex items-center justify-between gap-4 py-5 text-left text-crema/85 hover:text-crema transition-colors duration-200">
+              <span className="font-medium">{faq.q}</span>
+              <span className={`flex-shrink-0 w-8 h-8 rounded-full border flex items-center justify-center text-lg transition-all duration-300 ${activo ? 'bg-acento border-acento rotate-45' : 'border-white/20'}`}>+</span>
+            </button>
+            <div className={`grid transition-all duration-300 ease-out ${activo ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+              <div className="overflow-hidden"><p className="pb-5 pr-12 text-crema/55 text-sm leading-relaxed">{faq.a}</p></div>
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }
