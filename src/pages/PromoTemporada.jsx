@@ -94,7 +94,7 @@ export default function PromoTemporada({ slug }) {
     '@type': 'FAQPage',
     mainEntity: promo.preguntas.map((p) => ({ '@type': 'Question', name: p.q, acceptedAnswer: { '@type': 'Answer', text: p.a } })),
   }
-  const waGeneral = promo.waTexto('quiero saber más', null)
+  const waGeneral = promo.waTexto(null, null)
 
   return (
     <div className="bg-fondo text-crema min-h-screen">
@@ -202,7 +202,7 @@ export default function PromoTemporada({ slug }) {
           <Reveal className="mt-6">
           <div className="rounded-2xl border border-dashed px-6 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4" style={{ borderColor: `${tono.color}66` }}>
             <p className="text-crema/85"><span className="font-bold" style={{ color: tono.color }}>Combo · </span>{promo.combo}</p>
-            <a href={promo.waTexto('el combo', tarifa.nombre)} target="_blank" rel="noopener noreferrer" aria-label={`${promo.slug}: combo`} className="text-sm font-semibold text-teal hover:text-white transition-colors whitespace-nowrap">Pedir el combo →</a>
+            <a href={promo.waTexto('Combo', tarifa.nombre)} target="_blank" rel="noopener noreferrer" aria-label={`${promo.slug}: combo`} className="text-sm font-semibold text-teal hover:text-white transition-colors whitespace-nowrap">Pedir el combo →</a>
           </div>
           </Reveal>
           <p className="text-crema/40 text-xs mt-4">Precios en pesos argentinos. Podés pagar con Mercado Pago en cuotas o en dos pagos.</p>

@@ -35,7 +35,7 @@ export const PROMOS = [
       { id: 'empresa', nombre: 'Empresa', para: 'Empresas y cadenas' },
     ],
     datos: [
-      { valor: '9 de 10', texto: 'comercios hicieron promos en la Navidad pasada; sin ellas, las ventas habrían caído (CAME).' },
+      { valor: '9 de cada 10', texto: 'comercios hicieron promos en la Navidad pasada; sin ellas, las ventas habrían caído (CAME).' },
       { valor: '44%', texto: 'compra recién la última semana antes de Navidad: hay que estar listo antes (Naranja X).' },
       { valor: '+19,4%', texto: 'creció la venta online de los comercios con local en septiembre de 2026 (CAME).' },
     ],
@@ -48,7 +48,7 @@ export const PROMOS = [
         cta: 'Quiero el Kit Navidad',
       },
       {
-        id: 'puesta', nombre: 'Puesta a punto', etiqueta: 'El más elegido', destacado: true,
+        id: 'puesta', nombre: 'Puesta a punto', etiqueta: 'Recomendado', destacado: true,
         resumen: 'Dejamos tu cuenta y tus canales listos para vender, y te damos las piezas de la temporada.',
         precio: { emprendedor: 190000, pyme: 285000, empresa: 380000 },
         incluye: ['Auditoría de tu Instagram con IA', 'Bio y destacados optimizados', 'Link de pago de Mercado Pago o catálogo', 'WhatsApp Business con respuestas rápidas', '6 piezas navideñas con tu marca', 'Kit Navidad de regalo'],
@@ -79,7 +79,7 @@ export const PROMOS = [
       { q: '¿Cuál es mi tarifa: Emprendedor, PyME o Empresa?', a: 'Emprendedor si trabajás solo o con una persona; PyME si tenés local o equipo; Empresa si tenés varias sucursales o es una industria.' },
       { q: '¿Sirve si no vendo productos sino servicios?', a: 'Sí. La puesta a punto funciona igual para servicios: en lugar de catálogo armamos tu link de turnos o de pago.' },
     ],
-    waTexto: (nivel, tarifa) => WA(`Hola Juan, me interesa la Promo Navidad: ${nivel}${tarifa ? ` (tarifa ${tarifa})` : ''}.`),
+    waTexto: (nivel, tarifa) => WA(nivel ? `Hola Juan, me interesa la Promo Navidad: ${nivel}${tarifa ? ` (tarifa ${tarifa})` : ''}.` : 'Hola Juan, quiero saber más sobre la Promo Navidad.'),
   },
   {
     slug: 'verano',
@@ -111,8 +111,8 @@ export const PROMOS = [
     ],
     datos: [
       { valor: '15%', texto: 'es la comisión promedio de Booking, y en Argentina la paga el alojamiento (iGMS).' },
-      { valor: '3-4 meses', texto: 'antes se reservan las vacaciones de verano: la decisión se toma ahora (MDZ).' },
-      { valor: '60-80%', texto: 'de las plazas de enero ya estaban reservadas a mediados de diciembre pasado.' },
+      { valor: '3 a 4 meses', texto: 'antes se reservan las vacaciones de verano: la decisión se toma ahora (MDZ).' },
+      { valor: '60 a 80%', texto: 'de las plazas de enero ya estaban reservadas a mediados de diciembre del año pasado.' },
     ],
     niveles: [
       {
@@ -123,7 +123,7 @@ export const PROMOS = [
         cta: 'Quiero el Kit Temporada',
       },
       {
-        id: 'puesta', nombre: 'Puesta a punto para reservas', etiqueta: 'El más elegido', destacado: true,
+        id: 'puesta', nombre: 'Puesta a punto para reservas', etiqueta: 'Recomendado', destacado: true,
         resumen: 'Que te encuentren en Instagram y en Google, y que cada consulta termine en reserva.',
         precio: { emprendedor: 220000, pyme: 330000, empresa: 440000 }, descuento: '15% off hasta el 31/10',
         incluye: ['Auditoría de tu Instagram con IA', 'Bio con link de reserva', 'Destacados: cabañas, tarifas, cómo llegar, opiniones', 'WhatsApp Business con respuestas rápidas', 'Ficha de Google Maps revisada', '6 piezas de temporada con tus fotos', 'Kit Temporada de regalo'],
@@ -153,7 +153,7 @@ export const PROMOS = [
       { q: '¿Necesito fotos profesionales?', a: 'Ayudan, pero no es obligatorio. Trabajamos con las fotos que tengas y te decimos cuáles conviene renovar.' },
       { q: '¿Puedo pagar en cuotas?', a: 'Sí. Con Mercado Pago en cuotas o en dos pagos: la mitad al empezar y la mitad en la entrega.' },
     ],
-    waTexto: (nivel, tarifa) => WA(`Hola Juan, me interesa la Promo Verano para cabañas: ${nivel}${tarifa ? ` (${tarifa})` : ''}.`),
+    waTexto: (nivel, tarifa) => WA(nivel ? `Hola Juan, me interesa la Promo Verano para cabañas: ${nivel}${tarifa ? ` (${tarifa})` : ''}.` : 'Hola Juan, quiero saber más sobre la Promo Verano para cabañas.'),
   },
 ]
 
