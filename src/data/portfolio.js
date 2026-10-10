@@ -21,4 +21,15 @@ export const projects = [
     tags: ["Next.js 14", "Tailwind", "Supabase", "Framer Motion", "Vercel"],
     highlights: ["Dos marcas, un solo sitio", "Premio AST — 50 años Don Orione"],
   },
+  {
+    id: 3,
+    name: "Bay's Construction",
+    category: "Tienda online · Italia",
+    desc: "Tienda internacional de interiores (MLO) para servidores de rol de FiveM. Catálogo con buscador y filtros, carrito y pago con Tebex, formulario de trabajos a medida y sitio en inglés, español e italiano.",
+    url: "https://baycon-store.vercel.app",
+    live: true,
+    color: "#22D3EE",
+    tags: ["Multilenguaje", "Tebex", "Precios en euros", "Vercel"],
+    highlights: ["Cliente en Italia", "Sitio en 3 idiomas"],
+  },
 ]
