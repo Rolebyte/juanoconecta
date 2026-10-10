@@ -367,6 +367,8 @@ function renderChart() {
     </div>`;
 }
 
+// Los leads de la tabla visible: los botones los buscan por posición para no meter datos del visitante dentro del JavaScript.
+let leadsVista = [];
 const LABELS = ['sin-etiquetar','interesado','en-negociacion','cerrado','descartado'];
 const LABEL_NAMES = {'sin-etiquetar':'Sin etiquetar','interesado':'Interesado','en-negociacion':'En negociación','cerrado':'Cerrado ✓','descartado':'Descartado'};
 
@@ -411,7 +413,8 @@ function renderTable() {
     return;
   }
 
-  document.getElementById('leads-body').innerHTML = filtered.map(l => {
+  leadsVista = filtered;
+  document.getElementById('leads-body').innerHTML = filtered.map((l, i) => {
     const age = timeAgo(l.created_at);
     const src = l.source||'popup';
     const seq = l.sequence_day||0;
@@ -421,22 +424,22 @@ function renderTable() {
     const waMsg = encodeURIComponent(`Hola! Te escribo de JuanoConecta. Vi que descargaste los 5 prompts de IA 🤖 ¿Cómo te está yendo con ellos?`);
     const emailDomain = l.email.split('@')[1] || '';
     return `<tr>
-      <td style="color:#EAF0FF;font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${l.email}">${l.email}</td>
+      <td style="color:#EAF0FF;font-weight:500;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(l.email)}">${esc(l.email)}</td>
       <td>
-        <select class="label-select label-${label}" onchange="changeLabel('${l.id}',this.value)">
+        <select class="label-select label-${label}" onchange="changeLabel(leadsVista[${i}].id,this.value)">
           ${LABELS.map(lb=>`<option value="${lb}"${lb===label?' selected':''}>${LABEL_NAMES[lb]}</option>`).join('')}
         </select>
       </td>
-      <td><span class="source-tag ${src}">${src}</span></td>
+      <td><span class="source-tag ${esc(src)}">${esc(src)}</span></td>
       <td><span class="badge ${cls}">${statusLabel}</span></td>
       <td><div class="seq-pip">${seqPips}</div></td>
       <td><span class="age-tag${age.hot?' hot':''}">${age.text}</span></td>
-      <td><input class="notes-input" placeholder="Añadir nota..." value="${(l.notes||'').replace(/"/g,'&quot;')}" onblur="saveNote('${l.id}',this.value)" onkeydown="if(event.key==='Enter')this.blur()"></td>
+      <td><input class="notes-input" placeholder="Añadir nota..." value="${esc(l.notes)}" onblur="saveNote(leadsVista[${i}].id,this.value)" onkeydown="if(event.key==='Enter')this.blur()"></td>
       <td>
         <div class="actions">
-          <button class="btn btn-sm btn-coral" onclick="resendEmail('${l.id}','${l.email}')" title="Reenviar PDF">↑ PDF</button>
+          <button class="btn btn-sm btn-coral" onclick="resendEmail(leadsVista[${i}].id,leadsVista[${i}].email)" title="Reenviar PDF">↑ PDF</button>
           <a class="wa-btn" href="https://wa.me/?text=${waMsg}" target="_blank" title="WhatsApp">💬</a>
-          <select class="btn btn-sm" style="color:#8A94B8" onchange="changeStatus('${l.id}',this.value);this.value=''">
+          <select class="btn btn-sm" style="color:#8A94B8" onchange="changeStatus(leadsVista[${i}].id,this.value);this.value=''">
             <option value="" disabled selected>Estado</option>
             <option value="pendiente">Pendiente</option>
             <option value="enviado">Enviado</option>

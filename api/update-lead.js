@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     return res.status(401).json({ error: 'No autorizado' });
   }
 
-  const { id, ...fields } = req.body;
+  const { id, ...fields } = req.body || {};
   if (!id) return res.status(400).json({ error: 'Falta id' });
 
   const allowed = ['label', 'status', 'notes'];
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
   try {
-    await fetch(`${SUPABASE_URL}/rest/v1/leads?id=eq.${id}`, {
+    await fetch(`${SUPABASE_URL}/rest/v1/leads?id=eq.${encodeURIComponent(id)}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

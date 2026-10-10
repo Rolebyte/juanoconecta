@@ -11,11 +11,12 @@ export default async function handler(req, res) {
 
   // Validar token admin simple
   const auth = req.headers.authorization;
-  if (auth !== `Bearer ${process.env.ADMIN_SECRET}`) {
+  if (!process.env.ADMIN_SECRET || auth !== `Bearer ${process.env.ADMIN_SECRET}`) {
     return res.status(401).json({ error: 'No autorizado' });
   }
 
-  const { leadId, email } = req.body;
+  const { leadId, email } = req.body || {};
+  if (!leadId || !/^[^\s@<>"'`]+@[^\s@<>"'`]+\.[^\s@<>"'`]+$/.test(String(email || ''))) return res.status(400).json({ error: 'Datos inválidos' });
 
   const SUPABASE_URL = process.env.SUPABASE_URL;
   const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -58,7 +59,7 @@ export default async function handler(req, res) {
     const newStatus = emailRes.ok ? 'enviado' : 'error';
 
     // Actualizar estado en Supabase
-    await fetch(`${SUPABASE_URL}/rest/v1/leads?id=eq.${leadId}`, {
+    await fetch(`${SUPABASE_URL}/rest/v1/leads?id=eq.${encodeURIComponent(leadId)}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

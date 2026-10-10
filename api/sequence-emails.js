@@ -5,7 +5,7 @@
 export default async function handler(req, res) {
   // Solo acepta llamadas desde Vercel Cron o con el secret
   const auth = req.headers.authorization;
-  if (auth !== `Bearer ${process.env.ADMIN_SECRET}`) {
+  if (!process.env.ADMIN_SECRET || auth !== `Bearer ${process.env.ADMIN_SECRET}`) {
     return res.status(401).json({ error: 'No autorizado' });
   }
 

@@ -5,8 +5,10 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { email, source = 'popup' } = req.body;
-  if (!email || !email.includes('@')) return res.status(400).json({ error: 'Email invalido' });
+  const email = String(req.body?.email || '').trim().toLowerCase();
+  if (email.length > 160 || !/^[^\s@<>"'`()\\,;:]+@[^\s@<>"'`()\\,;:]+\.[a-z]{2,}$/.test(email)) return res.status(400).json({ error: 'Email invalido' });
+  // Solo los orígenes que usa la web: lo que llega acá se muestra en el panel de admin.
+  const source = ['popup', 'boton'].includes(req.body?.source) ? req.body.source : 'popup';
 
   const SUPABASE_URL = process.env.SUPABASE_URL;
   const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
