@@ -1,7 +1,7 @@
 // Promos de temporada: cada una tiene su página (/navidad, /verano) y aparece en la franja de la tienda
 // y de la home mientras no venza. Precios del análisis de mercado de octubre de 2026 (propuesta, a confirmar con Juan).
 // Fotos de Unsplash (licencia libre, se cargan desde su CDN).
-// Escalones como la auditoría: Emprendedor / PyME ≈1,5x / Empresa ≈2x. En cabañas, por cantidad de unidades.
+// Escalones como la auditoría: Emprendedor / PyME ≈1,5x / Empresa ≈2x. En verano, por cantidad de unidades o habitaciones.
 
 const WA = (texto) => 'https://wa.me/5493492627811?text=' + encodeURIComponent(texto)
 
@@ -83,31 +83,31 @@ export const PROMOS = [
   },
   {
     slug: 'verano',
-    eyebrow: 'Promo Verano 2027 · Cabañas y complejos',
-    titulo: 'Tu cabaña llena este verano',
-    bajada: 'Instagram, WhatsApp, Google Maps y una web de reservas propia, hechos a medida de tu lugar, para que te encuentren, te consulten y reserven directo sin dejarle el 15% a las plataformas.',
+    eyebrow: 'Promo Verano 2027 · Hoteles, hospedajes y alquileres temporarios',
+    titulo: 'Tu alojamiento lleno este verano',
+    bajada: 'Instagram, WhatsApp, Google Maps y una web de reservas propia, hechos a medida de tu hotel, hospedaje o alquiler, para que te encuentren, te consulten y reserven directo sin dejarle el 15% a las plataformas.',
     aMedida: [
-      { titulo: 'Tu lugar', texto: 'Tus fotos, tus unidades y lo que hace único a tu alojamiento.' },
+      { titulo: 'Tu lugar', texto: 'Tus fotos, tus habitaciones o unidades y lo que hace único a tu alojamiento.' },
       { titulo: 'Tu entorno', texto: 'El río, las sierras, las termas o la playa: lo que se vive en tu zona.' },
       { titulo: 'Tu identidad', texto: 'Tus colores, tu logo y tu estilo en cada pieza y en la web.' },
       { titulo: 'Tus huéspedes', texto: 'Mensajes pensados para quien te visita: familias, parejas o grupos.' },
     ],
-    seoTitulo: 'Promo Verano: tu cabaña llena este verano | JuanoConecta',
-    seoDescripcion: 'Marketing para cabañas y complejos: Instagram, WhatsApp, Google Maps y web de reservas propia. Reservas directas sin comisión.',
-    banda: 'Promo Verano para cabañas y complejos: llená la temporada con reservas directas',
+    seoTitulo: 'Promo Verano: tu alojamiento lleno este verano | JuanoConecta',
+    seoDescripcion: 'Marketing para hoteles, hospedajes, cabañas y alquileres temporarios: Instagram, WhatsApp, Google Maps y web de reservas propia. Reservas directas sin comisión.',
+    banda: 'Promo Verano para hoteles, hospedajes y alquileres: llená la temporada con reservas directas',
     vence: '2026-12-15',
     cierre: 'Contratación hasta el 21/11 · Precio de lanzamiento hasta el 31/10',
     tono: 'verano',
-    imagen: { src: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=70', alt: 'Playa al atardecer con el mar en calma' },
+    imagen: { src: 'https://images.unsplash.com/photo-1720275576385-252c34fb7fb0?auto=format&fit=crop&q=70', alt: 'Gente disfrutando de la playa en Pinamar' },
     galeria: [
-      { src: 'https://images.unsplash.com/photo-1619688137428-851529e61a0f?auto=format&fit=crop&q=70', alt: 'Cabaña de madera junto a un lago rodeada de árboles' },
-      { src: 'https://images.unsplash.com/photo-1644333192141-1135d690734f?auto=format&fit=crop&q=70', alt: 'Vista aérea de una playa con sombrillas' },
-      { src: 'https://images.unsplash.com/photo-1501426026826-31c667bdf23d?auto=format&fit=crop&q=70', alt: 'Flotador de flamenco en una pileta en verano' },
+      { src: 'https://images.unsplash.com/photo-1694184023356-e1edfd130269?auto=format&fit=crop&q=70', alt: 'Valle verde entre las sierras de Córdoba' },
+      { src: 'https://images.unsplash.com/photo-1604846253303-b30fc835b7a9?auto=format&fit=crop&q=70', alt: 'Casilla de guardavidas de madera en una playa de Pinamar' },
+      { src: 'https://images.unsplash.com/photo-1518655513281-e90740bd56b0?auto=format&fit=crop&q=70', alt: 'Vista aérea de Cariló entre el bosque y el mar' },
     ],
     tarifas: [
-      { id: 'emprendedor', nombre: '1 a 3 unidades', para: 'Cabañas y casas' },
-      { id: 'pyme', nombre: '4 a 8 unidades', para: 'Complejos' },
-      { id: 'empresa', nombre: '9 o más', para: 'Complejos grandes y hoteles' },
+      { id: 'emprendedor', nombre: '1 a 3 unidades', para: 'Particulares: casas, departamentos y cabañas' },
+      { id: 'pyme', nombre: '4 a 8 unidades', para: 'Complejos, hosterías y posadas' },
+      { id: 'empresa', nombre: '9 o más', para: 'Hoteles y complejos grandes' },
     ],
     datos: [
       { valor: '15%', texto: 'es la comisión promedio de Booking, y en Argentina la paga el alojamiento (iGMS).' },
@@ -126,7 +126,7 @@ export const PROMOS = [
         id: 'puesta', nombre: 'Puesta a punto para reservas', etiqueta: 'Recomendado', destacado: true,
         resumen: 'Que te encuentren en Instagram y en Google, y que cada consulta termine en reserva.',
         precio: { emprendedor: 220000, pyme: 330000, empresa: 440000 }, descuento: '15% off hasta el 31/10',
-        incluye: ['Auditoría de tu Instagram con IA', 'Bio con link de reserva', 'Destacados: cabañas, tarifas, cómo llegar, opiniones', 'WhatsApp Business con respuestas rápidas', 'Ficha de Google Maps revisada', '6 piezas de temporada con tus fotos', 'Kit Temporada de regalo'],
+        incluye: ['Auditoría de tu Instagram con IA', 'Bio con link de reserva', 'Destacados: habitaciones o unidades, tarifas, cómo llegar, opiniones', 'WhatsApp Business con respuestas rápidas', 'Ficha de Google Maps revisada', '6 piezas de temporada con tus fotos', 'Kit Temporada de regalo'],
         entrega: 'Entrega en 7 días hábiles',
         cta: 'Quiero la puesta a punto',
       },
@@ -141,7 +141,7 @@ export const PROMOS = [
     ],
     combo: 'Puesta a punto + Web: 10% off adicional y el Kit Temporada de regalo.',
     pasos: [
-      { titulo: 'Escribís por WhatsApp', texto: 'Nos contás cuántas unidades tenés y dónde están.' },
+      { titulo: 'Escribís por WhatsApp', texto: 'Nos contás qué tipo de alojamiento tenés, cuántas unidades o habitaciones y dónde está.' },
       { titulo: 'Conocemos tu lugar', texto: 'Nos pasás fotos, tarifas, tu logo y cómo reservás hoy.' },
       { titulo: 'Armado a medida', texto: 'Usamos IA para trabajar rápido, pero todo se ajusta a tu lugar y tu estilo.' },
       { titulo: 'Temporada', texto: 'Recibís consultas directas, sin comisión.' },
@@ -153,7 +153,7 @@ export const PROMOS = [
       { q: '¿Necesito fotos profesionales?', a: 'Ayudan, pero no es obligatorio. Trabajamos con las fotos que tengas y te decimos cuáles conviene renovar.' },
       { q: '¿Puedo pagar en cuotas?', a: 'Sí. Con Mercado Pago en cuotas o en dos pagos: la mitad al empezar y la mitad en la entrega.' },
     ],
-    waTexto: (nivel, tarifa) => WA(nivel ? `Hola Juan, me interesa la Promo Verano para cabañas: ${nivel}${tarifa ? ` (${tarifa})` : ''}.` : 'Hola Juan, quiero saber más sobre la Promo Verano para cabañas.'),
+    waTexto: (nivel, tarifa) => WA(nivel ? `Hola Juan, me interesa la Promo Verano para alojamientos: ${nivel}${tarifa ? ` (${tarifa})` : ''}.` : 'Hola Juan, quiero saber más sobre la Promo Verano para alojamientos.'),
   },
 ]
 

@@ -180,7 +180,7 @@ export default function PromoTemporada({ slug }) {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
             <SectionTitle eyebrow="Paquetes" title="Elegí cuánto querés que hagamos por vos" />
             <div className="lg:mb-14">
-              <p className="text-crema/45 text-[11px] font-bold tracking-[0.2em] uppercase mb-3">{promo.slug === 'verano' ? '¿Cuántas unidades tenés?' : '¿Qué tipo de negocio sos?'}</p>
+              <p className="text-crema/45 text-[11px] font-bold tracking-[0.2em] uppercase mb-3">{promo.slug === 'verano' ? '¿Cuántas unidades o habitaciones tenés?' : '¿Qué tipo de negocio sos?'}</p>
               <div role="radiogroup" aria-label="Tarifa" className="inline-grid grid-cols-3 gap-1 rounded-full border border-white/10 bg-[#0F1629] p-1">
                 {promo.tarifas.map((t) => (
                   <button key={t.id} type="button" role="radio" aria-checked={t.id === tarifaId} onClick={() => setTarifaId(t.id)}
