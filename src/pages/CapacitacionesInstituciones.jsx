@@ -85,8 +85,8 @@ export default function CapacitacionesInstituciones() {
   return (
     <div className="bg-fondo text-crema min-h-screen">
       <Helmet>
-        <title>Capacitaciones en IA para emprendedores y comercios de tu localidad | JuanoConecta</title>
-        <meta name="description" content="Charlas y talleres de inteligencia artificial para que los emprendedores y comercios de tu localidad vendan más, atiendan mejor y ahorren tiempo. Para municipios, comunas y cámaras de Rafaela y la región." />
+        <title>Capacitaciones en IA para emprendedores | JuanoConecta</title>
+        <meta name="description" content="Charlas y talleres de IA para que emprendedores y comercios vendan más y ahorren tiempo. Para municipios, comunas y cámaras de Rafaela y la región." />
         <link rel="canonical" href="https://juanoconecta.ar/capacitaciones" />
         <meta property="og:title" content="Capacitaciones en IA para emprendedores y comercios | JuanoConecta" />
         <meta property="og:url" content="https://juanoconecta.ar/capacitaciones" />

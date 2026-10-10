@@ -7,7 +7,7 @@ const WA_AUDITORIA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%2
 
 const TEAL = '#22D3EE'
 
-const productoGratis = {
+export const productoGratis = {
   nombre: '5 prompts para crear contenido con IA',
   descripcion: '¿No sabés por dónde empezar con la IA? Estos 5 prompts te dan el punto de partida exacto para generar contenido real en menos de 10 minutos — sin experiencia previa.',
   badge: 'GRATIS',
@@ -20,7 +20,7 @@ const productoGratis = {
   color: TEAL,
 }
 
-const productos = [
+export const productos = [
   {
     nombre: 'Kit Contenido IA',
     descripcion: '¿Publicás pero el algoritmo no te acompaña? El problema no es tu producto — es cómo lo comunicás. Estos 30 prompts te dan el lenguaje exacto para conectar con tu audiencia y generar contenido que vende.',
@@ -421,7 +421,7 @@ export default function Tienda({ onOpenPopup }) {
   )
 }
 
-const faqs = [
+export const faqs = [
   {
     q: '¿Necesito experiencia previa en IA?',
     a: 'No. Los recursos están diseñados para que puedas usarlos desde cero. Si sabés usar WhatsApp, podés usar estos prompts.',

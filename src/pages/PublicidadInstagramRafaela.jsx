@@ -86,8 +86,8 @@ export default function PublicidadInstagramRafaela() {
   return (
     <div className="bg-fondo text-crema min-h-screen">
       <Helmet>
-        <title>Publicidad en Instagram Rafaela: Meta Ads para negocios locales | JuanoConecta</title>
-        <meta name="description" content="Publicidad en Instagram y Facebook para negocios en Rafaela, Santa Fe. Campañas Meta Ads optimizadas con IA. Más clientes, menos desperdicio de presupuesto. Consultá gratis." />
+        <title>Publicidad en Instagram Rafaela | Meta Ads | JuanoConecta</title>
+        <meta name="description" content="Publicidad en Instagram y Facebook para negocios de Rafaela. Campañas de Meta Ads optimizadas con IA: más clientes, menos presupuesto perdido." />
         <link rel="canonical" href="https://juanoconecta.ar/publicidad-instagram-rafaela" />
         <meta property="og:title" content="Publicidad en Instagram Rafaela | Meta Ads | JuanoConecta" />
         <meta property="og:description" content="Campañas Meta Ads para negocios en Rafaela. Más leads, menos desperdicio de presupuesto. Estrategia con IA aplicada." />

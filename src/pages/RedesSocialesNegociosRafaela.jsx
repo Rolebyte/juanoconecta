@@ -83,8 +83,8 @@ export default function RedesSocialesNegociosRafaela() {
   return (
     <div className="bg-fondo text-crema min-h-screen">
       <Helmet>
-        <title>Redes Sociales para Negocios en Rafaela: gestión, estrategia y precios | JuanoConecta</title>
-        <meta name="description" content="Gestión profesional de redes sociales para negocios en Rafaela y Santa Fe. Planes desde $146.000/mes. Diseño, contenido y estrategia con IA aplicada. Consultá gratis." />
+        <title>Redes sociales para negocios en Rafaela | JuanoConecta</title>
+        <meta name="description" content="Gestión de redes sociales para negocios en Rafaela y Santa Fe. Planes desde $146.000/mes. Diseño, contenido y estrategia con IA. Consultá gratis." />
         <link rel="canonical" href="https://juanoconecta.ar/redes-sociales-para-negocios-rafaela" />
         <meta property="og:title" content="Redes Sociales para Negocios en Rafaela | JuanoConecta" />
         <meta property="og:description" content="Gestión profesional de redes sociales para negocios en Rafaela. Planes desde $146.000/mes con diseño, contenido y estrategia con IA." />
