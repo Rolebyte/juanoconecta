@@ -9,7 +9,7 @@ export const PROMOS = [
   {
     slug: 'navidad',
     eyebrow: 'Promo Navidad 2026 · Comercios y emprendedores',
-    titulo: 'Tu marca lista para vender en Navidad',
+    titulo: 'Esta Navidad, que más gente te elija',
     bajada: 'Preparamos tu Instagram, tu WhatsApp y tu forma de cobrar para que en diciembre más gente te encuentre, te consulte y te compre. Todo hecho a medida de tu marca, nada de plantillas genéricas.',
     aMedida: [
       { titulo: 'Tu identidad', texto: 'Tus colores, tu logo y tu tipografía en cada pieza.' },
@@ -17,9 +17,9 @@ export const PROMOS = [
       { titulo: 'Tu tono', texto: 'Textos que suenan como vos le hablás a tus clientes.' },
       { titulo: 'Tu zona', texto: 'Ejemplos, fechas y referencias de tu ciudad y tu público.' },
     ],
-    seoTitulo: 'Promo Navidad: tu marca lista para vender | JuanoConecta',
+    seoTitulo: 'Promo Navidad: que más gente te elija | JuanoConecta',
     seoDescripcion: 'Instagram, WhatsApp Business, link de pago y tienda online listos antes de las fiestas. Paquetes para emprendedores, comercios y pymes.',
-    banda: 'Promo Navidad: dejá tu marca lista para vender en las fiestas',
+    banda: 'Promo Navidad: que en estas fiestas más gente te elija',
     vence: '2026-12-15',
     cierre: 'Tienda hasta el 20/11 · Puesta a punto hasta el 30/11',
     tono: 'navidad',
