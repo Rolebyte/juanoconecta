@@ -212,7 +212,7 @@ export default function PromoTemporada({ slug }) {
       {/* Cómo funciona */}
       <section className="py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <SectionTitle eyebrow="Cómo funciona" title="Simple, rápido y sin vueltas" />
+          <SectionTitle eyebrow="Cómo funciona" title="Vos nos contás, nosotros lo armamos" />
           <ol className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {promo.pasos.map((p, i) => (
               <Reveal as="li" key={p.titulo} delay={i * 0.08} className="rounded-3xl border border-white/10 bg-[#0F1629] p-7">

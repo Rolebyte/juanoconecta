@@ -70,7 +70,7 @@ export const PROMOS = [
       { titulo: 'Escribís por WhatsApp', texto: 'Nos contás tu negocio y elegís el paquete.' },
       { titulo: 'Conocemos tu marca', texto: 'Logo, colores, tono, productos y clientes: todo arranca de ahí.' },
       { titulo: 'Armado a medida', texto: 'Usamos IA para trabajar rápido, pero cada pieza se revisa y se ajusta a tu marca.' },
-      { titulo: 'Listo para vender', texto: 'Te entregamos todo y te explicamos cómo usarlo.' },
+      { titulo: 'Listo para usar', texto: 'Te entregamos todo y te explicamos cómo sacarle provecho.' },
     ],
     preguntas: [
       { q: '¿Me van a dar algo genérico?', a: 'No. Todo se hace con tu marca: tus colores, tu logo, tu rubro y tu forma de hablar. Antes de empezar te pedimos esos datos, y si no tenés logo o colores definidos te ayudamos a ordenarlos.' },
