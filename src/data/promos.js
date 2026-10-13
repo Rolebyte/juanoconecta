@@ -84,7 +84,7 @@ export const PROMOS = [
   {
     slug: 'verano',
     eyebrow: 'Promo Verano 2027 · Hoteles, hospedajes y alquileres temporarios',
-    titulo: 'Que te encuentren este verano',
+    titulo: 'Que este verano te encuentren y te elijan',
     bajada: 'Instagram, WhatsApp, Google Maps y una web de reservas propia, hechos a medida de tu hotel, hospedaje o alquiler, para que te encuentren, te consulten y reserven directo sin dejarle el 15% a las plataformas.',
     aMedida: [
       { titulo: 'Tu lugar', texto: 'Tus fotos, tus habitaciones o unidades y lo que hace único a tu alojamiento.' },
@@ -92,7 +92,7 @@ export const PROMOS = [
       { titulo: 'Tu identidad', texto: 'Tus colores, tu logo y tu estilo en cada pieza y en la web.' },
       { titulo: 'Tus huéspedes', texto: 'Mensajes pensados para quien te visita: familias, parejas o grupos.' },
     ],
-    seoTitulo: 'Promo Verano: que te encuentren este verano | JuanoConecta',
+    seoTitulo: 'Promo Verano: que este verano te encuentren y te elijan | JuanoConecta',
     seoDescripcion: 'Marketing para hoteles, hospedajes, cabañas y alquileres temporarios: Instagram, WhatsApp, Google Maps y web de reservas propia. Más visibilidad y consultas directas, sin comisión.',
     banda: 'Promo Verano para hoteles, hospedajes y alquileres: que te encuentren y te consulten directo',
     vence: '2026-12-15',
