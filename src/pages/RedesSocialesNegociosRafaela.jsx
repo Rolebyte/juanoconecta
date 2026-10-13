@@ -7,7 +7,7 @@ import WhatsAppButton from '../components/WhatsAppButton'
 import { PLANES_REDES } from '../data/planesRedes'
 import NotaPlanes from '../components/NotaPlanes'
 
-const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20gestionar%20las%20redes%20sociales%20de%20mi%20negocio%20en%20Rafaela'
+const WA = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20me%20interesa%20gestionar%20las%20redes%20sociales%20de%20mi%20negocio%20en%20Rafaela'
 
 const schema = {
   '@context': 'https://schema.org',
@@ -15,7 +15,7 @@ const schema = {
   name: 'JuanoConecta',
   description: 'Gestión de redes sociales para negocios en Rafaela y Santa Fe. Estrategia digital con IA aplicada.',
   url: 'https://juanoconecta.ar/redes-sociales-para-negocios-rafaela',
-  telephone: '+5493492627811',
+  telephone: '+5493492383024',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Rafaela',
