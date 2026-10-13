@@ -10,7 +10,7 @@ export const PROMOS = [
     slug: 'navidad',
     eyebrow: 'Promo Navidad 2026 · Comercios y emprendedores',
     titulo: 'Tu marca lista para vender en Navidad',
-    bajada: 'Preparamos tu Instagram, tu WhatsApp y tu forma de cobrar para que diciembre sea el mejor mes del año. Todo hecho a medida de tu marca, nada de plantillas genéricas.',
+    bajada: 'Preparamos tu Instagram, tu WhatsApp y tu forma de cobrar para que en diciembre más gente te encuentre, te consulte y te compre. Todo hecho a medida de tu marca, nada de plantillas genéricas.',
     aMedida: [
       { titulo: 'Tu identidad', texto: 'Tus colores, tu logo y tu tipografía en cada pieza.' },
       { titulo: 'Tu rubro', texto: 'Ideas y promos pensadas para lo que vendés: no es lo mismo una ferretería que una tienda de ropa.' },
@@ -84,7 +84,7 @@ export const PROMOS = [
   {
     slug: 'verano',
     eyebrow: 'Promo Verano 2027 · Hoteles, hospedajes y alquileres temporarios',
-    titulo: 'Tu alojamiento lleno este verano',
+    titulo: 'Que te encuentren este verano',
     bajada: 'Instagram, WhatsApp, Google Maps y una web de reservas propia, hechos a medida de tu hotel, hospedaje o alquiler, para que te encuentren, te consulten y reserven directo sin dejarle el 15% a las plataformas.',
     aMedida: [
       { titulo: 'Tu lugar', texto: 'Tus fotos, tus habitaciones o unidades y lo que hace único a tu alojamiento.' },
@@ -92,9 +92,9 @@ export const PROMOS = [
       { titulo: 'Tu identidad', texto: 'Tus colores, tu logo y tu estilo en cada pieza y en la web.' },
       { titulo: 'Tus huéspedes', texto: 'Mensajes pensados para quien te visita: familias, parejas o grupos.' },
     ],
-    seoTitulo: 'Promo Verano: tu alojamiento lleno este verano | JuanoConecta',
-    seoDescripcion: 'Marketing para hoteles, hospedajes, cabañas y alquileres temporarios: Instagram, WhatsApp, Google Maps y web de reservas propia. Reservas directas sin comisión.',
-    banda: 'Promo Verano para hoteles, hospedajes y alquileres: llená la temporada con reservas directas',
+    seoTitulo: 'Promo Verano: que te encuentren este verano | JuanoConecta',
+    seoDescripcion: 'Marketing para hoteles, hospedajes, cabañas y alquileres temporarios: Instagram, WhatsApp, Google Maps y web de reservas propia. Más visibilidad y consultas directas, sin comisión.',
+    banda: 'Promo Verano para hoteles, hospedajes y alquileres: que te encuentren y te consulten directo',
     vence: '2026-12-15',
     cierre: 'Contratación hasta el 21/11 · Precio de lanzamiento hasta el 31/10',
     tono: 'verano',
