@@ -35,9 +35,9 @@ export const PROMOS = [
       { id: 'empresa', nombre: 'Empresa', para: 'Empresas y cadenas' },
     ],
     datos: [
-      { valor: '9 de cada 10', texto: 'comercios hicieron promos en la Navidad pasada; sin ellas, las ventas habrían caído (CAME).' },
-      { valor: '44%', texto: 'compra recién la última semana antes de Navidad: hay que estar listo antes (Naranja X).' },
-      { valor: '+19,4%', texto: 'creció la venta online de los comercios con local en septiembre de 2026 (CAME).' },
+      { valor: '9 de cada 10', texto: 'comercios hicieron promos en la Navidad pasada; sin ellas, las ventas habrían caído (datos de cámaras de comercio).' },
+      { valor: '44%', texto: 'compra recién la última semana antes de Navidad: hay que estar listo antes (estudios de consumo).' },
+      { valor: '+19,4%', texto: 'creció la venta online de los comercios con local en septiembre de 2026 (datos de cámaras de comercio).' },
     ],
     niveles: [
       {
@@ -110,8 +110,8 @@ export const PROMOS = [
       { id: 'empresa', nombre: '9 o más', para: 'Hoteles y complejos grandes' },
     ],
     datos: [
-      { valor: '15%', texto: 'es la comisión promedio de Booking, y en Argentina la paga el alojamiento (iGMS).' },
-      { valor: '3 a 4 meses', texto: 'antes se reservan las vacaciones de verano: la decisión se toma ahora (MDZ).' },
+      { valor: '15%', texto: 'es la comisión promedio de Booking, y en Argentina la paga el alojamiento (datos del sector).' },
+      { valor: '3 a 4 meses', texto: 'antes se reservan las vacaciones de verano: la decisión se toma ahora (estudios de turismo).' },
       { valor: '60 a 80%', texto: 'de las plazas de enero ya estaban reservadas a mediados de diciembre del año pasado.' },
     ],
     niveles: [
