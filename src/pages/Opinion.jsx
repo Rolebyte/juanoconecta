@@ -12,7 +12,8 @@ import { SERVICIOS_OPINION } from '../data/opiniones'
 // (juanoconecta.ar/opinion o /opinion?servicio=web) y no aparece en el menú. Lo enviado se ve en el home.
 const campo = 'w-full bg-fondo border border-white/15 rounded-2xl px-5 py-3.5 text-crema placeholder:text-crema/30 focus:outline-none focus:border-acento'
 const ETIQUETAS = ['', 'Malo', 'Regular', 'Bueno', 'Muy bueno', '¡Excelente!']
-const ERRORES = { sin_links: 'Sacá los links del comentario y probá de nuevo.', falta_texto: 'Contanos un poco más en el comentario.' }
+const RESENA_GOOGLE = 'https://g.page/r/CRMd14ZEgJSHEBM/review'
+const ERRORES ={ sin_links: 'Sacá los links del comentario y probá de nuevo.', falta_texto: 'Contanos un poco más en el comentario.' }
 
 function Estrella({ llena }) {
   return (
@@ -28,10 +29,17 @@ export default function Opinion() {
   const [f, setF] = useState({ estrellas: 0, servicio: inicial, nombre: (params.get('nombre') || '').slice(0, 80), negocio: (params.get('negocio') || '').slice(0, 80), texto: '', contacto: '', web: '' })
   const [publicada, setPublicada] = useState(true)
   const [hover, setHover] = useState(0)
+  const [copiado, setCopiado] = useState(false)
   const [estado, setEstado] = useState('')
   const set = (k, v) => setF((x) => ({ ...x, [k]: v }))
   const completo = f.estrellas > 0 && f.servicio && f.nombre.trim() && f.texto.trim().length >= 10
   const faltan = [!f.estrellas && 'las estrellas', !f.servicio && 'el servicio', !f.nombre.trim() && 'tu nombre', f.texto.trim().length < 10 && 'tu comentario'].filter(Boolean)
+
+  // Después de publicar, invitamos a repetir la reseña en Google con el comentario ya copiado.
+  async function irAGoogle() {
+    try { await navigator.clipboard.writeText(f.texto.trim()); setCopiado(true) } catch {}
+    window.open(RESENA_GOOGLE, '_blank', 'noopener')
+  }
 
   async function enviar(e) {
     e.preventDefault()
@@ -65,6 +73,15 @@ export default function Opinion() {
               {publicada ? (
                 <>
                   <p className="text-crema/70 text-lg mt-6">Tu opinión ya está publicada en la web. Nos ayuda muchísimo a que otros negocios confíen en nosotros.</p>
+                  <div className="mt-8 rounded-3xl border border-white/10 bg-[#0F1629] p-6 md:p-8 text-left">
+                    <p className="font-semibold text-crema text-lg">¿Nos das una mano más? Dejala también en Google</p>
+                    <p className="text-crema/60 mt-2">Es lo que ven quienes nos buscan en Google y Maps. Al tocar el botón copiamos tu comentario: solo elegís las estrellas y lo pegás.</p>
+                    <button type="button" onClick={irAGoogle}
+                      className="mt-5 inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 font-semibold text-sm bg-acento hover:bg-acento-dark text-white shadow-[0_10px_40px_-10px_rgba(61,123,255,0.8)]">
+                      Dejar mi reseña en Google
+                    </button>
+                    {copiado && <p className="text-sm text-teal mt-3">Tu comentario quedó copiado: pegalo en el cuadro de Google.</p>}
+                  </div>
                   <div className="mt-8"><BtnGhost href="/#opiniones">Ver las opiniones</BtnGhost></div>
                 </>
               ) : (
