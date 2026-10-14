@@ -29,6 +29,8 @@ import RedesSocialesNegociosRafaela from './pages/RedesSocialesNegociosRafaela'
 import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
 import MarketingDigitalRafaela from './pages/MarketingDigitalRafaela'
 import SobreJuanoConecta from './pages/SobreJuanoConecta'
+import Opinion from './pages/Opinion'
+import OpinionesNx from './components/home/OpinionesNx'
 
 // Al llegar a cualquier página con /ruta#seccion, el navegador intenta saltar antes de que
 // React dibuje el contenido. Saltamos nosotros y repetimos mientras cargan imágenes y animaciones.
@@ -135,6 +137,7 @@ function Home() {
         <ProcesoNx />
         <KeywordBand />
         <CasosNx />
+        <OpinionesNx />
         <Portfolio />
         <SobreNx />
         <FaqNx />
@@ -167,6 +170,7 @@ export function AppRoutes() {
         <Route path="/verano" element={<PromoTemporada slug="verano" />} />
         <Route path="/material" element={<Material />} />
         <Route path="/material/:slug" element={<Material />} />
+        <Route path="/opinion" element={<Opinion />} />
       </Routes>
     </>
   )

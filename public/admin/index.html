@@ -127,7 +127,7 @@ tr:hover td{background:#0E1528}
       <span style="font-size:13px;color:#6B769A">Panel</span>
     </div>
     <div style="display:flex;gap:7px">
-      <button class="btn btn-sm" onclick="loadLeads();loadExtras();loadSeg();loadClics()">↻ Actualizar</button>
+      <button class="btn btn-sm" onclick="loadLeads();loadExtras();loadSeg();loadClics();loadOpiniones()">↻ Actualizar</button>
       <button class="btn btn-sm btn-green" onclick="copyEmails()" title="Copiar todos los emails visibles">⎘ Copiar emails</button>
       <button class="btn btn-sm" onclick="exportCSV()">↓ CSV</button>
       <button class="btn btn-sm btn-coral" onclick="triggerSequence()" title="Ejecutar secuencia manualmente">▶ Secuencia</button>
@@ -141,6 +141,17 @@ tr:hover td{background:#0E1528}
     <button class="tab" data-tab="encuestas" onclick="showTab('encuestas')">Encuestas<span class="n" id="n-encuestas"></span></button>
     <button class="tab" data-tab="ventas" onclick="showTab('ventas')">Ventas<span class="n" id="n-ventas"></span></button>
     <button class="tab" data-tab="clics" onclick="showTab('clics')">Clics en WhatsApp<span class="n" id="n-clics"></span></button>
+    <button class="tab" data-tab="opiniones" onclick="showTab('opiniones')">Opiniones<span class="n" id="n-opiniones"></span></button>
+  </div>
+
+  <div class="panel" id="tab-opiniones">
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Opiniones</div><div class="metric-val" id="o-total">—</div></div>
+      <div class="metric"><div class="metric-label">Promedio</div><div class="metric-val blue" id="o-prom">—</div><div class="metric-sub">estrellas sobre 5</div></div>
+      <div class="metric"><div class="metric-label">En el home</div><div class="metric-val green" id="o-visibles">—</div></div>
+      <div class="metric"><div class="metric-label">Link para pedir opinión</div><div class="metric-sub" style="font-size:12px;color:#8A94B8;margin-top:6px">juanoconecta.ar/opinion <button class="btn btn-sm" onclick="copiarLinkOpinion()">Copiar</button></div></div>
+    </div>
+    <div class="cards" id="o-cards"><div class="empty">Cargando...</div></div>
   </div>
 
   <div class="panel" id="tab-encuestas">
@@ -295,7 +306,7 @@ let adminSecret = localStorage.getItem('admin_secret') || '';
 if (adminSecret) {
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  loadLeads(); loadExtras(); loadSeg(); loadClics();
+  loadLeads(); loadExtras(); loadSeg(); loadClics(); loadOpiniones();
 }
 
 function doLogin() {
@@ -305,7 +316,7 @@ function doLogin() {
   localStorage.setItem('admin_secret', pwd);
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  loadLeads(); loadExtras(); loadSeg(); loadClics();
+  loadLeads(); loadExtras(); loadSeg(); loadClics(); loadOpiniones();
 }
 function doLogout() { localStorage.removeItem('admin_secret'); location.reload(); }
 
@@ -755,6 +766,49 @@ async function borrarManual(i) {
     if (!res.ok) throw new Error(res.status);
     showToast('Borrado'); loadSeg();
   } catch (e) { showToast('No se pudo borrar', true); }
+}
+
+// ---- Opiniones de clientes (se publican solas en el home; acá se ocultan o se vuelven a mostrar) ----
+let allOpiniones = [];
+const SERVICIOS_OP = { redes: 'Gestión de redes', 'meta-ads': 'Meta Ads', web: 'Página web', 'web-app': 'Web app con IA', diseno: 'Diseño y branding', capacitacion: 'Capacitación de IA', auditoria: 'Auditoría', kit: 'Kit / plantillas', otro: 'Otro' };
+
+async function loadOpiniones() {
+  try { const d = await cargar('/api/admin?accion=opiniones'); if (d) { allOpiniones = d; renderOpiniones(); } }
+  catch (e) { showToast('Error al cargar opiniones', true); }
+}
+
+function renderOpiniones() {
+  const vis = allOpiniones.filter((o) => o.visible);
+  document.getElementById('n-opiniones').textContent = allOpiniones.length || '';
+  document.getElementById('o-total').textContent = allOpiniones.length;
+  document.getElementById('o-prom').textContent = allOpiniones.length ? (allOpiniones.reduce((a, o) => a + o.estrellas, 0) / allOpiniones.length).toFixed(1) : '—';
+  document.getElementById('o-visibles').textContent = vis.length;
+  const cont = document.getElementById('o-cards');
+  if (!allOpiniones.length) { cont.innerHTML = '<div class="empty">Todavía no hay opiniones. Mandá el link juanoconecta.ar/opinion cuando termines un trabajo.</div>'; return; }
+  cont.innerHTML = allOpiniones.map((o, i) => `<div class="card ${o.visible ? 'lead-ok' : ''}" style="${o.visible ? '' : 'opacity:.55'}">
+    <div class="top"><span class="stars">${'★'.repeat(o.estrellas)}${'☆'.repeat(5 - o.estrellas)}</span><span class="age-tag">${fecha(o.created_at)}</span></div>
+    <div style="font-weight:600">${esc(o.nombre)}${o.negocio ? ' · ' + esc(o.negocio) : ''}</div>
+    <span class="chip">${esc(SERVICIOS_OP[o.servicio] || o.servicio)}</span>
+    <div style="margin-top:8px">${esc(o.texto)}</div>
+    ${o.contacto ? `<div class="k">Contacto (no se publica)</div><div>${esc(o.contacto)}</div>` : ''}
+    <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+      <span class="chip ${o.visible ? 'si' : 'no'}">${o.visible ? 'Se ve en el home' : 'Oculta'}</span>
+      <button class="btn btn-sm" onclick="cambiarVisible(${i})">${o.visible ? 'Ocultar' : 'Mostrar'}</button>
+    </div>
+  </div>`).join('');
+}
+
+async function cambiarVisible(i) {
+  const o = allOpiniones[i]; if (!o) return;
+  try {
+    const res = await fetch('/api/admin?accion=opinion-visible', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret }, body: JSON.stringify({ id: o.id, visible: !o.visible }) });
+    if (!res.ok) throw new Error(res.status);
+    o.visible = !o.visible; renderOpiniones(); showToast(o.visible ? 'Visible en el home' : 'Oculta del home');
+  } catch (e) { showToast('No se pudo cambiar', true); }
+}
+
+function copiarLinkOpinion() {
+  navigator.clipboard?.writeText('https://juanoconecta.ar/opinion').then(() => showToast('Link copiado'), () => showToast('No se pudo copiar', true));
 }
 
 // ---- Clics en WhatsApp ----

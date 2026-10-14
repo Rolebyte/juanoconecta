@@ -155,6 +155,15 @@ export default async function handler(req, res) {
       return res.status(200).json(guardado)
     }
 
+    if (req.method === 'GET' && accion === 'opiniones') return res.status(200).json(await db('opiniones?select=*&order=created_at.desc'))
+    if (req.method === 'POST' && accion === 'opinion-visible') {
+      const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {}
+      const id = Number(b.id)
+      if (!Number.isInteger(id) || typeof b.visible !== 'boolean') return res.status(400).json({ error: 'Datos inválidos' })
+      await db(`opiniones?id=eq.${id}`, { method: 'PATCH', body: JSON.stringify({ visible: b.visible }) })
+      return res.status(200).json({ ok: true })
+    }
+
     if (req.method === 'POST' && accion === 'borrar-manual') {
       const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {}
       if (!b.ref_id) return res.status(400).json({ error: 'Falta el contacto' })

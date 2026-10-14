@@ -2,6 +2,7 @@
 // y devuelve el código de descuento, que solo se entrega después de responder.
 import { MATERIALES } from '../src/data/materiales.js'
 import { CUPONES } from './_cupones.js'
+import { opiniones } from './_opiniones.js'
 
 const INTERESES = ['redes', 'web', 'ia-equipo', 'auditoria', 'nada']
 const RECOMIENDA = { si: 'Sí', 'tal-vez': 'Tal vez', no: 'No' }
@@ -9,6 +10,8 @@ const texto = (v, max) => String(v ?? '').trim().slice(0, max) || null
 const html = (s) => String(s ?? '-').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
 
 export default async function handler(req, res) {
+  // Opiniones de clientes (/opinion y el home) comparten esta función: ver api/_opiniones.js
+  if (req.query?.tipo === 'opinion') return opiniones(req, res)
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
   const b = req.body || {}
