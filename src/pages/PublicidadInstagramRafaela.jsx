@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
 
-const WA = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20me%20interesa%20hacer%20publicidad%20en%20Instagram%20para%20mi%20negocio%20en%20Rafaela'
+const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20hacer%20publicidad%20en%20Instagram%20para%20mi%20negocio%20en%20Rafaela'
 
 const schema = {
   '@context': 'https://schema.org',
@@ -13,7 +13,7 @@ const schema = {
   name: 'JuanoConecta',
   description: 'Publicidad en Instagram y Facebook para negocios en Rafaela. Meta Ads optimizado con IA aplicada.',
   url: 'https://juanoconecta.ar/publicidad-instagram-rafaela',
-  telephone: '+5493492383024',
+  telephone: '+5493492627811',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Rafaela',

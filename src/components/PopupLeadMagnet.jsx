@@ -163,7 +163,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
                       En la auditoría con IA reviso tu perfil, te doy un plan de mejora y lo vemos juntos en una sesión 1 a 1. Desde $120.000.
                     </p>
                     <a
-                      href="https://wa.me/5493492383024?text=Hola%20Juan%2C%20descargu%C3%A9%20la%20gu%C3%ADa%20de%20prompts%20y%20quiero%20saber%20m%C3%A1s%20de%20la%20auditor%C3%ADa"
+                      href="https://wa.me/5493492627811?text=Hola%20Juan%2C%20descargu%C3%A9%20la%20gu%C3%ADa%20de%20prompts%20y%20quiero%20saber%20m%C3%A1s%20de%20la%20auditor%C3%ADa"
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Consultar por la auditoría por WhatsApp"

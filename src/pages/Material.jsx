@@ -9,7 +9,7 @@ import { pixel } from '../pixel'
 import { Eyebrow, GridGlow, GlowCard, BtnPrimary, BtnGhost, Reveal } from '../components/home/ui'
 import { MATERIALES } from '../data/materiales'
 
-const WA_CONSULTA = 'https://wa.me/5493492383024?text=' + encodeURIComponent('Hola Juan, estuve en la capacitación Emprender con IA y tengo una consulta.')
+const WA_CONSULTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, estuve en la capacitación Emprender con IA y tengo una consulta.')
 
 const ars = (n) => '$' + n.toLocaleString('es-AR')
 const vigente = (b) => b && Date.now() <= new Date(b.vence).getTime()
@@ -161,7 +161,7 @@ function Canjear({ b, codigo }) {
   const [elegido, setElegido] = useState(b.servicios[0].id)
   const s = b.servicios.find((x) => x.id === elegido)
   const final = s.precio ? Math.round(s.precio * (1 - b.porcentaje / 100)) : null
-  const wa = 'https://wa.me/5493492383024?text=' + encodeURIComponent(`Hola Juan, participé de la capacitación y quiero contratar "${s.nombre}" con el código ${codigo} (${b.porcentaje}% de descuento).`)
+  const wa = 'https://wa.me/5493492627811?text=' + encodeURIComponent(`Hola Juan, participé de la capacitación y quiero contratar "${s.nombre}" con el código ${codigo} (${b.porcentaje}% de descuento).`)
   const [estado, setEstado] = useState('')
 
   async function pagar(e) {

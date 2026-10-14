@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
 
-const WA = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20quiero%20saber%20m%C3%A1s%20sobre%20JuanoConecta'
+const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20saber%20m%C3%A1s%20sobre%20JuanoConecta'
 
 const ORGANIZATION_SCHEMA = {
   '@context': 'https://schema.org',
@@ -14,7 +14,7 @@ const ORGANIZATION_SCHEMA = {
   alternateName: 'Juano Conecta',
   description: 'Agencia de marketing digital y diseño de marcas con IA en Rafaela, Santa Fe, Argentina. Fundada por Juan Gallino.',
   url: 'https://juanoconecta.ar',
-  telephone: '+5493492383024',
+  telephone: '+5493492627811',
   email: 'juanoconecta@gmail.com',
   foundingDate: '2022',
   founder: {
@@ -141,7 +141,7 @@ export default function SobreJuanoConecta() {
                 { label: 'Nombre', value: 'JuanoConecta' },
                 { label: 'Fundador', value: 'Juan Gallino' },
                 { label: 'Ubicación', value: 'Rafaela, Santa Fe, Argentina' },
-                { label: 'Teléfono / WhatsApp', value: '+54 9 3492 383024' },
+                { label: 'Teléfono / WhatsApp', value: '+54 9 3492 627811' },
                 { label: 'Web', value: 'juanoconecta.ar' },
                 { label: 'Instagram', value: '@juanoconecta' },
                 { label: 'Trayectoria', value: '3 años (desde 2022)' },

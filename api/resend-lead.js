@@ -48,7 +48,7 @@ export default async function handler(req, res) {
             </a>
             <p style="color: #666; font-size: 13px; line-height: 1.6; border-top: 1px solid #222; padding-top: 20px; margin-top: 8px;">
               Cualquier consulta respondeme por acá o escribime al 
-              <a href="https://wa.me/5493492383024" style="color: #C4846A;">WhatsApp</a>.<br>
+              <a href="https://wa.me/5493492627811" style="color: #C4846A;">WhatsApp</a>.<br>
               — Juan, <a href="https://juanoconecta.ar" style="color: #C4846A;">JuanoConecta</a>
             </p>
           </div>

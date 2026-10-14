@@ -1,6 +1,6 @@
 // Productos de la tienda (/tienda). Lo usan la página, sus datos estructurados (Recursos.jsx)
 // y el panel de admin (api/admin.js), que reconoce las ventas de Mercado Pago por nombre o precio.
-export const WA_AUDITORIA = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20quiero%20la%20Auditoría%20IA%20de%20mi%20perfil'
+export const WA_AUDITORIA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20la%20Auditoría%20IA%20de%20mi%20perfil'
 
 const TEAL = '#22D3EE'
 

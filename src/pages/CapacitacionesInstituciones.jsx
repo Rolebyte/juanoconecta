@@ -7,7 +7,7 @@ import { Eyebrow, GridGlow, GlowCard, SectionTitle, BtnPrimary, BtnGhost, Check,
 import { CAPACITACIONES } from '../data/capacitaciones'
 import GaleriaJornada from '../components/GaleriaJornada'
 
-const WA_PROPUESTA = 'https://wa.me/5493492383024?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad, comuna o cámara de ____. Nos interesa una capacitación en inteligencia artificial para los emprendedores y comercios de nuestra localidad.')
+const WA_PROPUESTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad, comuna o cámara de ____. Nos interesa una capacitación en inteligencia artificial para los emprendedores y comercios de nuestra localidad.')
 const MAIL = 'mailto:juanoconecta@gmail.com?subject=' + encodeURIComponent('Capacitación en IA para nuestra localidad')
 
 const ORGANIZADORES = [

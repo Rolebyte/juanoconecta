@@ -53,7 +53,7 @@ export default async function handler(req, res) {
           <h1 style="font-size:22px;font-weight:500;color:#F5F0EB;margin-bottom:8px;">Aca estan tus 5 prompts</h1>
           <p style="color:#aaa;font-size:15px;line-height:1.6;margin-bottom:24px;">Gracias por descargarlo. Disenados para que cualquier negocio genere contenido profesional con IA en minutos.</p>
           <a href="${PDF_URL}" style="display:inline-block;background:#C4846A;color:#fff;text-decoration:none;padding:12px 24px;border-radius:8px;font-size:15px;font-weight:500;margin-bottom:24px;">Descargar PDF</a>
-          <p style="color:#666;font-size:13px;border-top:1px solid #222;padding-top:20px;">Cualquier consulta escribime al <a href="https://wa.me/5493492383024" style="color:#C4846A;">WhatsApp</a>.<br>Juan, JuanoConecta</p>
+          <p style="color:#666;font-size:13px;border-top:1px solid #222;padding-top:20px;">Cualquier consulta escribime al <a href="https://wa.me/5493492627811" style="color:#C4846A;">WhatsApp</a>.<br>Juan, JuanoConecta</p>
         </div>`,
       }),
     });

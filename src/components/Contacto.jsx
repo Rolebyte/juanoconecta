@@ -3,7 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import { Eyebrow, GridGlow } from './home/ui'
 import { pixel } from '../pixel'
 
-const WA_LINK = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20quiero%20contactarte'
+const WA_LINK = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20contactarte'
 
 const serviciosOpciones = [
   'Community Management',
@@ -187,7 +187,7 @@ export default function Contacto() {
                   </svg>
                 ),
                 titulo: 'WhatsApp',
-                valor: '+54 9 3492 383024',
+                valor: '+54 9 3492 627811',
                 href: WA_LINK,
               },
               {
