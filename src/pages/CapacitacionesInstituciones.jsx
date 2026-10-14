@@ -269,7 +269,7 @@ export default function CapacitacionesInstituciones() {
         </section>
       )}
 
-      <OpinionesNx solo={['capacitacion']} className="py-24 px-6" eyebrow="Opiniones" title="Lo que dicen quienes participaron" sub="Opiniones de emprendedores y comerciantes que hicieron nuestras capacitaciones." />
+      <OpinionesNx solo={['capacitacion']} className="py-24 px-6" eyebrow="Opiniones" title="No lo decimos nosotros, lo dicen ellos" sub="Opiniones de emprendedores y comerciantes que hicieron nuestras capacitaciones." />
 
       {/* Proceso */}
       <section className="py-24 px-6">

@@ -21,8 +21,8 @@ function Estrellas({ n, className = 'w-4 h-4' }) {
 
 export default function OpinionesNx({
   solo, excepto, className = 'pt-28 pb-8 px-6',
-  eyebrow = 'Opiniones', title = 'Lo que dicen los negocios que trabajaron con nosotros',
-  sub = 'Opiniones reales, escritas por cada cliente al terminar su proyecto.',
+  eyebrow = 'Opiniones', title = 'No lo decimos nosotros, lo dicen ellos',
+  sub = 'Opiniones de negocios que trabajaron con JuanoConecta, escritas por ellos mismos.',
 }) {
   const [lista, setLista] = useState([])
   const [todas, setTodas] = useState(false)

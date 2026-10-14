@@ -210,7 +210,7 @@ export default function PromoTemporada({ slug }) {
         </div>
       </section>
 
-      <OpinionesNx excepto={['capacitacion']} className="py-24 px-6" title="Lo que dicen los que ya trabajaron con nosotros" />
+      <OpinionesNx excepto={['capacitacion']} className="py-24 px-6" />
 
       {/* Cómo funciona */}
       <section className="py-24 px-6">
