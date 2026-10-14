@@ -25,7 +25,8 @@ function Estrella({ llena }) {
 export default function Opinion() {
   const [params] = useSearchParams()
   const inicial = SERVICIOS_OPINION.some((s) => s.id === params.get('servicio')) ? params.get('servicio') : ''
-  const [f, setF] = useState({ estrellas: 0, servicio: inicial, nombre: '', negocio: '', texto: '', contacto: '', web: '' })
+  const [f, setF] = useState({ estrellas: 0, servicio: inicial, nombre: (params.get('nombre') || '').slice(0, 80), negocio: (params.get('negocio') || '').slice(0, 80), texto: '', contacto: '', web: '' })
+  const [publicada, setPublicada] = useState(true)
   const [hover, setHover] = useState(0)
   const [estado, setEstado] = useState('')
   const set = (k, v) => setF((x) => ({ ...x, [k]: v }))
@@ -39,7 +40,7 @@ export default function Opinion() {
     try {
       const r = await fetch('/api/encuesta?tipo=opinion', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(f) })
       const data = await r.json().catch(() => ({}))
-      if (r.ok && data.ok) { pixel('Lead', { content_name: 'opinion' }); setEstado('listo'); window.scrollTo({ top: 0, behavior: 'smooth' }); return }
+      if (r.ok && data.ok) { pixel('Lead', { content_name: 'opinion' }); setPublicada(data.publicada !== false); setEstado('listo'); window.scrollTo({ top: 0, behavior: 'smooth' }); return }
       setEstado(data.error || 'error')
     } catch {
       setEstado('error')
@@ -61,13 +62,19 @@ export default function Opinion() {
           {estado === 'listo' ? (
             <>
               <h1 className="text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight mt-6">¡Gracias, {f.nombre.trim().split(' ')[0]}!</h1>
-              <p className="text-crema/70 text-lg mt-6">Tu opinión ya está publicada en la web. Nos ayuda muchísimo a que otros negocios confíen en nosotros.</p>
-              <div className="mt-8"><BtnGhost href="/#opiniones">Ver las opiniones</BtnGhost></div>
+              {publicada ? (
+                <>
+                  <p className="text-crema/70 text-lg mt-6">Tu opinión ya está publicada en la web. Nos ayuda muchísimo a que otros negocios confíen en nosotros.</p>
+                  <div className="mt-8"><BtnGhost href="/#opiniones">Ver las opiniones</BtnGhost></div>
+                </>
+              ) : (
+                <p className="text-crema/70 text-lg mt-6">Gracias por tu sinceridad. Juan va a leer tu opinión personalmente para ver cómo mejorar.</p>
+              )}
             </>
           ) : (
             <>
               <h1 className="text-4xl md:text-6xl font-bold leading-[1.05] tracking-tight mt-6">¿Cómo fue trabajar con nosotros?</h1>
-              <p className="text-crema/70 text-lg mt-6">Es un minuto. Tu opinión se publica en la web y ayuda a otros negocios a conocernos.</p>
+              <p className="text-crema/70 text-lg mt-6">Es un minuto y nos ayuda a que otros negocios nos conozcan.</p>
             </>
           )}
         </motion.div>
@@ -132,7 +139,7 @@ export default function Opinion() {
                 className={`inline-flex items-center justify-center rounded-full px-7 py-4 font-semibold text-sm transition-all ${completo ? 'bg-acento hover:bg-acento-dark text-white shadow-[0_10px_40px_-10px_rgba(61,123,255,0.8)]' : 'bg-white/10 text-crema/50 cursor-not-allowed'}`}>
                 {estado === 'enviando' ? 'Enviando…' : 'Publicar mi opinión'}
               </button>
-              <span className="text-sm text-crema/40">{completo ? 'Se publica con tu nombre y tu negocio' : `Falta: ${faltan.join(', ')}`}</span>
+              <span className="text-sm text-crema/40">{completo ? 'Se muestra con tu nombre y tu negocio' : `Falta: ${faltan.join(', ')}`}</span>
             </div>
             {estado && !['enviando', 'listo'].includes(estado) && (
               <p className="text-sm text-red-300">{ERRORES[estado] || 'No pudimos enviar tu opinión. Probá de nuevo en un momento.'}</p>

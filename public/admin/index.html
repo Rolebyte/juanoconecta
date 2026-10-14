@@ -148,7 +148,7 @@ tr:hover td{background:#0E1528}
     <div class="metrics">
       <div class="metric"><div class="metric-label">Opiniones</div><div class="metric-val" id="o-total">—</div></div>
       <div class="metric"><div class="metric-label">Promedio</div><div class="metric-val blue" id="o-prom">—</div><div class="metric-sub">estrellas sobre 5</div></div>
-      <div class="metric"><div class="metric-label">En el home</div><div class="metric-val green" id="o-visibles">—</div></div>
+      <div class="metric"><div class="metric-label">Publicadas</div><div class="metric-val green" id="o-visibles">—</div></div>
       <div class="metric"><div class="metric-label">Link para pedir opinión</div><div class="metric-sub" style="font-size:12px;color:#8A94B8;margin-top:6px">juanoconecta.ar/opinion <button class="btn btn-sm" onclick="copiarLinkOpinion()">Copiar</button></div></div>
     </div>
     <div class="cards" id="o-cards"><div class="empty">Cargando...</div></div>
@@ -725,6 +725,7 @@ function renderSeg() {
         <button class="mini" onclick="guardarSeg(${i},{proximo:masDias(3),etapa:'${r.etapa === 'nuevo' ? 'contactado' : r.etapa}'})">Contactado · +3 días</button>
         <button class="mini" onclick="guardarSeg(${i},{proximo:masDias(7)})">+1 semana</button>
         ${wa ? `<a class="wa-btn" href="${wa}" target="_blank" rel="noopener">WhatsApp</a>` : ''}${mail}
+        ${r.etapa === 'cliente' ? `<button class="mini" onclick="pedirOpinion(${i})">⭐ Pedir opinión</button>` : ''}
         ${r.origen === 'manual' ? `<button class="mini" onclick="borrarManual(${i})">Borrar</button>` : ''}
       </div>
       <div class="seg-row"><textarea placeholder="Notas" onchange="guardarSeg(${i},{notas:this.value})">${esc(r.notas)}</textarea></div>
@@ -742,6 +743,17 @@ async function guardarSeg(i, cambios) {
     if (!res.ok) throw new Error(res.status);
     showToast('Guardado'); renderSeg();
   } catch (e) { showToast('No se pudo guardar', true); }
+}
+
+// Arma el link de /opinion con el nombre ya cargado y lo manda por WhatsApp (o lo copia si no hay teléfono).
+function pedirOpinion(i) {
+  const r = allSeg[i]; if (!r) return;
+  const primer = (r.nombre || '').trim().split(' ')[0];
+  const link = 'https://juanoconecta.ar/opinion' + (r.nombre ? '?nombre=' + encodeURIComponent(r.nombre.trim()) : '');
+  const msg = `¡Hola${primer ? ' ' + primer : ''}! Gracias por confiar en JuanoConecta 🙌 ¿Me dejarías tu opinión sobre el trabajo? Es un minuto y me ayuda muchísimo: ${link}`;
+  const wa = waLink(r.contacto, r.nombre);
+  if (wa) { window.open(wa.split('?')[0] + '?text=' + encodeURIComponent(msg), '_blank', 'noopener'); return; }
+  navigator.clipboard?.writeText(msg).then(() => showToast('Mensaje copiado: pegalo donde le escribas'), () => showToast('No se pudo copiar', true));
 }
 
 function nuevoManual() { document.getElementById('s-nuevo').style.display = 'block'; document.getElementById('n-nombre').focus(); }
@@ -792,7 +804,7 @@ function renderOpiniones() {
     <div style="margin-top:8px">${esc(o.texto)}</div>
     ${o.contacto ? `<div class="k">Contacto (no se publica)</div><div>${esc(o.contacto)}</div>` : ''}
     <div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center">
-      <span class="chip ${o.visible ? 'si' : 'no'}">${o.visible ? 'Se ve en el home' : 'Oculta'}</span>
+      <span class="chip ${o.visible ? 'si' : 'no'}">${o.visible ? 'Publicada' : 'Oculta'}</span>
       <button class="btn btn-sm" onclick="cambiarVisible(${i})">${o.visible ? 'Ocultar' : 'Mostrar'}</button>
     </div>
   </div>`).join('');
@@ -803,7 +815,7 @@ async function cambiarVisible(i) {
   try {
     const res = await fetch('/api/admin?accion=opinion-visible', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret }, body: JSON.stringify({ id: o.id, visible: !o.visible }) });
     if (!res.ok) throw new Error(res.status);
-    o.visible = !o.visible; renderOpiniones(); showToast(o.visible ? 'Visible en el home' : 'Oculta del home');
+    o.visible = !o.visible; renderOpiniones(); showToast(o.visible ? 'Publicada en la web' : 'Oculta de la web');
   } catch (e) { showToast('No se pudo cambiar', true); }
 }
 

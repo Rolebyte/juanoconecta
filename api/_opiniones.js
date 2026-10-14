@@ -1,6 +1,7 @@
 // Opiniones de clientes: las recibe la página /opinion y las muestra el home.
 // Vive dentro de api/encuesta.js (?tipo=opinion) para no sumar funciones en Vercel (Hobby, tope 12).
-// Se publican solas; desde /admin (pestaña Opiniones) se pueden ocultar.
+// Las de 4 y 5 estrellas se publican solas; las de 1 a 3 quedan ocultas hasta que Juan las muestre
+// desde /admin (pestaña Opiniones), donde también se puede ocultar cualquiera.
 import { SERVICIOS_OPINION, nombreServicio } from '../src/data/opiniones.js'
 
 const texto = (v, max) => String(v ?? '').trim().replace(/\s+/g, ' ').slice(0, max) || null
@@ -37,6 +38,7 @@ export async function opiniones(req, res) {
     negocio: texto(b.negocio, 80),
     texto: texto(b.texto, 600),
     contacto: texto(b.contacto, 160),
+    visible: estrellas >= 4,
   }
   if (!fila.nombre) return res.status(400).json({ error: 'falta_nombre' })
   if (!fila.texto || fila.texto.length < 10) return res.status(400).json({ error: 'falta_texto' })
@@ -57,16 +59,16 @@ export async function opiniones(req, res) {
       body: JSON.stringify({
         from: 'JuanoConecta Opiniones <onboarding@resend.dev>',
         to: ['jgallino1@gmail.com'],
-        subject: `Nueva opinión: ${'★'.repeat(estrellas)} · ${fila.nombre}`,
+        subject: `${fila.visible ? 'Nueva opinión' : 'Opinión para revisar'}: ${'★'.repeat(estrellas)} · ${fila.nombre}`,
         html: `<div style="font-family:Arial,sans-serif;max-width:560px;padding:24px">
           <h2 style="margin:0 0 12px">Nueva opinión en la web</h2>
           <p><b>${html(fila.nombre)}</b>${fila.negocio ? ' · ' + html(fila.negocio) : ''}<br><b>Servicio:</b> ${html(nombreServicio(fila.servicio))}<br><b>Estrellas:</b> ${estrellas} de 5</p>
           <p>${html(fila.texto)}</p>
           <p><b>Contacto:</b> ${html(fila.contacto)}</p>
-          <p style="color:#666">Ya se ve en el home. Si querés ocultarla, entrá a juanoconecta.ar/admin, pestaña Opiniones.</p></div>`,
+          <p style="color:#666">${fila.visible ? 'Ya se ve en la web. Si querés ocultarla, entrá a juanoconecta.ar/admin, pestaña Opiniones.' : 'Quedó oculta por tener 3 estrellas o menos. Si querés mostrarla, entrá a juanoconecta.ar/admin, pestaña Opiniones. Conviene escribirle para saber qué pasó.'}</p></div>`,
       }),
     }).catch((e) => console.error('opiniones mail', e?.message))
   }
 
-  return res.status(200).json({ ok: true })
+  return res.status(200).json({ ok: true, publicada: fila.visible })
 }

@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import WhatsAppButton from '../components/WhatsAppButton'
 import { Eyebrow, GridGlow, SectionTitle, BtnPrimary, BtnGhost, Check, Reveal } from '../components/home/ui'
 import { promoPorSlug } from '../data/promos'
+import OpinionesNx from '../components/home/OpinionesNx'
 
 // Página de una promo de temporada (/navidad, /verano). Todo el contenido sale de src/data/promos.js.
 const TONOS = {
@@ -208,6 +209,8 @@ export default function PromoTemporada({ slug }) {
           <p className="text-crema/40 text-xs mt-4">Precios en pesos argentinos. Podés pagar con Mercado Pago en cuotas o en dos pagos.</p>
         </div>
       </section>
+
+      <OpinionesNx excepto={['capacitacion']} className="py-24 px-6" title="Lo que dicen los que ya trabajaron con nosotros" />
 
       {/* Cómo funciona */}
       <section className="py-24 px-6">

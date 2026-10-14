@@ -6,6 +6,7 @@ import WhatsAppButton from '../components/WhatsAppButton'
 import { Eyebrow, GridGlow, GlowCard, SectionTitle, BtnPrimary, BtnGhost, Check, Reveal } from '../components/home/ui'
 import { CAPACITACIONES } from '../data/capacitaciones'
 import GaleriaJornada from '../components/GaleriaJornada'
+import OpinionesNx from '../components/home/OpinionesNx'
 
 const WA_PROPUESTA = 'https://wa.me/5493492627811?text=' + encodeURIComponent('Hola Juan, te escribo de la municipalidad, comuna o cámara de ____. Nos interesa una capacitación en inteligencia artificial para los emprendedores y comercios de nuestra localidad.')
 const MAIL = 'mailto:juanoconecta@gmail.com?subject=' + encodeURIComponent('Capacitación en IA para nuestra localidad')
@@ -267,6 +268,8 @@ export default function CapacitacionesInstituciones() {
           </div>
         </section>
       )}
+
+      <OpinionesNx solo={['capacitacion']} className="py-24 px-6" eyebrow="Opiniones" title="Lo que dicen quienes participaron" sub="Opiniones de emprendedores y comerciantes que hicieron nuestras capacitaciones." />
 
       {/* Proceso */}
       <section className="py-24 px-6">

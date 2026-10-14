@@ -4,6 +4,7 @@ import { nombreServicio } from '../../data/opiniones'
 
 // Opiniones que dejan los clientes en /opinion. Se cargan al abrir la página (api/encuesta.js?tipo=opinion)
 // y la sección no aparece mientras no haya ninguna. Desde /admin se pueden ocultar.
+// En las páginas de servicio se filtran por servicio (solo / excepto), con el título que corresponda.
 const mes = (iso) => new Date(iso).toLocaleDateString('es-AR', { month: 'long', year: 'numeric' })
 
 function Estrellas({ n, className = 'w-4 h-4' }) {
@@ -18,12 +19,19 @@ function Estrellas({ n, className = 'w-4 h-4' }) {
   )
 }
 
-export default function OpinionesNx() {
+export default function OpinionesNx({
+  solo, excepto, className = 'pt-28 pb-8 px-6',
+  eyebrow = 'Opiniones', title = 'Lo que dicen los negocios que trabajaron con nosotros',
+  sub = 'Opiniones reales, escritas por cada cliente al terminar su proyecto.',
+}) {
   const [lista, setLista] = useState([])
   const [todas, setTodas] = useState(false)
 
   useEffect(() => {
-    fetch('/api/encuesta?tipo=opinion').then((r) => (r.ok ? r.json() : [])).then((d) => setLista(Array.isArray(d) ? d : [])).catch(() => {})
+    fetch('/api/encuesta?tipo=opinion').then((r) => (r.ok ? r.json() : [])).then((d) => {
+      const todas = Array.isArray(d) ? d : []
+      setLista(todas.filter((o) => (!solo || solo.includes(o.servicio)) && !(excepto || []).includes(o.servicio)))
+    }).catch(() => {})
   }, [])
 
   if (!lista.length) return null
@@ -31,9 +39,9 @@ export default function OpinionesNx() {
   const visibles = todas ? lista : lista.slice(0, 6)
 
   return (
-    <section id="opiniones" className="pt-28 pb-8 px-6 scroll-mt-24">
+    <section id="opiniones" className={`${className} scroll-mt-24`}>
       <div className="max-w-7xl mx-auto">
-        <SectionTitle eyebrow="Opiniones" title="Lo que dicen los negocios que trabajaron con nosotros" sub="Opiniones reales, escritas por cada cliente al terminar su proyecto." />
+        <SectionTitle eyebrow={eyebrow} title={title} sub={sub} />
         <Reveal className="flex flex-wrap items-center gap-4 -mt-6 mb-10">
           <Estrellas n={Math.round(promedio)} className="w-6 h-6" />
           <span className="text-crema font-bold text-xl">{promedio.toFixed(1).replace('.', ',')}</span>
