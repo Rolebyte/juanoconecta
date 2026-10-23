@@ -30,6 +30,7 @@ import PublicidadInstagramRafaela from './pages/PublicidadInstagramRafaela'
 import MarketingDigitalRafaela from './pages/MarketingDigitalRafaela'
 import SobreJuanoConecta from './pages/SobreJuanoConecta'
 import Opinion from './pages/Opinion'
+import WebAlojamientosCordoba from './pages/WebAlojamientosCordoba'
 import OpinionesNx from './components/home/OpinionesNx'
 
 // Al llegar a cualquier página con /ruta#seccion, el navegador intenta saltar antes de que
@@ -168,6 +169,7 @@ export function AppRoutes() {
         <Route path="/capacitaciones" element={<CapacitacionesInstituciones />} />
         <Route path="/navidad" element={<PromoTemporada slug="navidad" />} />
         <Route path="/verano" element={<PromoTemporada slug="verano" />} />
+        <Route path="/web-para-alojamientos-cordoba" element={<WebAlojamientosCordoba />} />
         <Route path="/material" element={<Material />} />
         <Route path="/material/:slug" element={<Material />} />
         <Route path="/opinion" element={<Opinion />} />

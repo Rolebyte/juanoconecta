@@ -21,6 +21,7 @@ const RUTAS = [
   '/capacitaciones',
   '/navidad',
   '/verano',
+  '/web-para-alojamientos-cordoba',
 ]
 
 const plantilla = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')
