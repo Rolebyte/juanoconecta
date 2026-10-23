@@ -9,7 +9,7 @@ const columnas = [
   },
   {
     titulo: 'Recursos',
-    links: [['Curso de IA', '/curso-ia'], ['Tienda de recursos', '/tienda'], ['Marketing digital en Rafaela', '/marketing-digital-rafaela'], ['Redes para negocios', '/redes-sociales-para-negocios-rafaela'], ['Preguntas frecuentes', '/#faq']],
+    links: [['Curso de IA', '/curso-ia'], ['Tienda de recursos', '/tienda'], ['Marketing digital en Rafaela', '/marketing-digital-rafaela'], ['Webs y redes en la región', '/webs-y-redes-region-rafaela'], ['Redes para negocios', '/redes-sociales-para-negocios-rafaela'], ['Preguntas frecuentes', '/#faq']],
   },
 ]
 
