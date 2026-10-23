@@ -225,6 +225,7 @@ tr:hover td{background:#0E1528}
       <div class="metric"><div class="metric-label">Últimos 30 días</div><div class="metric-val purple" id="c-30">—</div></div>
       <div class="metric"><div class="metric-label">Página que más consulta</div><div class="metric-sub" id="c-top" style="font-size:13px;color:#EAF0FF;margin-top:6px">—</div></div>
       <div class="metric"><div class="metric-label">Leads por clic (30 días)</div><div class="metric-val amber" id="c-conv">—</div><div class="metric-sub">contactos nuevos / clics</div></div>
+      <div class="metric"><div class="metric-label">Descargas de PDF (30 días)</div><div class="metric-val green" id="c-desc">—</div><div class="metric-sub" id="c-desc-sub"></div></div>
     </div>
     <div class="chart-wrap"><div class="chart-main"><div class="chart-title">Clics por día · últimos 14 días</div><div class="chart-bars" id="c-bars" style="height:80px"></div></div></div>
     <div class="table-wrap" style="margin-top:16px">
@@ -831,7 +832,12 @@ async function loadClics() {
 
 function renderClics() {
   const ahora = Date.now(), dia = 86400000;
-  const clicsWa = allClics.filter((c) => !c.destino || c.destino === 'whatsapp');
+  const esDescarga = (c) => c.destino === 'descarga' || /\.pdf$/.test(c.pagina || '');
+  const clicsWa = allClics.filter((c) => (!c.destino || c.destino === 'whatsapp') && !esDescarga(c));
+  const desc30 = allClics.filter((c) => esDescarga(c) && ahora - new Date(c.created_at) < 30 * dia);
+  const porPdf = {}; desc30.forEach((c) => { porPdf[c.pagina] = (porPdf[c.pagina] || 0) + 1; });
+  document.getElementById('c-desc').textContent = desc30.length;
+  document.getElementById('c-desc-sub').textContent = Object.entries(porPdf).map(([p, n]) => `${p.replace(/^\//, '')}: ${n}`).join(' · ');
   const en = (n) => clicsWa.filter((c) => ahora - new Date(c.created_at) < n * dia);
   const c7 = en(7), c30 = en(30), cPrev7 = clicsWa.filter((c) => { const t = ahora - new Date(c.created_at); return t >= 7 * dia && t < 14 * dia; });
   const hoy = clicsWa.filter((c) => new Date(c.created_at).toDateString() === new Date().toDateString());

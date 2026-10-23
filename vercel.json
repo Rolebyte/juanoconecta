@@ -18,6 +18,10 @@
       "destination": "/api/$1"
     },
     {
+      "source": "/prompts-navidad",
+      "destination": "/api/clic?descarga=prompts-navidad"
+    },
+    {
       "source": "/(.*)",
       "destination": "/spa.html"
     }
