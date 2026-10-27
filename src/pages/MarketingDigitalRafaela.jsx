@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
 
-const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20el%20marketing%20digital%20para%20mi%20negocio%20en%20Rafaela'
+const WA = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20me%20interesa%20el%20marketing%20digital%20para%20mi%20negocio%20en%20Rafaela'
 
 const LOCAL_BUSINESS_SCHEMA = {
   '@context': 'https://schema.org',
@@ -13,7 +13,7 @@ const LOCAL_BUSINESS_SCHEMA = {
   name: 'JuanoConecta',
   description: 'Agencia de marketing digital en Rafaela, Santa Fe. Estrategia integral con IA aplicada.',
   url: 'https://juanoconecta.ar',
-  telephone: '+5493492627811',
+  telephone: '+5493492383024',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Rafaela',
