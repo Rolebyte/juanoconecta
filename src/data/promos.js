@@ -3,7 +3,7 @@
 // Fotos de Unsplash (licencia libre, se cargan desde su CDN).
 // Escalones como la auditoría: Emprendedor / PyME ≈1,5x / Empresa ≈2x. En verano, por cantidad de unidades o habitaciones.
 
-const WA = (texto) => 'https://wa.me/5493492627811?text=' + encodeURIComponent(texto)
+const WA = (texto) => 'https://wa.me/5493492383024?text=' + encodeURIComponent(texto)
 
 export const PROMOS = [
   {

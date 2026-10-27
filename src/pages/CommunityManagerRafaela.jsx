@@ -7,7 +7,7 @@ import WhatsAppButton from '../components/WhatsAppButton'
 import { PLANES_REDES } from '../data/planesRedes'
 import NotaPlanes from '../components/NotaPlanes'
 
-const WA = 'https://wa.me/5493492627811?text=Hola%20Juan%2C%20me%20interesa%20el%20servicio%20de%20Community%20Manager%20en%20Rafaela'
+const WA = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20me%20interesa%20el%20servicio%20de%20Community%20Manager%20en%20Rafaela'
 
 const LOCAL_BUSINESS_SCHEMA = {
   '@context': 'https://schema.org',
@@ -15,7 +15,7 @@ const LOCAL_BUSINESS_SCHEMA = {
   name: 'JuanoConecta',
   description: 'Agencia de community management y marketing digital en Rafaela, Santa Fe',
   url: 'https://juanoconecta.ar',
-  telephone: '+5493492627811',
+  telephone: '+5493492383024',
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Rafaela',

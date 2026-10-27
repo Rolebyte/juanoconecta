@@ -9,7 +9,7 @@ import { Eyebrow, GridGlow, SectionTitle, BtnPrimary, BtnGhost, Check, Reveal } 
 // Una sola página por región (no una por pueblo) con contenido propio de cada zona.
 // Las preguntas salen de las consultas reales de la campaña Verano Córdoba (octubre de 2026).
 const URL = 'https://juanoconecta.ar/web-para-alojamientos-cordoba'
-const WA = (texto) => 'https://wa.me/5493492627811?text=' + encodeURIComponent(texto)
+const WA = (texto) => 'https://wa.me/5493492383024?text=' + encodeURIComponent(texto)
 const WA_GENERAL = WA('Hola Juan, tengo un alojamiento en las Sierras de Córdoba y quiero saber más sobre la web todo incluido.')
 const IMAGEN = 'https://images.unsplash.com/photo-1694184023356-e1edfd130269?auto=format&fit=crop&q=70'
 

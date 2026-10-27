@@ -11,7 +11,7 @@ import { productos } from '../data/tienda'
 // Una sola página para toda la región (no una por localidad). Los precios salen de los mismos datos
 // que usan las páginas de redes y la tienda, así no quedan desactualizados.
 const URL = 'https://juanoconecta.ar/webs-y-redes-region-rafaela'
-const WA = (texto) => 'https://wa.me/5493492627811?text=' + encodeURIComponent(texto)
+const WA = (texto) => 'https://wa.me/5493492383024?text=' + encodeURIComponent(texto)
 const WA_GENERAL = WA('Hola Juan, tengo un negocio en la región de Rafaela y quiero saber cómo me pueden ayudar.')
 
 const redesDesde = PLANES_REDES[0].precio

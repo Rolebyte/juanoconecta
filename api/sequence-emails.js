@@ -80,13 +80,13 @@ async function sendDay3Email(email, apiKey) {
           <p style="color:#888;font-size:14px;line-height:1.6;">Revisamos juntos tu perfil y te digo exactamente qué cambiaría para conseguir más clientes. Sin venta, sin presión. Solo valor concreto.</p>
         </div>
         <p style="color:#aaa;font-size:15px;line-height:1.7;margin-bottom:24px;">Son 20 minutos por WhatsApp o Google Meet. Completamente gratis.</p>
-        <a href="https://wa.me/5493492627811?text=Hola%20Juan%2C%20quiero%20la%20auditor%C3%ADa%20gratuita" 
+        <a href="https://wa.me/5493492383024?text=Hola%20Juan%2C%20quiero%20la%20auditor%C3%ADa%20gratuita" 
            style="display:inline-block;background:#C4846A;color:#fff;text-decoration:none;padding:12px 28px;border-radius:8px;font-size:15px;font-weight:500;margin-bottom:28px;">
           Quiero mi auditoría gratuita →
         </a>
         <p style="color:#555;font-size:13px;line-height:1.6;border-top:1px solid #1e1e1e;padding-top:20px;">
           — Juan Gallino<br>
-          <a href="https://juanoconecta.ar" style="color:#C4846A;">juanoconecta.ar</a> · +54 9 3492 627811
+          <a href="https://juanoconecta.ar" style="color:#C4846A;">juanoconecta.ar</a> · +54 9 3492 383024
         </p>
       </div>`
     }),
@@ -119,7 +119,7 @@ async function sendDay7Email(email, apiKey) {
           <li>SEO local → hoy aparecen primeros en Google para "pañalera Rafaela"</li>
         </ul>
         <p style="color:#aaa;font-size:15px;line-height:1.7;margin-bottom:24px;">¿Tu negocio podría tener resultados similares? Charlemos.</p>
-        <a href="https://wa.me/5493492627811?text=Hola%20Juan%2C%20vi%20el%20caso%20de%20Tatitos%20y%20quiero%20saber%20c%C3%B3mo%20trabajar%20juntos" 
+        <a href="https://wa.me/5493492383024?text=Hola%20Juan%2C%20vi%20el%20caso%20de%20Tatitos%20y%20quiero%20saber%20c%C3%B3mo%20trabajar%20juntos" 
            style="display:inline-block;background:#C4846A;color:#fff;text-decoration:none;padding:12px 28px;border-radius:8px;font-size:15px;font-weight:500;margin-bottom:28px;">
           Quiero resultados así →
         </a>
