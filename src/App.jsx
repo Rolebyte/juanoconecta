@@ -75,6 +75,7 @@ const HOME_SCHEMA = {
       description: 'Estudio de comunicación digital e inteligencia artificial en Rafaela, Santa Fe. Cursos y capacitaciones de IA, webs y web apps con IA, diseño y branding, redes sociales y Meta Ads.',
       url: 'https://juanoconecta.ar/',
       image: 'https://juanoconecta.ar/img/juan/juan-og.jpg',
+      logo: 'https://juanoconecta.ar/logo/juanoconecta-logo-claro.png',
       telephone: '+5493492383024',
       email: 'juanoconecta@gmail.com',
       priceRange: '$$',

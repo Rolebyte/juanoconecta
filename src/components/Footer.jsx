@@ -49,7 +49,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr_1.2fr]">
           <div>
-            <a href="/" className="text-2xl font-bold text-crema">Juano<span className="text-acento">Conecta</span></a>
+            <a href="/" className="inline-block" aria-label="JuanoConecta, ir al inicio"><img src="/logo/juanoconecta-logo.webp" alt="JuanoConecta" width="800" height="94" loading="lazy" className="h-7 w-auto" /></a>
             <p className="text-crema/50 text-sm leading-relaxed mt-4 max-w-xs">Estudio de comunicación digital e inteligencia artificial. Webs, web apps, diseño, redes y formación en IA.</p>
             <div className="flex items-center gap-3 mt-6">
               {redes.map((red) => (

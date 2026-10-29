@@ -54,8 +54,8 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="text-xl font-bold tracking-tight text-crema hover:text-acento transition-colors">
-          Juano<span className="text-acento">Conecta</span>
+        <a href="/" className="shrink-0 transition-opacity hover:opacity-80" aria-label="JuanoConecta, ir al inicio">
+          <img src="/logo/juanoconecta-logo.webp" alt="JuanoConecta" width="800" height="94" className="h-5 sm:h-6 w-auto" />
         </a>
 
         {/* Links desktop */}
