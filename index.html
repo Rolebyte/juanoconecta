@@ -57,6 +57,37 @@
       gtag('config', 'G-WZB422ZV91');
     </script>
 
+    <!-- Intro animada con el logo: solo la primera vez por visita, nunca para buscadores ni con "reducir movimiento" -->
+    <script>
+      (function () {
+        try {
+          var bot = /bot|crawl|spider|lighthouse|headless|preview|facebookexternalhit|whatsapp/i.test(navigator.userAgent) || navigator.webdriver
+          var calma = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          if (bot || calma || sessionStorage.getItem('jc_intro_vista')) return
+          sessionStorage.setItem('jc_intro_vista', '1')
+          document.documentElement.classList.add('jc-intro')
+        } catch (e) {}
+      })()
+    </script>
+    <style>
+      #jc-intro { display: none }
+      .jc-intro #jc-intro { display: flex; position: fixed; inset: 0; z-index: 9999; align-items: center; justify-content: center; background: #0B1020; cursor: pointer; animation: jcSale .45s ease-in 1.7s forwards }
+      #jc-intro::before { content: ""; position: absolute; width: 70vmin; height: 70vmin; border-radius: 50%; background: radial-gradient(circle, rgba(61,123,255,.28), rgba(34,211,238,.08) 45%, transparent 70%); animation: jcLuz 1.1s ease-out .55s both }
+      #jc-intro .jc-caja { position: relative; width: min(78vw, 520px); aspect-ratio: 1333 / 156; transform-origin: 43.8% 50%; transform: scale(2.2); animation: jcAchica .5s cubic-bezier(.6,0,.2,1) .72s forwards }
+      #jc-intro .jc-iso { position: absolute; top: 0; height: 93%; width: 16%; left: 35.77%; overflow: visible; animation: jcIsoSale .25s ease-out .9s forwards }
+      #jc-intro .jc-iso * { stroke-dasharray: 1 2; stroke-dashoffset: 1; filter: drop-shadow(0 0 6px rgba(34,211,238,.6)) }
+      #jc-intro .jc-t0 { animation: jcTrazo .32s cubic-bezier(.5,0,.3,1) .05s forwards }
+      #jc-intro .jc-t1 { animation: jcTrazo .3s cubic-bezier(.3,0,.2,1) .37s forwards }
+      #jc-intro .jc-t2 { animation: jcTrazo .22s ease-out .52s forwards }
+      #jc-intro img { position: absolute; inset: 0; width: 100%; height: 100%; clip-path: inset(0 47.6% 0 35.1%); opacity: 0; animation: jcAbre .55s cubic-bezier(.2,.8,.2,1) .9s forwards }
+      @keyframes jcTrazo { to { stroke-dashoffset: 0 } }
+      @keyframes jcAchica { to { transform: scale(1) } }
+      @keyframes jcIsoSale { to { opacity: 0 } }
+      @keyframes jcAbre { 0% { opacity: 1 } 100% { opacity: 1; clip-path: inset(0 0 0 0) } }
+      @keyframes jcLuz { from { transform: scale(.4); opacity: 0 } 40% { opacity: 1 } to { transform: scale(1.15); opacity: .7 } }
+      @keyframes jcSale { to { opacity: 0; visibility: hidden } }
+    </style>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -64,6 +95,22 @@
   </head>
   <body>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2124883554742917&ev=PageView&noscript=1" /></noscript>
+    <div id="jc-intro" aria-hidden="true">
+      <div class="jc-caja">
+        <svg class="jc-iso" viewBox="-2 -13.5 251 171"><defs><linearGradient id="jc-g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="247" y2="0"><stop offset="0" stop-color="#EAF0FF"/><stop offset=".5" stop-color="#22D3EE"/><stop offset="1" stop-color="#3D7BFF"/></linearGradient></defs><g fill="none" stroke="url(#jc-g)" stroke-width="23" stroke-linecap="round"><circle class="jc-t0" pathLength="1" cx="54.5" cy="89.5" r="43" transform="rotate(55 54.5 89.5)"/><path class="jc-t1" pathLength="1" d="M79.16 124.72 C114.55 99.95 117.01 79.16 138.61 41.75 A60.50 60.50 0 0 1 235.96 31.52"/><path class="jc-t2" pathLength="1" d="M134.91 94.66 A60.50 60.50 0 0 0 235.96 112.48"/></g></svg>
+        <img src="/logo/juanoconecta-logo.webp" alt="" width="800" height="94" />
+      </div>
+    </div>
+    <script>
+      (function () {
+        var intro = document.getElementById('jc-intro')
+        if (!document.documentElement.classList.contains('jc-intro')) { intro.remove(); return }
+        function cerrar() { if (intro.parentNode) intro.remove(); document.documentElement.classList.remove('jc-intro') }
+        intro.addEventListener('click', cerrar)
+        document.addEventListener('keydown', cerrar, { once: true })
+        setTimeout(cerrar, 2300)
+      })()
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
