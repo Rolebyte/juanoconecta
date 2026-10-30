@@ -1,7 +1,7 @@
 // Registra un clic en un botón de WhatsApp o de pago de la tienda (lo manda src/main.jsx con sendBeacon).
 // Público a propósito: solo guarda la página y el texto corto del botón, sin datos personales.
-// También cuenta descargas: GET /prompts-navidad (vercel.json) registra la descarga y redirige al PDF.
-const DESCARGAS = { 'prompts-navidad': '/prompts-navidad.pdf' }
+// También cuenta descargas: GET /prompts-navidad o /pedidos-ia (vercel.json) registra la descarga y redirige al PDF.
+const DESCARGAS = { 'prompts-navidad': '/prompts-navidad.pdf', 'pedidos-ia': '/pedidos-ia.pdf' }
 const BOTS = /bot|crawl|spider|facebookexternalhit|meta-externalagent|preview|whatsapp|telegram|slack|discord/i
 
 async function guardar(fila) {
