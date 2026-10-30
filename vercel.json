@@ -22,6 +22,10 @@
       "destination": "/api/clic?descarga=prompts-navidad"
     },
     {
+      "source": "/pedidos-ia",
+      "destination": "/api/clic?descarga=pedidos-ia"
+    },
+    {
       "source": "/(.*)",
       "destination": "/spa.html"
     }
