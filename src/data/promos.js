@@ -96,7 +96,7 @@ export const PROMOS = [
     seoDescripcion: 'Marketing para hoteles, hospedajes, cabañas y alquileres temporarios: Instagram, WhatsApp, Google Maps y web de reservas propia. Más visibilidad y consultas directas, sin comisión.',
     banda: 'Promo Verano para hoteles, hospedajes y alquileres: que te encuentren y te consulten directo',
     vence: '2026-12-15',
-    cierre: 'Contratación hasta el 21/11 · Precio de lanzamiento hasta el 31/10',
+    cierre: 'Contratación hasta el 21/11',
     tono: 'verano',
     imagen: { src: 'https://images.unsplash.com/photo-1720275576385-252c34fb7fb0?auto=format&fit=crop&q=70', alt: 'Gente disfrutando de la playa en Pinamar' },
     galeria: [
@@ -117,7 +117,7 @@ export const PROMOS = [
     niveles: [
       {
         id: 'kit', nombre: 'Kit Temporada', etiqueta: 'A tu medida', resumen: 'El contenido de la temporada armado para tu lugar, listo para publicar.',
-        precio: { unico: 18000 }, lanzamiento: { precio: 14900, hasta: 'hasta el 31/10' },
+        precio: { unico: 18000 },
         incluye: ['Plantillas con tus colores, tu logo y tus fotos', 'Respuestas a consultas con tus tarifas y servicios', 'Calendario de noviembre a febrero para tu zona', 'Ideas de promos para tus fines de semana largos'],
         entrega: 'Entrega en 48 horas',
         cta: 'Quiero el Kit Temporada',
@@ -125,7 +125,7 @@ export const PROMOS = [
       {
         id: 'puesta', nombre: 'Puesta a punto para reservas', etiqueta: 'Recomendado', destacado: true,
         resumen: 'Que te encuentren en Instagram y en Google, y que cada consulta termine en reserva.',
-        precio: { emprendedor: 220000, pyme: 330000, empresa: 440000 }, descuento: '15% off hasta el 31/10',
+        precio: { emprendedor: 220000, pyme: 330000, empresa: 440000 },
         incluye: ['Auditoría de tu Instagram con IA', 'Bio con link de reserva', 'Destacados: habitaciones o unidades, tarifas, cómo llegar, opiniones', 'WhatsApp Business con respuestas rápidas', 'Ficha de Google Maps revisada', '6 piezas de temporada con tus fotos', 'Kit Temporada de regalo'],
         entrega: 'Entrega en 7 días hábiles',
         cta: 'Quiero la puesta a punto',
@@ -133,7 +133,7 @@ export const PROMOS = [
       {
         id: 'web', nombre: 'Web de reservas express', etiqueta: 'Sin comisiones',
         resumen: 'Tu propia web con fotos, tarifas y disponibilidad, con consulta directa por WhatsApp.',
-        precio: { emprendedor: 450000, pyme: 675000, empresa: 900000 }, descuento: '15% off hasta el 31/10',
+        precio: { emprendedor: 450000, pyme: 675000, empresa: 900000 },
         incluye: ['Web propia con tu dominio y tu diseño', 'Galería de fotos de cada unidad', 'Tarifas por temporada y disponibilidad', 'Consulta y reserva por WhatsApp', 'Lista para aparecer en Google'],
         nota: 'Mantenimiento opcional: $25.000 por mes (cambios de tarifas y disponibilidad).',
         cta: 'Quiero mi web',
@@ -149,7 +149,7 @@ export const PROMOS = [
     preguntas: [
       { q: '¿Me van a dar algo genérico?', a: 'No. Todo se arma con tus fotos, tus unidades, tu zona y tu identidad. Si no tenés logo o colores definidos, te ayudamos a ordenarlos.' },
       { q: '¿Tengo que dejar Booking o Airbnb?', a: 'No. La idea es que una parte de tus reservas llegue directo, sin comisión. Las plataformas pueden seguir como un canal más.' },
-      { q: '¿Hasta cuándo puedo contratar?', a: 'Hasta el 21 de noviembre, para que todo esté funcionando antes del 10 de diciembre. El precio de lanzamiento vale hasta el 31 de octubre.' },
+      { q: '¿Hasta cuándo puedo contratar?', a: 'Hasta el 21 de noviembre, para que todo esté funcionando antes del 10 de diciembre.' },
       { q: '¿Necesito fotos profesionales?', a: 'Ayudan, pero no es obligatorio. Trabajamos con las fotos que tengas y te decimos cuáles conviene renovar.' },
       { q: '¿Puedo pagar en cuotas?', a: 'Sí. Con Mercado Pago en cuotas o en dos pagos: la mitad al empezar y la mitad en la entrega.' },
     ],

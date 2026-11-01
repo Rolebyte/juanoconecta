@@ -60,7 +60,7 @@ const PASOS = [
 const PREGUNTAS = [
   {
     q: '¿Cuánto cuesta una web para mi cabaña o alojamiento en Córdoba?',
-    a: 'La web todo incluido cuesta $450.000 para 1 a 3 unidades y $675.000 para 4 a 8 unidades, en un pago único. Hasta el 31 de octubre tiene 15% de descuento: $382.500 y $573.750. Para 9 unidades o más armamos un presupuesto a medida.',
+    a: 'La web todo incluido cuesta $450.000 para 1 a 3 unidades y $675.000 para 4 a 8 unidades, en un pago único. Para 9 unidades o más armamos un presupuesto a medida.',
   },
   {
     q: '¿Es un pago único o se paga por mes?',
