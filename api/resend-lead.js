@@ -1,19 +1,14 @@
 // api/resend-lead.js
 // Reenvío manual desde el panel admin
 
-export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+import { claveAdmin, cortarAdmin } from './_seguridad.js';
 
-  if (req.method === 'OPTIONS') return res.status(200).end();
+export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   // Validar token admin simple
-  const auth = req.headers.authorization;
-  if (!process.env.ADMIN_SECRET || auth !== `Bearer ${process.env.ADMIN_SECRET}`) {
-    return res.status(401).json({ error: 'No autorizado' });
-  }
+  const corte = claveAdmin(req, String(req.headers.authorization || '').replace(/^Bearer /, ''));
+  if (corte) return cortarAdmin(res, corte);
 
   const { leadId, email } = req.body || {};
   if (!leadId || !/^[^\s@<>"'`]+@[^\s@<>"'`]+\.[^\s@<>"'`]+$/.test(String(email || ''))) return res.status(400).json({ error: 'Datos inválidos' });

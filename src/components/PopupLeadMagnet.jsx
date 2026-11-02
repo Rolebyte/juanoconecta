@@ -137,7 +137,7 @@ export default function PopupLeadMagnet({ forceOpen = 0 }) {
                     {error && <p className="text-red-300 text-xs text-center">{error}</p>}
                   </form>
 
-                  <p className="text-crema/30 text-xs text-center mt-3">Sin spam. Te podés dar de baja cuando quieras.</p>
+                  <p className="text-crema/30 text-xs text-center mt-3">Sin spam. Te podés dar de baja cuando quieras. <a href="/privacidad" className="underline hover:text-crema/60">Cómo cuidamos tus datos</a></p>
                 </>
               ) : (
                 <div className="text-center py-1">

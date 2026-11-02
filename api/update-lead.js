@@ -1,14 +1,11 @@
+import { claveAdmin, cortarAdmin } from './_seguridad.js';
+
+// Solo lo usa el panel /admin (mismo dominio): sin CORS abierto.
 export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'PATCH, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, x-admin-secret');
-  if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'PATCH') return res.status(405).json({ error: 'Method not allowed' });
 
-  const secret = req.headers['x-admin-secret'];
-  if (!secret || secret !== process.env.ADMIN_SECRET) {
-    return res.status(401).json({ error: 'No autorizado' });
-  }
+  const corte = claveAdmin(req, req.headers['x-admin-secret']);
+  if (corte) return cortarAdmin(res, corte);
 
   const { id, ...fields } = req.body || {};
   if (!id) return res.status(400).json({ error: 'Falta id' });

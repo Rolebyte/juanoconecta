@@ -107,6 +107,15 @@ tr:hover td{background:#0E1528}
 .mini{padding:4px 8px;border-radius:6px;border:1px solid #2a3557;background:#16203A;color:#8A94B8;font-size:11px;cursor:pointer;text-decoration:none}
 .mini:hover{border-color:#3D7BFF;color:#EAF0FF}
 .origen{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:#22D3EE}
+.temp{display:inline-block;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:600;border:1px solid currentColor}
+.temp.caliente{color:#FB923C}.temp.tibio{color:#FACC15}.temp.frio{color:#93C5FD}
+.motivo{color:#A3B0D0;font-size:12px;margin-top:8px}
+.msg-hoy{width:100%;margin-top:10px;padding:10px 12px;background:#0E1528;border:1px solid #2a3557;border-radius:8px;color:#EAF0FF;font-size:13px;font-family:inherit;line-height:1.5;resize:vertical;min-height:92px}
+.msg-hoy:focus{outline:none;border-color:#22D3EE}
+.card.hecho{opacity:.45}
+.hoy-aviso{margin:16px 28px 0;padding:14px 16px;border:1px solid #2a3557;border-radius:10px;background:#121A30;font-size:13px;color:#A3B0D0;line-height:1.55}
+.hoy-aviso b{color:#EAF0FF}
+.grupo{padding:18px 28px 0;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#6B769A}
 </style>
 </head>
 <body>
@@ -139,7 +148,8 @@ tr:hover td{background:#0E1528}
   </header>
 
   <div class="tabs">
-    <button class="tab on" data-tab="seguimientos" onclick="showTab('seguimientos')">Seguimientos<span class="n" id="n-hoy"></span></button>
+    <button class="tab on" data-tab="hoy" onclick="showTab('hoy')">Hoy<span class="n" id="n-hoyia"></span></button>
+    <button class="tab" data-tab="seguimientos" onclick="showTab('seguimientos')">Seguimientos<span class="n" id="n-hoy"></span></button>
     <button class="tab" data-tab="leads" onclick="showTab('leads')">Leads<span class="n" id="n-leads"></span></button>
     <button class="tab" data-tab="encuestas" onclick="showTab('encuestas')">Encuestas<span class="n" id="n-encuestas"></span></button>
     <button class="tab" data-tab="ventas" onclick="showTab('ventas')">Ventas<span class="n" id="n-ventas"></span></button>
@@ -186,7 +196,25 @@ tr:hover td{background:#0E1528}
     </div>
   </div>
 
-  <div class="panel on" id="tab-seguimientos">
+  <div class="panel on" id="tab-hoy">
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Escribir hoy</div><div class="metric-val blue" id="h-escribir">—</div><div class="metric-sub">con el mensaje listo</div></div>
+      <div class="metric"><div class="metric-label">Calientes</div><div class="metric-val amber" id="h-calientes">—</div><div class="metric-sub">pidieron algo concreto</div></div>
+      <div class="metric"><div class="metric-label">Tibios</div><div class="metric-val purple" id="h-tibios">—</div></div>
+      <div class="metric"><div class="metric-label">Esperar</div><div class="metric-val" id="h-esperar">—</div><div class="metric-sub">les escribimos hace poco</div></div>
+      <div class="metric"><div class="metric-label">Para cerrar</div><div class="metric-val" id="h-cerrar">—</div><div class="metric-sub">sin señales, sugiere descartar</div></div>
+    </div>
+    <div class="toolbar">
+      <div class="toolbar-left" style="align-items:center">
+        <button class="btn btn-coral" id="h-armar" onclick="armarHoy()">Armar la lista de hoy</button>
+        <span id="h-cuando" style="font-size:12px;color:#6B769A"></span>
+      </div>
+      <span style="font-size:12px;color:#6B769A">La IA propone, vos revisás y mandás. Nada se envía solo.</span>
+    </div>
+    <div id="h-lista"><div class="hoy-aviso">Apretá <b>Armar la lista de hoy</b>: la IA lee tus contactos abiertos (web, encuestas, ventas, lista de espera y los que cargaste a mano), les pone temperatura y te deja el mensaje escrito para cada uno. Tarda unos 30 segundos.</div></div>
+  </div>
+
+  <div class="panel" id="tab-seguimientos">
     <div class="metrics">
       <div class="metric"><div class="metric-label">Para hoy</div><div class="metric-val blue" id="s-hoy">—</div><div class="metric-sub">próximo contacto vencido o de hoy</div></div>
       <div class="metric"><div class="metric-label">Sin fecha</div><div class="metric-val amber" id="s-sinfecha">—</div><div class="metric-sub">contactos abiertos sin próximo paso</div></div>
@@ -861,6 +889,103 @@ function renderClics() {
   document.getElementById('c-body').innerHTML = orden.length
     ? orden.map(([p, v]) => { const top = Object.entries(v.botones).sort((a, b) => b[1] - a[1])[0]; return `<tr><td>${esc(p)}</td><td>${v.n30}</td><td>${v.n7}</td><td>${top ? esc(top[0]) + ' (' + top[1] + ')' : '—'}</td></tr>`; }).join('')
     : '<tr><td colspan="4" class="empty">Todavía no hay clics registrados. Empiezan a contarse desde hoy.</td></tr>';
+}
+
+// ---- Hoy: la IA lee los contactos abiertos, les pone temperatura y deja el mensaje listo ----
+let hoyData = null;
+const TEMP_TXT = { caliente: 'Caliente', tibio: 'Tibio', frio: 'Frío' };
+const TEMP_ORDEN = { caliente: 0, tibio: 1, frio: 2 };
+try { const g = JSON.parse(localStorage.getItem('hoy_lista') || 'null'); if (g && g.fecha === hoyISO()) hoyData = g; } catch (e) {}
+renderHoy();
+
+async function armarHoy() {
+  const btn = document.getElementById('h-armar');
+  btn.disabled = true; btn.textContent = 'Leyendo tus contactos...';
+  try {
+    const res = await fetch('/api/admin?accion=hoy', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret }, body: '{}' });
+    if (res.status === 401) { showToast('Contraseña incorrecta', true); doLogout(); return; }
+    const d = await res.json().catch(() => ({}));
+    if (d.error === 'sin-clave') { mostrarSinClave(); return; }
+    if (!res.ok) throw new Error(d.error || res.status);
+    hoyData = { ...d, armada: new Date().toISOString(), hechos: {} };
+    guardarHoyLocal(); renderHoy();
+    showToast(d.incompleta ? 'Lista armada (faltó una parte, probá de nuevo más tarde)' : 'Lista armada');
+  } catch (e) { showToast('No se pudo armar la lista. Probá de nuevo en un rato.', true); }
+  finally { btn.disabled = false; btn.textContent = hoyData ? 'Volver a armar' : 'Armar la lista de hoy'; }
+}
+
+function guardarHoyLocal() { try { localStorage.setItem('hoy_lista', JSON.stringify(hoyData)); } catch (e) {} }
+
+function mostrarSinClave() {
+  document.getElementById('h-lista').innerHTML = `<div class="hoy-aviso"><b>Falta conectar la IA.</b> Hay que crear una clave en <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener" style="color:#22D3EE">console.anthropic.com</a> y cargarla en Vercel, en el proyecto de la web: Settings → Environment Variables, con el nombre <b>ANTHROPIC_API_KEY</b>. Después de guardarla, hacé un Redeploy y volvé a apretar el botón.</div>`;
+}
+
+function renderHoy() {
+  const cont = document.getElementById('h-lista');
+  if (!hoyData) return;
+  const cs = hoyData.contactos || [];
+  const cuenta = (f) => cs.filter(f).length;
+  const escribir = cs.filter((c) => c.accion === 'escribir_hoy');
+  document.getElementById('h-escribir').textContent = escribir.length;
+  document.getElementById('h-calientes').textContent = cuenta((c) => c.temperatura === 'caliente');
+  document.getElementById('h-tibios').textContent = cuenta((c) => c.temperatura === 'tibio');
+  document.getElementById('h-esperar').textContent = cuenta((c) => c.accion === 'esperar');
+  document.getElementById('h-cerrar').textContent = cuenta((c) => c.accion === 'cerrar');
+  const pendientes = escribir.filter((c) => !hoyData.hechos?.[clave(c)]).length;
+  document.getElementById('n-hoyia').textContent = pendientes || '';
+  document.getElementById('h-cuando').textContent = hoyData.armada ? 'Armada ' + fecha(hoyData.armada) : '';
+  document.getElementById('h-armar').textContent = 'Volver a armar';
+  if (!cs.length) { cont.innerHTML = '<div class="hoy-aviso">No hay contactos abiertos para revisar. 🎉</div>'; return; }
+  const orden = (a, b) => TEMP_ORDEN[a.temperatura] - TEMP_ORDEN[b.temperatura];
+  const grupo = (titulo, lista) => lista.length ? `<div class="grupo">${titulo} · ${lista.length}</div><div class="cards">${lista.sort(orden).map(tarjetaHoy).join('')}</div>` : '';
+  cont.innerHTML = grupo('Escribir hoy', escribir) + grupo('Esperar unos días', cs.filter((c) => c.accion === 'esperar')) + grupo('Sugiere cerrar', cs.filter((c) => c.accion === 'cerrar'));
+}
+
+const clave = (c) => `${c.origen}:${c.ref_id}`;
+
+function tarjetaHoy(c) {
+  const i = hoyData.contactos.indexOf(c), hecho = hoyData.hechos?.[clave(c)];
+  const wa = waLink(c.contacto, c.nombre), mail = /@/.test(c.contacto || '');
+  return `<div class="card ${hecho ? 'hecho' : c.temperatura === 'caliente' ? 'lead-ok' : ''}">
+    <div class="top"><span class="temp ${esc(c.temperatura)}">${TEMP_TXT[c.temperatura] || esc(c.temperatura)}</span><span class="origen">${ORIGEN_TXT[c.origen] || esc(c.origen)}</span></div>
+    <div style="font-weight:600">${esc(c.nombre || c.contacto || 'Sin nombre')}</div>
+    ${c.nombre ? `<div style="color:#8A94B8">${esc(c.contacto)}</div>` : ''}
+    <div style="color:#8A94B8;font-size:12px;margin-top:4px">${esc(c.detalle)}</div>
+    <div class="motivo">${esc(c.motivo)}</div>
+    ${c.mensaje ? `<textarea class="msg-hoy" id="hoy-msg-${i}" onchange="editarMsgHoy(${i},this.value)">${esc(c.mensaje)}</textarea>` : ''}
+    <div class="seg-row">
+      ${c.mensaje ? `<button class="mini" onclick="copiarHoy(${i})">Copiar mensaje</button>` : ''}
+      ${c.mensaje && wa ? `<button class="wa-btn" onclick="abrirWaHoy(${i})">WhatsApp</button>` : ''}
+      ${c.mensaje && mail ? `<button class="mini" onclick="abrirMailHoy(${i})">Email</button>` : ''}
+      ${c.accion === 'cerrar'
+        ? `<button class="mini" onclick="hechoHoy(${i},'descartar')">Descartar</button>`
+        : `<button class="mini" onclick="hechoHoy(${i},'escribi')">${hecho ? 'Hecho ✓' : 'Listo, le escribí'}</button>`}
+    </div>
+  </div>`;
+}
+
+const msgHoy = (i) => (document.getElementById('hoy-msg-' + i)?.value ?? hoyData.contactos[i]?.mensaje ?? '');
+function editarMsgHoy(i, v) { hoyData.contactos[i].mensaje = v; guardarHoyLocal(); }
+function copiarHoy(i) {
+  const el = document.getElementById('hoy-msg-' + i);
+  navigator.clipboard?.writeText(msgHoy(i)).then(() => showToast('Mensaje copiado'), () => { el?.select(); showToast('Seleccionado: copialo con Ctrl+C', true); });
+}
+function abrirWaHoy(i) { const c = hoyData.contactos[i]; const wa = waLink(c.contacto, c.nombre); if (wa) window.open(wa.split('?')[0] + '?text=' + encodeURIComponent(msgHoy(i)), '_blank', 'noopener'); }
+function abrirMailHoy(i) { const c = hoyData.contactos[i]; location.href = `mailto:${c.contacto}?subject=${encodeURIComponent('Juan de JuanoConecta')}&body=${encodeURIComponent(msgHoy(i))}`; }
+
+// "Listo, le escribí" pasa el contacto a Contactado y agenda el próximo contacto; "Descartar" lo cierra.
+async function hechoHoy(i, tipo) {
+  const c = hoyData.contactos[i]; if (!c) return;
+  const body = { origen: c.origen, ref_id: c.ref_id };
+  if (tipo === 'descartar') body.etapa = 'descartado';
+  else { body.proximo = masDias(c.proximo_en_dias || 3); if (c.etapa === 'nuevo') body.etapa = 'contactado'; }
+  try {
+    const res = await fetch('/api/admin?accion=guardar-seguimiento', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-admin-secret': adminSecret }, body: JSON.stringify(body) });
+    if (!res.ok) throw new Error(res.status);
+    hoyData.hechos = { ...(hoyData.hechos || {}), [clave(c)]: true };
+    guardarHoyLocal(); renderHoy(); loadSeg();
+    showToast(tipo === 'descartar' ? 'Descartado' : `Anotado. Te lo recuerdo en ${c.proximo_en_dias || 3} días`);
+  } catch (e) { showToast('No se pudo guardar', true); }
 }
 </script>
 </body>

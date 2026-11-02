@@ -81,7 +81,7 @@ export default function Footer() {
         </div>
         <div className="h-px bg-white/5 my-10" />
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-crema/35 text-xs">
-          <p>© 2026 JuanoConecta. Todos los derechos reservados.</p>
+          <p>© 2026 JuanoConecta. Todos los derechos reservados. · <a href="/privacidad" className="hover:text-crema transition-colors">Política de privacidad</a></p>
           <p>Comunicación digital e inteligencia artificial · Rafaela, Argentina</p>
         </div>
       </div>
