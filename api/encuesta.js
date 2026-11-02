@@ -3,6 +3,7 @@
 import { MATERIALES } from '../src/data/materiales.js'
 import { CUPONES } from './_cupones.js'
 import { opiniones } from './_opiniones.js'
+import { limite, origenAjeno } from './_seguridad.js'
 
 const INTERESES = ['redes', 'web', 'ia-equipo', 'auditoria', 'nada']
 const RECOMIENDA = { si: 'Sí', 'tal-vez': 'Tal vez', no: 'No' }
@@ -10,6 +11,10 @@ const texto = (v, max) => String(v ?? '').trim().slice(0, max) || null
 const html = (s) => String(s ?? '-').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
 
 export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    if (origenAjeno(req)) return res.status(403).json({ error: 'origen_no_permitido' })
+    if (limite(req, 'form', 10, 10 * 60 * 1000)) return res.status(429).json({ error: 'demasiados_envios' })
+  }
   // Opiniones de clientes (/opinion y el home) comparten esta función: ver api/_opiniones.js
   if (req.query?.tipo === 'opinion') return opiniones(req, res)
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })

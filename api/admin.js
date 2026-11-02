@@ -1,6 +1,7 @@
 // Panel de admin: una sola función con varias acciones (?accion=...), para no sumar funciones en Vercel.
 // Usa la misma contraseña que los leads (ADMIN_SECRET) y la service key de Supabase.
 import { productos, precioNumero } from '../src/data/tienda.js'
+import { claveAdmin, cortarAdmin } from './_seguridad.js'
 
 const ETAPAS = ['nuevo', 'contactado', 'interesado', 'propuesta', 'cliente', 'descartado']
 const ORIGENES = ['lead', 'encuesta', 'venta', 'manual', 'curso']
@@ -66,8 +67,10 @@ async function sincronizarTienda(db) {
 }
 
 export default async function handler(req, res) {
-  const { ADMIN_SECRET, SUPABASE_URL, SUPABASE_SERVICE_KEY } = process.env
-  if (!ADMIN_SECRET || req.headers['x-admin-secret'] !== ADMIN_SECRET) return res.status(401).json({ error: 'No autorizado' })
+  const { SUPABASE_URL, SUPABASE_SERVICE_KEY } = process.env
+  const corte = claveAdmin(req, req.headers['x-admin-secret'])
+  if (corte) return cortarAdmin(res, corte)
+  res.setHeader('Cache-Control', 'no-store')
 
   const db = async (ruta, opciones = {}) => {
     const r = await fetch(`${SUPABASE_URL}/rest/v1/${ruta}`, {

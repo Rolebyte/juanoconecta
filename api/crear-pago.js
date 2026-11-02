@@ -2,12 +2,15 @@
 // El precio y el cupón se validan acá, nunca se confía en lo que manda el navegador.
 import { MATERIALES } from '../src/data/materiales.js'
 import { CUPONES } from './_cupones.js'
+import { limite, origenAjeno } from './_seguridad.js'
 
 const SITE = 'https://juanoconecta.ar'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
+  if (origenAjeno(req)) return res.status(403).json({ error: 'origen_no_permitido' })
+  if (limite(req, 'pago', 20, 10 * 60 * 1000)) return res.status(429).json({ error: 'demasiados_intentos' })
   const MP_ACCESS_TOKEN = process.env.MP_ACCESS_TOKEN
   if (!MP_ACCESS_TOKEN) return res.status(503).json({ error: 'pagos_no_configurados' })
 

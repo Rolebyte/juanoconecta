@@ -1,11 +1,15 @@
 // Lista de espera del curso de IA (/curso-ia). Guarda nombre y contacto en `seguimientos`
 // (origen 'curso'), así aparece en el panel /admin → Seguimientos, y le avisa a Juan por mail.
+import { limite, origenAjeno, cuerpo } from './_seguridad.js'
+
 const texto = (v, max) => String(v ?? '').trim().slice(0, max)
 const html = (s) => String(s ?? '-').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
-  const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {}
+  if (origenAjeno(req)) return res.status(403).json({ error: 'Origen no permitido' })
+  if (limite(req, 'lista', 5, 10 * 60 * 1000)) return res.status(429).json({ error: 'Demasiados envíos. Probá en unos minutos.' })
+  const b = cuerpo(req)
   if (b.sitio) return res.status(200).json({ ok: true }) // campo trampa para bots
 
   const nombre = texto(b.nombre, 120)
