@@ -1,6 +1,7 @@
 // Panel de admin: una sola función con varias acciones (?accion=...), para no sumar funciones en Vercel.
 // Usa la misma contraseña que los leads (ADMIN_SECRET) y la service key de Supabase.
 import { productos, precioNumero } from '../src/data/tienda.js'
+import { armarHoy } from './_agente-hoy.js'
 import { claveAdmin, cortarAdmin } from './_seguridad.js'
 
 const ETAPAS = ['nuevo', 'contactado', 'interesado', 'propuesta', 'cliente', 'descartado']
@@ -66,6 +67,45 @@ async function sincronizarTienda(db) {
   }
 }
 
+// Une leads, encuestas, ventas, lista de espera y cargados a mano, con la etapa y notas guardadas en `seguimientos`.
+async function armarSeguimientos(db) {
+  const [leads, encuestas, ventas, guardados] = await Promise.all([
+    db('leads?select=id,email,created_at,label,notes,source&order=created_at.desc'),
+    db('encuestas?select=id,created_at,material,nombre,contacto,intereses,puntaje&contacto=not.is.null&order=created_at.desc'),
+    db('ventas?select=id,mp_id,created_at,servicio,monto,moneda,cliente,email&order=created_at.desc'),
+    db('seguimientos?select=*'),
+  ])
+  const porClave = Object.fromEntries(guardados.map((g) => [`${g.origen}:${g.ref_id}`, g]))
+  const usados = new Set()
+  const armar = (origen, ref_id, base) => {
+    const clave = `${origen}:${ref_id}`
+    usados.add(clave)
+    const g = porClave[clave]
+    return { ...base, origen, ref_id, etapa: g?.etapa || base.etapa, proximo: g?.proximo || null, notas: g?.notas ?? base.notas ?? '' }
+  }
+  const lista = [
+    ...leads.map((l) => armar('lead', String(l.id), {
+      nombre: '', contacto: l.email, created_at: l.created_at, detalle: `Lead ${l.source || 'web'}`,
+      etapa: LABEL_A_ETAPA[l.label] || 'nuevo', notas: l.notes || '',
+    })),
+    ...encuestas.filter((e) => String(e.contacto || '').trim()).map((e) => armar('encuesta', String(e.id), {
+      nombre: e.nombre || '', contacto: e.contacto, created_at: e.created_at,
+      detalle: `Encuesta ${e.material} · ${e.puntaje}★${(e.intereses || []).length ? ' · le interesa ' + e.intereses.join(', ') : ''}`, etapa: 'nuevo',
+    })),
+    ...ventas.map((v) => armar('venta', String(v.mp_id), {
+      nombre: v.cliente || '', contacto: v.email || '', created_at: v.created_at,
+      detalle: `Compró ${v.servicio || ''} (${v.moneda && v.moneda !== 'ARS' ? v.moneda + ' ' : '$'}${Math.round(v.monto || 0).toLocaleString('es-AR')})`, etapa: 'cliente',
+    })),
+    ...guardados.filter((g) => g.origen === 'curso').map((g) => armar('curso', g.ref_id, {
+      nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Lista de espera del curso de IA', etapa: g.etapa,
+    })),
+    ...guardados.filter((g) => g.origen === 'manual').map((g) => armar('manual', g.ref_id, {
+      nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Cargado a mano', etapa: g.etapa,
+    })),
+  ]
+  return lista
+}
+
 export default async function handler(req, res) {
   const { SUPABASE_URL, SUPABASE_SERVICE_KEY } = process.env
   const corte = claveAdmin(req, req.headers['x-admin-secret'])
@@ -96,43 +136,17 @@ export default async function handler(req, res) {
       return res.status(200).json(await db(`clics?select=created_at,pagina,boton,destino&created_at=gte.${desde}&order=created_at.desc&limit=10000`))
     }
 
-    if (req.method === 'GET' && accion === 'seguimientos') {
-      const [leads, encuestas, ventas, guardados] = await Promise.all([
-        db('leads?select=id,email,created_at,label,notes,source&order=created_at.desc'),
-        db('encuestas?select=id,created_at,material,nombre,contacto,intereses,puntaje&contacto=not.is.null&order=created_at.desc'),
-        db('ventas?select=id,mp_id,created_at,servicio,monto,moneda,cliente,email&order=created_at.desc'),
-        db('seguimientos?select=*'),
-      ])
-      const porClave = Object.fromEntries(guardados.map((g) => [`${g.origen}:${g.ref_id}`, g]))
-      const usados = new Set()
-      const armar = (origen, ref_id, base) => {
-        const clave = `${origen}:${ref_id}`
-        usados.add(clave)
-        const g = porClave[clave]
-        return { ...base, origen, ref_id, etapa: g?.etapa || base.etapa, proximo: g?.proximo || null, notas: g?.notas ?? base.notas ?? '' }
+    // Lista "Hoy": el agente lee los contactos y deja temperatura, motivo y mensaje listo. Se arma cuando Juan aprieta el botón.
+    if (req.method === 'POST' && accion === 'hoy') {
+      try {
+        return res.status(200).json(await armarHoy(await armarSeguimientos(db)))
+      } catch (e) {
+        console.error('hoy', e?.message)
+        return res.status(e?.codigo === 'sin-clave' ? 503 : 502).json({ error: e?.codigo === 'sin-clave' ? 'sin-clave' : 'No se pudo armar la lista. Probá de nuevo en un rato.' })
       }
-      const lista = [
-        ...leads.map((l) => armar('lead', String(l.id), {
-          nombre: '', contacto: l.email, created_at: l.created_at, detalle: `Lead ${l.source || 'web'}`,
-          etapa: LABEL_A_ETAPA[l.label] || 'nuevo', notas: l.notes || '',
-        })),
-        ...encuestas.filter((e) => String(e.contacto || '').trim()).map((e) => armar('encuesta', String(e.id), {
-          nombre: e.nombre || '', contacto: e.contacto, created_at: e.created_at,
-          detalle: `Encuesta ${e.material} · ${e.puntaje}★${(e.intereses || []).length ? ' · le interesa ' + e.intereses.join(', ') : ''}`, etapa: 'nuevo',
-        })),
-        ...ventas.map((v) => armar('venta', String(v.mp_id), {
-          nombre: v.cliente || '', contacto: v.email || '', created_at: v.created_at,
-          detalle: `Compró ${v.servicio || ''} (${v.moneda && v.moneda !== 'ARS' ? v.moneda + ' ' : '$'}${Math.round(v.monto || 0).toLocaleString('es-AR')})`, etapa: 'cliente',
-        })),
-        ...guardados.filter((g) => g.origen === 'curso').map((g) => armar('curso', g.ref_id, {
-          nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Lista de espera del curso de IA', etapa: g.etapa,
-        })),
-        ...guardados.filter((g) => g.origen === 'manual').map((g) => armar('manual', g.ref_id, {
-          nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Cargado a mano', etapa: g.etapa,
-        })),
-      ]
-      return res.status(200).json(lista)
     }
+
+    if (req.method === 'GET' && accion === 'seguimientos') return res.status(200).json(await armarSeguimientos(db))
 
     if (req.method === 'POST' && accion === 'guardar-seguimiento') {
       const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {}
