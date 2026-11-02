@@ -1,6 +1,8 @@
 // Registra un clic en un botón de WhatsApp o de pago de la tienda (lo manda src/main.jsx con sendBeacon).
 // Público a propósito: solo guarda la página y el texto corto del botón, sin datos personales.
 // También cuenta descargas: GET /prompts-navidad o /pedidos-ia (vercel.json) registra la descarga y redirige al PDF.
+import { limite, origenAjeno, cuerpo } from './_seguridad.js'
+
 const DESCARGAS = { 'prompts-navidad': '/prompts-navidad.pdf', 'pedidos-ia': '/pedidos-ia.pdf' }
 const BOTS = /bot|crawl|spider|facebookexternalhit|meta-externalagent|preview|whatsapp|telegram|slack|discord/i
 
@@ -29,8 +31,9 @@ export default async function handler(req, res) {
     return res.redirect(302, archivo)
   }
   if (req.method !== 'POST') return res.status(405).end()
+  if (origenAjeno(req) || limite(req, 'clic', 60, 10 * 60 * 1000)) return res.status(204).end()
   try {
-    const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {}
+    const b = cuerpo(req)
     const pagina = String(b.pagina || '').replace(/[?#].*$/, '').slice(0, 120)
     if (!pagina.startsWith('/')) return res.status(400).end()
     await guardar({ pagina, destino: ['mercadopago', 'gumroad'].includes(b.destino) ? b.destino : 'whatsapp', boton: String(b.boton || '').trim().slice(0, 60) || null })

@@ -23,6 +23,7 @@ const RUTAS = [
   '/verano',
   '/web-para-alojamientos-cordoba',
   '/webs-y-redes-region-rafaela',
+  '/privacidad',
 ]
 
 const plantilla = fs.readFileSync(path.join(dist, 'index.html'), 'utf8')

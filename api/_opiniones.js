@@ -3,6 +3,7 @@
 // Las de 4 y 5 estrellas se publican solas; las de 1 a 3 quedan ocultas hasta que Juan las muestre
 // desde /admin (pestaña Opiniones), donde también se puede ocultar cualquiera.
 import { SERVICIOS_OPINION, nombreServicio } from '../src/data/opiniones.js'
+import { cuerpo } from './_seguridad.js'
 
 const texto = (v, max) => String(v ?? '').trim().replace(/\s+/g, ' ').slice(0, max) || null
 const html = (s) => String(s ?? '-').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
@@ -25,7 +26,7 @@ export async function opiniones(req, res) {
   }
 
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
-  const b = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : req.body || {}
+  const b = cuerpo(req)
   if (b.web) return res.status(200).json({ ok: true }) // campo trampa: solo lo completan los bots
 
   const estrellas = Number(b.estrellas)

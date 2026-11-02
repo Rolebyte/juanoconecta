@@ -2,12 +2,12 @@
 // Cron job que se ejecuta diariamente — busca leads que necesitan el email del dia 3 o dia 7
 // Configurar en vercel.json como cron: "0 10 * * *" (10am UTC = 7am ARG)
 
+import { claveAdmin, cortarAdmin } from './_seguridad.js';
+
 export default async function handler(req, res) {
   // Solo acepta llamadas desde Vercel Cron o con el secret
-  const auth = req.headers.authorization;
-  if (!process.env.ADMIN_SECRET || auth !== `Bearer ${process.env.ADMIN_SECRET}`) {
-    return res.status(401).json({ error: 'No autorizado' });
-  }
+  const corte = claveAdmin(req, String(req.headers.authorization || '').replace(/^Bearer /, ''));
+  if (corte) return cortarAdmin(res, corte);
 
   const SUPABASE_URL = process.env.SUPABASE_URL;
   const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
@@ -134,7 +134,7 @@ async function sendDay7Email(email, apiKey) {
 }
 
 async function updateSequenceDay(supabaseUrl, serviceKey, leadId, day) {
-  await fetch(`${supabaseUrl}/rest/v1/leads?id=eq.${leadId}`, {
+  await fetch(`${supabaseUrl}/rest/v1/leads?id=eq.${encodeURIComponent(leadId)}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

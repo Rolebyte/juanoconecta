@@ -33,6 +33,7 @@ import Opinion from './pages/Opinion'
 import WebAlojamientosCordoba from './pages/WebAlojamientosCordoba'
 import RegionRafaela from './pages/RegionRafaela'
 import OpinionesNx from './components/home/OpinionesNx'
+import Privacidad from './pages/Privacidad'
 
 // Al llegar a cualquier página con /ruta#seccion, el navegador intenta saltar antes de que
 // React dibuje el contenido. Saltamos nosotros y repetimos mientras cargan imágenes y animaciones.
@@ -176,6 +177,7 @@ export function AppRoutes() {
         <Route path="/material" element={<Material />} />
         <Route path="/material/:slug" element={<Material />} />
         <Route path="/opinion" element={<Opinion />} />
+        <Route path="/privacidad" element={<Privacidad />} />
       </Routes>
     </>
   )
