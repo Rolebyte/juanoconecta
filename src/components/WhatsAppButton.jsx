@@ -2,10 +2,11 @@ import { motion } from 'framer-motion'
 
 const WA_LINK = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20quiero%20saber%20más%20sobre%20tus%20servicios'
 
-export default function WhatsAppButton() {
+// texto: mensaje propio para páginas con otra oferta (por ejemplo /mx).
+export default function WhatsAppButton({ texto }) {
   return (
     <motion.a
-      href={WA_LINK}
+      href={texto ? 'https://wa.me/5493492383024?text=' + encodeURIComponent(texto) : WA_LINK}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
