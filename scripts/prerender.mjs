@@ -23,6 +23,7 @@ const RUTAS = [
   '/verano',
   '/web-para-alojamientos-cordoba',
   '/webs-y-redes-region-rafaela',
+  '/mx',
   '/privacidad',
 ]
 

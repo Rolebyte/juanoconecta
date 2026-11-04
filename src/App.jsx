@@ -32,6 +32,7 @@ import SobreJuanoConecta from './pages/SobreJuanoConecta'
 import Opinion from './pages/Opinion'
 import WebAlojamientosCordoba from './pages/WebAlojamientosCordoba'
 import RegionRafaela from './pages/RegionRafaela'
+import Mexico from './pages/Mexico'
 import OpinionesNx from './components/home/OpinionesNx'
 import Privacidad from './pages/Privacidad'
 
@@ -174,6 +175,7 @@ export function AppRoutes() {
         <Route path="/verano" element={<PromoTemporada slug="verano" />} />
         <Route path="/web-para-alojamientos-cordoba" element={<WebAlojamientosCordoba />} />
         <Route path="/webs-y-redes-region-rafaela" element={<RegionRafaela />} />
+        <Route path="/mx" element={<Mexico />} />
         <Route path="/material" element={<Material />} />
         <Route path="/material/:slug" element={<Material />} />
         <Route path="/opinion" element={<Opinion />} />
