@@ -31,6 +31,15 @@ const INCLUYE = [
   { titulo: 'Alta en Google', texto: 'La web se presenta a Google y se vincula con tu ficha de Google Maps.' },
 ]
 
+// Venta por objetivo (Juan, 5/11/2026): lo que la web tiene que cumplir el día que se entrega.
+const METAS_ENTREGA = [
+  ['Web lista y publicada', '10 días'],
+  ['Aparece en Google cuando buscan tu nombre', 'Sí'],
+  ['Ficha de Google Maps conectada', 'Sí'],
+  ['Abre en el celular en', 'menos de 3 s'],
+  ['Cada clic a tu WhatsApp queda contado', 'desde el día 1'],
+]
+
 const ZONAS = [
   {
     nombre: 'Punilla',
@@ -236,6 +245,21 @@ export default function WebAlojamientosCordoba() {
               </Reveal>
             ))}
           </div>
+          <Reveal className="mt-10 rounded-3xl border border-[#22D3EE]/25 bg-[#22D3EE]/[0.05] p-7 md:p-9 grid lg:grid-cols-[1fr_1.3fr] gap-8 items-start">
+            <div>
+              <p className="text-[11px] font-bold tracking-[0.2em] uppercase text-[#22D3EE]">Meta al entregar</p>
+              <h3 className="text-2xl md:text-3xl font-bold text-crema mt-3 leading-tight">Lo que tu web tiene que cumplir el día que te la damos</h3>
+              <p className="text-crema/55 mt-3 leading-relaxed">No te vendemos "una web de 5 secciones". Te entregamos una web que te encuentren y que te deje listo para responder. Con el mantenimiento Web al Día, cada mes te mandamos cuántas visitas, búsquedas y clics a WhatsApp tuviste.</p>
+            </div>
+            <ul className="grid gap-2.5">
+              {METAS_ENTREGA.map(([k, v]) => (
+                <li key={k} className="flex justify-between gap-4 rounded-xl bg-white/[0.04] px-4 py-3 text-[15px] text-crema/70">
+                  <span>{k}</span>
+                  <b className="text-crema whitespace-nowrap text-right">{v}</b>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
@@ -267,7 +291,7 @@ export default function WebAlojamientosCordoba() {
                 aria-label="web alojamientos: 9 o más" className="text-sm font-semibold text-teal hover:text-white transition-colors whitespace-nowrap">Pedir presupuesto →</a>
             </div>
           </Reveal>
-          <p className="text-crema/40 text-xs mt-4">Precios en pesos argentinos. Mantenimiento opcional: $25.000 por mes (cambios de tarifas, fotos y disponibilidad).</p>
+          <p className="text-crema/40 text-xs mt-4">Precios en pesos argentinos. Mantenimiento opcional Web al Día: $25.000 por mes (cambios de tarifas, fotos y disponibilidad en 48 h y reporte mensual de visitas y clics a WhatsApp).</p>
         </div>
       </section>
 

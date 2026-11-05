@@ -4,8 +4,9 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
-import { PLANES_REDES } from '../data/planesRedes'
+import { PLANES_REDES, REGLA_META } from '../data/planesRedes'
 import NotaPlanes from '../components/NotaPlanes'
+import MetaPlan from '../components/MetaPlan'
 
 const WA = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20me%20interesa%20gestionar%20las%20redes%20sociales%20de%20mi%20negocio%20en%20Rafaela'
 
@@ -37,7 +38,7 @@ const faqSchema = {
       name: '¿Cuánto cuesta gestionar las redes sociales de un negocio en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'La gestión de redes sociales en Rafaela con JuanoConecta tiene planes desde $146.000 por mes (plan Emprende, pensado para emprendedores: 1 red, 8 publicaciones), pasando por el plan Starter a $320.000 (2 redes, 12 publicaciones), hasta $850.000 por mes (plan Full, 4 redes, publicaciones ilimitadas y Meta Ads avanzado). El precio depende de la cantidad de redes, la frecuencia de publicación y si se incluye publicidad paga.',
+        text: 'La gestión de redes sociales con JuanoConecta tiene planes desde $146.000 por mes. Cada plan tiene una meta del mes que se puede medir: plan Presencia $146.000 por mes (1 red, 8 publicaciones, meta 3.000 cuentas alcanzadas), plan Conecta $320.000 por mes (2 redes, 12 publicaciones y una campaña a mensajes, meta 10.000 cuentas alcanzadas y 30 conversaciones nuevas), plan Conecta Pro $550.000 por mes (3 redes, 20 publicaciones, respuestas automáticas en WhatsApp, meta 60 conversaciones y respuesta en menos de una hora) y plan Full $850.000 por mes, a medida. La pauta de Meta Ads se paga aparte. Las ventas se miden en el reporte pero no se prometen.',
       },
     },
     {
@@ -162,7 +163,7 @@ export default function RedesSocialesNegociosRafaela() {
           <div className="text-center mb-14">
             <Eyebrow>Inversión</Eyebrow>
             <h2 className="text-3xl md:text-4xl font-bold text-crema tracking-tight mt-4 mb-4">¿Cuánto cuesta gestionar redes en Rafaela?</h2>
-            <p className="text-crema/35 max-w-md mx-auto">Sin contratos largos. Sin sorpresas. Empezás cuando querés.</p>
+            <p className="text-crema/45 max-w-xl mx-auto">Cada plan arranca con una meta del mes que vemos juntos en las estadísticas. Las publicaciones son la herramienta para llegar. Sin contratos largos.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {planes.map((plan, i) => (
@@ -181,7 +182,9 @@ export default function RedesSocialesNegociosRafaela() {
                 )}
                 <h3 className="text-lg font-bold text-crema mb-1">{plan.nombre}</h3>
                 <div className="text-3xl font-bold text-crema">{plan.precio}<span className="text-crema/35 text-sm font-normal">/mes</span></div>
-                <p className="text-crema/40 text-xs mt-2 mb-6 leading-relaxed">{plan.descripcion}</p>
+                <p className="text-crema/40 text-xs mt-2 mb-5 leading-relaxed">{plan.descripcion}</p>
+                <MetaPlan plan={plan} />
+                <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-crema/35 mb-3">Incluye</p>
                 <ul className="space-y-2.5 flex-1 mb-7">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-center gap-2.5 text-sm text-crema/65">
@@ -200,6 +203,7 @@ export default function RedesSocialesNegociosRafaela() {
               </motion.div>
             ))}
           </div>
+          <p className="text-center text-crema/50 text-sm mt-10 max-w-2xl mx-auto">{REGLA_META} Las ventas las medimos en el reporte, pero no las prometemos: dependen de tu producto y de cómo atendés.</p>
           <NotaPlanes wa={WA} />
         </div>
       </section>

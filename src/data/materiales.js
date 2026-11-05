@@ -21,7 +21,7 @@ export const MATERIALES = [
       detalle: 'En el primer mes de cualquier plan de redes, en la Auditoría IA de tu perfil o en tu web.',
       // Los servicios con precio se pagan con Mercado Pago (api/crear-pago.js); "A cotizar" sigue por WhatsApp.
       servicios: [
-        { id: 'starter', nombre: 'Plan Starter de redes', detalle: 'Precio emprendedor · Primer mes · 2 redes, 12 publicaciones', precio: 145900 },
+        { id: 'starter', nombre: 'Plan Conecta de redes', detalle: 'Precio emprendedor · Primer mes · 2 redes, 12 publicaciones', precio: 145900 },
         { id: 'pro', nombre: 'Plan Pro de redes', detalle: 'Precio emprendedor · Primer mes · 3 redes, 20 publicaciones, Meta Ads básico', precio: 203700 },
         { id: 'full', nombre: 'Plan Full de redes', detalle: 'Precio emprendedor · Primer mes · 4 redes, publicaciones ilimitadas, Meta Ads avanzado', precio: 262700 },
         { id: 'auditoria', nombre: 'Auditoría IA de tu perfil', detalle: 'Diagnóstico, sesión 1 a 1 con Juan y plan de 30 días', precio: 120000 },
