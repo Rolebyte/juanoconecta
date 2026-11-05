@@ -3,8 +3,8 @@ import { motion } from 'framer-motion'
 // Aclara para quién es cada plan, según el tarifario de la Cámara de Diseñadores (Particular / PyME / Empresa).
 // Se usa debajo de los planes en /redes-sociales-para-negocios-rafaela y /community-manager-rafaela.
 const SEGMENTOS = [
-  { quien: 'Emprendedores', planes: 'Plan Emprende', color: '#22D3EE' },
-  { quien: 'Pymes y empresas', planes: 'Starter · Pro · Full', color: '#3D7BFF' },
+  { quien: 'Emprendedores', planes: 'Plan Presencia', color: '#22D3EE' },
+  { quien: 'Pymes y empresas', planes: 'Conecta · Conecta Pro · Full', color: '#3D7BFF' },
   { quien: 'Industrias', planes: 'Propuesta a medida', color: '#8FC46A', detalle: 'Varias marcas o equipos' },
 ]
 

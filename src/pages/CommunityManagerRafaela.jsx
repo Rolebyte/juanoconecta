@@ -4,8 +4,9 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Eyebrow, GridGlow } from '../components/home/ui'
 import WhatsAppButton from '../components/WhatsAppButton'
-import { PLANES_REDES } from '../data/planesRedes'
+import { PLANES_REDES, REGLA_META } from '../data/planesRedes'
 import NotaPlanes from '../components/NotaPlanes'
+import MetaPlan from '../components/MetaPlan'
 
 const WA = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20me%20interesa%20el%20servicio%20de%20Community%20Manager%20en%20Rafaela'
 
@@ -45,7 +46,7 @@ const FAQ_SCHEMA = {
       name: '¿Cuánto cuesta un Community Manager en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'En JuanoConecta los planes de Community Management en Rafaela arrancan en $146.000/mes (plan Emprende, pensado para emprendedores: 1 red social, 8 publicaciones mensuales), el plan Starter cuesta $320.000/mes (2 redes sociales, 12 publicaciones mensuales), el plan Pro cuesta $550.000/mes (3 redes, 20 publicaciones, reels y Meta Ads básico) y el plan Full es $850.000/mes (4 redes, publicaciones ilimitadas, Meta Ads avanzado y branding). El presupuesto de pauta en Meta Ads se acuerda por separado según el objetivo.',
+        text: 'Cada plan tiene una meta del mes que se puede medir: plan Presencia $146.000 por mes (1 red, 8 publicaciones, meta 3.000 cuentas alcanzadas), plan Conecta $320.000 por mes (2 redes, 12 publicaciones y una campaña a mensajes, meta 10.000 cuentas alcanzadas y 30 conversaciones nuevas), plan Conecta Pro $550.000 por mes (3 redes, 20 publicaciones, respuestas automáticas en WhatsApp, meta 60 conversaciones y respuesta en menos de una hora) y plan Full $850.000 por mes, a medida. La pauta de Meta Ads se paga aparte. Las ventas se miden en el reporte pero no se prometen.',
       },
     },
     {
@@ -82,7 +83,7 @@ const faqs = [
   },
   {
     q: '¿Cuánto cuesta un Community Manager en Rafaela?',
-    a: 'Los planes arrancan en $146.000/mes (Emprende, para emprendedores: 1 red, 8 publicaciones), $320.000/mes (Starter: 2 redes, 12 publicaciones), $550.000/mes (Pro: 3 redes, 20 publicaciones, reels y Meta Ads básico) y $850.000/mes (Full: 4 redes, publicaciones ilimitadas, Meta Ads avanzado y branding). El presupuesto de pauta se acuerda aparte.',
+    a: 'Cada plan tiene una meta del mes que se puede medir: plan Presencia $146.000 por mes (1 red, 8 publicaciones, meta 3.000 cuentas alcanzadas), plan Conecta $320.000 por mes (2 redes, 12 publicaciones y una campaña a mensajes, meta 10.000 cuentas alcanzadas y 30 conversaciones nuevas), plan Conecta Pro $550.000 por mes (3 redes, 20 publicaciones, respuestas automáticas en WhatsApp, meta 60 conversaciones y respuesta en menos de una hora) y plan Full $850.000 por mes, a medida. La pauta de Meta Ads se paga aparte. Las ventas se miden en el reporte pero no se prometen.',
   },
   {
     q: '¿Qué resultados puedo esperar en los primeros meses?',
@@ -196,6 +197,8 @@ export default function CommunityManagerRafaela() {
                   <div className="text-3xl font-bold text-crema">{plan.precio}<span className="text-base font-normal text-crema/40">{plan.periodo}</span></div>
                   <p className="text-crema/40 text-xs mt-2 leading-relaxed">{plan.descripcion}</p>
                 </div>
+                <MetaPlan plan={plan} />
+                <p className="text-[10px] font-bold tracking-[0.15em] uppercase text-crema/35 mb-3">Incluye</p>
                 <ul className="space-y-2.5 flex-1 mb-7">
                   {plan.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2.5 text-crema/55 text-sm">
@@ -214,6 +217,7 @@ export default function CommunityManagerRafaela() {
               </motion.div>
             ))}
           </div>
+          <p className="text-center text-crema/50 text-sm mt-10 max-w-2xl mx-auto">{REGLA_META} Las ventas las medimos en el reporte, pero no las prometemos.</p>
           <NotaPlanes wa={WA} />
         </div>
       </section>
