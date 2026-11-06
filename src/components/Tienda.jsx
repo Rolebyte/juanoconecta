@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Eyebrow, GridGlow, Reveal, Check } from './home/ui'
 import { productoGratis, productos } from '../data/tienda'
 import PromoBanda from './PromoBanda'
+import TiendaPlanes from './TiendaPlanes'
 
 export { productoGratis, productos } from '../data/tienda'
 
@@ -158,6 +159,8 @@ export default function Tienda({ onOpenPopup }) {
           </div>
           {auditoria && <Auditoria p={auditoria} />}
         </div>
+
+        <TiendaPlanes />
 
         <div className="mt-24 grid lg:grid-cols-[1fr_1.6fr] gap-10">
           <Reveal>
