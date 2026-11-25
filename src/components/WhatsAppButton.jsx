@@ -1,23 +1,36 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const WA_LINK = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20quiero%20saber%20más%20sobre%20tus%20servicios'
 
 // texto: mensaje propio para páginas con otra oferta (por ejemplo /mx).
+// Aparece recién al bajar un poco, así en el celu no tapa el botón principal de cada página.
 export default function WhatsAppButton({ texto }) {
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const revisar = () => setVisible(window.scrollY > 480)
+    revisar()
+    window.addEventListener('scroll', revisar, { passive: true })
+    return () => window.removeEventListener('scroll', revisar)
+  }, [])
   return (
     <motion.a
       href={texto ? 'https://wa.me/5493492383024?text=' + encodeURIComponent(texto) : WA_LINK}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Contactar por WhatsApp"
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
       initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 1.5, type: 'spring', stiffness: 260, damping: 20 }}
+      animate={visible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 20 }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
       className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl animate-pulse-coral"
       style={{
         boxShadow: '0 0 0 0 rgba(37, 211, 102, 0.5)',
+        pointerEvents: visible ? 'auto' : 'none',
+        bottom: 'calc(1.5rem + env(safe-area-inset-bottom, 0px))',
         animation: 'pulse-wa 2s ease-in-out infinite',
       }}
     >

@@ -69,7 +69,7 @@ const ORGANIZATION_SCHEMA = {
 }
 
 const clientes = [
-  { nombre: 'Tatitos Pañalera', rubro: 'Comercio minorista', resultado: 'Posicionado #1 en Google para "pañalera online Rafaela". Aparece en el AI Overview de Google.' },
+  { nombre: 'Tatitos Pañalera', rubro: 'Comercio minorista', resultado: 'Tienda online con Mercado Pago y SEO local para búsquedas como "pañalera online Rafaela".' },
   { nombre: 'Alarcón Ecografías', rubro: 'Salud', resultado: 'Presencia digital profesional construida desde cero. Consultas orgánicas semanales desde el tercer mes.' },
   { nombre: 'Pura Vida Tatuajes', rubro: 'Estudio de tatuajes', resultado: 'Turnos cerrados por Instagram desde el primer mes de trabajo.' },
   { nombre: 'Brisa Latina Festa', rubro: 'Entretenimiento', resultado: 'Estrategia de contenido y Meta Ads para sus eventos en Brasil.' },
@@ -208,10 +208,10 @@ export default function SobreJuanoConecta() {
             className="rounded-3xl p-8 md:p-12 relative overflow-hidden text-center"
             style={{ background: 'linear-gradient(135deg, rgba(61,123,255,0.12) 0%, rgba(61,123,255,0.04) 100%)', border: '1px solid rgba(61,123,255,0.3)' }}>
             <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full blur-3xl opacity-10" style={{ background: '#3D7BFF' }} />
-            <Eyebrow>Resultado verificable</Eyebrow>
+            <Eyebrow>Resultado en Google</Eyebrow>
             <div className="text-5xl md:text-7xl font-bold mt-4 mb-2" style={{ color: '#3D7BFF' }}>AI Overview</div>
-            <p className="text-crema/60 text-base mb-2">Tatitos Pañalera aparece en el AI Overview de Google para "pañalera online Rafaela" — resultado de la estrategia de SEO y marketing digital implementada por JuanoConecta.</p>
-            <p className="text-crema/30 text-xs">Verificable en Google buscando: "pañalera online Rafaela" o "pañales a domicilio Rafaela"</p>
+            <p className="text-crema/60 text-base mb-2">Trabajamos el SEO local de Tatitos Pañalera para que aparezca en Google, incluso en el resumen con IA, cuando alguien busca "pañalera online Rafaela".</p>
+            <p className="text-crema/30 text-xs">Probalo en Google buscando "pañalera online Rafaela" o "pañales a domicilio Rafaela". Los resultados pueden cambiar con el tiempo.</p>
           </motion.div>
         </div>
       </section>

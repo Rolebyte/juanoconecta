@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { SectionTitle, Reveal, BtnPrimary, WA } from './ui'
 
 export const faqs = [
-  ['¿Qué servicios ofrecen?', 'Trabajamos en cuatro áreas: IA para negocios (cursos, capacitaciones y automatizaciones), webs y web apps, diseño y marca, y redes y publicidad con Meta Ads. Podés contratar una sola o combinarlas.'],
+  ['¿Qué servicios ofrecen?', 'Te ayudamos con lo que hoy le falta a tu negocio: que te encuentren (web y perfil de Google), que ninguna consulta se pierda (asistente de IA para WhatsApp), que te vean en redes (gestión y Meta Ads), aprender a usar IA (curso y capacitaciones) y diseño de marca. Podés tomar un servicio solo o combinarlos.'],
   ['¿Cómo sé qué servicio necesita mi negocio?', 'Escribinos por WhatsApp y te orientamos gratis. Miramos dónde está hoy tu negocio y te recomendamos por dónde empezar.'],
   ['¿Necesito saber programar para tener una web app?', 'No. Nosotros diseñamos y desarrollamos la aplicación, y te enseñamos a usarla. Si querés aprender a hacerlo vos, el curso de IA incluye un módulo para crear tu propia web.'],
   ['¿Cuándo empieza el curso de IA?', 'Estamos armando la próxima edición. Sumate a la lista de espera y te avisamos primero cuando abran las inscripciones.'],

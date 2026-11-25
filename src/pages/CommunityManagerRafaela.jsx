@@ -46,7 +46,7 @@ const FAQ_SCHEMA = {
       name: '¿Cuánto cuesta un Community Manager en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Cada plan tiene una meta del mes que se puede medir: plan Presencia $146.000 por mes (1 red, 8 publicaciones, meta 3.000 cuentas alcanzadas), plan Conecta $320.000 por mes (2 redes, 12 publicaciones y una campaña a mensajes, meta 10.000 cuentas alcanzadas y 30 conversaciones nuevas), plan Conecta Pro $550.000 por mes (3 redes, 20 publicaciones, respuestas automáticas en WhatsApp, meta 60 conversaciones y respuesta en menos de una hora) y plan Full $850.000 por mes, a medida. La pauta de Meta Ads se paga aparte. Las ventas se miden en el reporte pero no se prometen.',
+        text: 'Cada plan tiene una meta del mes que se puede medir: plan Presencia $146.000 por mes (1 red, meta 3.000 cuentas alcanzadas), plan Conecta $320.000 por mes (2 redes y una campaña a mensajes, meta 10.000 cuentas alcanzadas y 30 conversaciones nuevas), plan Conecta Pro $550.000 por mes (3 redes, respuestas automáticas en WhatsApp, meta 60 conversaciones y respuesta en menos de una hora) y plan Full $850.000 por mes, a medida. La pauta de Meta Ads se paga aparte. Las ventas se miden en el reporte pero no se prometen.',
       },
     },
     {
@@ -54,7 +54,7 @@ const FAQ_SCHEMA = {
       name: '¿Qué resultados se pueden esperar en los primeros meses?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Los resultados dependen del punto de partida, pero en general: en el primer mes se estabiliza la identidad visual y la frecuencia de publicación. En el segundo mes empieza a verse crecimiento orgánico en alcance e interacción. A los 60 días, Tatitos Pañalera logró un +340% de alcance orgánico. Pura Vida Tatuajes comenzó a cerrar turnos por Instagram desde el primer mes.',
+        text: 'Los resultados dependen del punto de partida, pero en general: en el primer mes se estabiliza la identidad visual y la frecuencia de publicación. En el segundo mes empieza a verse crecimiento orgánico en alcance e interacción. Pura Vida Tatuajes comenzó a cerrar turnos por Instagram desde el primer mes.',
       },
     },
     {
@@ -83,11 +83,11 @@ const faqs = [
   },
   {
     q: '¿Cuánto cuesta un Community Manager en Rafaela?',
-    a: 'Cada plan tiene una meta del mes que se puede medir: plan Presencia $146.000 por mes (1 red, 8 publicaciones, meta 3.000 cuentas alcanzadas), plan Conecta $320.000 por mes (2 redes, 12 publicaciones y una campaña a mensajes, meta 10.000 cuentas alcanzadas y 30 conversaciones nuevas), plan Conecta Pro $550.000 por mes (3 redes, 20 publicaciones, respuestas automáticas en WhatsApp, meta 60 conversaciones y respuesta en menos de una hora) y plan Full $850.000 por mes, a medida. La pauta de Meta Ads se paga aparte. Las ventas se miden en el reporte pero no se prometen.',
+    a: 'Cada plan tiene una meta del mes que se puede medir: plan Presencia $146.000 por mes (1 red, meta 3.000 cuentas alcanzadas), plan Conecta $320.000 por mes (2 redes y una campaña a mensajes, meta 10.000 cuentas alcanzadas y 30 conversaciones nuevas), plan Conecta Pro $550.000 por mes (3 redes, respuestas automáticas en WhatsApp, meta 60 conversaciones y respuesta en menos de una hora) y plan Full $850.000 por mes, a medida. La pauta de Meta Ads se paga aparte. Las ventas se miden en el reporte pero no se prometen.',
   },
   {
     q: '¿Qué resultados puedo esperar en los primeros meses?',
-    a: 'En el primer mes se estabiliza la identidad visual y frecuencia. Al segundo mes crece el alcance orgánico. A los 60 días, Tatitos Pañalera logró +340% de alcance. Pura Vida Tatuajes empezó a cerrar turnos por Instagram desde el primer mes.',
+    a: 'En el primer mes se estabiliza la identidad visual y frecuencia. Al segundo mes crece el alcance orgánico. Pura Vida Tatuajes empezó a cerrar turnos por Instagram desde el primer mes.',
   },
   {
     q: '¿Necesito muchos seguidores para empezar?',
@@ -231,8 +231,8 @@ export default function CommunityManagerRafaela() {
               {
                 cliente: 'Tatitos Pañalera',
                 tag: 'Comercio · Rafaela',
-                resultado: '+340% de alcance orgánico en 60 días',
-                detalle: 'Contenido estratégico diario + Meta Ads segmentada. Aparece en el AI Overview de Google para "pañalera online Rafaela".',
+                resultado: 'Contenido diario, Meta Ads por zona y tienda online',
+                detalle: 'Contenido estratégico diario + Meta Ads segmentados por zona, con SEO local para búsquedas como "pañalera online Rafaela".',
                 color: '#3D7BFF',
               },
               {

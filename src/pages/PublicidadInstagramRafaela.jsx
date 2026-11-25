@@ -43,7 +43,7 @@ const faqSchema = {
       name: '¿En cuánto tiempo se ven resultados con Meta Ads en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Los primeros resultados con Meta Ads en Rafaela se ven entre 7 y 14 días de campaña activa. En ese periodo el algoritmo de Meta aprende qué audiencia convierte mejor. Los resultados óptimos se alcanzan entre el mes 1 y el mes 2, cuando tenemos suficientes datos para optimizar segmentación, creatividades y presupuesto. Tatitos Pañalera logró +340% de alcance en 60 días con esta metodología.',
+        text: 'Los primeros resultados con Meta Ads en Rafaela se ven entre 7 y 14 días de campaña activa. En ese periodo el algoritmo de Meta aprende qué audiencia convierte mejor. Los resultados óptimos se alcanzan entre el mes 1 y el mes 2, cuando tenemos suficientes datos para optimizar segmentación, creatividades y presupuesto.',
       },
     },
     {
@@ -171,16 +171,16 @@ export default function PublicidadInstagramRafaela() {
             className="rounded-3xl p-8 md:p-12 relative overflow-hidden"
             style={{ background: 'linear-gradient(135deg, rgba(61,123,255,0.1) 0%, rgba(61,123,255,0.03) 100%)', border: '1px solid rgba(61,123,255,0.25)' }}>
             <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl opacity-20" style={{ background: '#3D7BFF' }} />
-            <Eyebrow>Caso verificado · AI Overview Google</Eyebrow>
-            <div className="text-6xl font-bold mt-4 mb-1" style={{ color: '#3D7BFF' }}>+340%</div>
-            <p className="text-crema/50 text-sm mb-6">de alcance orgánico en 60 días con estrategia de contenido + Meta Ads</p>
+            <Eyebrow>Caso de cliente</Eyebrow>
+            <div className="text-3xl md:text-4xl font-bold mt-4 mb-1" style={{ color: '#3D7BFF' }}>Contenido diario + Meta Ads por zona</div>
+            <p className="text-crema/50 text-sm mb-6">Estrategia de contenido y anuncios segmentados para un comercio de Rafaela</p>
             <div className="h-px bg-white/5 mb-6" />
             <div className="flex items-start gap-3">
               <div className="w-1 h-14 rounded-full flex-shrink-0" style={{ background: 'linear-gradient(to bottom, #3D7BFF, transparent)' }} />
               <div>
                 <div className="text-crema font-bold text-base">🛍️ Tatitos Pañalera</div>
                 <div className="text-xs font-medium mb-2 mt-0.5" style={{ color: '#3D7BFFaa' }}>Comercio minorista · Rafaela, Santa Fe</div>
-                <p className="text-crema/35 text-sm leading-relaxed">Contenido estratégico diario más Meta Ads segmentada por zona geográfica en Rafaela. En dos meses triplicaron su visibilidad, generaron ventas directas desde Instagram y consolidaron su posicionamiento en el rubro.</p>
+                <p className="text-crema/35 text-sm leading-relaxed">Contenido estratégico diario más Meta Ads segmentados por zona en Rafaela, con tienda online y Mercado Pago para que cada consulta pueda terminar en una compra.</p>
               </div>
             </div>
           </motion.div>
