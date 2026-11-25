@@ -5,7 +5,7 @@ import { armarHoy } from './_agente-hoy.js'
 import { claveAdmin, cortarAdmin } from './_seguridad.js'
 
 const ETAPAS = ['nuevo', 'contactado', 'interesado', 'propuesta', 'cliente', 'descartado']
-const ORIGENES = ['lead', 'encuesta', 'venta', 'manual', 'curso']
+const ORIGENES = ['lead', 'encuesta', 'venta', 'manual', 'curso', 'contacto']
 // Etiquetas que ya tenían los leads en el panel viejo → etapa de seguimiento.
 const LABEL_A_ETAPA = { interesado: 'interesado', 'en-negociacion': 'propuesta', cerrado: 'cliente', descartado: 'descartado' }
 
@@ -98,6 +98,9 @@ async function armarSeguimientos(db) {
     })),
     ...guardados.filter((g) => g.origen === 'curso').map((g) => armar('curso', g.ref_id, {
       nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Lista de espera del curso de IA', etapa: g.etapa,
+    })),
+    ...guardados.filter((g) => g.origen === 'contacto').map((g) => armar('contacto', g.ref_id, {
+      nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Formulario de contacto de la web', etapa: g.etapa,
     })),
     ...guardados.filter((g) => g.origen === 'manual').map((g) => armar('manual', g.ref_id, {
       nombre: g.nombre || '', contacto: g.contacto || '', created_at: g.created_at, detalle: 'Cargado a mano', etapa: g.etapa,

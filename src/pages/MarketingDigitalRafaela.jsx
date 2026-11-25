@@ -51,7 +51,7 @@ const FAQ_SCHEMA = {
       name: '¿Cuánto tarda en verse resultados con marketing digital en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Con Meta Ads, los primeros resultados (alcance, clics, consultas) se ven en la primera semana. Con estrategia orgánica (Community Management), los resultados significativos se consolidan entre el primer y segundo mes. A los 60 días, Tatitos Pañalera logró +340% de alcance orgánico.',
+        text: 'Con Meta Ads, los primeros resultados (alcance, clics, consultas) se ven en la primera semana. Con estrategia orgánica (Community Management), los resultados significativos se consolidan entre el primer y segundo mes.',
       },
     },
     {
@@ -84,7 +84,7 @@ const faqs = [
   },
   {
     q: '¿Cuánto tarda en verse resultados?',
-    a: 'Con Meta Ads, los primeros resultados se ven en la primera semana. Con estrategia orgánica, los resultados significativos se consolidan entre el primer y segundo mes. A los 60 días, Tatitos Pañalera logró +340% de alcance.',
+    a: 'Con Meta Ads, los primeros resultados se ven en la primera semana. Con estrategia orgánica, los resultados significativos se consolidan entre el primer y segundo mes.',
   },
   {
     q: '¿Cuál es la diferencia entre orgánico y publicidad paga?',
@@ -194,7 +194,7 @@ export default function MarketingDigitalRafaela() {
               Las campañas de Meta Ads son la forma más directa de llegar a clientes potenciales en Rafaela y zona. Con segmentación por ubicación, intereses y comportamiento, es posible mostrar tu negocio exactamente a quien lo necesita — sin desperdiciar presupuesto.
             </p>
             <p className="text-crema/55 leading-relaxed">
-              Los negocios en Rafaela que combinan estrategia orgánica + Meta Ads ven resultados acelerados: Tatitos Pañalera triplicó su alcance en 60 días. Pura Vida Tatuajes comenzó a cerrar turnos desde el primer mes.
+              Los negocios en Rafaela que combinan estrategia orgánica + Meta Ads ven resultados más rápido. Pura Vida Tatuajes comenzó a cerrar turnos por Instagram desde el primer mes.
             </p>
           </motion.div>
         </div>

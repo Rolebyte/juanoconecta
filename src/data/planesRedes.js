@@ -2,6 +2,7 @@
 // así las dos páginas muestran siempre lo mismo. La pauta de Meta Ads se paga aparte.
 // Se venden por objetivo (Juan, 5/11/2026): cada plan tiene una meta del mes con números que controlamos
 // (alcance, conversaciones, respuesta). Las ventas se miden en el reporte, nunca se prometen.
+// Sin cantidad de piezas (Juan, 19/11/2026): se vende por objetivo, no por publicaciones.
 
 // Lo que se le dice al cliente si no se llega a la meta (confirmado por Juan, 5/11/2026).
 export const REGLA_META = 'Si no llegamos a la meta por algo de nuestro lado, el mes siguiente lo ajustamos sin costo.'
@@ -10,11 +11,11 @@ export const PLANES_REDES = [
   {
     nombre: 'Presencia',
     objetivo: 'Que te vean',
-    metas: [['Cuentas alcanzadas', '3.000'], ['Publicaciones al día', '8 de 8'], ['Perfil ordenado', 'Bio y destacadas']],
+    metas: [['Cuentas alcanzadas', '3.000'], ['Publicaciones del mes', 'todas en fecha'], ['Perfil ordenado', 'Bio y destacadas']],
     precio: '$146.000',
     etiqueta: 'PARA EMPRENDEDORES',
     descripcion: 'Para el que hoy publica cuando puede o no publica.',
-    features: ['1 red social (Instagram o Facebook)', '8 publicaciones por mes', 'Diseño de piezas incluido', 'Reporte mensual: meta contra logrado'],
+    features: ['1 red social (Instagram o Facebook)', 'Contenido y diseño con tu marca', 'Reporte mensual: meta contra logrado'],
     color: '#22D3EE',
   },
   {
@@ -23,7 +24,7 @@ export const PLANES_REDES = [
     metas: [['Cuentas alcanzadas', '10.000'], ['Conversaciones nuevas', '30'], ['Consultas respondidas', '100%']],
     precio: '$320.000',
     descripcion: 'Para el negocio que ya publica pero no le escriben.',
-    features: ['2 redes sociales', '12 publicaciones por mes', '1 campaña a mensajes por mes (pauta aparte)', 'Respuestas guardadas para Instagram y WhatsApp', 'Reporte corto cada semana'],
+    features: ['2 redes sociales', 'Contenido y diseño con tu marca', '1 campaña a mensajes por mes (pauta aparte)', 'Respuestas guardadas para Instagram y WhatsApp', 'Reporte corto cada semana'],
     color: '#6A8FC4',
   },
   {
@@ -33,7 +34,7 @@ export const PLANES_REDES = [
     precio: '$550.000',
     destacado: true,
     descripcion: 'Para el que ya recibe consultas y se le escapan.',
-    features: ['3 redes sociales', '20 publicaciones con reels animados', 'Campaña a mensajes (pauta aparte)', 'Respuestas automáticas en WhatsApp', 'Link de pago o catálogo listo', 'Seguimiento de cada consulta'],
+    features: ['3 redes sociales', 'Contenido con reels animados', 'Campaña a mensajes (pauta aparte)', 'Respuestas automáticas en WhatsApp', 'Link de pago o catálogo listo', 'Seguimiento de cada consulta'],
     color: '#3D7BFF',
   },
   {
@@ -42,7 +43,7 @@ export const PLANES_REDES = [
     metas: [['Metas', 'las armamos juntos'], ['Reporte', 'semanal']],
     precio: '$850.000',
     descripcion: 'Estrategia integral, con publicidad avanzada y branding.',
-    features: ['4 redes sociales', 'Publicaciones ilimitadas', 'Meta Ads avanzado', 'Branding integral', 'Gestión completa de la comunidad', 'Reporte semanal y soporte 7 días'],
+    features: ['4 redes sociales', 'Contenido a medida', 'Meta Ads avanzado', 'Branding integral', 'Gestión completa de la comunidad', 'Reporte semanal y soporte 7 días'],
     color: '#8FC46A',
   },
 ]

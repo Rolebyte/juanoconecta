@@ -10,7 +10,7 @@ const fade = (d) => ({
 const iniciales = ['TP', 'AE', 'PV', 'BL', 'HD']
 
 function BadgeCircular() {
-  const texto = 'ESTUDIO DIGITAL · INTELIGENCIA ARTIFICIAL · RAFAELA · '
+  const texto = 'IA APLICADA · WEBS · GOOGLE · REDES · ASISTENTES · '
   return (
     <div className="relative w-32 h-32 md:w-36 md:h-36">
       <svg viewBox="0 0 100 100" className="w-full h-full animate-spin-slow motion-reduce:animate-none" aria-hidden="true">
@@ -31,23 +31,23 @@ export default function HeroNx() {
       <div className="relative max-w-6xl mx-auto text-center">
         <motion.span {...fade(0)} className="inline-flex items-center gap-2 rounded-full border border-acento/40 bg-acento/10 px-4 py-1.5 text-crema text-xs font-semibold tracking-[0.15em] uppercase">
           <span className="w-1.5 h-1.5 rounded-full bg-teal shadow-[0_0_10px_#22D3EE] animate-pulse" />
-          Estudio digital · IA aplicada
+          IA aplicada para comercios
         </motion.span>
         <motion.h1 {...fade(0.1)} className="mt-8 text-[2.7rem] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[5.6rem] font-bold text-crema tracking-[-0.03em]" style={{ textWrap: 'balance' }}>
-          Hacé crecer tu marca con{' '}
+          IA para comercios{' '}
           <span className="relative inline-block text-acento">
-            inteligencia artificial
+            que hacen todo solos
             <svg className="absolute -bottom-3 left-0 w-full h-4 text-teal" viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden="true">
               <path d="M2 9 C 80 2, 220 2, 298 8" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
             </svg>
           </span>
         </motion.h1>
         <motion.p {...fade(0.2)} className="text-crema/65 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mt-9">
-          Webs, web apps, diseño, redes y formación en IA. Un solo equipo para que tu negocio se vea profesional, venda más y trabaje mejor.
+          Hacemos que te encuentren en Google y que ninguna consulta se quede sin respuesta. Webs, redes y asistentes de IA para negocios de cualquier ciudad, con una meta clara cada mes.
         </motion.p>
         <motion.div {...fade(0.3)} className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
-          <BtnPrimary href={WA} external>Empezar ahora</BtnPrimary>
-          <BtnGhost href="#servicios">Explorar servicios</BtnGhost>
+          <BtnPrimary href={WA} external>Escribime por WhatsApp</BtnPrimary>
+          <BtnGhost href="#servicios">Ver servicios</BtnGhost>
         </motion.div>
         <motion.div {...fade(0.4)} className="flex items-center justify-center gap-4 mt-10">
           <div className="flex -space-x-3">
@@ -57,8 +57,8 @@ export default function HeroNx() {
             ))}
           </div>
           <div className="text-left">
-            <div className="text-crema font-semibold">+20 marcas</div>
-            <div className="text-crema/50 text-sm">confían en JuanoConecta</div>
+            <div className="text-crema font-semibold">Negocios de Argentina, Brasil e Italia</div>
+            <div className="text-crema/50 text-sm">ya trabajan con JuanoConecta</div>
           </div>
         </motion.div>
       </div>
@@ -74,8 +74,8 @@ export default function HeroNx() {
         <div className="relative grid grid-cols-12 gap-4 lg:gap-5">
           <div className="col-span-12 lg:col-span-4 flex flex-col gap-4 lg:gap-5 order-2 lg:order-1">
             <div className="rounded-3xl border border-white/10 bg-[#121A30]/80 backdrop-blur p-6 text-left">
-              <div className="text-5xl font-bold text-crema">+340%</div>
-              <div className="text-crema/55 text-sm mt-2">alcance orgánico promedio en clientes de redes</div>
+              <div className="text-3xl font-bold text-crema">Metas, no paquetes</div>
+              <div className="text-crema/55 text-sm mt-2">Cada mes arrancamos con una meta que vemos juntos en tus estadísticas.</div>
               <div className="mt-5 flex items-end gap-1.5 h-16" aria-hidden="true">
                 {[30, 45, 38, 60, 52, 75, 68, 92].map((h, i) => (
                   <motion.span key={i} initial={{ height: 0 }} animate={{ height: `${h}%` }} transition={{ delay: 0.9 + i * 0.06, duration: 0.6 }}
@@ -84,10 +84,10 @@ export default function HeroNx() {
               </div>
             </div>
             <div className="rounded-3xl border border-white/10 bg-[#121A30]/80 backdrop-blur p-6 text-left flex items-center gap-4">
-              <span className="w-12 h-12 rounded-2xl bg-teal/15 text-teal flex items-center justify-center font-bold">#1</span>
+              <span className="w-12 h-12 shrink-0 rounded-2xl bg-teal/15 text-teal flex items-center justify-center font-bold" aria-hidden="true">G</span>
               <div>
-                <div className="text-crema font-semibold">Primeros en Google</div>
-                <div className="text-crema/55 text-sm">con webs optimizadas para SEO</div>
+                <div className="text-crema font-semibold">Que te encuentren en Google</div>
+                <div className="text-crema/55 text-sm">Tu perfil completo desde $34.900</div>
               </div>
             </div>
           </div>

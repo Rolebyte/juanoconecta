@@ -3,9 +3,9 @@ import { SectionTitle, Reveal, Check, GlowCard } from './ui'
 const casos = [
   {
     rubro: 'Tienda online',
-    titulo: 'Tatitos Pañalera: #1 en Google y +340% de alcance',
+    titulo: 'Tatitos Pañalera: tienda online y SEO local',
     problema: 'Necesitaba vender online y hacerse conocida fuera del local.',
-    solucion: ['Tienda online con catálogo, carrito y Mercado Pago', 'SEO local hasta el puesto #1 en Google y el AI Overview', 'Contenido diario y Meta Ads segmentados por zona'],
+    solucion: ['Tienda online con catálogo, carrito y Mercado Pago', 'SEO local para búsquedas como "pañalera online Rafaela"', 'Contenido diario y Meta Ads segmentados por zona'],
     link: 'https://tatitos.com.ar',
   },
   {
@@ -26,7 +26,7 @@ export default function CasosNx() {
   return (
     <section id="resultados" className="pt-28 pb-8 px-6">
       <div className="max-w-7xl mx-auto">
-        <SectionTitle eyebrow="Casos de éxito" title="Resultados reales de clientes reales" sub="Algunos de los proyectos que hicimos crecer con estrategia, diseño e IA." />
+        <SectionTitle eyebrow="Casos de éxito" title="Clientes reales, trabajo real" sub="Algunos de los proyectos que hicimos con estrategia, diseño e IA." />
         <div className="grid lg:grid-cols-3 gap-6">
           {casos.map((c, i) => (
             <Reveal key={c.titulo} delay={i * 0.1} className="h-full">

@@ -6,33 +6,41 @@ const WA_BASE = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20me%20interesa
 const servicios = [
   {
     n: '01',
-    titulo: 'IA para negocios',
-    desc: 'Formación y herramientas para que tu equipo aproveche la inteligencia artificial en el día a día.',
-    items: ['Curso de IA aplicada', 'Capacitaciones para equipos', 'Asistentes y chatbots', 'Automatizaciones de tareas', 'Contenido creado con IA'],
-    wa: 'IA%20para%20negocios',
-    planes: { texto: 'Capacitaciones para emprendedores de tu localidad', href: '/capacitaciones' },
+    titulo: 'Que te encuentren',
+    desc: 'Tu web lista en 10 días y tu perfil de Google completo, para aparecer cuando te buscan.',
+    items: ['Web todo incluido: dominio, hosting, diseño y textos', 'Perfil de Empresa de Google completo', 'Botón de WhatsApp con clics contados', 'Tiendas online con Mercado Pago', 'Web apps a medida'],
+    wa: 'que%20me%20encuentren%20en%20Google',
+    planes: { texto: 'Perfil de Google $34.900 · Web desde $450.000 · Ver planes', href: '/tienda#planes' },
   },
   {
     n: '02',
-    titulo: 'Webs y web apps',
-    desc: 'Sitios rápidos y orientados a conversión, y aplicaciones web a medida construidas con IA.',
-    items: ['Sitios institucionales', 'Landing pages', 'Tiendas online con Mercado Pago', 'Web apps a medida', 'SEO y posicionamiento en Google'],
-    wa: 'una%20web%20o%20web%20app',
+    titulo: 'Que ninguna consulta se pierda',
+    desc: 'Un asistente de IA en tu WhatsApp que responde al momento, anota cada consulta y te avisa a quién volver a escribirle.',
+    items: ['Respuesta en minutos, también fuera de horario', 'Planilla que se llena sola con cada consulta', 'Aviso para mandar el segundo mensaje', 'Armado con tus precios y tu forma de hablar'],
+    wa: 'un%20asistente%20de%20IA%20para%20WhatsApp',
   },
   {
     n: '03',
-    titulo: 'Diseño y marca',
-    desc: 'Una identidad visual coherente en cada punto de contacto con tus clientes.',
-    items: ['Identidad visual y logo', 'Branding y manual de marca', 'Diseño para redes', 'Piezas gráficas y flyers', 'Presentaciones comerciales'],
-    wa: 'dise%C3%B1o%20y%20marca',
+    titulo: 'Que te vean en redes',
+    desc: 'Gestión de redes y anuncios en Meta con una meta clara cada mes, que vemos juntos en tus estadísticas.',
+    items: ['Gestión de Instagram y Facebook', 'Contenido y diseño con tu marca', 'Campañas a mensajes en Meta Ads', 'Respuestas guardadas para Instagram y WhatsApp', 'Reporte de meta contra logrado'],
+    wa: 'redes%20y%20publicidad',
+    planes: { texto: 'Planes desde $146.000 por mes · Ver planes', href: '/redes-sociales-para-negocios-rafaela#precios-redes' },
   },
   {
     n: '04',
-    titulo: 'Redes y publicidad',
-    desc: 'Gestión de redes, contenido y campañas pagas con estrategia y métricas reales.',
-    items: ['Community management', 'Estrategia y calendario de contenido', 'Copywriting con IA', 'Campañas en Meta Ads', 'Reportes mensuales'],
-    wa: 'redes%20y%20publicidad',
-    planes: { texto: 'Planes desde $146.000 por mes · Ver planes', href: '/redes-sociales-para-negocios-rafaela#precios-redes' },
+    titulo: 'Aprendé a usar IA',
+    desc: 'Para que vos y tu equipo usen la IA en el día a día del negocio.',
+    items: ['Curso de IA aplicada', 'Capacitaciones para comercios con municipios y cámaras', 'Automatizaciones de tareas', 'Contenido creado con IA'],
+    wa: 'aprender%20a%20usar%20IA',
+    planes: { texto: 'Capacitaciones para emprendedores de tu localidad', href: '/capacitaciones' },
+  },
+  {
+    n: '05',
+    titulo: 'Diseño y marca',
+    desc: 'Una identidad visual coherente en cada lugar donde te ven tus clientes.',
+    items: ['Identidad visual y logo', 'Manual de marca', 'Diseño para redes', 'Piezas gráficas y flyers', 'Presentaciones comerciales'],
+    wa: 'dise%C3%B1o%20y%20marca',
   },
 ]
 
@@ -43,9 +51,9 @@ export default function ServiciosNx() {
       <div className="absolute -left-40 top-40 w-[480px] h-[480px] rounded-full bg-acento/10 blur-[120px] pointer-events-none" />
       <div className="relative max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
-          <SectionTitle eyebrow="Servicios" title="Soluciones digitales para cada etapa de tu negocio" />
+          <SectionTitle eyebrow="Servicios" title="Elegí qué querés resolver primero" />
           <Reveal className="lg:mb-14 lg:max-w-sm">
-            <p className="text-crema/55 leading-relaxed">Elegí un área o combinalas. Todo se planifica con la misma estrategia.</p>
+            <p className="text-crema/55 leading-relaxed">Cada servicio arranca con una meta clara. Podés tomar uno solo o combinarlos.</p>
           </Reveal>
         </div>
         <div className="border-t border-white/10">

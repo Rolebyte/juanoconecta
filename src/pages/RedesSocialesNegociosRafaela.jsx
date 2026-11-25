@@ -38,7 +38,7 @@ const faqSchema = {
       name: '¿Cuánto cuesta gestionar las redes sociales de un negocio en Rafaela?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'La gestión de redes sociales con JuanoConecta tiene planes desde $146.000 por mes. Cada plan tiene una meta del mes que se puede medir: plan Presencia $146.000 por mes (1 red, 8 publicaciones, meta 3.000 cuentas alcanzadas), plan Conecta $320.000 por mes (2 redes, 12 publicaciones y una campaña a mensajes, meta 10.000 cuentas alcanzadas y 30 conversaciones nuevas), plan Conecta Pro $550.000 por mes (3 redes, 20 publicaciones, respuestas automáticas en WhatsApp, meta 60 conversaciones y respuesta en menos de una hora) y plan Full $850.000 por mes, a medida. La pauta de Meta Ads se paga aparte. Las ventas se miden en el reporte pero no se prometen.',
+        text: 'La gestión de redes sociales con JuanoConecta tiene planes desde $146.000 por mes. Cada plan tiene una meta del mes que se puede medir: plan Presencia $146.000 por mes (1 red, meta 3.000 cuentas alcanzadas), plan Conecta $320.000 por mes (2 redes y una campaña a mensajes, meta 10.000 cuentas alcanzadas y 30 conversaciones nuevas), plan Conecta Pro $550.000 por mes (3 redes, respuestas automáticas en WhatsApp, meta 60 conversaciones y respuesta en menos de una hora) y plan Full $850.000 por mes, a medida. La pauta de Meta Ads se paga aparte. Las ventas se miden en el reporte pero no se prometen.',
       },
     },
     {
@@ -217,7 +217,7 @@ export default function RedesSocialesNegociosRafaela() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { stat: '+340%', label: 'alcance orgánico en 60 días', nombre: 'Tatitos Pañalera', rubro: 'Comercio minorista · Rafaela', desc: 'Contenido estratégico diario + Meta Ads segmentada. Triplicaron visibilidad y generaron ventas directas desde Instagram.', color: '#3D7BFF' },
+              { stat: 'Tienda + redes', label: 'contenido diario y Meta Ads por zona', nombre: 'Tatitos Pañalera', rubro: 'Comercio minorista · Rafaela', desc: 'Contenido estratégico diario, Meta Ads segmentados por zona y tienda online con Mercado Pago.', color: '#3D7BFF' },
               { stat: '100%', label: 'imagen profesional desde cero', nombre: 'Alarcón Ecografías', rubro: 'Profesional de la salud · Rafaela', desc: 'Partieron sin presencia digital. Hoy tienen identidad visual coherente en todas sus redes y una comunidad activa.', color: '#6A8FC4' },
             ].map((r) => (
               <motion.div key={r.nombre} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}

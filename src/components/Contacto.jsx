@@ -6,15 +6,16 @@ import { pixel } from '../pixel'
 const WA_LINK = 'https://wa.me/5493492383024?text=Hola%20Juan%2C%20quiero%20contactarte'
 
 const serviciosOpciones = [
-  'Community Management',
-  'Meta Ads',
-  'Diseño Gráfico',
-  'Web Design con IA',
-  'Branding',
-  'Copywriting + IA',
-  'Auditoría IA',
+  'Que me encuentren en Google',
+  'Web todo incluido',
+  'Asistente de IA para WhatsApp',
+  'Redes y anuncios',
+  'Curso o capacitación de IA',
+  'Diseño y marca',
   'Otro',
 ]
+
+const FORMSPREE = 'https://formspree.io/f/mgojewnq'
 
 export default function Contacto() {
   const titleRef = useRef(null)
@@ -31,11 +32,15 @@ export default function Contacto() {
     const data = new FormData(form)
 
     try {
-      const res = await fetch('https://formspree.io/f/mgojewnq', {
+      // Primero al panel /admin. Si el servidor falla, la consulta sale igual por Formspree para no perderla.
+      let res = await fetch('/api/contacto', {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
-      })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(data)),
+      }).catch(() => null)
+      if (!res || (!res.ok && res.status !== 400 && res.status !== 429)) {
+        res = await fetch(FORMSPREE, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      }
       if (res.ok) {
         setEnviado(true)
         pixel('Lead', { content_name: 'formulario-contacto' })
@@ -65,10 +70,10 @@ export default function Contacto() {
         >
           <Eyebrow>Hablemos</Eyebrow>
           <h2 className="text-3xl md:text-5xl font-bold text-crema mt-4 tracking-tight max-w-3xl mx-auto" style={{ textWrap: 'balance' }}>
-            ¿Listo para llevar tu marca al próximo nivel?
+            Contame qué necesita tu negocio
           </h2>
           <p className="text-crema/60 text-lg mt-5 max-w-xl mx-auto">
-            Contanos tu proyecto y te armamos una propuesta a medida, sin compromiso. Te respondemos en menos de 24 horas.
+            Te respondo en menos de 24 horas con una propuesta a medida y sin compromiso. Si preferís, escribime directo por WhatsApp.
           </p>
         </motion.div>
 
@@ -95,8 +100,9 @@ export default function Contacto() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Nombre */}
                 <div>
-                  <label className="block text-crema/60 text-sm mb-2">Nombre</label>
+                  <label htmlFor="c-nombre" className="block text-crema/60 text-sm mb-2">Nombre</label>
                   <input
+                    id="c-nombre"
                     type="text"
                     name="nombre"
                     required
@@ -107,8 +113,9 @@ export default function Contacto() {
 
                 {/* Email */}
                 <div>
-                  <label className="block text-crema/60 text-sm mb-2">Email</label>
+                  <label htmlFor="c-email" className="block text-crema/60 text-sm mb-2">Email</label>
                   <input
+                    id="c-email"
                     type="email"
                     name="email"
                     required
@@ -117,14 +124,30 @@ export default function Contacto() {
                   />
                 </div>
 
+                {/* WhatsApp (opcional) */}
+                <div>
+                  <label htmlFor="c-whatsapp" className="block text-crema/60 text-sm mb-2">WhatsApp <span className="text-crema/35">(opcional)</span></label>
+                  <input
+                    id="c-whatsapp"
+                    type="tel"
+                    name="whatsapp"
+                    placeholder="Ej.: 3492 123456"
+                    className="w-full bg-card-bg border border-card-border text-crema placeholder-crema/20 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-acento/50 transition-colors"
+                  />
+                </div>
+
+                {/* Campo trampa para bots: queda oculto para las personas */}
+                <input type="text" name="sitio" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+
                 {/* Servicio dropdown */}
                 <div>
-                  <label className="block text-crema/60 text-sm mb-2">Servicio de interés</label>
+                  <label htmlFor="c-servicio" className="block text-crema/60 text-sm mb-2">¿Qué te interesa?</label>
                   <select
+                    id="c-servicio"
                     name="servicio"
                     className="w-full bg-card-bg border border-card-border text-crema rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-acento/50 transition-colors appearance-none"
                   >
-                    <option value="">Seleccioná un servicio</option>
+                    <option value="">Elegí una opción</option>
                     {serviciosOpciones.map((s) => (
                       <option key={s} value={s}>{s}</option>
                     ))}
@@ -133,12 +156,13 @@ export default function Contacto() {
 
                 {/* Mensaje */}
                 <div>
-                  <label className="block text-crema/60 text-sm mb-2">Mensaje</label>
+                  <label htmlFor="c-mensaje" className="block text-crema/60 text-sm mb-2">Mensaje</label>
                   <textarea
+                    id="c-mensaje"
                     name="mensaje"
                     rows={4}
                     required
-                    placeholder="Contame sobre tu proyecto..."
+                    placeholder="Contame a qué se dedica tu negocio y qué te gustaría resolver"
                     className="w-full bg-card-bg border border-card-border text-crema placeholder-crema/20 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-acento/50 transition-colors resize-none"
                   />
                 </div>
@@ -208,7 +232,7 @@ export default function Contacto() {
                   </svg>
                 ),
                 titulo: 'Ubicación',
-                valor: 'Rafaela, Santa Fe, Argentina 🇦🇷',
+                valor: 'Rafaela, Santa Fe. Trabajo con todo el país y el exterior.',
                 href: null,
               },
             ].map((item) => (
